@@ -30,6 +30,60 @@ body {
   height: 18px;
   object-fit: contain;
 }
+.img-nosotros {
+  position: relative;
+  width: 100%;
+}
+.img-nosotros img {
+  width: 100%;
+  border-radius: 30px;
+  display: block;
+}
+/* TARJETA SUPERPUESTA */
+.tarjeta-superpuesta {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom right, #ff8c00, #ffc233);
+  color: white;
+  padding: 30px;
+  border-radius: 30px;
+  width: 45%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tarjeta-superpuesta h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 2px solid white;
+  display: inline-block;
+}
+
+.tarjeta-superpuesta p {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.tarjeta-superpuesta .resaltado {
+  font-weight: bold;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .tarjeta-superpuesta {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .img-nosotros img {
+    border-radius: 20px;
+  }
+}
 
 .main-header {
   display: flex;
@@ -163,20 +217,16 @@ body {
 }
 
 .acerca-nosotros {
-  padding: 40px 20px;
+  padding: 60px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
 .contenedor-nosotros {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
   max-width: 1200px;
-  margin: auto;
+  width: 100%;
+  position: relative;
 }
 
 .contenedor-nosotros img {
