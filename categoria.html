@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maxikompras - Productos por Categoría</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="main-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="/img/logo.png" alt="Logo" />
+        <h1>Dropkiller <span>Shop</span></h1>
+      </a>
+    </div>
+    <div class="icons">
+      <a href="index.html"><img src="./img/search.png" alt="Buscar" /></a>
+      <img src="./img/user.png" alt="Usuario" />
+      <img src="./img/cart.png" alt="Carrito" />
+    </div>
+  </header>
+
+  <section class="productos">
+    <h2 id="titulo-categoria">Categoría</h2>
+    <div class="grid-productos"></div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoriaSeleccionada = urlParams.get("cat");
+
+    const contenedor = document.querySelector(".grid-productos");
+    const titulo = document.getElementById("titulo-categoria");
+
+    // Cambia el título con la categoría
+    titulo.textContent = categoriaSeleccionada.charAt(0).toUpperCase() + categoriaSeleccionada.slice(1);
+
+    fetch("productos.json")
+      .then(res => res.json())
+      .then(productos => {
+        const filtrados = productos.filter(
+          p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase()
+        );
+
+        if (filtrados.length === 0) {
+          contenedor.innerHTML = "<p>No hay productos en esta categoría.</p>";
+          return;
+        }
+
+        filtrados.forEach(producto => {
+          const div = document.createElement("div");
+          div.className = "producto";
+          div.innerHTML = `
+            <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
+            <h3>${producto.nombre}</h3>
+            <p class="precio">$${producto.precio.toLocaleString()}</p>
+            <button>Añadir al carrito</button>
+          `;
+          contenedor.appendChild(div);
+        });
+      })
+      .catch(error => {
+        console.error("Error al cargar productos:", error);
+        contenedor.innerHTML = "<p>Error al cargar los productos.</p>";
+      });
+  </script>
+
+</body>
+</html>
