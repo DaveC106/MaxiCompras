@@ -27,6 +27,10 @@
       <img src="./img/cart.png" alt="Carrito" />
     </div>
   </header>
+  <div class="buscador" id="buscador" style="display: none;">
+  <input type="text" id="input-busqueda" placeholder="Buscar producto..." />
+  <div id="resultados-busqueda" class="grid-productos"></div>
+</div>
 
   <!-- Banner -->
   <section class="hero">
@@ -196,4 +200,64 @@
     .catch(error => {
       console.error("Error cargando productos:", error);
     });
+
+    const searchIcon = document.querySelector('img[alt="Buscar"]');
+const buscadorDiv = document.getElementById("buscador");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
+
+let productosCargados = [];
+
+searchIcon.addEventListener("click", () => {
+  buscadorDiv.style.display = buscadorDiv.style.display === "none" ? "block" : "none";
+  inputBusqueda.focus();
+});
+
+// Guardar los productos cargados
+fetch("productos.json")
+  .then(res => res.json())
+  .then(productos => {
+    productosCargados = productos; // Guardamos para búsqueda
+    const contenedor = document.querySelector(".grid-productos");
+    productos.forEach(producto => {
+      if (producto.destacado && producto.imagenes.length > 0) {
+        const div = document.createElement("div");
+        div.className = "producto";
+        div.innerHTML = `
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
+          <h3>${producto.nombre}</h3>
+          <p class="precio">$${producto.precio.toLocaleString()}</p>
+          <button>Añadir al carrito</button>
+        `;
+        contenedor.appendChild(div);
+      }
+    });
+  });
+
+// Buscar en tiempo real
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p>No se encontraron productos.</p>";
+    return;
+  }
+
+  filtrados.forEach(producto => {
+    const div = document.createElement("div");
+    div.className = "producto";
+    div.innerHTML = `
+      <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
+      <h3>${producto.nombre}</h3>
+      <p class="precio">$${producto.precio.toLocaleString()}</p>
+      <button>Añadir al carrito</button>
+    `;
+    resultadosBusqueda.appendChild(div);
+  });
+});
 </script>
