@@ -247,3 +247,33 @@ body {
   font-size: 14px;
 }
 
+.aliados {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.aliados h2 {
+  font-size: 30px;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+.logos-aliados {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.logos-aliados img {
+  height: 50px;
+  object-fit: contain;
+  filter: grayscale(0.3);
+  transition: filter 0.3s ease;
+}
+
+.logos-aliados img:hover {
+  filter: grayscale(0);
+}
+
