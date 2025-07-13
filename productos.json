@@ -9,12 +9,12 @@
     "timestamp": "2025-07-13T20:00:00Z"
   },
   {
-    "nombre": "Soporte para Celular",
+    "nombre": "Aire Acondicionado ULTRA POTENTE",
     "descripcion": "Flexible y resistente.",
-    "precio": 25000,
-    "categoria": "accesorios",
-    "imagenes": ["img/productos/soporte.jpg"],
-    "destacado": false,
+    "precio": 189990,
+    "categoria": "tecnologia",
+    "imagenes": ["img/aireacon.png"],
+    "destacado": true,
     "timestamp": "2025-07-13T20:02:00Z"
   }
 ]
