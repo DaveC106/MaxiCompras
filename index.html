@@ -173,31 +173,4 @@
   <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
 </footer>
 
-<script type="module">
-  const contenedor = document.querySelector(".grid-productos");
 
-  async function cargarProductosDestacados() {
-    try {
-      const res = await fetch("http://localhost:3000/productos");
-      const productos = await res.json();
-
-      productos.forEach((producto) => {
-        if (producto.destacado && producto.imagenes.length > 0) {
-          const html = `
-            <div class="producto">
-              <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
-              <h3>${producto.nombre}</h3>
-              <p class="precio">$${producto.precio.toLocaleString()}</p>
-              <button>Añadir al carrito</button>
-            </div>
-          `;
-          contenedor.innerHTML += html;
-        }
-      });
-    } catch (error) {
-      console.error("Error cargando productos:", error);
-    }
-  }
-
-  cargarProductosDestacados();
-</script>
