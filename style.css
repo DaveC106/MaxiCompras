@@ -211,3 +211,39 @@ body {
   font-size: 14px;
   color: #555;
 }
+
+.banners-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 50px 20px;
+  background-color: #fff7f2;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  background-color: #ff6a00;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  gap: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.banner img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.banner h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.banner p {
+  margin: 0;
+  font-size: 14px;
+}
+
