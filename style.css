@@ -498,10 +498,15 @@ body {
 
 .grid-categorias {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
+  gap: 20px;
   padding: 30px 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grid-categorias::-webkit-scrollbar {
+  display: none; /* opcional: oculta el scroll */
 }
 
 .categoria {
@@ -570,4 +575,12 @@ body {
   .categoria p {
     font-size: 16px;
   }
+}
+.grid-categorias {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.categoria {
+  flex: 0 0 auto;
 }
