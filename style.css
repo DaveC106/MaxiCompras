@@ -163,25 +163,29 @@ body {
 }
 
 .acerca-nosotros {
-  padding: 50px 20px;
-  background-color: #f9f9f9;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+
 .contenedor-nosotros {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
   align-items: center;
-  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .contenedor-nosotros img {
   width: 100%;
-  max-width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 550px;
+  border-radius: 30px;
+  object-fit: cover;
 }
+
 
 .texto-nosotros {
   flex: 1;
@@ -216,6 +220,33 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+}
+.tarjeta-nosotros {
+  flex: 1;
+  background: linear-gradient(to bottom right, #ff8c00, #ffc233);
+  padding: 30px;
+  border-radius: 30px;
+  color: white;
+  font-family: sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+}
+
+.tarjeta-nosotros h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 2px solid white;
+  display: inline-block;
+}
+.tarjeta-nosotros p {
+  line-height: 1.6;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.tarjeta-nosotros .resaltado {
+  font-weight: bold;
 }
 
 .testimonio {
