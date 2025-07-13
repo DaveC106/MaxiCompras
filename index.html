@@ -70,13 +70,18 @@
     </div>
   </div>
 </section>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+<section class="productos">
+  <h2>Productos Destacados</h2>
 
-  // Your web app's Firebase configuration
+  <!-- ACÁ lo ponés -->
+  <div class="grid-productos"></div>
+
+</section>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
   const firebaseConfig = {
     apiKey: "AIzaSyAJhiPSI2O5dxqDnP1XgrpMy0X6O3nzjF8",
     authDomain: "maxicompras-18083.firebaseapp.com",
@@ -86,6 +91,26 @@
     appId: "1:926294048252:web:f9472ec34e04f5bfef0679"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const contenedor = document.querySelector(".grid-productos"); // Asegúrate que tu HTML tenga esta clase
+
+  async function cargarProductos() {
+    const querySnapshot = await getDocs(collection(db, "productos"));
+    querySnapshot.forEach((doc) => {
+      const producto = doc.data();
+      const html = `
+        <div class="producto">
+          <img src="${producto.imagen}" alt="${producto.nombre}">
+          <h3>${producto.nombre}</h3>
+          <p class="precio">$${producto.precio.toLocaleString()}</p>
+          <button>Añadir al carrito</button>
+        </div>
+      `;
+      contenedor.innerHTML += html;
+    });
+  }
+
+  cargarProductos();
 </script>
