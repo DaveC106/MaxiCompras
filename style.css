@@ -86,7 +86,7 @@ body {
 }
 
 .hero-img img {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
   border-radius: 1rem; /* opcional, si quieres bordes redondeados */
   display: block;
