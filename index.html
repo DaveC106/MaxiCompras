@@ -198,27 +198,3 @@
       console.error("Error cargando productos:", error);
     });
 </script>
-
-
-<script>
-  const btnBuscar = document.getElementById("btn-buscar");
-  const inputBuscar = document.getElementById("buscador");
-
-  btnBuscar.addEventListener("click", () => {
-    if (inputBuscar.style.display === "none") {
-      inputBuscar.style.display = "inline-block";
-      inputBuscar.focus();
-    } else {
-      inputBuscar.style.display = "none";
-    }
-  });
-
-  inputBuscar.addEventListener("input", () => {
-    const texto = inputBuscar.value.toLowerCase().trim();
-    const filtrados = productosCargados.filter(p =>
-      p.nombre.toLowerCase().includes(texto)
-    );
-    mostrarProductos(filtrados);
-  });
-</script>
-

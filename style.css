@@ -9,14 +9,6 @@ body {
   background: #fff;
   color: #222;
 }
-#buscador {
-  padding: 5px 10px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-left: 10px;
-  width: 180px;
-}
 
 .top-bar {
   display: flex;
