@@ -86,125 +86,93 @@
 </table>
 
   <div id="preview-imgs"></div>
+<script type="module">
+  const form = document.getElementById("formulario");
+  const inputImgs = document.getElementById("imagenes");
+  const previewContainer = document.getElementById("preview-imgs");
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-   import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  doc,
-  deleteDoc
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+  inputImgs.addEventListener("change", () => {
+    previewContainer.innerHTML = "";
+    for (const file of inputImgs.files) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        previewContainer.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAJhiPSI2O5dxqDnP1XgrpMy0X6O3nzjF8",
-      authDomain: "maxicompras-18083.firebaseapp.com",
-      projectId: "maxicompras-18083",
-      storageBucket: "maxicompras-18083.appspot.com",
-      messagingSenderId: "926294048252",
-      appId: "1:926294048252:web:f9472ec34e04f5bfef0679"
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const precio = parseInt(document.getElementById("precio").value);
+    const categoria = document.getElementById("categoria").value;
+    const destacado = document.getElementById("destacado").checked;
+
+    const producto = {
+      nombre,
+      descripcion,
+      precio,
+      categoria,
+      imagenes: [], // Aquí luego conectamos con subida local si quieres
+      destacado,
+      timestamp: new Date()
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const storage = getStorage(app);
+    try {
+      const res = await fetch("http://localhost:3000/productos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(producto)
+      });
 
-    const form = document.getElementById("formulario");
-    const inputImgs = document.getElementById("imagenes");
-    const previewContainer = document.getElementById("preview-imgs");
+      if (!res.ok) throw new Error("No se pudo guardar");
 
-    inputImgs.addEventListener("change", () => {
+      alert("✅ Producto guardado en JSON local!");
+      form.reset();
       previewContainer.innerHTML = "";
-      for (const file of inputImgs.files) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          previewContainer.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const nombre = document.getElementById("nombre").value;
-      const descripcion = document.getElementById("descripcion").value;
-      const precio = parseInt(document.getElementById("precio").value);
-      const categoria = document.getElementById("categoria").value;
-      const destacado = document.getElementById("destacado").checked;
-
-      try {
-        // Subir imágenes y obtener URLs
-        const urls = [];
-        for (const file of inputImgs.files) {
-          const ruta = `productos/${Date.now()}-${file.name}`;
-          const storageRef = ref(storage, ruta);
-          await uploadBytes(storageRef, file);
-          const url = await getDownloadURL(storageRef);
-          urls.push(url);
-        }
-
-        // Guardar en Firestore
-        await addDoc(collection(db, "productos"), {
-          nombre,
-          descripcion,
-          precio,
-          categoria,
-          imagenes: urls,
-          destacado,
-          timestamp: new Date()
-        });
-
-        alert("✅ Producto guardado con éxito");
-        form.reset();
-        previewContainer.innerHTML = "";
-      } catch (error) {
-        alert("❌ Error al guardar: " + error.message);
-      }
-    });
-   
-
-async function cargarTabla() {
-  const tabla = document.querySelector("#tabla-productos tbody");
-  tabla.innerHTML = "";
-
-  const querySnapshot = await getDocs(collection(db, "productos"));
-  querySnapshot.forEach((docItem) => {
-    const data = docItem.data();
-    const fila = document.createElement("tr");
-
-    fila.innerHTML = `
-      <td>${data.nombre}</td>
-      <td>$${data.precio.toLocaleString()}</td>
-      <td>${data.categoria}</td>
-      <td>${data.destacado ? "✅" : "❌"}</td>
-      <td><button data-id="${docItem.id}" class="eliminar">🗑️</button></td>
-    `;
-
-    tabla.appendChild(fila);
+      cargarTabla(); // Recargar la tabla con los nuevos datos
+    } catch (err) {
+      alert("❌ Error: " + err.message);
+    }
   });
 
-  // Escuchar clicks en botones eliminar
-  document.querySelectorAll(".eliminar").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const id = btn.getAttribute("data-id");
-      if (confirm("¿Estás seguro de eliminar este producto?")) {
-        await deleteDoc(doc(db, "productos", id));
-        alert("Producto eliminado");
-        cargarTabla();
-      }
-    });
-  });
-}
+  async function cargarTabla() {
+    const tabla = document.querySelector("#tabla-productos tbody");
+    tabla.innerHTML = "";
 
-cargarTabla();
+    try {
+      const res = await fetch("http://localhost:3000/productos");
+      const productos = await res.json();
 
-  </script>
+      productos.forEach((producto, index) => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${producto.nombre}</td>
+          <td>$${producto.precio.toLocaleString()}</td>
+          <td>${producto.categoria}</td>
+          <td>${producto.destacado ? "✅" : "❌"}</td>
+          <td><button onclick="eliminarProducto(${index})">🗑️</button></td>
+        `;
+        tabla.appendChild(fila);
+      });
+    } catch (err) {
+      tabla.innerHTML = "<tr><td colspan='5'>Error al cargar productos</td></tr>";
+    }
+  }
+
+  // Más adelante programamos esta función
+  window.eliminarProducto = async function (index) {
+    alert("Eliminar desde JSON aún no está implementado");
+  };
+
+  cargarTabla();
+</script>
+ 
  
 </body>
 </html>
