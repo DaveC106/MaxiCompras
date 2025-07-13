@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Admin - MaxiCompras</title>
+</head>
+<body>
+  <h1>Agregar producto</h1>
+
+  <form id="formulario">
+    <input type="text" placeholder="Nombre del producto" id="nombre" required><br><br>
+    <input type="number" placeholder="Precio (sin puntos ni $)" id="precio" required><br><br>
+    <input type="text" placeholder="URL de imagen" id="imagen" required><br><br>
+    <input type="text" placeholder="Categoría" id="categoria" required><br><br>
+    <button type="submit">Guardar producto</button>
+  </form>
+
+  <script type="module">
+    // Tu config de Firebase (la misma que pegaste en index.html)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_DOMINIO.firebaseapp.com",
+      projectId: "TU_ID",
+      storageBucket: "TU_BUCKET",
+      messagingSenderId: "TU_MENSAJE_ID",
+      appId: "TU_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("formulario");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const precio = parseInt(document.getElementById("precio").value);
+      const imagen = document.getElementById("imagen").value;
+      const categoria = document.getElementById("categoria").value;
+
+      try {
+        await addDoc(collection(db, "productos"), {
+          nombre,
+          precio,
+          imagen,
+          categoria
+        });
+        alert("✅ Producto agregado con éxito");
+        form.reset();
+      } catch (e) {
+        alert("❌ Error al guardar: " + e.message);
+      }
+    });
+  </script>
+</body>
+</html>
