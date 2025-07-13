@@ -348,13 +348,6 @@ body {
   padding: 50px 20px;
   background-color: #fff7f2;
 }
-
-
-.aliados {
-  padding: 50px 20px;
-  text-align: center;
-  background-color: #fff;
-}
 .banners-info {
   display: flex;
   justify-content: center;
@@ -391,29 +384,7 @@ body {
   font-weight: bold;
 }
 
-.aliados h2 {
-  font-size: 30px;
-  color: #1a1a1a;
-  margin-bottom: 30px;
-}
 
-.logos-aliados {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-}
-
-.logos-aliados img {
-  height: 50px;
-  object-fit: contain;
-  filter: grayscale(0.3);
-  transition: filter 0.3s ease;
-}
-
-.logos-aliados img:hover {
-  filter: grayscale(0);
-}
 
 .footer {
   background-color: #ff6a00;
@@ -592,4 +563,51 @@ body {
   font-size: 15px;
   margin-left: 5px;
   font-weight: normal;
+}
+
+/*Style de aliados*/
+
+.aliados {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.aliados h2 {
+  font-size: 30px;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+.logos-aliados {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.logos-aliados img {
+  width: 80px;
+  height: 80px;
+  padding: 15px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  object-fit: contain;
+  filter: grayscale(0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logos-aliados img:hover {
+  filter: grayscale(0);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+  .logos-aliados img {
+    width: 65px;
+    height: 65px;
+    padding: 10px;
+  }
 }
