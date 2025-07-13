@@ -1,13 +1,5 @@
 [
-  {
-    "nombre": "Cafetera Eléctrica",
-    "descripcion": "Ideal para preparar café en minutos.",
-    "precio": 120000,
-    "categoria": "cocina",
-    "imagenes": ["img/interapi.png"],
-    "destacado": true,
-    "timestamp": "2025-07-13T20:00:00Z"
-  },
+ 
   {
     "nombre": "Aire Acondicionado ULTRA POTENTE",
     "descripcion": "Flexible y resistente.",
