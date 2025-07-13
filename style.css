@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   color: white;
   text-align: center;
   font-size: 14px;
-  padding: 10px 5px;
+  padding: 10px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
