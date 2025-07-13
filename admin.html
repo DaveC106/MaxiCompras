@@ -3,55 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <title>Panel Admin - MaxiCompras</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fff6ee;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #ff6a00;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 500px;
+    }
+
+    input, textarea, button, label {
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #ff6a00;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #preview-imgs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    #preview-imgs img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
   <h1>Agregar producto</h1>
 
   <form id="formulario">
-    <input type="text" placeholder="Nombre del producto" id="nombre" required><br><br>
-    <input type="number" placeholder="Precio (sin puntos ni $)" id="precio" required><br><br>
-    <input type="text" placeholder="URL de imagen" id="imagen" required><br><br>
-    <input type="text" placeholder="Categoría" id="categoria" required><br><br>
+    <input type="text" id="nombre" placeholder="Nombre del producto" required>
+    <textarea id="descripcion" placeholder="Descripción del producto" required></textarea>
+    <input type="number" id="precio" placeholder="Precio (sin puntos ni $)" required>
+    <input type="text" id="categoria" placeholder="Categoría" required>
+
+    <label>
+      ¿Destacado?
+      <input type="checkbox" id="destacado">
+    </label>
+
+    <label>
+      Imágenes del producto:
+      <input type="file" id="imagenes" multiple accept="image/*">
+    </label>
+
     <button type="submit">Guardar producto</button>
   </form>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+  <h2 style="margin-top: 40px;">Productos actuales</h2>
+<table id="tabla-productos" border="1" cellspacing="0" cellpadding="8" style="background:#fff;width:100%;text-align:left;">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Categoría</th>
+      <th>Destacado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAJhiPSI2O5dxqDnP1XgrpMy0X6O3nzjF8",
-    authDomain: "maxicompras-18083.firebaseapp.com",
-    projectId: "maxicompras-18083",
-    storageBucket: "maxicompras-18083.firebasestorage.app",
-    messagingSenderId: "926294048252",
-    appId: "1:926294048252:web:f9472ec34e04f5bfef0679"
-  };
+  <div id="preview-imgs"></div>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
-  const form = document.getElementById("formulario");
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJhiPSI2O5dxqDnP1XgrpMy0X6O3nzjF8",
+      authDomain: "maxicompras-18083.firebaseapp.com",
+      projectId: "maxicompras-18083",
+      storageBucket: "maxicompras-18083.appspot.com",
+      messagingSenderId: "926294048252",
+      appId: "1:926294048252:web:f9472ec34e04f5bfef0679"
+    };
 
-    const nombre = document.getElementById("nombre").value;
-    const precio = parseInt(document.getElementById("precio").value);
-    const imagen = document.getElementById("imagen").value;
-    const categoria = document.getElementById("categoria").value;
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
 
-    try {
-      await addDoc(collection(db, "productos"), {
-        nombre,
-        precio,
-        imagen,
-        categoria
-      });
-      alert("✅ Producto agregado con éxito");
-      form.reset();
-    } catch (error) {
-      alert("❌ Error al guardar: " + error.message);
-    }
+    const form = document.getElementById("formulario");
+    const inputImgs = document.getElementById("imagenes");
+    const previewContainer = document.getElementById("preview-imgs");
+
+    inputImgs.addEventListener("change", () => {
+      previewContainer.innerHTML = "";
+      for (const file of inputImgs.files) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const descripcion = document.getElementById("descripcion").value;
+      const precio = parseInt(document.getElementById("precio").value);
+      const categoria = document.getElementById("categoria").value;
+      const destacado = document.getElementById("destacado").checked;
+
+      try {
+        // Subir imágenes y obtener URLs
+        const urls = [];
+        for (const file of inputImgs.files) {
+          const ruta = `productos/${Date.now()}-${file.name}`;
+          const storageRef = ref(storage, ruta);
+          await uploadBytes(storageRef, file);
+          const url = await getDownloadURL(storageRef);
+          urls.push(url);
+        }
+
+        // Guardar en Firestore
+        await addDoc(collection(db, "productos"), {
+          nombre,
+          descripcion,
+          precio,
+          categoria,
+          imagenes: urls,
+          destacado,
+          timestamp: new Date()
+        });
+
+        alert("✅ Producto guardado con éxito");
+        form.reset();
+        previewContainer.innerHTML = "";
+      } catch (error) {
+        alert("❌ Error al guardar: " + error.message);
+      }
+    });
+  </script>
+  <script>
+    import { doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+async function cargarTabla() {
+  const tabla = document.querySelector("#tabla-productos tbody");
+  tabla.innerHTML = "";
+
+  const querySnapshot = await getDocs(collection(db, "productos"));
+  querySnapshot.forEach((docItem) => {
+    const data = docItem.data();
+    const fila = document.createElement("tr");
+
+    fila.innerHTML = `
+      <td>${data.nombre}</td>
+      <td>$${data.precio.toLocaleString()}</td>
+      <td>${data.categoria}</td>
+      <td>${data.destacado ? "✅" : "❌"}</td>
+      <td><button data-id="${docItem.id}" class="eliminar">🗑️</button></td>
+    `;
+
+    tabla.appendChild(fila);
   });
-</script>
+
+  // Escuchar clicks en botones eliminar
+  document.querySelectorAll(".eliminar").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const id = btn.getAttribute("data-id");
+      if (confirm("¿Estás seguro de eliminar este producto?")) {
+        await deleteDoc(doc(db, "productos", id));
+        alert("Producto eliminado");
+        cargarTabla();
+      }
+    });
+  });
+}
+
+cargarTabla();
+  </script>
 </body>
 </html>

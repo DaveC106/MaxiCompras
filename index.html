@@ -173,8 +173,6 @@
   <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
 </footer>
 
-
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
   import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
@@ -183,7 +181,7 @@
     apiKey: "AIzaSyAJhiPSI2O5dxqDnP1XgrpMy0X6O3nzjF8",
     authDomain: "maxicompras-18083.firebaseapp.com",
     projectId: "maxicompras-18083",
-    storageBucket: "maxicompras-18083.firebasestorage.app",
+    storageBucket: "maxicompras-18083.appspot.com",
     messagingSenderId: "926294048252",
     appId: "1:926294048252:web:f9472ec34e04f5bfef0679"
   };
@@ -191,23 +189,26 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const contenedor = document.querySelector(".grid-productos"); // Asegúrate que tu HTML tenga esta clase
+  const contenedor = document.querySelector(".grid-productos");
 
-  async function cargarProductos() {
+  async function cargarProductosDestacados() {
     const querySnapshot = await getDocs(collection(db, "productos"));
     querySnapshot.forEach((doc) => {
       const producto = doc.data();
-      const html = `
-        <div class="producto">
-          <img src="${producto.imagen}" alt="${producto.nombre}">
-          <h3>${producto.nombre}</h3>
-          <p class="precio">$${producto.precio.toLocaleString()}</p>
-          <button>Añadir al carrito</button>
-        </div>
-      `;
-      contenedor.innerHTML += html;
+
+      if (producto.destacado && producto.imagenes && producto.imagenes.length > 0) {
+        const html = `
+          <div class="producto">
+            <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
+            <h3>${producto.nombre}</h3>
+            <p class="precio">$${producto.precio.toLocaleString()}</p>
+            <button>Añadir al carrito</button>
+          </div>
+        `;
+        contenedor.innerHTML += html;
+      }
     });
   }
 
-  cargarProductos();
+  cargarProductosDestacados();
 </script>
