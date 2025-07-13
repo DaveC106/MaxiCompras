@@ -11,14 +11,24 @@ body {
 }
 
 .top-bar {
-  background: #FFA500;
-  color: white;
-  text-align: center;
-  font-size: 14px;
-  padding: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 40px;
+  background-color: #ff6a00;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 14px;
   flex-wrap: wrap;
+}
+.top-bar span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.icono {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .main-header {
