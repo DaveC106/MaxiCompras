@@ -306,3 +306,11 @@
     });
   });
 </script>
+<script>
+  // Detecta si el usuario volvió a esta página
+  window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
+</script>
