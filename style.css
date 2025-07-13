@@ -89,6 +89,8 @@ body {
   max-width: 100%;
   height: auto;
   border-radius: 1rem; /* opcional, si quieres bordes redondeados */
+  display: block;
+  margin: 0 auto;
 }
 
 .categorias {
