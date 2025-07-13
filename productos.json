@@ -1,0 +1,21 @@
+[
+  {
+    "nombre": "Cafetera Eléctrica",
+    "descripcion": "Ideal para preparar café en minutos.",
+    "precio": 120000,
+    "categoria": "cocina",
+    "imagenes": ["img/productos/cafetera.jpg"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:00:00Z"
+  },
+  {
+    "nombre": "Soporte para Celular",
+    "descripcion": "Flexible y resistente.",
+    "precio": 25000,
+    "categoria": "accesorios",
+    "imagenes": ["img/productos/soporte.jpg"],
+    "destacado": false,
+    "timestamp": "2025-07-13T20:02:00Z"
+  }
+]
+
