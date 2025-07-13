@@ -259,24 +259,7 @@ body {
   color: #444;
 }
 
-.testimonios {
-  background-color: #fff;
-  padding: 60px 20px;
-  text-align: center;
-}
 
-.testimonios h2 {
-  font-size: 32px;
-  color: #1a1a1a;
-  margin-bottom: 40px;
-}
-
-.contenedor-testimonios {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-}
 .tarjeta-nosotros {
   flex: 1;
   background: linear-gradient(to bottom right, #ff8c00, #ffc233);
@@ -305,31 +288,59 @@ body {
   font-weight: bold;
 }
 
-.testimonio {
+.testimonios {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.testimonios h2 {
+  font-size: 2em;
+  color: #111357;
+  margin-bottom: 40px;
+}
+
+.grid-testimonios {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-testimonio {
   background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   padding: 20px;
-  border-radius: 12px;
   max-width: 350px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
 }
 
-.testimonio .comentario {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 15px;
+.card-testimonio hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
 }
 
-.testimonio .nombre {
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 5px;
+.card-testimonio strong {
+  color: #222;
+  font-size: 1em;
 }
 
-.testimonio .verificado {
-  font-size: 14px;
-  color: #555;
+.card-testimonio .verificado {
+  color: #28a745;
+  font-size: 0.9em;
 }
 
+.card-testimonio .estrellas {
+  color: #ff9800;
+  font-size: 1.2em;
+}
 .banners-info {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
