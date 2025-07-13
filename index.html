@@ -27,10 +27,6 @@
       <img src="./img/cart.png" alt="Carrito" />
     </div>
   </header>
-  <div class="buscador" id="buscador" style="display: none;">
-  <input type="text" id="input-busqueda" placeholder="Buscar producto..." />
-  <div id="resultados-busqueda" class="grid-productos"></div>
-</div>
 
   <!-- Banner -->
   <section class="hero">
@@ -200,51 +196,42 @@
     .catch(error => {
       console.error("Error cargando productos:", error);
     });
-
-    const searchIcon = document.querySelector('img[alt="Buscar"]');
-const buscadorDiv = document.getElementById("buscador");
-const inputBusqueda = document.getElementById("input-busqueda");
-const resultadosBusqueda = document.getElementById("resultados-busqueda");
+const modal = document.getElementById("modal-busqueda");
+const abrirModal = document.querySelector('img[alt="Buscar"]');
+const cerrarModal = document.getElementById("cerrar-busqueda");
+const inputModal = document.getElementById("input-modal");
+const resultadosModal = document.getElementById("resultados-modal");
 
 let productosCargados = [];
 
-searchIcon.addEventListener("click", () => {
-  buscadorDiv.style.display = buscadorDiv.style.display === "none" ? "block" : "none";
-  inputBusqueda.focus();
+abrirModal.addEventListener("click", () => {
+  modal.classList.remove("oculto");
+  inputModal.focus();
 });
 
-// Guardar los productos cargados
+cerrarModal.addEventListener("click", () => {
+  modal.classList.add("oculto");
+  inputModal.value = "";
+  resultadosModal.innerHTML = "";
+});
+
+// Reutiliza productos.json ya cargados
 fetch("productos.json")
   .then(res => res.json())
-  .then(productos => {
-    productosCargados = productos; // Guardamos para búsqueda
-    const contenedor = document.querySelector(".grid-productos");
-    productos.forEach(producto => {
-      if (producto.destacado && producto.imagenes.length > 0) {
-        const div = document.createElement("div");
-        div.className = "producto";
-        div.innerHTML = `
-          <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
-          <h3>${producto.nombre}</h3>
-          <p class="precio">$${producto.precio.toLocaleString()}</p>
-          <button>Añadir al carrito</button>
-        `;
-        contenedor.appendChild(div);
-      }
-    });
+  .then(data => {
+    productosCargados = data;
   });
 
-// Buscar en tiempo real
-inputBusqueda.addEventListener("input", () => {
-  const texto = inputBusqueda.value.toLowerCase();
-  resultadosBusqueda.innerHTML = "";
+inputModal.addEventListener("input", () => {
+  const texto = inputModal.value.toLowerCase();
+  resultadosModal.innerHTML = "";
 
   const filtrados = productosCargados.filter(p =>
     p.nombre.toLowerCase().includes(texto)
   );
 
   if (filtrados.length === 0) {
-    resultadosBusqueda.innerHTML = "<p>No se encontraron productos.</p>";
+    resultadosModal.innerHTML = "<p>No se encontraron productos.</p>";
     return;
   }
 
@@ -257,7 +244,15 @@ inputBusqueda.addEventListener("input", () => {
       <p class="precio">$${producto.precio.toLocaleString()}</p>
       <button>Añadir al carrito</button>
     `;
-    resultadosBusqueda.appendChild(div);
+    resultadosModal.appendChild(div);
   });
 });
 </script>
+
+<div id="modal-busqueda" class="modal-busqueda oculto">
+  <div class="contenido-busqueda">
+    <button id="cerrar-busqueda" class="cerrar">✖</button>
+    <input type="text" id="input-modal" placeholder="Buscar producto..." />
+    <div id="resultados-modal" class="grid-productos"></div>
+  </div>
+</div>
