@@ -56,15 +56,10 @@ body {
 }
 
 .hero {
-  background: linear-gradient(to right, #FF8008, #FFC837);
-  color: white;
+  background: none;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px 20px;
-  border-radius: 20px;
-  margin: 20px;
-  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem 0;
 }
 
 .hero-texto {
@@ -91,8 +86,9 @@ body {
 }
 
 .hero-img img {
-  max-width: 300px;
-  border-radius: 20px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem; /* opcional, si quieres bordes redondeados */
 }
 
 .categorias {
