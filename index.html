@@ -173,6 +173,15 @@
   <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
 </footer>
 
+
+<div id="modal-busqueda" class="modal-busqueda oculto">
+  <div class="contenido-busqueda">
+    <button id="cerrar-busqueda" class="cerrar">✖</button>
+    <input type="text" id="input-modal" placeholder="Buscar producto..." />
+    <div id="resultados-modal" class="grid-productos"></div>
+  </div>
+</div>
+
 <script>
   const contenedor = document.querySelector(".grid-productos");
 
@@ -249,10 +258,3 @@ inputModal.addEventListener("input", () => {
 });
 </script>
 
-<div id="modal-busqueda" class="modal-busqueda oculto">
-  <div class="contenido-busqueda">
-    <button id="cerrar-busqueda" class="cerrar">✖</button>
-    <input type="text" id="input-modal" placeholder="Buscar producto..." />
-    <div id="resultados-modal" class="grid-productos"></div>
-  </div>
-</div>
