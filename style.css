@@ -167,3 +167,47 @@ body {
   line-height: 1.7;
   color: #444;
 }
+
+.testimonios {
+  background-color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonios h2 {
+  font-size: 32px;
+  color: #1a1a1a;
+  margin-bottom: 40px;
+}
+
+.contenedor-testimonios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.testimonio {
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 350px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.testimonio .comentario {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.testimonio .nombre {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.testimonio .verificado {
+  font-size: 14px;
+  color: #555;
+}
