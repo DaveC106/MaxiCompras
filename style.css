@@ -84,3 +84,49 @@ body {
   max-width: 300px;
   border-radius: 20px;
 }
+
+.categorias {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.categorias h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.grid-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.categoria {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+}
+
+.categoria img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.categoria p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #444;
+}
+
+.categoria:hover {
+  transform: scale(1.05);
+  background: #ffe0b2;
+}
