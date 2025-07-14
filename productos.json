@@ -24,7 +24,7 @@
     "precio": 189990,
     "categoria": "accesorios",
     "imagenes": ["imgproductos/pruebaproducto2.png"],
-    "destacado": true,
+    "destacado": false,
     "timestamp": "2025-07-13T20:02:00Z"
   },
    {
