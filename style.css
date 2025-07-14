@@ -574,4 +574,25 @@ body {
   }
 }
 
+.grid-categorias-container {
+  position: relative;
+}
+
+.flecha-derecha {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (max-width: 600px) {
+  .flecha-derecha {
+    display: block;
+  }
+}
 
