@@ -10,29 +10,86 @@
     "timestamp": "2025-07-13T20:02:00Z"
   },
    {
-    "nombre": "Aire Acondicionado ULTRA POTENTE",
+    "nombre": "Magnetic | Parlante Magnético Para Celular",
+    "descripcion": "Flexible y resistente.",
+    "precio": 89990,
+    "categoria": "tecnologia",
+    "imagenes": ["imgproductos/pruebaproducto1.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 2",
     "descripcion": "Flexible y resistente.",
     "precio": 189990,
-    "categoria": "tecnologia",
-    "imagenes": ["img/aireacon.png"],
+    "categoria": "accesorios",
+    "imagenes": ["imgproductos/pruebaproducto2.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 3",
+    "descripcion": "Flexible y resistente.",
+    "precio": 189990,
+    "categoria": "accesorios",
+    "imagenes": ["imgproductos/pruebaproducto3.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 4",
+    "descripcion": "Flexible y resistente.",
+    "precio": 189990,
+    "categoria": "hogar",
+    "imagenes": ["imgproductos/pruebaproducto4.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 5",
+    "descripcion": "Flexible y resistente.",
+    "precio": 189990,
+    "categoria": "bienestar",
+    "imagenes": ["imgproductos/pruebaproducto5.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 6",
+    "descripcion": "Flexible y resistente.",
+    "precio": 189990,
+    "categoria": "cocina",
+    "imagenes": ["imgproductos/pruebaproducto6.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 7",
+    "descripcion": "Flexible y resistente.",
+    "precio": 189990,
+    "categoria": "hogar",
+    "imagenes": ["imgproductos/pruebaproducto7.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 8",
+    "descripcion": "Flexible y resistente.",
+    "precio": 189990,
+    "categoria": "vehiculos",
+    "imagenes": ["imgproductos/pruebaproducto8.png"],
+    "destacado": true,
+    "timestamp": "2025-07-13T20:02:00Z"
+  },
+   {
+    "nombre": "Prueba Producto 9",
+    "descripcion": "Flexible y resistente.",
+    "precio": 189990,
+    "categoria": "accesorios",
+    "imagenes": ["imgproductos/pruebaproducto9.png"],
     "destacado": true,
     "timestamp": "2025-07-13T20:02:00Z"
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ]
 
