@@ -304,3 +304,22 @@
     }
   });
 </script>
+
+<script>
+  const scrollCategorias = document.getElementById("scrollCategorias");
+  const flechaCategorias = document.getElementById("flechaCategorias");
+
+  function revisarScrollCategorias() {
+    const maxScroll = scrollCategorias.scrollWidth - scrollCategorias.clientWidth;
+    if (scrollCategorias.scrollLeft >= maxScroll - 10) {
+      flechaCategorias.style.opacity = "0";
+    } else {
+      flechaCategorias.style.opacity = "1";
+    }
+  }
+
+  scrollCategorias.addEventListener("scroll", revisarScrollCategorias);
+  window.addEventListener("resize", revisarScrollCategorias);
+  window.addEventListener("load", revisarScrollCategorias);
+</script>
+

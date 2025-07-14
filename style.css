@@ -579,7 +579,8 @@ body {
 }
 
 .flecha-derecha {
-  display: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
   position: absolute;
   top: 50%;
   right: 10px;
@@ -595,4 +596,3 @@ body {
     display: block;
   }
 }
-
