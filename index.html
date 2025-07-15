@@ -238,8 +238,8 @@
   div.className = "producto-card";
 
   const precioOriginal = producto.precio;
-  const precioAnterior = Math.round(precioOriginal * 1.5);
-  const descuento = Math.round(100 - (precioOriginal / precioAnterior) * 100);
+  const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
+  const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
 
   div.innerHTML = `
     <a href="producto.html?slug=${producto.slug}">
