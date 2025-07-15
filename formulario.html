@@ -30,64 +30,68 @@
     <h2>Finaliza tu compra</h2>
     <form action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
       
-      <!-- Sección 1: Contacto -->
+  <!-- Sección 1: Contacto -->
 <h3>1. Contacto</h3>
 <label for="email">Correo electrónico *</label>
-<input type="email" id="email" name="correo" required>
+<input type="email" id="email" name="Correo electrónico" required>
 
 <label for="telefono">Número Teléfono *</label>
-<input type="tel" id="telefono" name="telefono" required>
+<input type="tel" id="telefono" name="Teléfono" required>
 
 <label for="telefono_confirmar">Confirmar Teléfono *</label>
-<input type="tel" id="telefono_confirmar" name="telefono-confirmar" required>
+<input type="tel" id="telefono_confirmar" name="Confirmar Teléfono" required>
 
 <!-- Sección 2: Entrega -->
 <h3>2. Entrega</h3>
 <label for="nombre">Nombre *</label>
-<input type="text" id="nombre" name="nombre" required>
+<input type="text" id="nombre" name="Nombre" required>
 
 <label for="apellido">Apellido *</label>
-<input type="text" id="apellido" name="apellido" required>
+<input type="text" id="apellido" name="Apellido" required>
 
 <label for="pais">País *</label>
-<select id="pais" name="pais" required>
+<select id="pais" name="País" required>
   <option value="">Seleccione...</option>
   <option value="Colombia">Colombia</option>
+  <option value="México">México</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Chile">Chile</option>
+  <option value="Perú">Perú</option>
 </select>
 
 <label for="estado">Estado / Región *</label>
-<input type="text" id="estado" name="estado" required>
+<input type="text" id="estado" name="Estado / Región" required>
 
 <label for="ciudad">Ciudad *</label>
-<input type="text" id="ciudad" name="ciudad" required>
+<input type="text" id="ciudad" name="Ciudad" required>
 
 <label for="direccion">Dirección *</label>
-<input type="text" id="direccion" name="direccion" required>
+<input type="text" id="direccion" name="Dirección" required>
 
 <label for="apartamento">Apartamento / Casa (opcional)</label>
-<input type="text" id="apartamento" name="apartamento">
+<input type="text" id="apartamento" name="Apartamento / Casa">
 
 <label for="ccnit">CC o NIT *</label>
-<input type="text" id="ccnit" name="cc-nit" required>
+<input type="text" id="ccnit" name="CC o NIT" required>
 
 <label>
-  <input type="checkbox" name="facturacion-igual" checked>
+  <input type="checkbox" name="Facturación igual a envío" checked>
   Dirección de Facturación igual a la de Envío
 </label>
 
 <label for="producto">Producto</label>
-<input type="text" id="producto" name="producto" readonly>
+<input type="text" id="producto" name="Producto" readonly>
 
 <label for="precio">Precio</label>
-<input type="text" id="precio" name="precio" readonly>
+<input type="text" id="precio" name="Precio" readonly>
 
 <!-- Sección 3: Pago -->
 <h3>3. Pago</h3>
-<label><input type="radio" name="metodo-pago" value="Contraentrega" checked> Pago Contraentrega</label><br>
-<label><input type="radio" name="metodo-pago" value="Davivienda"> Transferencia DAVIVIENDA</label><br>
-<label><input type="radio" name="metodo-pago" value="PSE"> PSE / Tarjeta / Transferencia</label><br>
-<label><input type="radio" name="metodo-pago" value="Nequi"> Pago por NEQUI</label><br>
-<label><input type="radio" name="metodo-pago" value="ADDI"> Crédito (ADDI)</label>
+<label><input type="radio" name="Método de Pago" value="Contraentrega" checked> Pago Contraentrega</label><br>
+<label><input type="radio" name="Método de Pago" value="Davivienda"> Transferencia DAVIVIENDA</label><br>
+<label><input type="radio" name="Método de Pago" value="PSE"> PSE / Tarjeta / Transferencia</label><br>
+<label><input type="radio" name="Método de Pago" value="Nequi"> Pago por NEQUI</label><br>
+<label><input type="radio" name="Método de Pago" value="ADDI"> Crédito (ADDI)</label>
 
 <!-- Configuración FormSubmit -->
 <input type="hidden" name="_next" value="https://maxikomprass.store">
