@@ -7,11 +7,10 @@
   <link rel="stylesheet" href="styleform.css" />
 </head>
 <body>
-
   <!-- Barra superior -->
   <div class="top-bar">
     <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
-    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento vía WhatsApp</span>
+    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
     <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
   </div>
 
@@ -29,7 +28,7 @@
   <div class="form-container">
     <h2>Finaliza tu compra</h2>
     <form action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
-      
+
       <!-- Sección 1: Contacto -->
       <h3>1. Contacto</h3>
 
@@ -77,14 +76,16 @@
         Dirección de Facturación igual a la de Envío
       </label>
 
-      <!-- Campos por default para 1 solo producto -->
       <label for="producto">Producto</label>
       <input type="text" id="producto" name="Producto" readonly>
 
       <label for="precio">Precio</label>
       <input type="text" id="precio" name="Precio" readonly>
 
-      <!-- Resumen total si hay varios productos -->
+      <!-- Total oculto para envío por correo -->
+      <input type="hidden" id="total-pagar-hidden" name="TotalPagar" />
+
+      <!-- Resumen visual del total -->
       <div id="resumen-total" class="carrito-resumen" style="display: none;">
         <p><strong>Total a pagar:</strong> <span id="monto-total"></span></p>
       </div>
@@ -100,7 +101,7 @@
       <input type="hidden" name="_next" value="https://maxicomprass.store">
       <input type="hidden" name="_captcha" value="false">
 
-      <button type="submit" class="btn-finalizar">Enviar Pedido</button>
+      <button type="submit">Enviar Pedido</button>
     </form>
   </div>
 
@@ -113,8 +114,10 @@
     const precioInput = document.getElementById("precio");
 
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const totalInput = document.getElementById("total-pagar-hidden");
 
     if (carrito.length > 1) {
+      // Oculta inputs únicos
       productoInput.remove();
       precioInput.remove();
 
@@ -148,11 +151,14 @@
         form.insertBefore(precioInput, referencia);
       });
 
+      // Mostrar total visual
       document.getElementById("resumen-total").style.display = "block";
       document.getElementById("monto-total").textContent = `$${total.toLocaleString("es-CO")}`;
+      totalInput.value = `$${total.toLocaleString("es-CO")}`;
     } else {
       if (producto) productoInput.value = producto;
       if (precio) precioInput.value = precio;
+      totalInput.value = precio ? `$${parseInt(precio).toLocaleString("es-CO")}` : '';
     }
   </script>
 </body>
