@@ -676,4 +676,66 @@ body {
   }
 }
 
+/* Fondo oscuro al abrir el carrito */
+.overlay-carrito {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+/* Carrito deslizable desde la derecha */
+.carrito-lateral {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1001;
+  padding: 20px;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.carrito-lateral.mostrar {
+  transform: translateX(0%);
+}
+
+.oculto {
+  display: none;
+}
+
+.overlay-carrito.mostrar {
+  display: block;
+}
+
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.carrito-header h2 {
+  font-size: 1.5em;
+}
+
+.carrito-header button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.carrito-items p {
+  color: #555;
+}
 

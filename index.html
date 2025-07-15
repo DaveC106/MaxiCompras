@@ -342,3 +342,38 @@
     slider.scrollBy({ left: 300, behavior: 'smooth' });
   });
 </script>
+
+<div class="overlay-carrito oculto" id="overlayCarrito"></div>
+
+<div class="carrito-lateral oculto" id="carritoLateral">
+  <div class="carrito-header">
+    <h2>Tu Carrito</h2>
+    <button id="cerrarCarrito">✖</button>
+  </div>
+  <div class="carrito-items" id="carritoItems">
+    <p>Tu carrito está vacío.</p>
+  </div>
+</div>
+
+<script>
+  //logica del carrito
+const carritoIcon = document.querySelector('img[alt="Carrito"]');
+const overlay = document.getElementById("overlayCarrito");
+const panelCarrito = document.getElementById("carritoLateral");
+const cerrarCarrito = document.getElementById("cerrarCarrito");
+
+carritoIcon.addEventListener("click", () => {
+  overlay.classList.add("mostrar");
+  panelCarrito.classList.add("mostrar");
+});
+
+cerrarCarrito.addEventListener("click", () => {
+  overlay.classList.remove("mostrar");
+  panelCarrito.classList.remove("mostrar");
+});
+
+overlay.addEventListener("click", () => {
+  overlay.classList.remove("mostrar");
+  panelCarrito.classList.remove("mostrar");
+});
+</script>
