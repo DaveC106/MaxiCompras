@@ -144,6 +144,11 @@ body {
   align-items: center;
   gap: 6px;
 }
+.top-bar .icono {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
 
 /* Responsive para celular: mostrar solo uno a la vez */
 @media (max-width: 768px) {
@@ -164,4 +169,5 @@ body {
   .top-bar span.activo {
     opacity: 1;
   }
+
 }
