@@ -112,53 +112,57 @@
 
     const productoInput = document.getElementById("producto");
     const precioInput = document.getElementById("precio");
-
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const totalInput = document.getElementById("total-pagar-hidden");
 
-    if (carrito.length > 1) {
-      // Oculta inputs únicos
-      productoInput.remove();
-      precioInput.remove();
-
-      const form = document.querySelector("form");
-      const referencia = form.querySelector("h3:nth-of-type(2)");
-      let total = 0;
-
-      carrito.forEach((item, index) => {
-        const prodLabel = document.createElement("label");
-        prodLabel.textContent = `Producto ${index + 1}`;
-        form.insertBefore(prodLabel, referencia);
-
-        const prodInput = document.createElement("input");
-        prodInput.type = "text";
-        prodInput.name = `Producto_${index + 1}`;
-        prodInput.readOnly = true;
-        prodInput.value = `${item.nombre} x${item.cantidad}`;
-        form.insertBefore(prodInput, referencia);
-
-        const precioLabel = document.createElement("label");
-        precioLabel.textContent = `Precio ${index + 1}`;
-        form.insertBefore(precioLabel, referencia);
-
-        const precioInput = document.createElement("input");
-        precioInput.type = "text";
-        precioInput.name = `Precio_${index + 1}`;
-        precioInput.readOnly = true;
-        const subtotal = item.precio * item.cantidad;
-        total += subtotal;
-        precioInput.value = `$${subtotal.toLocaleString("es-CO")}`;
-        form.insertBefore(precioInput, referencia);
-      });
-
-      // Mostrar total visual
-      document.getElementById("resumen-total").style.display = "block";
-      document.getElementById("monto-total").textContent = `$${total.toLocaleString("es-CO")}`;
-      totalInput.value = `$${total.toLocaleString("es-CO")}`;
+    if (producto && precio) {
+      // Compra de un solo producto desde URL
+      productoInput.value = producto;
+      precioInput.value = `$${parseInt(precio).toLocaleString("es-CO")}`;
+      totalInput.value = `$${parseInt(precio).toLocaleString("es-CO")}`;
     } else {
-      if (producto) productoInput.value = producto;
-      if (precio) precioInput.value = precio;
-      totalInput.value = precio ? `$${parseInt(precio).toLocaleString("es-CO")}` : '';
+      // Carrito completo
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      if (carrito.length > 0) {
+        // Oculta inputs únicos
+        productoInput.remove();
+        precioInput.remove();
+
+        const form = document.querySelector("form");
+        const referencia = form.querySelector("h3:nth-of-type(2)");
+        let total = 0;
+
+        carrito.forEach((item, index) => {
+          const prodLabel = document.createElement("label");
+          prodLabel.textContent = `Producto ${index + 1}`;
+          form.insertBefore(prodLabel, referencia);
+
+          const prodInput = document.createElement("input");
+          prodInput.type = "text";
+          prodInput.name = `Producto_${index + 1}`;
+          prodInput.readOnly = true;
+          prodInput.value = `${item.nombre} x${item.cantidad}`;
+          form.insertBefore(prodInput, referencia);
+
+          const precioLabel = document.createElement("label");
+          precioLabel.textContent = `Precio ${index + 1}`;
+          form.insertBefore(precioLabel, referencia);
+
+          const precioInput = document.createElement("input");
+          precioInput.type = "text";
+          precioInput.name = `Precio_${index + 1}`;
+          precioInput.readOnly = true;
+          const subtotal = item.precio * item.cantidad;
+          total += subtotal;
+          precioInput.value = `$${subtotal.toLocaleString("es-CO")}`;
+          form.insertBefore(precioInput, referencia);
+        });
+
+        // Mostrar total
+        document.getElementById("resumen-total").style.display = "block";
+        document.getElementById("monto-total").textContent = `$${total.toLocaleString("es-CO")}`;
+        totalInput.value = `$${total.toLocaleString("es-CO")}`;
+      }
     }
   </script>
 </body>
