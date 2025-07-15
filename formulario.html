@@ -63,35 +63,31 @@
   </div>
 
   <script>
-    document.getElementById("formularioCompra").addEventListener("submit", function(e) {
-      e.preventDefault();
+  document.getElementById("formularioCompra").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      const data = {
-        correo: document.getElementById("correo").value,
-        pais: document.getElementById("pais").value,
-        nombre: document.getElementById("nombre").value,
-        apellido: document.getElementById("apellido").value,
-        direccion: document.getElementById("direccion").value,
-        apartamento: document.getElementById("apartamento").value,
-        ciudad: document.getElementById("ciudad").value,
-        departamento: document.getElementById("departamento").value,
-        codigo_postal: document.getElementById("codigo_postal").value,
-      };
+    const form = e.target;
+    const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycbxp7kAAIJyPbSFuizNZopcavlHa5ZpDZT5KUnz4G0XQxC2KUWuY7yuH2gHDR35e8d85Bg/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }).then(res => {
+    fetch("https://script.google.com/macros/s/AKfycbxp7kAAIJyPbSFuizNZopcavlHa5ZpDZT5KUnz4G0XQxC2KUWuY7yuH2gHDR35e8d85Bg/exec", {
+      method: "POST",
+      body: formData,
+    })
+    .then(res => {
+      if (res.ok) {
         alert("✅ Pedido enviado correctamente");
-        document.getElementById("formularioCompra").reset();
-      }).catch(err => {
+        form.reset();
+      } else {
         alert("❌ Error al enviar pedido");
-        console.error(err);
-      });
+        console.error("Respuesta no OK:", res);
+      }
+    })
+    .catch(err => {
+      alert("❌ Error de red");
+      console.error(err);
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
