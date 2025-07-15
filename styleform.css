@@ -130,3 +130,20 @@ input[readonly] {
     margin: 20px;
   }
 }
+
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}

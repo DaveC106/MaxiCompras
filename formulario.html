@@ -5,25 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formulario de Compra</title>
   <link rel="stylesheet" href="styleform.css" />
-  <style>
-    button[type="submit"] {
-      margin-top: 20px;
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button[type="submit"]:hover {
-      background: #218838;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Barra superior -->
+
+  <!-- Top Bar -->
   <div class="top-bar">
     <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
     <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento vía Whatsapp</span>
@@ -33,7 +19,7 @@
   <!-- Encabezado -->
   <header class="main-header">
     <div class="logo">
-      <h1>MaxiCompras</h1>
+      <img src="img/logomaxicompras.png" alt="MaxiCompras" />
     </div>
     <div class="icons">
       <img src="./img/search.png" alt="Buscar" />
@@ -45,9 +31,7 @@
     <h2>Finaliza tu compra</h2>
     <form id="pedidoForm" action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
       
-      <!-- Sección 1: Contacto -->
       <h3>1. Contacto</h3>
-
       <label for="email">Correo electrónico *</label>
       <input type="email" id="email" name="CorreoElectronico" required>
 
@@ -57,9 +41,7 @@
       <label for="telefono_confirmar">Confirmar Teléfono *</label>
       <input type="tel" id="telefono_confirmar" name="ConfirmarTelefono" required>
 
-      <!-- Sección 2: Entrega -->
       <h3>2. Entrega</h3>
-
       <label for="nombre">Nombre *</label>
       <input type="text" id="nombre" name="Nombre" required>
 
@@ -87,12 +69,11 @@
       <label for="ccnit">CC o NIT *</label>
       <input type="text" id="ccnit" name="CCoNIT" required>
 
-      <label for="facturacionIgual">
+      <label>
         <input type="checkbox" id="facturacionIgual" name="FacturacionIgualEnvio" checked>
         Dirección de Facturación igual a la de Envío
       </label>
 
-      <!-- Productos (desde URL o carrito) -->
       <div id="productos-container">
         <label for="producto">Producto</label>
         <input type="text" id="producto" name="Producto" readonly>
@@ -101,20 +82,16 @@
         <input type="text" id="precio" name="Precio" readonly>
       </div>
 
-      <!-- Total (si es del carrito) -->
       <div id="total-container" style="display:none;">
         <label for="total">Total</label>
         <input type="text" id="total" name="Total" readonly>
       </div>
 
-      <!-- Sección 3: Pago -->
       <h3>3. Pago</h3>
-
       <label>
         <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
-      </label><br>
+      </label>
 
-      <!-- Configuración FormSubmit -->
       <input type="hidden" name="_next" value="https://maxicomprass.store">
       <input type="hidden" name="_captcha" value="false">
 
@@ -134,15 +111,11 @@
     const totalInput = document.getElementById("total");
 
     if (producto && precio) {
-      // Caso: "Comprar ahora" con 1 producto
       productoInput.value = producto;
       const precioNum = parseInt(precio.replace(/\./g, ""));
       precioInput.value = "$" + precioNum.toLocaleString("es-CO");
-
     } else {
-      // Caso: compra desde el carrito
-      productosContainer.innerHTML = ""; // limpiar
-
+      productosContainer.innerHTML = "";
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
       let total = 0;
 
@@ -168,12 +141,12 @@
       totalInput.value = "$" + total.toLocaleString("es-CO");
     }
 
-    // Vaciar carrito después del envío si es desde carrito
     document.getElementById("pedidoForm").addEventListener("submit", () => {
       if (!producto || !precio) {
         localStorage.removeItem("carrito");
       }
     });
   </script>
+
 </body>
 </html>
