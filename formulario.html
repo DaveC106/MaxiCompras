@@ -28,10 +28,9 @@
   <div class="form-container">
     <h2>Finaliza tu compra</h2>
     <form action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
-
+      
       <!-- Sección 1: Contacto -->
       <h3>1. Contacto</h3>
-
       <label for="email">Correo electrónico *</label>
       <input type="email" id="email" name="CorreoElectronico" required>
 
@@ -43,7 +42,6 @@
 
       <!-- Sección 2: Entrega -->
       <h3>2. Entrega</h3>
-
       <label for="nombre">Nombre *</label>
       <input type="text" id="nombre" name="Nombre" required>
 
@@ -76,23 +74,15 @@
         Dirección de Facturación igual a la de Envío
       </label>
 
-      <label for="producto">Producto</label>
+      <!-- Productos -->
+      <label for="producto">Producto(s)</label>
       <input type="text" id="producto" name="Producto" readonly>
 
-      <label for="precio">Precio</label>
+      <label for="precio">Precio Total</label>
       <input type="text" id="precio" name="Precio" readonly>
-
-      <!-- Total oculto para envío por correo -->
-      <input type="hidden" id="total-pagar-hidden" name="TotalPagar" />
-
-      <!-- Resumen visual del total -->
-      <div id="resumen-total" class="carrito-resumen" style="display: none;">
-        <p><strong>Total a pagar:</strong> <span id="monto-total"></span></p>
-      </div>
 
       <!-- Sección 3: Pago -->
       <h3>3. Pago</h3>
-
       <label>
         <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
       </label><br>
@@ -101,69 +91,48 @@
       <input type="hidden" name="_next" value="https://maxicomprass.store">
       <input type="hidden" name="_captcha" value="false">
 
-      <button type="submit">Enviar Pedido</button>
+      <button type="submit" class="btn-enviar">Enviar Pedido</button>
     </form>
   </div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const producto = urlParams.get("producto");
-    const precio = urlParams.get("precio");
+    const productoParam = urlParams.get("producto");
+    const precioParam = urlParams.get("precio");
 
     const productoInput = document.getElementById("producto");
     const precioInput = document.getElementById("precio");
-    const totalInput = document.getElementById("total-pagar-hidden");
 
-    if (producto && precio) {
-      // Compra de un solo producto desde URL
-      productoInput.value = producto;
-      precioInput.value = `$${parseInt(precio).toLocaleString("es-CO")}`;
-      totalInput.value = `$${parseInt(precio).toLocaleString("es-CO")}`;
+    if (productoParam && precioParam) {
+      // Solo un producto (desde botón "Comprar ahora")
+      productoInput.value = decodeURIComponent(productoParam);
+      precioInput.value = "$" + parseInt(precioParam).toLocaleString("es-CO");
     } else {
-      // Carrito completo
+      // Desde el carrito
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
       if (carrito.length > 0) {
-        // Oculta inputs únicos
-        productoInput.remove();
-        precioInput.remove();
-
-        const form = document.querySelector("form");
-        const referencia = form.querySelector("h3:nth-of-type(2)");
+        let detalles = "";
         let total = 0;
 
-        carrito.forEach((item, index) => {
-          const prodLabel = document.createElement("label");
-          prodLabel.textContent = `Producto ${index + 1}`;
-          form.insertBefore(prodLabel, referencia);
-
-          const prodInput = document.createElement("input");
-          prodInput.type = "text";
-          prodInput.name = `Producto_${index + 1}`;
-          prodInput.readOnly = true;
-          prodInput.value = `${item.nombre} x${item.cantidad}`;
-          form.insertBefore(prodInput, referencia);
-
-          const precioLabel = document.createElement("label");
-          precioLabel.textContent = `Precio ${index + 1}`;
-          form.insertBefore(precioLabel, referencia);
-
-          const precioInput = document.createElement("input");
-          precioInput.type = "text";
-          precioInput.name = `Precio_${index + 1}`;
-          precioInput.readOnly = true;
-          const subtotal = item.precio * item.cantidad;
-          total += subtotal;
-          precioInput.value = `$${subtotal.toLocaleString("es-CO")}`;
-          form.insertBefore(precioInput, referencia);
+        carrito.forEach(prod => {
+          detalles += `${prod.nombre} (x${prod.cantidad}) - $${(prod.precio * prod.cantidad).toLocaleString("es-CO")}\n`;
+          total += prod.precio * prod.cantidad;
         });
 
-        // Mostrar total
-        document.getElementById("resumen-total").style.display = "block";
-        document.getElementById("monto-total").textContent = `$${total.toLocaleString("es-CO")}`;
-        totalInput.value = `$${total.toLocaleString("es-CO")}`;
+        productoInput.value = detalles.trim();
+        precioInput.value = "$" + total.toLocaleString("es-CO");
       }
     }
+
+    // Vaciar carrito si es compra desde carrito
+    const form = document.querySelector("form");
+    const isFromCart = !productoParam && !precioParam;
+
+    form.addEventListener("submit", function () {
+      if (isFromCart) {
+        localStorage.removeItem("carrito");
+      }
+    });
   </script>
 </body>
 </html>
