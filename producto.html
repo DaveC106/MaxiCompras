@@ -67,6 +67,32 @@
         document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
 
         document.getElementById("descripcion-producto").innerHTML = producto.descripcion;
+        // ✅ Botón "Añadir al carrito"
+document.querySelector(".btn-carrito").addEventListener("click", () => {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  const item = {
+    slug: producto.slug,
+    nombre: producto.nombre,
+    imagen: producto.imagenes[0],
+    precio: producto.precio,
+    cantidad: 1
+  };
+
+  const existente = carrito.find(p => p.slug === item.slug);
+  if (existente) {
+    existente.cantidad += 1;
+  } else {
+    carrito.push(item);
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  alert("✅ Producto añadido al carrito");
+});
+
+
+
         document.getElementById("btn-comprar").addEventListener("click", () => {
   const nombre = document.getElementById("nombre-producto").textContent;
   const precio = document.getElementById("precio-actual").textContent;

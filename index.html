@@ -382,3 +382,38 @@ fondoOscuro.addEventListener("click", () => {
   fondoOscuro.classList.add("oculto");
 });
 </script>
+
+
+<script>
+  // 🔁 Cargar carrito desde localStorage
+  function mostrarCarrito() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const contenedor = document.getElementById("carrito-items");
+    contenedor.innerHTML = "";
+
+    if (carrito.length === 0) {
+      contenedor.innerHTML = "<p>🛍️ Tu carrito de compras está vacío.</p>";
+      return;
+    }
+
+    carrito.forEach(producto => {
+      const item = document.createElement("div");
+      item.classList.add("item-carrito");
+
+      item.innerHTML = `
+        <div class="miniatura">
+          <img src="${producto.imagen}" alt="${producto.nombre}" />
+        </div>
+        <div class="detalle">
+          <p class="nombre">${producto.nombre}</p>
+          <p class="precio">$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</p>
+        </div>
+      `;
+
+      contenedor.appendChild(item);
+    });
+  }
+
+  // 🛒 Mostrar el carrito al abrirlo
+  document.querySelector('img[alt="Carrito"]').addEventListener("click", mostrarCarrito);
+</script>
