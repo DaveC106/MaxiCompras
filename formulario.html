@@ -1,83 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formulario de Compra</title>
-  <link rel="stylesheet" href="styleform.css">
+  <link rel="stylesheet" href="styleform.css" />
 </head>
 <body>
+  <div class="form-container">
+    <h2>Finaliza tu compra</h2>
+    <form id="formularioCompra">
+      <label for="correo">Correo electrónico o teléfono</label>
+      <input type="email" id="correo" required>
 
-  <form id="form-compra" class="formulario">
-    <h2>Finalizar Compra</h2>
-
-    <section>
-      <h3>Contacto</h3>
-      <input type="text" name="contacto" placeholder="Email o número de teléfono móvil" required>
-    </section>
-
-    <section>
       <h3>Entrega</h3>
-      <select name="pais" required>
-        <option value="">País / Región</option>
+
+      <label for="pais">País / Región</label>
+      <select id="pais" required>
+        <option value="">Selecciona tu país</option>
         <option value="Colombia">Colombia</option>
         <option value="México">México</option>
         <option value="Argentina">Argentina</option>
-        <!-- Agrega más países -->
+        <option value="Chile">Chile</option>
+        <option value="Perú">Perú</option>
+        <!-- Puedes añadir más países -->
       </select>
 
-      <div class="fila">
-        <input type="text" name="nombre" placeholder="Nombre (opcional)">
-        <input type="text" name="apellido" placeholder="Apellidos">
+      <div class="input-group">
+        <div>
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre">
+        </div>
+        <div>
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido">
+        </div>
       </div>
-      
-      <input type="text" name="direccion" placeholder="Dirección" required>
-      <input type="text" name="apartamento" placeholder="Casa, apartamento, etc. (opcional)">
 
-      <div class="fila">
-        <input type="text" name="ciudad" placeholder="Ciudad" required>
-        <input type="text" name="estado" placeholder="Provincia / Estado" required>
-        <input type="text" name="codigo_postal" placeholder="Código postal (opcional)">
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" required>
+
+      <label for="apartamento">Apartamento / Casa (opcional)</label>
+      <input type="text" id="apartamento">
+
+      <div class="input-group">
+        <div>
+          <label for="ciudad">Ciudad</label>
+          <input type="text" id="ciudad">
+        </div>
+        <div>
+          <label for="departamento">Departamento / Estado</label>
+          <input type="text" id="departamento">
+        </div>
+        <div>
+          <label for="codigo_postal">Código Postal</label>
+          <input type="text" id="codigo_postal">
+        </div>
       </div>
-    </section>
 
-    <section>
-      <h3>Método de envío</h3>
-      <label class="envio">
-        <input type="radio" name="envio" value="standard" checked>
-        Standard - GRATIS
-      </label>
-    </section>
-
-    <section>
-      <h3>Producto</h3>
-      <input type="text" name="producto" id="nombre-producto" readonly>
-    </section>
-
-    <button type="submit">Realizar pedido</button>
-  </form>
+      <button type="submit">Enviar pedido</button>
+    </form>
+  </div>
 
   <script>
-    // Obtener el nombre del producto desde el query param
-    const params = new URLSearchParams(window.location.search);
-    const producto = params.get("producto");
-    if(producto) document.getElementById("nombre-producto").value = decodeURIComponent(producto);
-
-    // Enviar a Google Sheets con Fetch
-    document.getElementById("form-compra").addEventListener("submit", function(e) {
+    document.getElementById("formularioCompra").addEventListener("submit", function(e) {
       e.preventDefault();
-      const data = new FormData(this);
 
-      fetch("https://script.google.com/macros/s/TU_SCRIPT_ID/exec", {
+      const data = {
+        correo: document.getElementById("correo").value,
+        pais: document.getElementById("pais").value,
+        nombre: document.getElementById("nombre").value,
+        apellido: document.getElementById("apellido").value,
+        direccion: document.getElementById("direccion").value,
+        apartamento: document.getElementById("apartamento").value,
+        ciudad: document.getElementById("ciudad").value,
+        departamento: document.getElementById("departamento").value,
+        codigo_postal: document.getElementById("codigo_postal").value,
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbytQPgFnJJnA-VclJYHhwc_Ar7sAaXrE2x4fGu1my2GepAW5k_mV-YKcmOw20sFGjpmhA/exec", {
         method: "POST",
-        body: data
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
       }).then(res => {
-        if (res.ok) alert("Pedido enviado correctamente");
-        else alert("Error al enviar el pedido");
-        this.reset();
+        alert("✅ Pedido enviado correctamente");
+        document.getElementById("formularioCompra").reset();
+      }).catch(err => {
+        alert("❌ Error al enviar pedido");
+        console.error(err);
       });
     });
   </script>
-
 </body>
 </html>
