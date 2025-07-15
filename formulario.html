@@ -11,50 +11,49 @@
     <h2>Finaliza tu compra</h2>
     <form id="formularioCompra">
       <label for="correo">Correo electrónico o teléfono</label>
-      <input type="email" id="correo" required>
+      <input type="email" id="correo" name="correo" required>
 
       <h3>Entrega</h3>
 
       <label for="pais">País / Región</label>
-      <select id="pais" required>
+      <select id="pais" name="pais" required>
         <option value="">Selecciona tu país</option>
         <option value="Colombia">Colombia</option>
         <option value="México">México</option>
         <option value="Argentina">Argentina</option>
         <option value="Chile">Chile</option>
         <option value="Perú">Perú</option>
-        <!-- Puedes añadir más países -->
       </select>
 
       <div class="input-group">
         <div>
           <label for="nombre">Nombre</label>
-          <input type="text" id="nombre">
+          <input type="text" id="nombre" name="nombre">
         </div>
         <div>
           <label for="apellido">Apellido</label>
-          <input type="text" id="apellido">
+          <input type="text" id="apellido" name="apellido">
         </div>
       </div>
 
       <label for="direccion">Dirección</label>
-      <input type="text" id="direccion" required>
+      <input type="text" id="direccion" name="direccion" required>
 
       <label for="apartamento">Apartamento / Casa (opcional)</label>
-      <input type="text" id="apartamento">
+      <input type="text" id="apartamento" name="apartamento">
 
       <div class="input-group">
         <div>
           <label for="ciudad">Ciudad</label>
-          <input type="text" id="ciudad">
+          <input type="text" id="ciudad" name="ciudad">
         </div>
         <div>
           <label for="departamento">Departamento / Estado</label>
-          <input type="text" id="departamento">
+          <input type="text" id="departamento" name="departamento">
         </div>
         <div>
           <label for="codigo_postal">Código Postal</label>
-          <input type="text" id="codigo_postal">
+          <input type="text" id="codigo_postal" name="codigo_postal">
         </div>
       </div>
 
@@ -63,31 +62,30 @@
   </div>
 
   <script>
-  document.getElementById("formularioCompra").addEventListener("submit", function(e) {
-    e.preventDefault();
+    document.getElementById("formularioCompra").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
+      const form = e.target;
+      const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbxp7kAAIJyPbSFuizNZopcavlHa5ZpDZT5KUnz4G0XQxC2KUWuY7yuH2gHDR35e8d85Bg/exec", {
-      method: "POST",
-      body: formData,
-    })
-    .then(res => {
-      if (res.ok) {
-        alert("✅ Pedido enviado correctamente");
-        form.reset();
-      } else {
-        alert("❌ Error al enviar pedido");
-        console.error("Respuesta no OK:", res);
-      }
-    })
-    .catch(err => {
-      alert("❌ Error de red");
-      console.error(err);
+      fetch("https://script.google.com/macros/s/AKfycbxp7kAAIJyPbSFuizNZopcavlHa5ZpDZT5KUnz4G0XQxC2KUWuY7yuH2gHDR35e8d85Bg/exec", {
+        method: "POST",
+        body: formData,
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("✅ Pedido enviado correctamente");
+          form.reset();
+        } else {
+          alert("❌ Error al enviar pedido");
+          console.error("Respuesta no OK:", res);
+        }
+      })
+      .catch(err => {
+        alert("❌ Error de red");
+        console.error(err);
+      });
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
