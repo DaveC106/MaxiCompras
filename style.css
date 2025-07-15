@@ -621,12 +621,12 @@ body {
   .categoria {
     flex: 0 0 auto;
     scroll-snap-align: start;
-    width: 150px;
+    width: 160px; /* antes 150px */
   }
 
   .categoria img {
-    width: 80px;
-    height: 80px;
+    width: 95px; /* antes 80px */
+    height: 95px; /* antes 80px */
   }
 
   .categoria p {
@@ -642,7 +642,7 @@ body {
   background-color: #ffffff;
   border-radius: 25px;
   padding: 25px 20px;
-  width: 175px;
+  width: 190px; /* antes era 175px */
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
@@ -652,8 +652,8 @@ body {
 }
 
 .categoria img {
-  width: 100px;
-  height: 100px;
+  width: 110px; /* antes 100px */
+  height: 110px; /* antes 100px */
   object-fit: contain;
   margin-bottom: 15px;
 }
