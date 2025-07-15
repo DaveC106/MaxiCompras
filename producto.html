@@ -17,16 +17,33 @@
     </div>
   </header>
 
-  <section class="producto-detalle">
-    <div class="contenedor-producto">
+  <section class="producto-container">
+    <div class="producto-imagen">
       <img id="imagen-producto" src="" alt="Producto" />
-      <div class="info-producto">
-        <h2 id="nombre-producto"></h2>
-        <p id="precio-producto" class="precio"></p>
-        <div id="descripcion-producto"></div>
-        <button>Añadir al carrito</button>
+    </div>
+    <div class="producto-detalles">
+      <h1 id="nombre-producto"></h1>
+      <div class="estrellas">★★★★★ (5)</div>
+      <div>
+        <span id="precio-anterior" class="precio-original"></span>
+        <span id="precio-actual" class="precio-descuento"></span>
+        <span id="descuento" class="badge-descuento"></span>
+      </div>
+
+      <div class="confianza-box">
+        <h4>Tienda Líder Platinum</h4>
+        <p>+40.000 ventas | Entrega rápida | Excelente servicio</p>
+      </div>
+
+      <div class="botones">
+        <button class="btn-carrito">Añadir al carrito</button>
+        <button class="btn-comprar">Comprar ahora</button>
       </div>
     </div>
+  </section>
+
+  <section class="producto-descripcion">
+    <div id="descripcion-producto"></div>
   </section>
 
   <footer class="footer">
@@ -42,13 +59,21 @@
       .then(productos => {
         const producto = productos.find(p => p.slug === slug);
         if (!producto) {
-          document.querySelector(".producto-detalle").innerHTML = "<p>Producto no encontrado.</p>";
+          document.querySelector(".producto-container").innerHTML = "<p>Producto no encontrado.</p>";
           return;
         }
 
         document.getElementById("imagen-producto").src = producto.imagenes[0];
         document.getElementById("nombre-producto").textContent = producto.nombre;
-        document.getElementById("precio-producto").textContent = "$" + producto.precio.toLocaleString();
+
+        const precio = producto.precio;
+        const precioAnterior = Math.round(precio * 1.5);
+        const descuento = Math.round(100 - (precio / precioAnterior) * 100);
+
+        document.getElementById("precio-anterior").textContent = "$" + precioAnterior.toLocaleString('es-CO');
+        document.getElementById("precio-actual").textContent = "$" + precio.toLocaleString('es-CO');
+        document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
+
         document.getElementById("descripcion-producto").innerHTML = producto.descripcion;
       });
   </script>
