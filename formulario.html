@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="styleform.css" />
 </head>
 <body>
+
   <!-- Barra superior -->
   <div class="top-bar">
     <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
-    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
+    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento vía WhatsApp</span>
     <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
   </div>
 
@@ -29,71 +30,77 @@
     <h2>Finaliza tu compra</h2>
     <form action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
       
-  <!-- Sección 1: Contacto -->
-<h3>1. Contacto</h3>
+      <!-- Sección 1: Contacto -->
+      <h3>1. Contacto</h3>
 
-<label for="email">Correo electrónico *</label>
-<input type="email" id="email" name="CorreoElectronico" required>
+      <label for="email">Correo electrónico *</label>
+      <input type="email" id="email" name="CorreoElectronico" required>
 
-<label for="telefono">Número Teléfono *</label>
-<input type="tel" id="telefono" name="Telefono" required>
+      <label for="telefono">Número Teléfono *</label>
+      <input type="tel" id="telefono" name="Telefono" required>
 
-<label for="telefono_confirmar">Confirmar Teléfono *</label>
-<input type="tel" id="telefono_confirmar" name="ConfirmarTelefono" required>
+      <label for="telefono_confirmar">Confirmar Teléfono *</label>
+      <input type="tel" id="telefono_confirmar" name="ConfirmarTelefono" required>
 
-<!-- Sección 2: Entrega -->
-<h3>2. Entrega</h3>
+      <!-- Sección 2: Entrega -->
+      <h3>2. Entrega</h3>
 
-<label for="nombre">Nombre *</label>
-<input type="text" id="nombre" name="Nombre" required>
+      <label for="nombre">Nombre *</label>
+      <input type="text" id="nombre" name="Nombre" required>
 
-<label for="apellido">Apellido *</label>
-<input type="text" id="apellido" name="Apellido" required>
+      <label for="apellido">Apellido *</label>
+      <input type="text" id="apellido" name="Apellido" required>
 
-<label for="pais">País *</label>
-<select id="pais" name="Pais" required>
-  <option value="">Seleccione...</option>
-  <option value="Colombia">Colombia</option>
-</select>
+      <label for="pais">País *</label>
+      <select id="pais" name="Pais" required>
+        <option value="">Seleccione...</option>
+        <option value="Colombia">Colombia</option>
+      </select>
 
-<label for="estado">Estado / Región *</label>
-<input type="text" id="estado" name="EstadoRegion" required>
+      <label for="estado">Estado / Región *</label>
+      <input type="text" id="estado" name="EstadoRegion" required>
 
-<label for="ciudad">Ciudad *</label>
-<input type="text" id="ciudad" name="Ciudad" required>
+      <label for="ciudad">Ciudad *</label>
+      <input type="text" id="ciudad" name="Ciudad" required>
 
-<label for="direccion">Dirección *</label>
-<input type="text" id="direccion" name="Direccion" required>
+      <label for="direccion">Dirección *</label>
+      <input type="text" id="direccion" name="Direccion" required>
 
-<label for="apartamento">Apartamento / Casa (opcional)</label>
-<input type="text" id="apartamento" name="ApartamentoCasa">
+      <label for="apartamento">Apartamento / Casa (opcional)</label>
+      <input type="text" id="apartamento" name="ApartamentoCasa">
 
-<label for="ccnit">CC o NIT *</label>
-<input type="text" id="ccnit" name="CCoNIT" required>
+      <label for="ccnit">CC o NIT *</label>
+      <input type="text" id="ccnit" name="CCoNIT" required>
 
-<label for="facturacionIgual">
-  <input type="checkbox" id="facturacionIgual" name="FacturacionIgualEnvio" checked>
-  Dirección de Facturación igual a la de Envío
-</label>
+      <label for="facturacionIgual">
+        <input type="checkbox" id="facturacionIgual" name="FacturacionIgualEnvio" checked>
+        Dirección de Facturación igual a la de Envío
+      </label>
 
-<label for="producto">Producto</label>
-<input type="text" id="producto" name="Producto" readonly>
+      <!-- Campos por default para 1 solo producto -->
+      <label for="producto">Producto</label>
+      <input type="text" id="producto" name="Producto" readonly>
 
-<label for="precio">Precio</label>
-<input type="text" id="precio" name="Precio" readonly>
+      <label for="precio">Precio</label>
+      <input type="text" id="precio" name="Precio" readonly>
 
-<!-- Sección 3: Pago -->
-<h3>3. Pago</h3>
+      <!-- Resumen total si hay varios productos -->
+      <div id="resumen-total" class="carrito-resumen" style="display: none;">
+        <p><strong>Total a pagar:</strong> <span id="monto-total"></span></p>
+      </div>
 
-<label>
-  <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
-</label><br>
+      <!-- Sección 3: Pago -->
+      <h3>3. Pago</h3>
 
-<!-- Configuración FormSubmit -->
-<input type="hidden" name="_next" value="https://maxicomprass.store">
-<input type="hidden" name="_captcha" value="false">
+      <label>
+        <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
+      </label><br>
 
-      <button type="submit">Enviar Pedido</button>
+      <!-- Configuración FormSubmit -->
+      <input type="hidden" name="_next" value="https://maxicomprass.store">
+      <input type="hidden" name="_captcha" value="false">
+
+      <button type="submit" class="btn-finalizar">Enviar Pedido</button>
     </form>
   </div>
 
@@ -102,8 +109,51 @@
     const producto = urlParams.get("producto");
     const precio = urlParams.get("precio");
 
-    if(producto) document.getElementById("producto").value = producto;
-    if(precio) document.getElementById("precio").value = precio;
+    const productoInput = document.getElementById("producto");
+    const precioInput = document.getElementById("precio");
+
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    if (carrito.length > 1) {
+      productoInput.remove();
+      precioInput.remove();
+
+      const form = document.querySelector("form");
+      const referencia = form.querySelector("h3:nth-of-type(2)");
+      let total = 0;
+
+      carrito.forEach((item, index) => {
+        const prodLabel = document.createElement("label");
+        prodLabel.textContent = `Producto ${index + 1}`;
+        form.insertBefore(prodLabel, referencia);
+
+        const prodInput = document.createElement("input");
+        prodInput.type = "text";
+        prodInput.name = `Producto_${index + 1}`;
+        prodInput.readOnly = true;
+        prodInput.value = `${item.nombre} x${item.cantidad}`;
+        form.insertBefore(prodInput, referencia);
+
+        const precioLabel = document.createElement("label");
+        precioLabel.textContent = `Precio ${index + 1}`;
+        form.insertBefore(precioLabel, referencia);
+
+        const precioInput = document.createElement("input");
+        precioInput.type = "text";
+        precioInput.name = `Precio_${index + 1}`;
+        precioInput.readOnly = true;
+        const subtotal = item.precio * item.cantidad;
+        total += subtotal;
+        precioInput.value = `$${subtotal.toLocaleString("es-CO")}`;
+        form.insertBefore(precioInput, referencia);
+      });
+
+      document.getElementById("resumen-total").style.display = "block";
+      document.getElementById("monto-total").textContent = `$${total.toLocaleString("es-CO")}`;
+    } else {
+      if (producto) productoInput.value = producto;
+      if (precio) precioInput.value = precio;
+    }
   </script>
 </body>
 </html>
