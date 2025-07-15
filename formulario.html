@@ -136,8 +136,9 @@
     if (producto && precio) {
       // Caso: "Comprar ahora" con 1 producto
       productoInput.value = producto;
-      const precioNum = parseFloat(precio.replace(",", "").replace(".", ""));
-      precioInput.value = "$" + parseFloat(precio).toLocaleString("es-CO");
+      const precioNum = parseInt(precio.replace(/\./g, ""));
+      precioInput.value = "$" + precioNum.toLocaleString("es-CO");
+
     } else {
       // Caso: compra desde el carrito
       productosContainer.innerHTML = ""; // limpiar
