@@ -59,7 +59,7 @@
         document.getElementById("nombre-producto").textContent = producto.nombre;
 
         const precio = producto.precio;
-        const precioAnterior = Math.round(precio * 1.5);
+        const precioAnterior = producto.precio_anterior || Math.round(precio * 1.5);
         const descuento = Math.round(100 - (precio / precioAnterior) * 100);
 
         document.getElementById("precio-anterior").textContent = "$" + precioAnterior.toLocaleString('es-CO');
