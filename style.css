@@ -163,7 +163,7 @@ body {
   height: 160px;
   object-fit: contain;
   margin-bottom: 10px;
-  border-radius: 10px; /* Aquí se le pone la curva */
+  border-radius: 30px;
 }
 
 .nombre-producto {
