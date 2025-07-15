@@ -8,10 +8,13 @@
 </head>
 <body>
   <div class="form-container">
-    <h2>Finalizar compra</h2>
-    <form id="formularioCompra">
+    <h2>Finaliza tu compra</h2>
+
+    <form action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
+      <!-- Cambia "tucorreo@gmail.com" por tu correo real -->
+
       <label for="correo">Correo electrónico o teléfono</label>
-      <input type="email" id="correo" name="correo" required>
+      <input type="email" id="correo" name="contacto" required>
 
       <h3>Entrega</h3>
 
@@ -57,35 +60,12 @@
         </div>
       </div>
 
+      <!-- Opcional: redirigir después del envío -->
+      <input type="hidden" name="_next" value="https://maxicomprass.store/gracias.html">
+      <input type="hidden" name="_captcha" value="false">
+
       <button type="submit">Enviar pedido</button>
     </form>
   </div>
-
-  <script>
-    document.getElementById("formularioCompra").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const form = e.target;
-      const formData = new FormData(form);
-
-      fetch("https://script.google.com/macros/s/AKfycbxhJB5XNBmDhlknS9vpHwPvh9MYo0-bcx82OwOvw0kBox09dxYV0Jwax5gAo55GixWWvg/exec", {
-        method: "POST",
-        body: formData,
-      })
-      .then(res => {
-        if (res.ok) {
-          alert("✅ Pedido enviado correctamente");
-          form.reset();
-        } else {
-          alert("❌ Error al enviar pedido");
-          console.error("Respuesta no OK:", res);
-        }
-      })
-      .catch(err => {
-        alert("❌ Error de red");
-        console.error(err);
-      });
-    });
-  </script>
 </body>
 </html>
