@@ -192,3 +192,36 @@ body {
     width: 100px;
   }
 }
+
+/* Imágenes dentro de la descripción del producto */
+.producto-descripcion img {
+  max-width: 100%;
+  width: 180px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 15px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Centrar los títulos y párrafos dentro de la descripción */
+.producto-descripcion h2,
+.producto-descripcion h3,
+.producto-descripcion p {
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Botones o enlaces especiales */
+.producto-descripcion a {
+  display: inline-block;
+  background-color: #ff8800;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+}

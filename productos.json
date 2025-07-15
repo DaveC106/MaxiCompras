@@ -58,7 +58,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-411ceece03dd0a.webp?v=1749097072"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "accesorios"
   },
   {
     "nombre": "Cojin antigolpes para bebes",
@@ -70,7 +70,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPT_Image_19_abr_2025_23_27_45.png?v=1749097068"
     ],
-    "categoria": "sin-categoria"
+    "categoria": ["accesorios", "hogar"]
   },
   {
     "nombre": "Cuchillo Japones Nikuya",
@@ -94,7 +94,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Pelvico_1.webp?v=1749097074"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "hogar"
   },
   {
     "nombre": "Encendedor con linterna",
