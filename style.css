@@ -665,8 +665,8 @@ body {
 }
 
 .categoria .linea {
-  width: 50px;
-  height: 4px;
+  width: 140px;
+  height: 5px;
   background: linear-gradient(90deg, #ffce00, #ff6a00);
   border-radius: 3px;
 }
