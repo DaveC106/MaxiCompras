@@ -5,12 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formulario de Compra</title>
   <link rel="stylesheet" href="styleform.css" />
+  <style>
+    button[type="submit"] {
+      margin-top: 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background: #218838;
+    }
+  </style>
 </head>
 <body>
   <!-- Barra superior -->
   <div class="top-bar">
     <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
-    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
+    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento vía Whatsapp</span>
     <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
   </div>
 
@@ -27,10 +43,11 @@
 
   <div class="form-container">
     <h2>Finaliza tu compra</h2>
-    <form action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
+    <form id="pedidoForm" action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
       
       <!-- Sección 1: Contacto -->
       <h3>1. Contacto</h3>
+
       <label for="email">Correo electrónico *</label>
       <input type="email" id="email" name="CorreoElectronico" required>
 
@@ -42,6 +59,7 @@
 
       <!-- Sección 2: Entrega -->
       <h3>2. Entrega</h3>
+
       <label for="nombre">Nombre *</label>
       <input type="text" id="nombre" name="Nombre" required>
 
@@ -74,15 +92,24 @@
         Dirección de Facturación igual a la de Envío
       </label>
 
-      <!-- Productos -->
-      <label for="producto">Producto(s)</label>
-      <input type="text" id="producto" name="Producto" readonly>
+      <!-- Productos (desde URL o carrito) -->
+      <div id="productos-container">
+        <label for="producto">Producto</label>
+        <input type="text" id="producto" name="Producto" readonly>
 
-      <label for="precio">Precio Total</label>
-      <input type="text" id="precio" name="Precio" readonly>
+        <label for="precio">Precio</label>
+        <input type="text" id="precio" name="Precio" readonly>
+      </div>
+
+      <!-- Total (si es del carrito) -->
+      <div id="total-container" style="display:none;">
+        <label for="total">Total</label>
+        <input type="text" id="total" name="Total" readonly>
+      </div>
 
       <!-- Sección 3: Pago -->
       <h3>3. Pago</h3>
+
       <label>
         <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
       </label><br>
@@ -91,45 +118,58 @@
       <input type="hidden" name="_next" value="https://maxicomprass.store">
       <input type="hidden" name="_captcha" value="false">
 
-      <button type="submit" class="btn-enviar">Enviar Pedido</button>
+      <button type="submit">Enviar Pedido</button>
     </form>
   </div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const productoParam = urlParams.get("producto");
-    const precioParam = urlParams.get("precio");
+    const producto = urlParams.get("producto");
+    const precio = urlParams.get("precio");
 
     const productoInput = document.getElementById("producto");
     const precioInput = document.getElementById("precio");
+    const productosContainer = document.getElementById("productos-container");
+    const totalContainer = document.getElementById("total-container");
+    const totalInput = document.getElementById("total");
 
-    if (productoParam && precioParam) {
-      // Solo un producto (desde botón "Comprar ahora")
-      productoInput.value = decodeURIComponent(productoParam);
-      precioInput.value = "$" + parseInt(precioParam).toLocaleString("es-CO");
+    if (producto && precio) {
+      // Caso: "Comprar ahora" con 1 producto
+      productoInput.value = producto;
+      const precioNum = parseFloat(precio.replace(",", "").replace(".", ""));
+      precioInput.value = "$" + parseFloat(precio).toLocaleString("es-CO");
     } else {
-      // Desde el carrito
+      // Caso: compra desde el carrito
+      productosContainer.innerHTML = ""; // limpiar
+
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      if (carrito.length > 0) {
-        let detalles = "";
-        let total = 0;
+      let total = 0;
 
-        carrito.forEach(prod => {
-          detalles += `${prod.nombre} (x${prod.cantidad}) - $${(prod.precio * prod.cantidad).toLocaleString("es-CO")}\n`;
-          total += prod.precio * prod.cantidad;
-        });
+      carrito.forEach((prod, i) => {
+        total += prod.precio * prod.cantidad;
 
-        productoInput.value = detalles.trim();
-        precioInput.value = "$" + total.toLocaleString("es-CO");
-      }
+        const inputProd = document.createElement("input");
+        inputProd.type = "text";
+        inputProd.name = `Producto_${i + 1}`;
+        inputProd.readOnly = true;
+        inputProd.value = `${prod.nombre} (x${prod.cantidad})`;
+        productosContainer.appendChild(inputProd);
+
+        const inputPrecio = document.createElement("input");
+        inputPrecio.type = "text";
+        inputPrecio.name = `Precio_${i + 1}`;
+        inputPrecio.readOnly = true;
+        inputPrecio.value = "$" + (prod.precio * prod.cantidad).toLocaleString("es-CO");
+        productosContainer.appendChild(inputPrecio);
+      });
+
+      totalContainer.style.display = "block";
+      totalInput.value = "$" + total.toLocaleString("es-CO");
     }
 
-    // Vaciar carrito si es compra desde carrito
-    const form = document.querySelector("form");
-    const isFromCart = !productoParam && !precioParam;
-
-    form.addEventListener("submit", function () {
-      if (isFromCart) {
+    // Vaciar carrito después del envío si es desde carrito
+    document.getElementById("pedidoForm").addEventListener("submit", () => {
+      if (!producto || !precio) {
         localStorage.removeItem("carrito");
       }
     });

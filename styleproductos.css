@@ -192,19 +192,3 @@ body {
     width: 100px;
   }
 }
-
- button[type="submit"] {
-      padding: 12px 24px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 15px;
-      transition: background-color 0.3s ease;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #218838;
-    }
