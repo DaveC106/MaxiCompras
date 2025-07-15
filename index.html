@@ -235,16 +235,16 @@
     });
   }
 
-  // ✅ Crear tarjeta con nuevo diseño
   function crearTarjetaProducto(producto) {
-    const div = document.createElement("div");
-    div.className = "producto-card";
+  const div = document.createElement("div");
+  div.className = "producto-card";
 
-    const precioOriginal = producto.precio;
-    const precioAnterior = Math.round(precioOriginal * 1.5); // 50% más
-    const descuento = Math.round(100 - (precioOriginal / precioAnterior) * 100);
+  const precioOriginal = producto.precio;
+  const precioAnterior = Math.round(precioOriginal * 1.5);
+  const descuento = Math.round(100 - (precioOriginal / precioAnterior) * 100);
 
-    div.innerHTML = `
+  div.innerHTML = `
+    <a href="producto.html?slug=${producto.slug}">
       <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
       <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
       <h3 class="nombre-producto">${producto.nombre}</h3>
@@ -255,10 +255,10 @@
       <div class="estrellas">
         ★★★★★ <span class="valoracion">(5)</span>
       </div>
-    `;
-
-    return div;
-  }
+    </a>
+  `;
+  return div;
+}
 
   // ✅ Activar búsqueda modal
   abrirModal.addEventListener("click", () => {
