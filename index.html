@@ -342,37 +342,43 @@
   });
 </script>
 
-<div class="overlay-carrito oculto" id="overlayCarrito"></div>
-
-<div class="carrito-lateral oculto" id="carritoLateral">
+<!-- 🛒 CARRITO LATERAL -->
+<div id="carrito-sidebar" class="carrito-sidebar oculto">
   <div class="carrito-header">
-    <h2>Tu Carrito</h2>
-    <button id="cerrarCarrito">✖</button>
+    <h2>🧾 Resumen del pedido</h2>
+    <button id="cerrar-carrito">✖</button>
   </div>
-  <div class="carrito-items" id="carritoItems">
-    <p>Tu carrito está vacío.</p>
+  <div class="carrito-items" id="carrito-items">
+    <p>🛍️ Tu carrito de compras está vacío.</p>
+  </div>
+  <div class="carrito-footer">
+    <button class="btn-comprar">Finalizar Compra</button>
   </div>
 </div>
+<div id="fondo-oscuro" class="fondo-oscuro oculto"></div>
 
+//Lógica del carrito lateral
 <script>
-  //logica del carrito
-const carritoIcon = document.querySelector('img[alt="Carrito"]');
-const overlay = document.getElementById("overlayCarrito");
-const panelCarrito = document.getElementById("carritoLateral");
-const cerrarCarrito = document.getElementById("cerrarCarrito");
+const iconoCarrito = document.querySelector('img[alt="Carrito"]');
+const sidebar = document.getElementById("carrito-sidebar");
+const cerrarCarrito = document.getElementById("cerrar-carrito");
+const fondoOscuro = document.getElementById("fondo-oscuro");
 
-carritoIcon.addEventListener("click", () => {
-  overlay.classList.add("mostrar");
-  panelCarrito.classList.add("mostrar");
+iconoCarrito.addEventListener("click", () => {
+  sidebar.classList.add("activo");
+  sidebar.classList.remove("oculto");
+  fondoOscuro.classList.remove("oculto");
 });
 
 cerrarCarrito.addEventListener("click", () => {
-  overlay.classList.remove("mostrar");
-  panelCarrito.classList.remove("mostrar");
+  sidebar.classList.remove("activo");
+  sidebar.classList.add("oculto");
+  fondoOscuro.classList.add("oculto");
 });
 
-overlay.addEventListener("click", () => {
-  overlay.classList.remove("mostrar");
-  panelCarrito.classList.remove("mostrar");
+fondoOscuro.addEventListener("click", () => {
+  sidebar.classList.remove("activo");
+  sidebar.classList.add("oculto");
+  fondoOscuro.classList.add("oculto");
 });
 </script>
