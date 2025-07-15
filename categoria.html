@@ -1,3 +1,4 @@
+<!-- CATEGORIA.HTML (actualizado) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,169 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maxikompras - Productos por Categoría</title>
 
-  <!-- No cache para siempre ver la última versión -->
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
   <link rel="stylesheet" href="style.css?v=20250714" />
-  <style>
-    /* Estilos propios para esta página */
-    html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-body {
-  min-height: 100vh;
-}
-
-.productos {
-  flex: 1;
-}
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-    }
-
-    .main-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #fff;
-      padding: 15px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .main-header .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .main-header .logo img {
-      width: 40px;
-    }
-
-    .main-header .logo h1 {
-      font-size: 22px;
-      margin: 0;
-      color: #1d2660;
-    }
-
-    .main-header .logo span {
-      color: #ff6a00;
-    }
-
-    .main-header .icons img {
-      width: 22px;
-      margin-left: 15px;
-      cursor: pointer;
-    }
-
-    .productos {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .productos h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-      text-align: center;
-      color: #1d2660;
-    }
-
-    .grid-productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 25px;
-    }
-
-    .producto {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-      transition: transform 0.2s;
-    }
-
-    .producto:hover {
-      transform: translateY(-5px);
-    }
-
-    .producto img {
-      width: 100%;
-      max-height: 160px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .producto h3 {
-      font-size: 18px;
-      margin: 10px 0 5px;
-      color: #333;
-    }
-
-    .producto .precio {
-      color: #ff6a00;
-      font-weight: bold;
-      margin: 8px 0;
-    }
-
-    .producto button {
-      background-color: #ff6a00;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    .producto button:hover {
-      background-color: #e45a00;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 14px;
-      background-color: #1d2660;
-      color: #fff;
-    }
-
-    .footer a {
-      color: #ffce00;
-      text-decoration: none;
-    }
-
-    @media (max-width: 600px) {
-      .main-header .logo h1 {
-        font-size: 18px;
-      }
-
-      .main-header .icons img {
-        width: 20px;
-        margin-left: 10px;
-      }
-
-      .producto button {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- Encabezado -->
   <header class="main-header">
     <div class="logo">
       <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
@@ -182,18 +29,15 @@ body {
     </div>
   </header>
 
-  <!-- Productos por Categoría -->
   <section class="productos">
     <h2 id="titulo-categoria">Categoría</h2>
     <div class="grid-productos"></div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
   </footer>
 
-  <!-- Script para cargar productos -->
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const categoriaSeleccionada = urlParams.get("cat");
@@ -201,7 +45,6 @@ body {
     const contenedor = document.querySelector(".grid-productos");
     const titulo = document.getElementById("titulo-categoria");
 
-    // Cambia el título con la categoría
     titulo.textContent = categoriaSeleccionada.charAt(0).toUpperCase() + categoriaSeleccionada.slice(1);
 
     fetch("productos.json")
@@ -217,13 +60,25 @@ body {
         }
 
         filtrados.forEach(producto => {
+          const precioOriginal = producto.precio;
+          const precioAnterior = Math.round(precioOriginal * 1.5);
+          const descuento = Math.round(100 - (precioOriginal / precioAnterior) * 100);
+
           const div = document.createElement("div");
-          div.className = "producto";
+          div.className = "producto-card";
           div.innerHTML = `
-            <img src="${producto.imagenes[0]}" alt="${producto.nombre}">
-            <h3>${producto.nombre}</h3>
-            <p class="precio">$${producto.precio.toLocaleString()}</p>
-            <button>Añadir al carrito</button>
+            <a href="producto.html?slug=${producto.slug}" style="text-decoration: none; color: inherit;">
+              <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
+              <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
+              <h3 class="nombre-producto">${producto.nombre}</h3>
+              <div class="precio">
+                <span class="precio-actual">$${precioOriginal.toLocaleString('es-CO')}</span>
+                <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
+              </div>
+              <div class="estrellas">
+                ★★★★★ <span class="valoracion">(5)</span>
+              </div>
+            </a>
           `;
           contenedor.appendChild(div);
         });
