@@ -1,3 +1,4 @@
+/*
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +30,7 @@ body {
   cursor: pointer;
 }
 
-/* CONTENIDO PRINCIPAL */
+/* CONTENIDO PRINCIPAL 
 .producto-container {
   display: flex;
   flex-wrap: wrap;
@@ -156,7 +157,7 @@ body {
   background: #f7b800;
 }
 
-/* DESCRIPCIÓN */
+/* DESCRIPCIÓN 
 .producto-descripcion {
   max-width: 1200px;
   margin: 20px auto;
@@ -172,7 +173,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE
 @media (max-width: 768px) {
   .producto-container {
     flex-direction: column;
@@ -193,7 +194,7 @@ body {
   }
 }
 
-/* Imágenes dentro de la descripción del producto */
+/* Imágenes dentro de la descripción del producto 
 .producto-descripcion img {
   max-width: 100%;
   width: 180px;
@@ -204,7 +205,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* Centrar los títulos y párrafos dentro de la descripción */
+/* Centrar los títulos y párrafos dentro de la descripción 
 .producto-descripcion h2,
 .producto-descripcion h3,
 .producto-descripcion p {
@@ -214,7 +215,7 @@ body {
   line-height: 1.6;
 }
 
-/* Botones o enlaces especiales */
+/* Botones o enlaces especiales 
 .producto-descripcion a {
   display: inline-block;
   background-color: #ff8800;
@@ -225,3 +226,5 @@ body {
   font-weight: bold;
   margin-top: 15px;
 }
+
+*/
