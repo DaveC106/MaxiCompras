@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Detalle del producto</title>
-  <link rel="stylesheet" href="styleproductos.css" />
+  <title>Formulario de Compra</title>
+  <link rel="stylesheet" href="styleform.css" />
 </head>
 <body>
-  <!-- Barra superior -->
+   <!-- Barra superior -->
   <div class="top-bar">
   <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
   <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
@@ -26,73 +26,89 @@
       <img src="./img/cart.png" alt="Carrito" />
     </div>
   </header>
+  <div class="form-container">
+    <h2>Finaliza tu compra</h2>
+    <form action="https://formsubmit.co/tu-correo@gmail.com" method="POST">
 
-  <section class="producto-container">
-    <div class="producto-imagen">
-      <img id="imagen-producto" src="" alt="Producto" />
-    </div>
-    <div class="producto-detalles">
-      <h1 id="nombre-producto"></h1>
-      <div class="estrellas">★★★★★ (5)</div>
-      <div>
-        <span id="precio-anterior" class="precio-original"></span>
-        <span id="precio-actual" class="precio-descuento"></span>
-        <span id="descuento" class="badge-descuento"></span>
-      </div>
+      <!-- Sección 1: Contacto -->
+      <h3>1. Contacto</h3>
+      <label for="correo">Correo electrónico *</label>
+      <input type="email" id="correo" name="email" required>
 
-      <div class="confianza-box">
-        <h4>Tienda Líder Platinum</h4>
-        <p>+40.000 ventas | Entrega rápida | Excelente servicio</p>
-      </div>
+      <label for="telefono">Número Teléfono *</label>
+      <input type="tel" id="telefono" name="telefono" required>
 
-      <div class="botones">
-        <button class="btn-carrito">Añadir al carrito</button>
-        <a id="btn-comprar" class="btn-comprar">Comprar ahora</a>
-      </div>
-    </div>
-  </section>
+      <label for="telefono_confirmar">Confirmar Teléfono *</label>
+      <input type="tel" id="telefono_confirmar" name="telefono_confirmar" required>
 
-  <section class="producto-descripcion">
-    <div id="descripcion-producto"></div>
-  </section>
+      <!-- Sección 2: Entrega -->
+      <h3>2. Entrega</h3>
+      <label for="nombre">Nombre *</label>
+      <input type="text" id="nombre" name="nombre" required>
 
-  <footer class="footer">
-    <p>© 2025, MaxiKompras | <a href="index.html">Volver al inicio</a></p>
-  </footer>
+      <label for="apellido">Apellido *</label>
+      <input type="text" id="apellido" name="apellido" required>
+
+      <label for="pais">País *</label>
+      <select id="pais" name="pais" required>
+        <option value="">Seleccione...</option>
+        <option value="Colombia">Colombia</option>
+        <option value="México">México</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Chile">Chile</option>
+        <option value="Perú">Perú</option>
+      </select>
+
+      <label for="estado">Estado / Región *</label>
+      <input type="text" id="estado" name="estado" required>
+
+      <label for="ciudad">Ciudad *</label>
+      <input type="text" id="ciudad" name="ciudad" required>
+
+      <label for="direccion">Dirección *</label>
+      <input type="text" id="direccion" name="direccion" required>
+
+      <label for="apartamento">Apartamento / Casa (opcional)</label>
+      <input type="text" id="apartamento" name="apartamento">
+
+      <label for="ccnit">CC o NIT *</label>
+      <input type="text" id="ccnit" name="ccnit" required>
+
+      <label>
+        <input type="checkbox" name="facturacion_igual" checked>
+        Dirección de Facturación igual a la de Envío
+      </label>
+
+      <label for="producto">Producto</label>
+      <input type="text" id="producto" name="producto" readonly>
+
+      <label for="precio">Precio</label>
+      <input type="text" id="precio" name="precio" readonly>
+
+      <!-- Sección 3: Pago -->
+      <h3>3. Pago</h3>
+      <label><input type="radio" name="pago" value="Contraentrega" checked> Pago Contraentrega</label><br>
+      <label><input type="radio" name="pago" value="Davivienda"> Transferencia DAVIVIENDA</label><br>
+      <label><input type="radio" name="pago" value="PSE"> PSE / Tarjeta / Transferencia</label><br>
+      <label><input type="radio" name="pago" value="Nequi"> Pago por NEQUI</label><br>
+      <label><input type="radio" name="pago" value="ADDI"> Crédito (ADDI)</label>
+
+      <!-- Configuración FormSubmit -->
+      <input type="hidden" name="_next" value="https://maxikomprass.store/gracias.html">
+      <input type="hidden" name="_captcha" value="false">
+
+      <button type="submit">Enviar Pedido</button>
+    </form>
+  </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("slug");
+    // Autocompletar producto y precio desde parámetros URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const producto = urlParams.get("producto");
+    const precio = urlParams.get("precio");
 
-    fetch("productos.json")
-      .then(res => res.json())
-      .then(productos => {
-        const producto = productos.find(p => p.slug === slug);
-        if (!producto) {
-          document.querySelector(".producto-container").innerHTML = "<p>Producto no encontrado.</p>";
-          return;
-        }
-
-        document.getElementById("imagen-producto").src = producto.imagenes[0];
-        document.getElementById("nombre-producto").textContent = producto.nombre;
-
-        const precio = producto.precio;
-        const precioAnterior = Math.round(precio * 1.5);
-        const descuento = Math.round(100 - (precio / precioAnterior) * 100);
-
-        document.getElementById("precio-anterior").textContent = "$" + precioAnterior.toLocaleString('es-CO');
-        document.getElementById("precio-actual").textContent = "$" + precio.toLocaleString('es-CO');
-        document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
-
-        document.getElementById("descripcion-producto").innerHTML = producto.descripcion;
-        document.getElementById("btn-comprar").addEventListener("click", () => {
-  const nombre = document.getElementById("nombre-producto").textContent;
-  const precio = document.getElementById("precio-actual").textContent;
-  const url = `formulario.html?producto=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio)}`;
-  window.location.href = url;
-});
-      });
+    if(producto) document.getElementById("producto").value = producto;
+    if(precio) document.getElementById("precio").value = precio;
   </script>
-
 </body>
 </html>
