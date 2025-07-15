@@ -50,10 +50,13 @@
     fetch("productos.json")
       .then(res => res.json())
       .then(productos => {
-        const filtrados = productos.filter(
-          p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase()
-        );
-
+        const filtrados = productos.filter(p => {
+  if (Array.isArray(p.categoria)) {
+    return p.categoria.map(c => c.toLowerCase()).includes(categoriaSeleccionada.toLowerCase());
+  } else {
+    return p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase();
+  }
+});
         if (filtrados.length === 0) {
           contenedor.innerHTML = "<p>No hay productos en esta categoría.</p>";
           return;
