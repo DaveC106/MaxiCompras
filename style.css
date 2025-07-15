@@ -814,3 +814,44 @@ body {
   display: none;
 }
 
+/*carrito mini*/
+.modal-carrito {
+  position: fixed;
+  top: 15%;
+  right: 20px;
+  width: 350px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  padding: 20px;
+  z-index: 1002;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.modal-carrito.oculto {
+  display: none;
+}
+.fondo-oscuro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1001;
+}
+.fondo-oscuro.oculto {
+  display: none;
+}
+.mini-carrito-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+.btn-ir-carrito {
+  background-color: #008cff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
