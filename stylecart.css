@@ -1,0 +1,102 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+.header-cart {
+  background-color: #222;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-cart h1 {
+  margin: 0;
+}
+
+.btn-volver {
+  color: #fff;
+  text-decoration: none;
+  background: #555;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+.cart-container {
+  max-width: 900px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.carrito-lista .item-carrito {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.mini-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.acciones button {
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.acciones .eliminar {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.carrito-resumen {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.carrito-resumen p {
+  font-size: 18px;
+}
+
+.btn-finalizar {
+  padding: 10px 20px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.vacio {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}

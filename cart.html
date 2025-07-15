@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="stylecart.css" />
+</head>
+<body>
+  <header class="header-cart">
+    <h1>🛒 Carrito de Compras</h1>
+    <a href="index.html" class="btn-volver">← Volver a la tienda</a>
+  </header>
+
+  <main class="cart-container">
+    <div id="carrito-lista" class="carrito-lista"></div>
+
+    <div class="carrito-resumen">
+      <p><strong>Subtotal:</strong> <span id="subtotal">$0</span></p>
+      <button class="btn-finalizar">Finalizar Compra</button>
+    </div>
+  </main>
+
+  <script>
+    function renderCarrito() {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const lista = document.getElementById("carrito-lista");
+      const subtotalDOM = document.getElementById("subtotal");
+      lista.innerHTML = "";
+
+      if (carrito.length === 0) {
+        lista.innerHTML = "<p class='vacio'>Tu carrito está vacío 😢</p>";
+        subtotalDOM.textContent = "$0";
+        return;
+      }
+
+      let subtotal = 0;
+
+      carrito.forEach((producto, index) => {
+        subtotal += producto.precio * producto.cantidad;
+
+        const item = document.createElement("div");
+        item.className = "item-carrito";
+        item.innerHTML = `
+          <img src="${producto.imagen}" class="mini-img" alt="${producto.nombre}" />
+          <div class="info">
+            <h3>${producto.nombre}</h3>
+            <p>$${producto.precio.toLocaleString('es-CO')}</p>
+            <div class="acciones">
+              <button onclick="cambiarCantidad(${index}, -1)">−</button>
+              <span>${producto.cantidad}</span>
+              <button onclick="cambiarCantidad(${index}, 1)">+</button>
+              <button class="eliminar" onclick="eliminarProducto(${index})">🗑</button>
+            </div>
+          </div>
+        `;
+        lista.appendChild(item);
+      });
+
+      subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO");
+    }
+
+    function cambiarCantidad(index, cambio) {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito[index].cantidad += cambio;
+      if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      renderCarrito();
+    }
+
+    function eliminarProducto(index) {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.splice(index, 1);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      renderCarrito();
+    }
+
+    document.querySelector(".btn-finalizar").addEventListener("click", () => {
+      if (confirm("¿Quieres finalizar tu compra?")) {
+        window.location.href = "formulario.html";
+      }
+    });
+
+    renderCarrito();
+  </script>
+</body>
+</html>
