@@ -37,7 +37,7 @@
 
       <div class="botones">
         <button class="btn-carrito">Añadir al carrito</button>
-        <button class="btn-comprar">Comprar ahora</button>
+        <a id="btn-comprar" class="btn-comprar">Comprar ahora</a>
       </div>
     </div>
   </section>
@@ -75,6 +75,12 @@
         document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
 
         document.getElementById("descripcion-producto").innerHTML = producto.descripcion;
+        document.getElementById("btn-comprar").addEventListener("click", () => {
+  const nombre = document.getElementById("nombre-producto").textContent;
+  const precio = document.getElementById("precio-actual").textContent;
+  const url = `formulario.html?producto=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio)}`;
+  window.location.href = url;
+});
       });
   </script>
 
