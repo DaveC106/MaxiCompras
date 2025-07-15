@@ -6,6 +6,30 @@
   <title>Detalle del producto</title>
   <link rel="stylesheet" href="styleproductos.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    .miniaturas {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .miniaturas .miniatura {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s, border 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .miniaturas .miniatura:hover {
+      transform: scale(1.1);
+      border: 2px solid #ff8800;
+    }
+  </style>
 </head>
 <body>
 
