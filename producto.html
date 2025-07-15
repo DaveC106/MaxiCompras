@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detalle del producto</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="./img/logo.png" alt="Logo" />
+        <h1>Maxikompras</h1>
+      </a>
+    </div>
+  </header>
+
+  <section class="producto-detalle">
+    <div class="contenedor-producto">
+      <img id="imagen-producto" src="" alt="Producto" />
+      <div class="info-producto">
+        <h2 id="nombre-producto"></h2>
+        <p id="precio-producto" class="precio"></p>
+        <div id="descripcion-producto"></div>
+        <button>Añadir al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025, MaxiKompras | <a href="index.html">Volver al inicio</a></p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("slug");
+
+    fetch("productos.json")
+      .then(res => res.json())
+      .then(productos => {
+        const producto = productos.find(p => p.slug === slug);
+        if (!producto) {
+          document.querySelector(".producto-detalle").innerHTML = "<p>Producto no encontrado.</p>";
+          return;
+        }
+
+        document.getElementById("imagen-producto").src = producto.imagenes[0];
+        document.getElementById("nombre-producto").textContent = producto.nombre;
+        document.getElementById("precio-producto").textContent = "$" + producto.precio.toLocaleString();
+        document.getElementById("descripcion-producto").innerHTML = producto.descripcion;
+      });
+  </script>
+
+</body>
+</html>
