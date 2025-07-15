@@ -7,20 +7,51 @@
   <link rel="stylesheet" href="styleform.css" />
 </head>
 <body>
-  <div class="form-container">
+     <!-- Barra superior -->
+  <div class="top-bar">
+  <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+  <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
+  <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
+</div>
+
+<!-- Encabezado -->
+  <header class="main-header">
+    <div class="logo">
+     <!-- <img src="/img/logo.png" alt="Logo" /> -->
+      <h1>MaxiCompras</h1>
+    </div>
+    <div class="icons">
+      <img src="./img/search.png" alt="Buscar" />
+      <img src="./img/user.png" alt="Usuario" />
+      <img src="./img/cart.png" alt="Carrito" />
+    </div>
+  </header>
+      <div class="form-container">
     <h2>Finaliza tu compra</h2>
+    <form action="https://formsubmit.co/tu-correo@gmail.com" method="POST">
 
-    <form action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
-      <!-- Cambia "tucorreo@gmail.com" por tu correo real -->
+      <!-- Sección 1: Contacto -->
+      <h3>1. Contacto</h3>
+      <label for="correo">Correo electrónico *</label>
+      <input type="email" id="correo" name="email" required>
 
-      <label for="correo">Correo electrónico o teléfono</label>
-      <input type="email" id="correo" name="contacto" required>
+      <label for="telefono">Número Teléfono *</label>
+      <input type="tel" id="telefono" name="telefono" required>
 
-      <h3>Entrega</h3>
+      <label for="telefono_confirmar">Confirmar Teléfono *</label>
+      <input type="tel" id="telefono_confirmar" name="telefono_confirmar" required>
 
-      <label for="pais">País / Región</label>
+      <!-- Sección 2: Entrega -->
+      <h3>2. Entrega</h3>
+      <label for="nombre">Nombre *</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="apellido">Apellido *</label>
+      <input type="text" id="apellido" name="apellido" required>
+
+      <label for="pais">País *</label>
       <select id="pais" name="pais" required>
-        <option value="">Selecciona tu país</option>
+        <option value="">Seleccione...</option>
         <option value="Colombia">Colombia</option>
         <option value="México">México</option>
         <option value="Argentina">Argentina</option>
@@ -28,55 +59,56 @@
         <option value="Perú">Perú</option>
       </select>
 
-      <div class="input-group">
-        <div>
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre">
-        </div>
-        <div>
-          <label for="apellido">Apellido</label>
-          <input type="text" id="apellido" name="apellido">
-        </div>
-      </div>
-      <label for="producto">Producto</label>
-<input type="text" id="producto" name="producto" readonly>
+      <label for="estado">Estado / Región *</label>
+      <input type="text" id="estado" name="estado" required>
 
-<label for="precio">Precio</label>
-<input type="text" id="precio" name="precio" readonly>
+      <label for="ciudad">Ciudad *</label>
+      <input type="text" id="ciudad" name="ciudad" required>
 
-      <label for="direccion">Dirección</label>
+      <label for="direccion">Dirección *</label>
       <input type="text" id="direccion" name="direccion" required>
 
       <label for="apartamento">Apartamento / Casa (opcional)</label>
       <input type="text" id="apartamento" name="apartamento">
 
-      <div class="input-group">
-        <div>
-          <label for="ciudad">Ciudad</label>
-          <input type="text" id="ciudad" name="ciudad">
-        </div>
-        <div>
-          <label for="departamento">Departamento / Estado</label>
-          <input type="text" id="departamento" name="departamento">
-        </div>
-        <div>
-          <label for="codigo_postal">Código Postal</label>
-          <input type="text" id="codigo_postal" name="codigo_postal">
-        </div>
-      </div>
+      <label for="ccnit">CC o NIT *</label>
+      <input type="text" id="ccnit" name="ccnit" required>
 
-      <!-- Opcional: redirigir después del envío -->
-      <input type="hidden" name="_next" value="https://maxicomprass.store/gracias.html">
+      <label>
+        <input type="checkbox" name="facturacion_igual" checked>
+        Dirección de Facturación igual a la de Envío
+      </label>
+
+      <label for="producto">Producto</label>
+      <input type="text" id="producto" name="producto" readonly>
+
+      <label for="precio">Precio</label>
+      <input type="text" id="precio" name="precio" readonly>
+
+      <!-- Sección 3: Pago -->
+      <h3>3. Pago</h3>
+      <label><input type="radio" name="pago" value="Contraentrega" checked> Pago Contraentrega</label><br>
+      <label><input type="radio" name="pago" value="Davivienda"> Transferencia DAVIVIENDA</label><br>
+      <label><input type="radio" name="pago" value="PSE"> PSE / Tarjeta / Transferencia</label><br>
+      <label><input type="radio" name="pago" value="Nequi"> Pago por NEQUI</label><br>
+      <label><input type="radio" name="pago" value="ADDI"> Crédito (ADDI)</label>
+
+      <!-- Configuración FormSubmit -->
+      <input type="hidden" name="_next" value="https://maxikomprass.store/gracias.html">
       <input type="hidden" name="_captcha" value="false">
 
-      <button type="submit">Enviar pedido</button>
+      <button type="submit">Enviar Pedido</button>
     </form>
   </div>
 
   <script>
-  const params = new URLSearchParams(window.location.search);
-  document.getElementById("producto").value = params.get("producto") || "";
-  document.getElementById("precio").value = params.get("precio") || "";
-</script>
+    // Autocompletar producto y precio desde parámetros URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const producto = urlParams.get("producto");
+    const precio = urlParams.get("precio");
+
+    if(producto) document.getElementById("producto").value = producto;
+    if(precio) document.getElementById("precio").value = precio;
+  </script>
 </body>
 </html>
