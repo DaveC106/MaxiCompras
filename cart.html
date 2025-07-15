@@ -7,27 +7,32 @@
   <link rel="stylesheet" href="stylecart.css" />
 </head>
 <body>
-    <!-- Barra superior -->
-<div class="top-bar">
-  <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
-  <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
-  <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
-</div>
 
+  <!-- Barra superior -->
+  <div class="top-bar">
+    <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
+    <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
+  </div>
+
+  <!-- Encabezado -->
   <header class="header-cart">
-    <div class="titulo-carrito">🛒 Carrito de Compras</div>
+    <div class="titulo-carrito">Tu carrito</div>
     <a href="index.html" class="btn-seguir">Seguir comprando</a>
   </header>
 
+  <!-- Contenido del carrito -->
   <main class="cart-container">
     <div id="carrito-lista" class="carrito-lista"></div>
 
     <div class="carrito-resumen">
-      <p><strong>Subtotal:</strong> <span id="subtotal">$0</span></p>
-      <button class="btn-finalizar">Finalizar Compra</button>
+      <p><strong>Total estimado</strong> <span id="subtotal">$0 COP</span></p>
+      <p class="nota">Impuestos, descuentos y envío calculados en la pantalla de pago.</p>
+      <button class="btn-finalizar">Pagar pedido</button>
     </div>
   </main>
 
+  <!-- Scripts -->
   <script>
     function renderCarrito() {
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -52,7 +57,7 @@
           <img src="${producto.imagen}" class="mini-img" alt="${producto.nombre}" />
           <div class="info">
             <h3>${producto.nombre}</h3>
-            <p>$${producto.precio.toLocaleString('es-CO')}</p>
+            <p class="precio">$${producto.precio.toLocaleString('es-CO')}</p>
             <div class="acciones">
               <button onclick="cambiarCantidad(${index}, -1)">−</button>
               <span>${producto.cantidad}</span>
@@ -64,7 +69,7 @@
         lista.appendChild(item);
       });
 
-      subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO");
+      subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO") + " COP";
     }
 
     function cambiarCantidad(index, cambio) {
@@ -92,19 +97,18 @@
   </script>
 
   <script>
-  // 🟡 Ciclo automático del top-bar solo en móviles
-  if (window.innerWidth <= 768) {
-    const spans = document.querySelectorAll(".top-bar span");
-    let i = 0;
-    spans[i].classList.add("activo");
-
-    setInterval(() => {
-      spans[i].classList.remove("activo");
-      i = (i + 1) % spans.length;
+    // Top bar móvil
+    if (window.innerWidth <= 768) {
+      const spans = document.querySelectorAll(".top-bar span");
+      let i = 0;
       spans[i].classList.add("activo");
-    }, 4000);
-  }
-</script>
+      setInterval(() => {
+        spans[i].classList.remove("activo");
+        i = (i + 1) % spans.length;
+        spans[i].classList.add("activo");
+      }, 4000);
+    }
+  </script>
 
 </body>
 </html>
