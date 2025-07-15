@@ -32,17 +32,19 @@
       
   <!-- Sección 1: Contacto -->
 <h3>1. Contacto</h3>
+
 <label for="email">Correo electrónico *</label>
-<input type="email" id="email" name="Correo electrónico" required>
+<input type="email" id="email" name="CorreoElectronico" required>
 
 <label for="telefono">Número Teléfono *</label>
-<input type="tel" id="telefono" name="Teléfono" required>
+<input type="tel" id="telefono" name="Telefono" required>
 
 <label for="telefono_confirmar">Confirmar Teléfono *</label>
-<input type="tel" id="telefono_confirmar" name="Confirmar Teléfono" required>
+<input type="tel" id="telefono_confirmar" name="ConfirmarTelefono" required>
 
 <!-- Sección 2: Entrega -->
 <h3>2. Entrega</h3>
+
 <label for="nombre">Nombre *</label>
 <input type="text" id="nombre" name="Nombre" required>
 
@@ -50,32 +52,28 @@
 <input type="text" id="apellido" name="Apellido" required>
 
 <label for="pais">País *</label>
-<select id="pais" name="País" required>
+<select id="pais" name="Pais" required>
   <option value="">Seleccione...</option>
   <option value="Colombia">Colombia</option>
-  <option value="México">México</option>
-  <option value="Argentina">Argentina</option>
-  <option value="Chile">Chile</option>
-  <option value="Perú">Perú</option>
 </select>
 
 <label for="estado">Estado / Región *</label>
-<input type="text" id="estado" name="Estado / Región" required>
+<input type="text" id="estado" name="EstadoRegion" required>
 
 <label for="ciudad">Ciudad *</label>
 <input type="text" id="ciudad" name="Ciudad" required>
 
 <label for="direccion">Dirección *</label>
-<input type="text" id="direccion" name="Dirección" required>
+<input type="text" id="direccion" name="Direccion" required>
 
 <label for="apartamento">Apartamento / Casa (opcional)</label>
-<input type="text" id="apartamento" name="Apartamento / Casa">
+<input type="text" id="apartamento" name="ApartamentoCasa">
 
 <label for="ccnit">CC o NIT *</label>
-<input type="text" id="ccnit" name="CC o NIT" required>
+<input type="text" id="ccnit" name="CCoNIT" required>
 
-<label>
-  <input type="checkbox" name="Facturación igual a envío" checked>
+<label for="facturacionIgual">
+  <input type="checkbox" id="facturacionIgual" name="FacturacionIgualEnvio" checked>
   Dirección de Facturación igual a la de Envío
 </label>
 
@@ -87,15 +85,27 @@
 
 <!-- Sección 3: Pago -->
 <h3>3. Pago</h3>
-<label><input type="radio" name="Método de Pago" value="Contraentrega" checked> Pago Contraentrega</label><br>
-<label><input type="radio" name="Método de Pago" value="Davivienda"> Transferencia DAVIVIENDA</label><br>
-<label><input type="radio" name="Método de Pago" value="PSE"> PSE / Tarjeta / Transferencia</label><br>
-<label><input type="radio" name="Método de Pago" value="Nequi"> Pago por NEQUI</label><br>
-<label><input type="radio" name="Método de Pago" value="ADDI"> Crédito (ADDI)</label>
+
+<label>
+  <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
+</label><br>
+<label>
+  <input type="radio" name="MetodoPago" value="Davivienda"> Transferencia DAVIVIENDA
+</label><br>
+<label>
+  <input type="radio" name="MetodoPago" value="PSE"> PSE / Tarjeta / Transferencia
+</label><br>
+<label>
+  <input type="radio" name="MetodoPago" value="Nequi"> Pago por NEQUI
+</label><br>
+<label>
+  <input type="radio" name="MetodoPago" value="ADDI"> Crédito (ADDI)
+</label>
 
 <!-- Configuración FormSubmit -->
 <input type="hidden" name="_next" value="https://maxikomprass.store">
 <input type="hidden" name="_captcha" value="false">
+6
 
       <button type="submit">Enviar Pedido</button>
     </form>
