@@ -7,15 +7,16 @@
   <link rel="stylesheet" href="stylecart.css" />
 </head>
 <body>
-      <!-- Barra superior -->
-  <div class="top-bar">
+    <!-- Barra superior -->
+<div class="top-bar">
   <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
   <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
   <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
 </div>
+
   <header class="header-cart">
-    <h1>🛒 Carrito de Compras</h1>
-    <a href="index.html" class="btn-volver">← Volver a la tienda</a>
+    <div class="titulo-carrito">🛒 Carrito de Compras</div>
+    <a href="index.html" class="btn-seguir">Seguir comprando</a>
   </header>
 
   <main class="cart-container">
@@ -90,23 +91,20 @@
     renderCarrito();
   </script>
 
-
-<script>
-    // Rotación de mensajes en la parte superior
-  if (window.innerWidth > 768) return; // Solo en móviles
-  const mensajesTop = document.querySelectorAll(".top-bar span");
-  let indexTop = 0;
-
-  function rotarMensajesTop() {
-    mensajesTop.forEach((el, i) => el.classList.remove("activo"));
-    mensajesTop[indexTop].classList.add("activo");
-    indexTop = (indexTop + 1) % mensajesTop.length;
-  }
-
+  <script>
+  // 🟡 Ciclo automático del top-bar solo en móviles
   if (window.innerWidth <= 768) {
-    rotarMensajesTop(); // inicia con el primero
-    setInterval(rotarMensajesTop, 4000); // cambia cada 4 segundos
+    const spans = document.querySelectorAll(".top-bar span");
+    let i = 0;
+    spans[i].classList.add("activo");
+
+    setInterval(() => {
+      spans[i].classList.remove("activo");
+      i = (i + 1) % spans.length;
+      spans[i].classList.add("activo");
+    }, 4000);
   }
 </script>
+
 </body>
 </html>
