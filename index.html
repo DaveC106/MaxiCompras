@@ -37,9 +37,13 @@
     </div>
   </section>
  <!-- sección productos destacados-->
-  <section class="productos">
+  <section class="productos-destacados">
   <h2>Productos Destacados</h2>
-  <div class="grid-productos"></div>
+  <div class="slider-container">
+    <button class="flecha izquierda">&#10094;</button>
+    <div class="slider grid-productos"></div>
+    <button class="flecha derecha">&#10095;</button>
+  </div>
 </section>
 
   <!-- Sección Nuestras Categorías -->
@@ -325,3 +329,16 @@
   window.addEventListener("load", revisarScrollCategorias);
 </script>
 
+<script>
+  const slider = document.querySelector(".slider");
+  const flechaIzq = document.querySelector(".flecha.izquierda");
+  const flechaDer = document.querySelector(".flecha.derecha");
+
+  flechaIzq.addEventListener("click", () => {
+    slider.scrollBy({ left: -300, behavior: 'smooth' });
+  });
+
+  flechaDer.addEventListener("click", () => {
+    slider.scrollBy({ left: 300, behavior: 'smooth' });
+  });
+</script>
