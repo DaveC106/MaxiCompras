@@ -5,13 +5,14 @@
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
+  <!-- Meta tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maxikompras</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
+<body>
   <!-- Barra superior -->
   <div class="top-bar">
   <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
@@ -25,7 +26,7 @@
     </div>
     <div class="icons">
       <img src="./img/search.png" alt="Buscar" />
-      <img src="./img/cart.png" alt="Carrito" />
+      <a href="cart.html"><img src="./img/cart.png" alt="Carrito" /></a>
     </div>
   </header>
 
@@ -35,6 +36,7 @@
       <img src="./img/banner.png" alt="Banner principal">
     </div>
   </section>
+
  <!-- sección productos destacados-->
   <section class="productos-destacados">
   <h2>Productos Destacados</h2>
@@ -48,7 +50,6 @@
   <!-- Sección Nuestras Categorías -->
 <section class="categorias">
   <h2>Nuestras Categorías</h2>
-
   <div class="grid-categorias-container">
     <div class="grid-categorias">
       <div class="categoria">
@@ -95,11 +96,13 @@
       </div>
     </div>
 
+
     <!-- Flechita a la derecha -->
     <div class="flecha-derecha">&#10148;</div>
   </div>
 </section>
 
+  <!-- Sección Acerca de Nosotros -->
 <section class="acerca-nosotros">
   <div class="contenedor-nosotros">
     <div class="img-nosotros">
@@ -113,6 +116,7 @@
   </div>
 </section>
 
+  <!-- Sección Testimonios -->
 <section class="testimonios">
   <h2>Clientes Entusiasmados</h2>
   <div class="grid-testimonios">
@@ -140,6 +144,7 @@
   </div>
 </section>
 
+  <!-- Sección Banners Informativos -->
 <section class="banners-info">
   <div class="banner">
     <img src="img/comsegura.png" alt="Compra segura">
@@ -161,6 +166,7 @@
     <h3>PAGA AL RECIBIR</h3>
   </div>
 </section>
+  <!-- Sección Aliados -->
 <section class="aliados">
   <h2>Nuestros Aliados</h2>
   <div class="logos-aliados">
@@ -173,9 +179,10 @@
   </div>
 </section>
 
-<footer class="footer">
-  <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
-</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+  </footer>
 
 
 <div id="modal-busqueda" class="modal-busqueda oculto">
@@ -185,6 +192,7 @@
     <div id="resultados-modal" class="grid-productos"></div>
   </div>
 </div>
+
 <script>
   const contenedor = document.querySelector(".grid-productos");
   const modal = document.getElementById("modal-busqueda");
@@ -342,77 +350,4 @@
   });
 </script>
 
-<!-- 🛒 CARRITO LATERAL -->
-<div id="carrito-sidebar" class="carrito-sidebar oculto">
-  <div class="carrito-header">
-    <h2>🧾 Resumen del pedido</h2>
-    <button id="cerrar-carrito">✖</button>
-  </div>
-  <div class="carrito-items" id="carrito-items">
-    <p>🛍️ Tu carrito de compras está vacío.</p>
-  </div>
-  <div class="carrito-footer">
-    <button class="btn-comprar">Finalizar Compra</button>
-  </div>
-</div>
-<div id="fondo-oscuro" class="fondo-oscuro oculto"></div>
 
-<script>
-const iconoCarrito = document.querySelector('img[alt="Carrito"]');
-const sidebar = document.getElementById("carrito-sidebar");
-const cerrarCarrito = document.getElementById("cerrar-carrito");
-const fondoOscuro = document.getElementById("fondo-oscuro");
-
-iconoCarrito.addEventListener("click", () => {
-  sidebar.classList.add("activo");
-  sidebar.classList.remove("oculto");
-  fondoOscuro.classList.remove("oculto");
-});
-
-cerrarCarrito.addEventListener("click", () => {
-  sidebar.classList.remove("activo");
-  sidebar.classList.add("oculto");
-  fondoOscuro.classList.add("oculto");
-});
-
-fondoOscuro.addEventListener("click", () => {
-  sidebar.classList.remove("activo");
-  sidebar.classList.add("oculto");
-  fondoOscuro.classList.add("oculto");
-});
-</script>
-
-
-<script>
-  // 🔁 Cargar carrito desde localStorage
-  function mostrarCarrito() {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const contenedor = document.getElementById("carrito-items");
-    contenedor.innerHTML = "";
-
-    if (carrito.length === 0) {
-      contenedor.innerHTML = "<p>🛍️ Tu carrito de compras está vacío.</p>";
-      return;
-    }
-
-    carrito.forEach(producto => {
-      const item = document.createElement("div");
-      item.classList.add("item-carrito");
-
-      item.innerHTML = `
-        <div class="miniatura">
-          <img src="${producto.imagen}" alt="${producto.nombre}" />
-        </div>
-        <div class="detalle">
-          <p class="nombre">${producto.nombre}</p>
-          <p class="precio">$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</p>
-        </div>
-      `;
-
-      contenedor.appendChild(item);
-    });
-  }
-
-  // 🛒 Mostrar el carrito al abrirlo
-  document.querySelector('img[alt="Carrito"]').addEventListener("click", mostrarCarrito);
-</script>
