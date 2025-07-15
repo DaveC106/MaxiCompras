@@ -401,3 +401,20 @@ fondoCarrito.addEventListener("click", () => {
 });
 
 </script>
+
+<script>
+  //script para ir pasando encabezados en celulares
+  const mensajesTop = document.querySelectorAll(".top-bar span");
+  let indexTop = 0;
+
+  function rotarMensajesTop() {
+    mensajesTop.forEach((el, i) => el.classList.remove("activo"));
+    mensajesTop[indexTop].classList.add("activo");
+    indexTop = (indexTop + 1) % mensajesTop.length;
+  }
+
+  if (window.innerWidth <= 768) {
+    rotarMensajesTop(); // inicia con el primero
+    setInterval(rotarMensajesTop, 4000); // cambia cada 4 segundos
+  }
+</script>
