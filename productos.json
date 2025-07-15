@@ -9,7 +9,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/123123.png?v=1749097096"
     ],
-    "categoria": "tecnologia"
+    "categoria": ["tecnologia", "hogar"]
   },
   {
     "nombre": "Bateria portable para vehiculos",
@@ -20,7 +20,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Marmota_8.webp?v=1749097065"
     ],
-    "categoria": "vehiculos"
+    "categoria": ["tecnologia", "vehiculos"]
   },
   {
     "nombre": "Bola interactiva para gato",
@@ -42,7 +42,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image7.png?v=1749097086"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "hogar"
   },
   {
     "nombre": "Canguro para mascota",
@@ -75,7 +75,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image-2025-03-06T055857.537.webp?v=1749097084"
     ],
-    "categoria": "uncategorized"
+    "categoria": "cocina"
   },
   {
     "nombre": "Ejercitador Pelvico",
@@ -97,7 +97,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image_-_2025-03-06T051031.762.webp?v=1749097090"
     ],
-    "categoria": "sin-categoria"
+    "categoria": ["tecnologia", "hogar"]
   },
   {
     "nombre": "Escarchador de cocktails Ultra rapido",
@@ -108,7 +108,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPT_Image_20_abr_2025_00_44_14.png?v=1749097080"
     ],
-    "categoria": "sin-categoria"
+    "categoria": ["accesorios", "hogar"]
   },
   {
     "nombre": "Espejo para carros tactil",
@@ -119,7 +119,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPT_Image_19_abr_2025_20_33_01.png?v=1749097060"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "vehiculos"
   },
   {
     "nombre": "Holder para vehiculos",
@@ -130,7 +130,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPTImage19abr2025_22_56_49.png?v=1749097064"
     ],
-    "categoria": "sin-categoria"
+    "categoria": ["vehiculos", "accesorios"]
   },
   {
     "nombre": "Humidificador para carro",
@@ -141,7 +141,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Ambientador_1.webp?v=1749097058"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "vehiculos"
   },
   {
     "nombre": "Kit de baño de lujo",
@@ -152,7 +152,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPTImage19abr2025_21_22_15.png?v=1749097061"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "hogar"
   },
   {
     "nombre": "Lampara solar de pared",
@@ -163,7 +163,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image-2025-03-06T054330.863.webp?v=1749097087"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "hogar"
   },
   {
     "nombre": "Lector de tarjetas didacticas",
@@ -185,7 +185,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/1_1432564c-64c1-4f0c-8240-490b9b0c406e.webp?v=1749097093"
     ],
-    "categoria": "uncategorized"
+    "categoria": "tecnologia"
   },
   {
     "nombre": "Magnetic | Parlante Magnético Para Celular",
@@ -196,7 +196,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ldasldl.png?v=1749097095"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "tecnologia"
   },
   {
     "nombre": "Marmota Calmatodo",
@@ -207,7 +207,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Marmota_2.webp?v=1749097055"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "hogar"
   },
   {
     "nombre": "Mochila magnética para gimnasio",
@@ -229,7 +229,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/S035b05491e6949e7ba18d61a3e66686ah.jpg?v=1749097092"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "tecnologia"
   },
   {
     "nombre": "Organizador de Ollas 8 Niveles",
@@ -240,7 +240,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-609730cb9212c6.webp?v=1749097081"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "cocina"
   },
   {
     "nombre": "Organizador esquinero de baño",
@@ -262,7 +262,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-4f85072a164b58.webp?v=1749097077"
     ],
-    "categoria": "sin-categoria"
+    "categoria": ["bienestar", "hogar"]
   },
   {
     "nombre": "Paños magicos x5",
@@ -273,7 +273,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-68afb5896539d0.webp?v=1749097083"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "cocina"
   },
   {
     "nombre": "Peluche de STICH",
@@ -295,7 +295,7 @@
     "imagenes": [
       "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image-2025-03-06T052531.424.webp?v=1749097089"
     ],
-    "categoria": "sin-categoria"
+    "categoria": "vehiculos"
   },
   {
     "nombre": "Tonifica en semanas Banda elastica",
