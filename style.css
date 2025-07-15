@@ -78,27 +78,40 @@ body {
   cursor: pointer;
 }
 
+/*banner adaptado y mejorado*/
 .hero {
-  background: none;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  align-items: center;
+  padding: 1rem 0;
 }
 
-.hero-texto {
-  max-width: 500px;
+.hero-img img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.hero-texto h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  font-weight: bold;
+/* 📱 Celulares */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0.5rem 0;
+  }
+
+  .hero-img img {
+    width: 95%;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
 }
 
-.hero-texto p {
-  margin-bottom: 20px;
-  font-size: 16px;
-}
 
 .btn {
   background: black;
@@ -106,14 +119,6 @@ body {
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
-}
-
-.hero-img img {
-  max-width: 80%;
-  height: auto;
-  border-radius: 1rem; /* opcional, si quieres bordes redondeados */
-  display: block;
-  margin: 0 auto;
 }
 
 
