@@ -315,11 +315,6 @@ body {
   background-color: #fff;
 }
 
-.testimonios h2 {
-  font-size: 2em;
-  color: #111357;
-  margin-bottom: 40px;
-}
 
 .grid-testimonios {
   display: flex;
@@ -542,12 +537,6 @@ body {
   background-color: #fff;
 }
 
-.aliados h2 {
-  font-size: 30px;
-  color: #1a1a1a;
-  margin-bottom: 30px;
-}
-
 .logos-aliados {
   display: flex;
   flex-wrap: wrap;
@@ -589,7 +578,9 @@ body {
 }
 
 .productos-destacados h2,
-.categorias h2 {
+.categorias h2,
+.aliados h2,
+.testimonios h2 {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 40px;
