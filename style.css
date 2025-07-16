@@ -631,11 +631,6 @@ body {
     width: 160px; /* antes 150px */
   }
 
-  .categoria img {
-    width: 95px; /* antes 80px */
-    height: 95px; /* antes 80px */
-  }
-
   .categoria p {
     font-size: 16px;
   }
@@ -649,18 +644,18 @@ body {
   background-color: #ffffff;
   border-radius: 25px;
   padding: 25px 20px;
-  width: 190px; /* antes era 175px */
+  width: 200px; /* antes era 175px */
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .categoria img {
-  width: 110px; /* antes 100px */
-  height: 110px; /* antes 100px */
+  width: 145px; /* antes 100px */
+  height: 145px; /* antes 100px */
   object-fit: contain;
   margin-bottom: 15px;
 }
