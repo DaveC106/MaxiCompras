@@ -17,7 +17,7 @@ body {
 }
 
 /*estilo del encabezado*/
-
+/* 🟡 Estilo base */
 .top-bar {
   display: flex;
   justify-content: center;
@@ -29,29 +29,36 @@ body {
   font-size: 14px;
   flex-wrap: wrap;
   overflow: hidden;
+  position: relative;
 }
 
 .top-bar span {
   display: flex;
   align-items: center;
   gap: 6px;
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
 }
 
-/* 🎯 SOLO EN CELULARES mostrar un mensaje a la vez */
+/* ✅ SOLO en celulares */
 @media (max-width: 768px) {
   .top-bar {
     gap: 0;
     height: 40px;
+    justify-content: center;
   }
 
   .top-bar span {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
   }
 
   .top-bar span.activo {
-    display: flex;
+    opacity: 1;
   }
 }
+
 
 .icono {
   width: 18px;
@@ -930,4 +937,17 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/*search y carro*/
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.icons img {
+  width: 24px;
 }
