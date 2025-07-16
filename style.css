@@ -137,10 +137,10 @@ body {
 
 /* ==== PRODUCTOS DESTACADOS AJUSTADOS ==== */
 
-.productos-destacados {
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
+.productos-destacados h2 {
+  color: #000;
+  font-weight: bold;
+  text-align: center;
 }
 
 .grid-productos,
