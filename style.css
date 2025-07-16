@@ -137,12 +137,7 @@ body {
 
 /* ==== PRODUCTOS DESTACADOS AJUSTADOS ==== */
 
-.productos-destacados h2 {
-  color: #000;
-  font-weight: bold;
-  text-align: center;
-  font-size: 32px;
-}
+
 
 .grid-productos,
 .slider {
@@ -593,11 +588,13 @@ body {
   background-color: #fff;
 }
 
+.productos-destacados h2,
 .categorias h2 {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 40px;
-  color: #000000;
+  color: #000;
+  text-align: center;
 }
 
 .grid-categorias-container {
