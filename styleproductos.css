@@ -1,4 +1,3 @@
-/*
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +10,49 @@ body {
   color: #333;
 }
 
+/* 🔶 TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background: linear-gradient(135deg, #ffcc00 0%, #ff8800 100%);
+  color: #fff;
+  padding: 10px 0;
+  font-size: 14px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.top-bar span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.top-bar .icono {
+  width: 16px;
+  height: 16px;
+}
+
+/* SOLO EN CELULARES mostrar un mensaje a la vez */
+@media (max-width: 768px) {
+  .top-bar {
+    gap: 0;
+    height: 40px;
+  }
+  .top-bar span {
+    display: none;
+  }
+  .top-bar span.activo {
+    display: flex;
+    animation: fade 1s ease-in-out;
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* 🔷 HEADER */
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -19,18 +61,20 @@ body {
   background: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
-
 .logo img {
   width: 130px;
 }
-
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .icons img {
   width: 30px;
-  margin-left: 15px;
   cursor: pointer;
 }
 
-/* CONTENIDO PRINCIPAL 
+/* 🔸 CONTENIDO PRINCIPAL */
 .producto-container {
   display: flex;
   flex-wrap: wrap;
@@ -157,7 +201,7 @@ body {
   background: #f7b800;
 }
 
-/* DESCRIPCIÓN 
+/* 🔹 DESCRIPCIÓN */
 .producto-descripcion {
   max-width: 1200px;
   margin: 20px auto;
@@ -173,7 +217,40 @@ body {
   margin-bottom: 10px;
 }
 
-/* RESPONSIVE
+/* 🔻 Imágenes dentro de la descripción del producto */
+.producto-descripcion img {
+  max-width: 100%;
+  width: 180px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 15px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Centrado y estilo */
+.producto-descripcion h2,
+.producto-descripcion h3,
+.producto-descripcion p {
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Botones dentro de la descripción */
+.producto-descripcion a {
+  display: inline-block;
+  background-color: #ff8800;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* 🔁 RESPONSIVE */
 @media (max-width: 768px) {
   .producto-container {
     flex-direction: column;
@@ -192,39 +269,12 @@ body {
   .logo img {
     width: 100px;
   }
-}
 
-/* Imágenes dentro de la descripción del producto 
-.producto-descripcion img {
-  max-width: 100%;
-  width: 180px;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-  margin: 15px auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
+  .icons {
+    gap: 10px;
+  }
 
-/* Centrar los títulos y párrafos dentro de la descripción 
-.producto-descripcion h2,
-.producto-descripcion h3,
-.producto-descripcion p {
-  text-align: center;
-  font-size: 16px;
-  color: #444;
-  line-height: 1.6;
+  .icons img {
+    width: 28px;
+  }
 }
-
-/* Botones o enlaces especiales 
-.producto-descripcion a {
-  display: inline-block;
-  background-color: #ff8800;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 15px;
-}
-
-*/

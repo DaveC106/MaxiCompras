@@ -4,210 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Detalle del producto</title>
- <!-- <link rel="stylesheet" href="styleproductos.css" />-->
+  <link rel="stylesheet" href="styleproductos.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-
-    .main-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .main-header .logo img {
-      height: 50px;
-    }
-
-    .icons img {
-      width: 24px;
-      margin-left: 10px;
-      cursor: pointer;
-    }
-
-    .producto-container {
-      display: flex;
-      align-items: flex-start;
-      padding: 40px 5%;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .producto-imagen {
-      flex: 1;
-      max-width: 400px;
-    }
-
-    #imagen-principal {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .miniaturas {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .miniatura {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-
-    .miniatura:hover {
-      border: 2px solid #ff8800;
-    }
-
-    .producto-detalles {
-      flex: 1;
-      max-width: 400px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .producto-detalles h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .estrellas {
-      color: #ffc107;
-      margin-bottom: 10px;
-    }
-
-    .precios {
-      margin-bottom: 20px;
-    }
-
-    .precio-original {
-      text-decoration: line-through;
-      color: #888;
-      margin-right: 10px;
-    }
-
-    .precio-descuento {
-      font-size: 20px;
-      font-weight: bold;
-      color: #1d2660;
-    }
-
-    .badge-descuento {
-      display: inline-block;
-      background: #ff8800;
-      color: white;
-      padding: 4px 8px;
-      border-radius: 6px;
-      margin-left: 10px;
-      font-size: 13px;
-    }
-
-    .confianza-box {
-      background: #f1f1f1;
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .botones {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .btn-carrito,
-    .btn-comprar {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 14px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .btn-comprar {
-      background-color: #ff8800;
-    }
-
-    .btn-comprar:hover {
-      background-color: #e67300;
-    }
-
-    .producto-descripcion {
-      max-width: 900px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .producto-descripcion h2 {
-      margin-bottom: 20px;
-      color: #1d2660;
-    }
-
-    .producto-descripcion img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-
-    .producto-descripcion .btn-comprar {
-      margin: 30px auto;
-      display: block;
-      width: 250px;
-    }
-
-    @media (max-width: 768px) {
-      .producto-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .producto-detalles, .producto-imagen {
-        max-width: 100%;
-      }
-
-      .producto-descripcion {
-        padding: 20px;
-        margin: 20px;
-      }
-    }
-  </style>
 </head>
 <body>
 
+  <!-- 🔶 Barra superior -->
+  <div class="top-bar">
+    <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento vía Whatsapp</span>
+    <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
+  </div>
+
+  <!-- 🔷 Encabezado -->
   <header class="main-header">
     <div class="logo">
       <img src="img/logomaxicompras.png" alt="MaxiCompras" />
     </div>
     <div class="icons">
       <img src="./img/search.png" alt="Buscar" />
-      <img src="./img/cart.png" alt="Carrito" />
+      <a href="cart.html"><img src="./img/cart.png" alt="Carrito" /></a>
     </div>
   </header>
 
+  <!-- 🔸 Producto -->
   <section class="producto-container">
     <div class="producto-imagen">
       <img id="imagen-principal" src="" alt="Producto principal" />
@@ -235,13 +55,13 @@
     </div>
   </section>
 
+  <!-- 🔹 Descripción -->
   <section class="producto-descripcion">
     <h2>Descripción</h2>
     <div id="descripcion-producto"></div>
-    <a class="btn-comprar" id="comprar-extra1">Comprar ahora</a>
-    <a class="btn-comprar" id="comprar-extra2">Comprar ahora</a>
   </section>
 
+  <!-- 🔻 Script: Producto -->
   <script>
     const params = new URLSearchParams(window.location.search);
     const slug = params.get("slug");
@@ -274,33 +94,47 @@
           miniaturas.appendChild(mini);
         });
 
-        document.querySelectorAll(".btn-carrito").forEach(btn => {
-          btn.addEventListener("click", () => {
-            const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-            const existente = carrito.find(p => p.slug === producto.slug);
-            if (existente) {
-              existente.cantidad += 1;
-            } else {
-              carrito.push({
-                slug: producto.slug,
-                nombre,
-                imagen: imagenes[0],
-                precio,
-                cantidad: 1
-              });
-            }
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-            alert("✅ Producto añadido al carrito");
-          });
+        document.querySelector(".btn-carrito").addEventListener("click", () => {
+          const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+          const existente = carrito.find(p => p.slug === producto.slug);
+          if (existente) {
+            existente.cantidad += 1;
+          } else {
+            carrito.push({
+              slug: producto.slug,
+              nombre,
+              imagen: imagenes[0],
+              precio,
+              cantidad: 1
+            });
+          }
+          localStorage.setItem("carrito", JSON.stringify(carrito));
+          alert("✅ Producto añadido al carrito");
         });
 
-        document.querySelectorAll(".btn-comprar").forEach(btn => {
-          btn.addEventListener("click", () => {
-            const url = `formulario.html?producto=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio.toLocaleString('es-CO'))}`;
-            window.location.href = url;
-          });
+        document.getElementById("btn-comprar").addEventListener("click", () => {
+          const url = `formulario.html?producto=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio.toLocaleString('es-CO'))}`;
+          window.location.href = url;
         });
       });
+  </script>
+
+  <!-- 🔻 Script: top-bar móvil -->
+  <script>
+    const mensajes = document.querySelectorAll('.top-bar span');
+    let actual = 0;
+
+    function mostrarMensaje() {
+      mensajes.forEach((msg, i) => {
+        msg.classList.toggle('activo', i === actual);
+      });
+      actual = (actual + 1) % mensajes.length;
+    }
+
+    if (window.innerWidth <= 768) {
+      mostrarMensaje();
+      setInterval(mostrarMensaje, 4000);
+    }
   </script>
 
 </body>
