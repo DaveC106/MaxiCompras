@@ -109,7 +109,11 @@
             });
           }
           localStorage.setItem("carrito", JSON.stringify(carrito));
-          alert("✅ Producto añadido al carrito");
+          const mensaje = document.getElementById("mensaje-carrito");
+mensaje.classList.add("mostrar");
+setTimeout(() => {
+  mensaje.classList.remove("mostrar");
+}, 3000);
         });
 
         document.getElementById("btn-comprar").addEventListener("click", () => {
@@ -136,6 +140,7 @@
       setInterval(mostrarMensaje, 4000);
     }
   </script>
+<div id="mensaje-carrito" class="mensaje-flotante">Producto añadido al carrito</div>
 
 </body>
 </html>

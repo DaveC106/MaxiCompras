@@ -278,3 +278,23 @@ body {
     width: 28px;
   }
 }
+
+
+.mensaje-flotante {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+.mensaje-flotante.mostrar {
+  opacity: 1;
+}
+
