@@ -141,6 +141,7 @@ body {
   color: #000;
   font-weight: bold;
   text-align: center;
+  font-size: 32px;
 }
 
 .grid-productos,
@@ -596,7 +597,7 @@ body {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 40px;
-  color: #1d2660;
+  color: #000000;
 }
 
 .grid-categorias-container {
