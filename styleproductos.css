@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #f8f8f8;
-  color: #333;
-}
 
 /* 🔶 TOP BAR */
 .top-bar {
