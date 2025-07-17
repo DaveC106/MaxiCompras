@@ -961,7 +961,7 @@ body {
   z-index: 9999;
   width: 55px;
   height: 55px;
-  background-color: #25d366;
+  background-color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -975,6 +975,6 @@ body {
 }
 
 .whatsapp-float img {
-  width: 30px;
-  height: 30px;
+  width: 200px;
+  height: 100px;
 }
