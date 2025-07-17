@@ -25,10 +25,6 @@
 </a>
   <div class="icons">
   <img src="./img/search.png" alt="Buscar" />
-  <div class="carrito-icono">
-    <img src="./img/cart.png" alt="Carrito" />
-    <span class="contador-carrito" id="contadorCarrito"></span>
-  </div>
 </div>
 </header>
 
@@ -56,7 +52,7 @@
       lista.innerHTML = "";
 
       if (carrito.length === 0) {
-        lista.innerHTML = "<p class='vacio'>Tu carrito está vacío 😢</p>";
+        lista.innerHTML = "<p class='vacio'>Tu carrito está vacío</p>";
         subtotalDOM.textContent = "$0";
         return;
       }
@@ -198,78 +194,6 @@
     });
   });
 </script>
-
-<!-- Script: Mini carrito -->
-<div id="mini-carrito" class="modal-carrito oculto">
-  <div class="contenido-carrito">
-    <h2>🛒 Tu Carrito</h2>
-    <div id="mini-carrito-items"></div>
-    <div class="mini-carrito-footer">
-      <button onclick="window.location.href='cart.html'" class="btn-ir-carrito">Ir al carrito</button>
-    </div>
-  </div>
-</div>
-<div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
-
-<script>
-  const iconoCarrito = document.querySelector('img[alt="Carrito"]');
-  const miniCarrito = document.getElementById("mini-carrito");
-  const fondoCarrito = document.getElementById("fondo-oscuro-carrito");
-  const contenedorMini = document.getElementById("mini-carrito-items");
-
-  iconoCarrito.addEventListener("click", () => {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    contenedorMini.innerHTML = "";
-
-    if (carrito.length === 0) {
-      contenedorMini.innerHTML = "<p>🛍️ Tu carrito está vacío.</p>";
-    } else {
-      carrito.forEach(producto => {
-        const div = document.createElement("div");
-        div.style.marginBottom = "10px";
-        div.innerHTML = `
-          <div style="display:flex;align-items:center;gap:10px;">
-            <img src="${producto.imagen}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:5px;">
-            <div>
-              <p style="margin:0;">${producto.nombre}</p>
-              <small>$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</small>
-            </div>
-          </div>`;
-        contenedorMini.appendChild(div);
-      });
-    }
-
-    miniCarrito.classList.remove("oculto");
-    fondoCarrito.classList.remove("oculto");
-  });
-
-  fondoCarrito.addEventListener("click", () => {
-    miniCarrito.classList.add("oculto");
-    fondoCarrito.classList.add("oculto");
-  });
-</script>
-
-<!-- Script: Contador de carrito -->
-<script>
-  function actualizarContadorCarrito() {
-    const contador = document.getElementById("contadorCarrito");
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
-
-    if (total > 0) {
-      contador.textContent = total;
-      contador.style.display = "inline-block";
-    } else {
-      contador.style.display = "none";
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    actualizarContadorCarrito();
-  });
-</script>
-
 
 </body>
 </html>
