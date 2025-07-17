@@ -694,10 +694,6 @@ body {
   transition: background 0.3s ease;
 }
 
-.flecha-categorias:hover {
-  background-color: rgba(255, 255, 255, 1);
-}
-
 .flecha-categorias.izquierda {
   left: 0;
 }
@@ -708,7 +704,7 @@ body {
 
 @media (max-width: 768px) {
   .flecha-categorias {
-    display: none;
+    display: block;
   }
 }
 
