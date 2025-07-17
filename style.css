@@ -1012,10 +1012,14 @@ body {
   pointer-events: all;
 }
 
-/* Degradado al fondo de las flechas */
 .slider-container .flecha {
-  background: linear-gradient(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
-  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  background-color: white;         /* Fondo blanco */
+  color: black;                    /* Flechita negra */
+  border-radius: 50%;              /* Círculo perfecto */
   width: 40px;
   height: 40px;
   font-size: 24px;
@@ -1023,4 +1027,5 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: none;
 }
