@@ -8,7 +8,6 @@
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="stylecatego.css" />
 </head>
@@ -21,18 +20,21 @@
     <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
   </div>
 
-  <!-- HEADER -->
-  <header class="main-header">
+ <!-- Encabezado -->
+<header class="main-header">
+  <a href="index.html">
     <div class="logo">
-      <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="img/logomaxicompras.png" alt="Logo" />
-      </a>
+      <img src="img/logomaxicompras.png" alt="Logo MaxiCompras" />
     </div>
-    <div class="icons">
-      <a href="index.html"><img src="./img/search.png" alt="Buscar" /></a>
-      <a href="cart.html"><img src="./img/cart.png" alt="Carrito" /></a>
+  </a>
+  <div class="icons">
+    <img src="img/search.png" alt="Buscar" />
+    <div class="carrito-icono">
+      <img src="img/cart.png" alt="Carrito" />
+      <span class="contador-carrito" id="contadorCarrito"></span>
     </div>
-  </header>
+  </div>
+</header>
 
   <!-- CONTENIDO PRINCIPAL -->
   <section class="productos">
@@ -115,6 +117,8 @@
     setInterval(mostrarSiguiente, 4000);
   }
 </script>
+
+
 
 <!-- 🔻 Script: top-bar móvil -->
 <script>
@@ -279,6 +283,6 @@
     actualizarContadorCarrito();
   });
 </script>
-
 </body>
+
 </html>
