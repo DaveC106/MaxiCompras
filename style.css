@@ -677,7 +677,7 @@ body {
 
 /* Flecha de guía (solo en móvil) */
 .flecha-derecha {
-  display: none;
+  display: block;
   opacity: 1;
   transition: opacity 0.4s ease;
   position: absolute;
