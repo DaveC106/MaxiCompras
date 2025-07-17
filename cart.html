@@ -37,7 +37,8 @@
       <p class="nota">Impuestos, descuentos y envío calculados en la pantalla de pago.</p>
       <div class="acciones-carrito">
         <a href="index.html" class="btn-seguir">Seguir comprando</a>
-        <button class="btn-finalizar">Pagar pedido</button>
+        <button class="btn-finalizar" id="btn-finalizar" disabled>Pagar pedido</button>
+        <div id="mensaje-carrito" class="mensaje-oculto">Agrega productos al carrito para continuar</div>
       </div>
     </div>
   </main>
@@ -121,6 +122,7 @@
 
         subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO") + " COP";
       }
+       actualizarEstadoBoton();
 
       window.cambiarCantidad = function(index, cambio) {
         const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -138,6 +140,31 @@
       }
 
       renderCarrito();
+
+      function actualizarEstadoBoton() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const btn = document.getElementById("btn-finalizar");
+  const mensaje = document.getElementById("mensaje-carrito");
+
+  if (carrito.length === 0) {
+    btn.disabled = true;
+    btn.style.opacity = "0.5";
+    btn.addEventListener("click", mostrarMensaje);
+  } else {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.removeEventListener("click", mostrarMensaje);
+  }
+}
+
+function mostrarMensaje(e) {
+  e.preventDefault();
+  const mensaje = document.getElementById("mensaje-carrito");
+  mensaje.style.display = "block";
+  setTimeout(() => {
+    mensaje.style.display = "none";
+  }, 3000);
+}
 
       // Top bar móvil
       const spans = document.querySelectorAll(".top-bar span");
