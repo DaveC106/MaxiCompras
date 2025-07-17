@@ -66,15 +66,12 @@
   <!-- Scripts -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Modal de Confirmación
       const modal = document.getElementById("modal-confirmacion");
-      const btnFinalizar = document.querySelector(".btn-finalizar");
       const btnCancelar = document.getElementById("btn-cancelar");
       const btnConfirmar = document.getElementById("btn-confirmar");
-
-      btnFinalizar.addEventListener("click", () => {
-        modal.style.display = "flex";
-      });
+      const mensaje = document.getElementById("mensaje-carrito");
+      const btnFinalizar = document.getElementById("btn-finalizar");
+      let finalizarListener;
 
       btnCancelar.addEventListener("click", () => {
         modal.style.display = "none";
@@ -84,7 +81,6 @@
         window.location.href = "formulario.html";
       });
 
-      // Renderizar carrito
       function renderCarrito() {
         const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
         const lista = document.getElementById("carrito-lista");
@@ -94,35 +90,58 @@
         if (carrito.length === 0) {
           lista.innerHTML = "<p class='vacio'>Tu carrito está vacío</p>";
           subtotalDOM.textContent = "$0";
-          return;
+        } else {
+          let subtotal = 0;
+          carrito.forEach((producto, index) => {
+            subtotal += producto.precio * producto.cantidad;
+            const item = document.createElement("div");
+            item.className = "item-carrito";
+            item.innerHTML = `
+              <img src="${producto.imagen}" class="mini-img" alt="${producto.nombre}" />
+              <div class="info">
+                <h3>${producto.nombre}</h3>
+                <p class="precio">$${producto.precio.toLocaleString('es-CO')}</p>
+                <div class="acciones">
+                  <button onclick="cambiarCantidad(${index}, -1)">−</button>
+                  <span>${producto.cantidad}</span>
+                  <button onclick="cambiarCantidad(${index}, 1)">+</button>
+                  <button class="eliminar" onclick="eliminarProducto(${index})">🗑</button>
+                </div>
+              </div>
+            `;
+            lista.appendChild(item);
+          });
+          subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO") + " COP";
         }
 
-        let subtotal = 0;
-
-        carrito.forEach((producto, index) => {
-          subtotal += producto.precio * producto.cantidad;
-
-          const item = document.createElement("div");
-          item.className = "item-carrito";
-          item.innerHTML = `
-            <img src="${producto.imagen}" class="mini-img" alt="${producto.nombre}" />
-            <div class="info">
-              <h3>${producto.nombre}</h3>
-              <p class="precio">$${producto.precio.toLocaleString('es-CO')}</p>
-              <div class="acciones">
-                <button onclick="cambiarCantidad(${index}, -1)">−</button>
-                <span>${producto.cantidad}</span>
-                <button onclick="cambiarCantidad(${index}, 1)">+</button>
-                <button class="eliminar" onclick="eliminarProducto(${index})">🗑</button>
-              </div>
-            </div>
-          `;
-          lista.appendChild(item);
-        });
-
-        subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO") + " COP";
+        actualizarEstadoBoton();
       }
-       actualizarEstadoBoton();
+
+      function actualizarEstadoBoton() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        if (finalizarListener) {
+          btnFinalizar.removeEventListener("click", finalizarListener);
+        }
+
+        if (carrito.length === 0) {
+          btnFinalizar.disabled = true;
+          btnFinalizar.style.opacity = "0.5";
+          finalizarListener = function (e) {
+            e.preventDefault();
+            mensaje.style.display = "block";
+            setTimeout(() => mensaje.style.display = "none", 3000);
+          };
+        } else {
+          btnFinalizar.disabled = false;
+          btnFinalizar.style.opacity = "1";
+          finalizarListener = function () {
+            modal.style.display = "flex";
+          };
+        }
+
+        btnFinalizar.addEventListener("click", finalizarListener);
+      }
 
       window.cambiarCantidad = function(index, cambio) {
         const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -141,52 +160,6 @@
 
       renderCarrito();
 
-     function actualizarEstadoBoton() {
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const btn = document.getElementById("btn-finalizar");
-  const mensaje = document.getElementById("mensaje-carrito");
-
-  // Eliminar todos los eventos previos
-  const nuevoBtn = btn.cloneNode(true);
-  btn.parentNode.replaceChild(nuevoBtn, btn);
-
-  if (carrito.length === 0) {
-    nuevoBtn.disabled = true;
-    nuevoBtn.style.opacity = "0.5";
-    nuevoBtn.addEventListener("click", mostrarMensaje);
-  } else {
-    nuevoBtn.disabled = false;
-    nuevoBtn.style.opacity = "1";
-    nuevoBtn.addEventListener("click", () => {
-      document.getElementById("modal-confirmacion").style.display = "flex";
-    });
-  }
-}
-
-function mostrarMensaje(e) {
-  e.preventDefault();
-  const mensaje = document.getElementById("mensaje-carrito");
-  mensaje.style.display = "block";
-  setTimeout(() => {
-    mensaje.style.display = "none";
-  }, 3000);
-}
-
-      // Top bar móvil
-      const spans = document.querySelectorAll(".top-bar span");
-      let index = 0;
-
-      function mostrarSiguiente() {
-        spans.forEach((s, i) => s.classList.remove("activo"));
-        spans[index].classList.add("activo");
-        index = (index + 1) % spans.length;
-      }
-
-      if (window.innerWidth <= 768) {
-        mostrarSiguiente();
-        setInterval(mostrarSiguiente, 4000);
-      }
-
       // Modal buscador
       const modalBusqueda = document.getElementById("modal-busqueda");
       const abrirModal = document.querySelector('img[alt="Buscar"]');
@@ -198,9 +171,7 @@ function mostrarMensaje(e) {
 
       fetch("productos.json")
         .then(res => res.json())
-        .then(productos => {
-          productosCargados = productos;
-        });
+        .then(productos => productosCargados = productos);
 
       abrirModal.addEventListener("click", () => {
         modalBusqueda.classList.remove("oculto");
@@ -249,6 +220,5 @@ function mostrarMensaje(e) {
       });
     });
   </script>
-
 </body>
 </html>
