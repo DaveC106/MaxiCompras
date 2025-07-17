@@ -97,8 +97,10 @@
       localStorage.setItem("carrito", JSON.stringify(carrito));
       renderCarrito();
     }
-
-  document.querySelector(".btn-finalizar").addEventListener("click", () => {
+    renderCarrito();
+  </script>
+  <script>
+   document.querySelector(".btn-finalizar").addEventListener("click", () => {
     document.getElementById("modal-confirmacion").style.display = "flex";
   });
 
@@ -109,8 +111,6 @@
   document.getElementById("btn-confirmar").addEventListener("click", () => {
     window.location.href = "formulario.html";
   });
-
-    renderCarrito();
   </script>
 
   <!-- Script: rotación top-bar móvil -->
