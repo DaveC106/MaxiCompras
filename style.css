@@ -677,7 +677,7 @@ body {
 
 /* Flecha de guía (solo en móvil) */
 .flecha-derecha {
-  display: none; /* solo visible en móvil */
+  display: none;
   opacity: 1;
   transition: opacity 0.4s ease;
   position: absolute;
@@ -686,8 +686,8 @@ body {
   transform: translateY(-50%);
   font-size: 28px;
   color: rgba(0, 0, 0, 0.2);
-  pointer-events: none;
   z-index: 10;
+  cursor: pointer; /* ✅ añade esto también */
 }
 
 

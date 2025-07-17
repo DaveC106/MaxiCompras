@@ -324,23 +324,23 @@
     }
   });
 </script>
-
 <script>
-  const scrollCategorias = document.getElementById("scrollCategorias");
-  const flechaCategorias = document.getElementById("flechaCategorias");
+const scrollCategorias = document.querySelector(".grid-categorias");
+const flechaCategorias = document.querySelector(".flecha-derecha");
 
-  function revisarScrollCategorias() {
-    const maxScroll = scrollCategorias.scrollWidth - scrollCategorias.clientWidth;
-    if (scrollCategorias.scrollLeft >= maxScroll - 10) {
-      flechaCategorias.style.opacity = "0";
-    } else {
-      flechaCategorias.style.opacity = "1";
-    }
-  }
+flechaCategorias.addEventListener("click", () => {
+  scrollCategorias.scrollBy({ left: 200, behavior: "smooth" });
+});
 
-  scrollCategorias.addEventListener("scroll", revisarScrollCategorias);
-  window.addEventListener("resize", revisarScrollCategorias);
-  window.addEventListener("load", revisarScrollCategorias);
+function revisarScrollCategorias() {
+  const maxScroll = scrollCategorias.scrollWidth - scrollCategorias.clientWidth;
+  flechaCategorias.style.opacity = scrollCategorias.scrollLeft >= maxScroll - 10 ? "0" : "1";
+}
+
+scrollCategorias.addEventListener("scroll", revisarScrollCategorias);
+window.addEventListener("resize", revisarScrollCategorias);
+window.addEventListener("load", revisarScrollCategorias);
+
 </script>
 
 <script>
