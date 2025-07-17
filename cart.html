@@ -98,11 +98,17 @@
       renderCarrito();
     }
 
-    document.querySelector(".btn-finalizar").addEventListener("click", () => {
-      if (confirm("¿Quieres finalizar tu compra?")) {
-        window.location.href = "formulario.html";
-      }
-    });
+  document.querySelector(".btn-finalizar").addEventListener("click", () => {
+    document.getElementById("modal-confirmacion").style.display = "flex";
+  });
+
+  document.getElementById("btn-cancelar").addEventListener("click", () => {
+    document.getElementById("modal-confirmacion").style.display = "none";
+  });
+
+  document.getElementById("btn-confirmar").addEventListener("click", () => {
+    window.location.href = "formulario.html";
+  });
 
     renderCarrito();
   </script>
@@ -195,5 +201,16 @@
   });
 </script>
 
+
+<!-- Modal de Confirmación -->
+<div id="modal-confirmacion" class="modal">
+  <div class="modal-contenido">
+    <p>¿Quieres finalizar tu compra?</p>
+    <div class="modal-botones">
+      <button id="btn-cancelar">Cancelar</button>
+      <button id="btn-confirmar">Sí, finalizar</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
