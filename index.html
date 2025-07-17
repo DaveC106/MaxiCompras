@@ -103,9 +103,9 @@
     </div>
 
 
-    <!-- Flechita a la derecha -->
-    <div class="flecha-derecha">&#10148;</div>
-  </div>
+   <!-- Flechas de categorías -->
+<button class="flecha-categorias izquierda">&#10094;</button>
+<button class="flecha-categorias derecha">&#10095;</button>
 </section>
 
   <!-- Sección Acerca de Nosotros -->
@@ -324,17 +324,24 @@
     }
   });
 </script>
+
 <script>
 const scrollCategorias = document.querySelector(".grid-categorias");
-const flechaCategorias = document.querySelector(".flecha-derecha");
+const flechaCatIzq = document.querySelector(".flecha-categorias.izquierda");
+const flechaCatDer = document.querySelector(".flecha-categorias.derecha");
 
-flechaCategorias.addEventListener("click", () => {
+flechaCatIzq.addEventListener("click", () => {
+  scrollCategorias.scrollBy({ left: -200, behavior: "smooth" });
+});
+
+flechaCatDer.addEventListener("click", () => {
   scrollCategorias.scrollBy({ left: 200, behavior: "smooth" });
 });
 
 function revisarScrollCategorias() {
   const maxScroll = scrollCategorias.scrollWidth - scrollCategorias.clientWidth;
-  flechaCategorias.style.opacity = scrollCategorias.scrollLeft >= maxScroll - 10 ? "0" : "1";
+  flechaCatDer.style.opacity = scrollCategorias.scrollLeft >= maxScroll - 10 ? "0" : "1";
+  flechaCatIzq.style.opacity = scrollCategorias.scrollLeft <= 10 ? "0" : "1";
 }
 
 scrollCategorias.addEventListener("scroll", revisarScrollCategorias);

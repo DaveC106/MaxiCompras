@@ -675,19 +675,41 @@ body {
   align-items: center;
 }
 
-/* Flecha de guía (solo en móvil) */
-.flecha-derecha {
-  display: block;
-  opacity: 1;
-  transition: opacity 0.4s ease;
+.flecha-categorias {
   position: absolute;
   top: 50%;
-  right: 10px;
   transform: translateY(-50%);
-  font-size: 28px;
-  color: rgba(0, 0, 0, 0.2);
+  font-size: 36px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
   z-index: 10;
-  cursor: pointer; /* ✅ añade esto también */
+  width: 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.flecha-categorias:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.flecha-categorias.izquierda {
+  left: 0;
+}
+
+.flecha-categorias.derecha {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .flecha-categorias {
+    display: none;
+  }
 }
 
 
