@@ -141,19 +141,25 @@
 
       renderCarrito();
 
-      function actualizarEstadoBoton() {
+     function actualizarEstadoBoton() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const btn = document.getElementById("btn-finalizar");
   const mensaje = document.getElementById("mensaje-carrito");
 
+  // Eliminar todos los eventos previos
+  const nuevoBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(nuevoBtn, btn);
+
   if (carrito.length === 0) {
-    btn.disabled = true;
-    btn.style.opacity = "0.5";
-    btn.addEventListener("click", mostrarMensaje);
+    nuevoBtn.disabled = true;
+    nuevoBtn.style.opacity = "0.5";
+    nuevoBtn.addEventListener("click", mostrarMensaje);
   } else {
-    btn.disabled = false;
-    btn.style.opacity = "1";
-    btn.removeEventListener("click", mostrarMensaje);
+    nuevoBtn.disabled = false;
+    nuevoBtn.style.opacity = "1";
+    nuevoBtn.addEventListener("click", () => {
+      document.getElementById("modal-confirmacion").style.display = "flex";
+    });
   }
 }
 
