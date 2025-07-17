@@ -4,28 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Detalle del producto</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="styleproductos.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
+<!-- Barra superior -->
+<div class="top-bar">
+  <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+  <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento vía Whatsapp</span>
+  <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
+</div>
 
-  <!-- 🔶 Barra superior -->
-  <div class="top-bar">
-    <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
-    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento vía Whatsapp</span>
-    <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
-  </div>
-
-  <!-- 🔷 Encabezado -->
-  <header class="main-header">
+<!-- Encabezado -->
+<header class="main-header">
+  <a href="index.html">
     <div class="logo">
-      <img src="img/logomaxicompras.png" alt="MaxiCompras" />
+      <img src="img/logomaxicompras.png" alt="Logo MaxiCompras" />
     </div>
-    <div class="icons">
-      <img src="./img/search.png" alt="Buscar" />
-      <a href="cart.html"><img src="./img/cart.png" alt="Carrito" /></a>
+  </a>
+  <div class="icons">
+    <img src="img/search.png" alt="Buscar" />
+    <div class="carrito-icono">
+      <img src="img/cart.png" alt="Carrito" />
+      <span class="contador-carrito" id="contadorCarrito"></span>
     </div>
-  </header>
+  </div>
+</header>
 
   <!-- 🔸 Producto -->
   <section class="producto-container">
