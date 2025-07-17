@@ -996,3 +996,31 @@ body {
   width: 200px;
   height: 100px;
 }
+
+
+
+/* Oculta flechas por defecto */
+.slider-container .flecha {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Muestra las flechas cuando pasas el mouse */
+.slider-container:hover .flecha {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Degradado al fondo de las flechas */
+.slider-container .flecha {
+  background: linear-gradient(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
