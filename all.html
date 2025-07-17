@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todos los Productos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="main-header">
+    <a href="index.html"><img src="img/logomaxicompras.webp" alt="Logo" /></a>
+  </header>
+
+  <h2 style="text-align: center;">Todos los Productos</h2>
+
+  <div class="grid-productos" id="contenedor-todos"></div>
+
+  <script>
+    fetch("productos.json")
+      .then(res => res.json())
+      .then(productos => {
+        const contenedor = document.getElementById("contenedor-todos");
+        productos.forEach(producto => {
+          if (producto.imagenes && producto.imagenes.length > 0) {
+            const div = document.createElement("div");
+            div.className = "producto-card";
+            const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
+            const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
+
+            div.innerHTML = `
+              <a href="producto.html?slug=${producto.slug}">
+                <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
+                <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
+                <h3 class="nombre-producto">${producto.nombre}</h3>
+                <div class="precio">
+                  <span class="precio-actual">$${producto.precio.toLocaleString('es-CO')}</span>
+                  <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
+                </div>
+                <div class="estrellas">★★★★★ <span class="valoracion">(5)</span></div>
+              </a>
+            `;
+            contenedor.appendChild(div);
+          }
+        });
+      });
+  </script>
+</body>
+</html>
