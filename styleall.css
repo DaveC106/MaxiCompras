@@ -1,0 +1,14 @@
+/* Estilo para todos los productos en all.html */
+#contenedor-todos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  #contenedor-todos {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+  }
+}
