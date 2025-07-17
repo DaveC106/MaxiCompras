@@ -4,30 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carrito de Compras</title>
-   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="stylecart.css" />
 </head>
 <body>
 
-   <!-- Barra superior -->
+  <!-- Barra superior -->
   <div class="top-bar">
-  <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
-  <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
-  <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
-</div>
+    <span><img src="img/camion.png" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+    <span><img src="img/telefono.png" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
+    <span><img src="img/importadores.png" alt="Calidad" class="icono"> Somos Importadores</span>
+  </div>
 
   <!-- Encabezado -->
-<header class="main-header">
-<a href="">
-  <div class="logo">
-    <img src="img/logomaxicompras.png" alt="Logo MaxiCompras" />
-  </div>
-</a>
-  <div class="icons">
-  <img src="./img/search.png" alt="Buscar" />
-</div>
-</header>
-
+  <header class="main-header">
+    <a href="">
+      <div class="logo">
+        <img src="img/logomaxicompras.png" alt="Logo MaxiCompras" />
+      </div>
+    </a>
+    <div class="icons">
+      <img src="./img/search.png" alt="Buscar" />
+    </div>
+  </header>
 
   <!-- Contenido del carrito -->
   <main class="cart-container">
@@ -43,174 +42,180 @@
     </div>
   </main>
 
-  <!-- Scripts -->
-  <script>
-    function renderCarrito() {
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      const lista = document.getElementById("carrito-lista");
-      const subtotalDOM = document.getElementById("subtotal");
-      lista.innerHTML = "";
-
-      if (carrito.length === 0) {
-        lista.innerHTML = "<p class='vacio'>Tu carrito está vacío</p>";
-        subtotalDOM.textContent = "$0";
-        return;
-      }
-
-      let subtotal = 0;
-
-      carrito.forEach((producto, index) => {
-        subtotal += producto.precio * producto.cantidad;
-
-        const item = document.createElement("div");
-        item.className = "item-carrito";
-        item.innerHTML = `
-          <img src="${producto.imagen}" class="mini-img" alt="${producto.nombre}" />
-          <div class="info">
-            <h3>${producto.nombre}</h3>
-            <p class="precio">$${producto.precio.toLocaleString('es-CO')}</p>
-            <div class="acciones">
-              <button onclick="cambiarCantidad(${index}, -1)">−</button>
-              <span>${producto.cantidad}</span>
-              <button onclick="cambiarCantidad(${index}, 1)">+</button>
-              <button class="eliminar" onclick="eliminarProducto(${index})">🗑</button>
-            </div>
-          </div>
-        `;
-        lista.appendChild(item);
-      });
-
-      subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO") + " COP";
-    }
-
-    function cambiarCantidad(index, cambio) {
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito[index].cantidad += cambio;
-      if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      renderCarrito();
-    }
-
-    function eliminarProducto(index) {
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito.splice(index, 1);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      renderCarrito();
-    }
-    renderCarrito();
-  </script>
-  <script>
-   document.querySelector(".btn-finalizar").addEventListener("click", () => {
-    document.getElementById("modal-confirmacion").style.display = "flex";
-  });
-
-  document.getElementById("btn-cancelar").addEventListener("click", () => {
-    document.getElementById("modal-confirmacion").style.display = "none";
-  });
-
-  document.getElementById("btn-confirmar").addEventListener("click", () => {
-    window.location.href = "formulario.html";
-  });
-  </script>
-
-  <!-- Script: rotación top-bar móvil -->
-  <script>
-    const spans = document.querySelectorAll(".top-bar span");
-    let index = 0;
-
-    function mostrarSiguiente() {
-      spans.forEach((s, i) => s.classList.remove("activo"));
-      spans[index].classList.add("activo");
-      index = (index + 1) % spans.length;
-    }
-
-    if (window.innerWidth <= 768) {
-      mostrarSiguiente();
-      setInterval(mostrarSiguiente, 4000);
-    }
-  </script>
-
-<!-- Script: Buscador -->
-<div id="modal-busqueda" class="modal-busqueda oculto">
-  <div class="contenido-busqueda">
-    <button id="cerrar-busqueda" class="cerrar">✖</button>
-    <input type="text" id="input-modal" placeholder="Buscar producto..." />
-    <div id="resultados-modal" class="grid-productos"></div>
-  </div>
-</div>
-
-<script>
-  const modal = document.getElementById("modal-busqueda");
-  const abrirModal = document.querySelector('img[alt="Buscar"]');
-  const cerrarModal = document.getElementById("cerrar-busqueda");
-  const inputModal = document.getElementById("input-modal");
-  const resultadosModal = document.getElementById("resultados-modal");
-
-  let productosCargados = [];
-
-  fetch("productos.json")
-    .then(res => res.json())
-    .then(productos => {
-      productosCargados = productos;
-    });
-
-  abrirModal.addEventListener("click", () => {
-    modal.classList.remove("oculto");
-    inputModal.focus();
-  });
-
-  cerrarModal.addEventListener("click", () => {
-    modal.classList.add("oculto");
-    inputModal.value = "";
-    resultadosModal.innerHTML = "";
-  });
-
-  inputModal.addEventListener("input", () => {
-    const texto = inputModal.value.toLowerCase();
-    resultadosModal.innerHTML = "";
-
-    const filtrados = productosCargados.filter(p =>
-      p.nombre.toLowerCase().includes(texto)
-    );
-
-    if (filtrados.length === 0) {
-      resultadosModal.innerHTML = "<p>No se encontraron productos.</p>";
-      return;
-    }
-
-    filtrados.forEach(producto => {
-      const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
-      const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
-
-      const div = document.createElement("div");
-      div.className = "producto-card";
-      div.innerHTML = `
-        <a href="producto.html?slug=${producto.slug}">
-          <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
-          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
-          <h3 class="nombre-producto">${producto.nombre}</h3>
-          <div class="precio">
-            <span class="precio-actual">$${producto.precio.toLocaleString('es-CO')}</span>
-            <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
-          </div>
-          <div class="estrellas">★★★★★ <span class="valoracion">(5)</span></div>
-        </a>
-      `;
-      resultadosModal.appendChild(div);
-    });
-  });
-</script>
-
-
-<!-- Modal de Confirmación -->
-<div id="modal-confirmacion" class="modal">
-  <div class="modal-contenido">
-    <p>¿Quieres finalizar tu compra?</p>
-    <div class="modal-botones">
-      <button id="btn-cancelar">Cancelar</button>
-      <button id="btn-confirmar">Sí, finalizar</button>
+  <!-- Modal de Confirmación -->
+  <div id="modal-confirmacion" class="modal">
+    <div class="modal-contenido">
+      <p>¿Quieres finalizar tu compra?</p>
+      <div class="modal-botones">
+        <button id="btn-cancelar">Cancelar</button>
+        <button id="btn-confirmar">Sí, finalizar</button>
+      </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal Busqueda -->
+  <div id="modal-busqueda" class="modal-busqueda oculto">
+    <div class="contenido-busqueda">
+      <button id="cerrar-busqueda" class="cerrar">✖</button>
+      <input type="text" id="input-modal" placeholder="Buscar producto..." />
+      <div id="resultados-modal" class="grid-productos"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Modal de Confirmación
+      const modal = document.getElementById("modal-confirmacion");
+      const btnFinalizar = document.querySelector(".btn-finalizar");
+      const btnCancelar = document.getElementById("btn-cancelar");
+      const btnConfirmar = document.getElementById("btn-confirmar");
+
+      btnFinalizar.addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+
+      btnCancelar.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      btnConfirmar.addEventListener("click", () => {
+        window.location.href = "formulario.html";
+      });
+
+      // Renderizar carrito
+      function renderCarrito() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        const lista = document.getElementById("carrito-lista");
+        const subtotalDOM = document.getElementById("subtotal");
+        lista.innerHTML = "";
+
+        if (carrito.length === 0) {
+          lista.innerHTML = "<p class='vacio'>Tu carrito está vacío</p>";
+          subtotalDOM.textContent = "$0";
+          return;
+        }
+
+        let subtotal = 0;
+
+        carrito.forEach((producto, index) => {
+          subtotal += producto.precio * producto.cantidad;
+
+          const item = document.createElement("div");
+          item.className = "item-carrito";
+          item.innerHTML = `
+            <img src="${producto.imagen}" class="mini-img" alt="${producto.nombre}" />
+            <div class="info">
+              <h3>${producto.nombre}</h3>
+              <p class="precio">$${producto.precio.toLocaleString('es-CO')}</p>
+              <div class="acciones">
+                <button onclick="cambiarCantidad(${index}, -1)">−</button>
+                <span>${producto.cantidad}</span>
+                <button onclick="cambiarCantidad(${index}, 1)">+</button>
+                <button class="eliminar" onclick="eliminarProducto(${index})">🗑</button>
+              </div>
+            </div>
+          `;
+          lista.appendChild(item);
+        });
+
+        subtotalDOM.textContent = "$" + subtotal.toLocaleString("es-CO") + " COP";
+      }
+
+      window.cambiarCantidad = function(index, cambio) {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        carrito[index].cantidad += cambio;
+        if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        renderCarrito();
+      }
+
+      window.eliminarProducto = function(index) {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        carrito.splice(index, 1);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        renderCarrito();
+      }
+
+      renderCarrito();
+
+      // Top bar móvil
+      const spans = document.querySelectorAll(".top-bar span");
+      let index = 0;
+
+      function mostrarSiguiente() {
+        spans.forEach((s, i) => s.classList.remove("activo"));
+        spans[index].classList.add("activo");
+        index = (index + 1) % spans.length;
+      }
+
+      if (window.innerWidth <= 768) {
+        mostrarSiguiente();
+        setInterval(mostrarSiguiente, 4000);
+      }
+
+      // Modal buscador
+      const modalBusqueda = document.getElementById("modal-busqueda");
+      const abrirModal = document.querySelector('img[alt="Buscar"]');
+      const cerrarModal = document.getElementById("cerrar-busqueda");
+      const inputModal = document.getElementById("input-modal");
+      const resultadosModal = document.getElementById("resultados-modal");
+
+      let productosCargados = [];
+
+      fetch("productos.json")
+        .then(res => res.json())
+        .then(productos => {
+          productosCargados = productos;
+        });
+
+      abrirModal.addEventListener("click", () => {
+        modalBusqueda.classList.remove("oculto");
+        inputModal.focus();
+      });
+
+      cerrarModal.addEventListener("click", () => {
+        modalBusqueda.classList.add("oculto");
+        inputModal.value = "";
+        resultadosModal.innerHTML = "";
+      });
+
+      inputModal.addEventListener("input", () => {
+        const texto = inputModal.value.toLowerCase();
+        resultadosModal.innerHTML = "";
+
+        const filtrados = productosCargados.filter(p =>
+          p.nombre.toLowerCase().includes(texto)
+        );
+
+        if (filtrados.length === 0) {
+          resultadosModal.innerHTML = "<p>No se encontraron productos.</p>";
+          return;
+        }
+
+        filtrados.forEach(producto => {
+          const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
+          const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
+
+          const div = document.createElement("div");
+          div.className = "producto-card";
+          div.innerHTML = `
+            <a href="producto.html?slug=${producto.slug}">
+              <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
+              <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
+              <h3 class="nombre-producto">${producto.nombre}</h3>
+              <div class="precio">
+                <span class="precio-actual">$${producto.precio.toLocaleString('es-CO')}</span>
+                <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
+              </div>
+              <div class="estrellas">★★★★★ <span class="valoracion">(5)</span></div>
+            </a>
+          `;
+          resultadosModal.appendChild(div);
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
