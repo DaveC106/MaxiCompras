@@ -442,7 +442,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 /* En móviles (centrado y más grande) */
 @media (max-width: 768px) {
   .img-tienda-lider {
-    max-width: 300px;
+    max-width: 500px;
     margin: 15px auto;
   }
 }
