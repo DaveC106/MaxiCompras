@@ -8,13 +8,11 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   font-family: 'Montserrat', sans-serif !important;
 }
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 
 /* 🔶 TOP BAR */
 .top-bar {
@@ -110,8 +108,8 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 .producto-imagen img#imagen-principal {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* CAMBIAMOS de contain a cover */
-  border-radius: 10px; /* Ya no hace falta aquí */
+  object-fit: cover;
+  border-radius: 10px;
   transition: all 0.3s ease;
 }
 
@@ -130,12 +128,15 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 
 .estrellas {
   color: #f5a623;
+  display: block;
+  text-align: left;
 }
 
 .precios {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-align: left;
 }
 
 .precio-original {
@@ -180,7 +181,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   font-size: 15px;
   cursor: pointer;
   text-align: center;
-  width: 50%; /* Esto los hace la mitad de anchos */
+  width: 50%;
 }
 
 .btn-carrito {
@@ -214,7 +215,6 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   margin-bottom: 10px;
 }
 
-/* 🔻 Imágenes dentro de la descripción del producto */
 .producto-descripcion img {
   max-width: 100%;
   width: 180px;
@@ -225,7 +225,6 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* Centrado y estilo */
 .producto-descripcion h2,
 .producto-descripcion h3,
 .producto-descripcion p {
@@ -235,7 +234,6 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   line-height: 1.6;
 }
 
-/* Botones dentro de la descripción */
 .producto-descripcion a {
   display: inline-block;
   background-color: #ff8800;
@@ -247,21 +245,17 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   margin-top: 15px;
 }
 
+.logo img {
+  width: 100px;
+}
 
+.icons {
+  gap: 10px;
+}
 
-  .logo img {
-    width: 100px;
-  }
-
-  .icons {
-    gap: 10px;
-  }
-
-  .icons img {
-    width: 28px;
-  }
-
-
+.icons img {
+  width: 28px;
+}
 
 .mensaje-flotante {
   position: fixed;
@@ -280,7 +274,6 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 .mensaje-flotante.mostrar {
   opacity: 1;
 }
-
 
 .miniaturas {
   display: flex;
@@ -308,12 +301,12 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   transform: scale(1.05);
 }
 
+/* ✅ AJUSTES SOLO PARA CELULARES */
 @media (max-width: 768px) {
   .miniaturas {
     display: none !important;
   }
-}
-@media (max-width: 768px) {
+
   .producto-container {
     flex-direction: column;
     align-items: center;
@@ -341,11 +334,18 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     margin-top: 10px;
   }
 
+  .producto-detalles h1 {
+    margin-top: -10px;
+  }
+
   .precios {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 8px;
+    gap: 8px;
+    flex-wrap: wrap;
+    text-align: center;
   }
 
   .precio-original {
@@ -370,9 +370,14 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   }
 
   .estrellas {
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     font-size: 14px;
+    margin-top: 10px;
     text-align: center;
+    gap: 4px;
   }
 
   .producto-detalles img {
@@ -394,32 +399,4 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     font-size: 17px;
     padding: 14px;
   }
-}
-
-.precios {
-  flex-direction: row !important;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.precio-original,
-.precio-descuento,
-.badge-descuento {
-  margin: 0;
-}
-
-.estrellas {
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.producto-detalles h1 {
-  margin-top: -10px;
 }
