@@ -104,7 +104,9 @@ if (Array.isArray(extra.imagenes)) {
 
       thumb.addEventListener("click", () => {
         clearInterval(intervaloCambio);
-        document.getElementById("imagen-principal").src = src;
+        const principal = document.getElementById("imagen-principal");
+principal.src = src;
+principal.style.borderRadius = "20px"; // Fuerza el estilo siempre
 
         miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
         thumb.classList.add("activa");
