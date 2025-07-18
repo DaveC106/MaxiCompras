@@ -431,18 +431,19 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   }
 }
 
-/* Estilo base (para PC) */
+/* Estilo base (PC): alineado a la izquierda y más pequeño */
 .img-tienda-lider {
   width: 100%;
-  max-width: 220px;
+  max-width: 300px;
   display: block;
-  margin: 10px auto;
+  margin: 10px 0; /* ya no está centrado */
 }
 
-/* En móviles (más grande) */
+/* En móviles (centrado y más grande) */
 @media (max-width: 768px) {
   .img-tienda-lider {
     max-width: 300px;
-    margin-top: 15px;
+    margin: 15px auto;
   }
+}
 }
