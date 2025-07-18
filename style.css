@@ -1268,7 +1268,14 @@ body {
 }
 
 
+#resultados-busqueda {
+  overflow: hidden; /* evita scroll interno */
+  scrollbar-width: none; /* Firefox */
+}
 
+#resultados-busqueda::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
 
 
 #resultados-busqueda {
