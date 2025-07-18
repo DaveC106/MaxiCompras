@@ -5,6 +5,7 @@ body {
   background: #f4f4f4;
 }
 
+/* BARRA SUPERIOR */
 .top-bar {
   display: flex;
   justify-content: center;
@@ -15,17 +16,20 @@ body {
   font-size: 14px;
   flex-wrap: wrap;
 }
+
 .top-bar span {
   display: flex;
   align-items: center;
   gap: 6px;
 }
+
 .top-bar .icono {
   width: 16px;
   height: 16px;
   object-fit: contain;
 }
 
+/* ENCABEZADO PRINCIPAL */
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -34,16 +38,25 @@ body {
   padding: 15px 20px;
   border-bottom: 1px solid #ddd;
 }
+
 .main-header .logo h1 {
   margin: 0;
   color: #333;
 }
+
+.main-header .logo img {
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
 .main-header .icons img {
   width: 24px;
   margin-left: 10px;
   cursor: pointer;
 }
 
+/* CONTENEDOR DEL FORMULARIO */
 .form-container {
   max-width: 700px;
   margin: 30px auto;
@@ -53,6 +66,7 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* TÍTULOS */
 h2 {
   text-align: center;
   margin-bottom: 30px;
@@ -66,6 +80,7 @@ h3 {
   margin-top: 30px;
 }
 
+/* FORMULARIO */
 label {
   display: block;
   margin-top: 15px;
@@ -82,6 +97,7 @@ select {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 input[type="checkbox"] {
@@ -93,69 +109,7 @@ input[readonly] {
   color: #555;
 }
 
-.carrito-resumen {
-  margin-top: 30px;
-  text-align: right;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-.btn-finalizar {
-  width: 100%;
-  padding: 15px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  font-size: 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 30px;
-  transition: background 0.3s ease;
-}
-
-.btn-finalizar:hover {
-  background-color: #218838;
-}
-
-/* Responsive para móviles */
-@media (max-width: 600px) {
-  .top-bar {
-    font-size: 12px;
-    gap: 20px;
-  }
-
-  .form-container {
-    padding: 20px;
-    margin: 20px;
-  }
-}
-
-button[type="submit"] {
-  width: 100%;
-  padding: 15px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  font-size: 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 30px;
-  transition: background 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #218838;
-}
-
-.main-header .logo img {
-  max-width: 120px;
-  height: auto;
-  object-fit: contain;
-}
-
-
-/* Diseño moderno y compacto para el formulario */
+/* DISEÑO DE GRILLA */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -181,7 +135,47 @@ button[type="submit"]:hover {
   font-size: 14px;
 }
 
+/* BOTÓN FINALIZAR / SUBMIT */
+.btn-finalizar,
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background 0.3s ease;
+}
+
+.btn-finalizar:hover,
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* RESUMEN CARRITO */
+.carrito-resumen {
+  margin-top: 30px;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* RESPONSIVE */
 @media (max-width: 600px) {
+  .top-bar {
+    font-size: 12px;
+    gap: 20px;
+  }
+
+  .form-container {
+    padding: 20px;
+    margin: 20px;
+  }
+
   .form-grid {
     grid-template-columns: 1fr;
   }
