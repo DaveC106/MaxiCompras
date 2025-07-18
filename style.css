@@ -368,7 +368,7 @@ body {
   color: gold;
 }
 .oculto {
-  display: none;
+  display: none !important;
 }
 #input-modal {
   width: 100%;
@@ -1235,4 +1235,26 @@ body {
   border-radius: 6px;
   border: 1px solid #ccc;
   display: none;
+}
+
+.flotante-busqueda {
+  position: absolute;
+  top: 80px; /* ajusta según tu header */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 60%;
+  max-width: 600px;
+  padding: 1rem;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.flotante-busqueda .producto-card {
+  width: 45%;
 }
