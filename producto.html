@@ -141,14 +141,32 @@ principal.style.borderRadius = "20px"; // Fuerza el estilo siempre
     }
   }, 4000);
 
-if (Array.isArray(extra.descripciones)) {
-  const descripcionDiv = document.createElement("div");
-  descripcionDiv.innerHTML = extra.descripciones.join("<br><br>");
-  descripcionDiv.style.marginTop = "30px";
-  descripcionDiv.style.lineHeight = "1.7";
-  descripcionDiv.style.fontSize = "16px";
-  document.querySelector(".producto-container").appendChild(descripcionDiv);
-}
+ // 💡 Nueva lógica para descripciones estructuradas
+    if (Array.isArray(extra.descripciones)) {
+      const descripcionDiv = document.createElement("div");
+      descripcionDiv.style.marginTop = "30px";
+      descripcionDiv.style.lineHeight = "1.7";
+      descripcionDiv.style.fontSize = "16px";
+
+      extra.descripciones.forEach(item => {
+        if (item.titulo) {
+          const h3 = document.createElement("h3");
+          h3.textContent = item.titulo;
+          h3.style.margin = "20px 0 5px";
+          h3.style.fontWeight = "bold";
+          descripcionDiv.appendChild(h3);
+        }
+
+        if (item.texto) {
+          const p = document.createElement("p");
+          p.textContent = item.texto;
+          p.style.marginBottom = "10px";
+          descripcionDiv.appendChild(p);
+        }
+      });
+
+      document.querySelector(".producto-container").appendChild(descripcionDiv);
+    }
 }
  }); 
 
