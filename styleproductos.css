@@ -341,14 +341,9 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     margin-top: 10px;
   }
 
-  /* ⭐ Estrellas y precios uno debajo del otro */
-  .estrellas {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-
   .precios {
     font-size: 15px;
+    margin-bottom: 5px;
   }
 
   .precios .precio-original {
@@ -372,6 +367,12 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     padding: 3px 8px;
     font-size: 12px;
     margin-left: 5px;
+  }
+
+  .estrellas {
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
   }
 
   .producto-detalles img {
