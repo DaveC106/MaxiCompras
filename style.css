@@ -1066,25 +1066,21 @@ body {
   margin-top: 10px;
 }
 
-/* Flechas móviles solo en celulares */
+.flecha-movil {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000;
+  font-size: 24px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+/* Solo ocultamos flechas de escritorio en celulares */
 @media (max-width: 768px) {
   .flecha-pc {
     display: none !important;
-  }
-
-  .contenedor-flechas-movil {
-    display: flex;
-  }
-
-  .flecha-movil {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #fff;
-    color: #000;
-    font-size: 24px;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    cursor: pointer;
   }
 }

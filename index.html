@@ -384,6 +384,18 @@ window.addEventListener("load", revisarScrollCategorias);
   });
 </script>
 
+<script>
+  const sliderMovil = document.querySelector(".slider");
+  const flechasMovil = document.querySelectorAll(".flecha-movil");
+
+  flechasMovil.forEach(flecha => {
+    flecha.addEventListener("click", () => {
+      const direction = flecha.classList.contains("izquierda") ? -300 : 300;
+      sliderMovil.scrollBy({ left: direction, behavior: 'smooth' });
+    });
+  });
+</script>
+
 
 <div id="mini-carrito" class="modal-carrito oculto">
   <div class="contenido-carrito">
