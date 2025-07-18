@@ -436,7 +436,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   width: 100%;
   max-width: 300px;
   display: block;
-  margin: 10px 0; /* ya no está centrado */
+  margin: 10px -20px; /* ya no está centrado */
 }
 
 /* En móviles (centrado y más grande) */
