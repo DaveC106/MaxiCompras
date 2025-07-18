@@ -267,5 +267,14 @@
   });
 </script>
 
+<div id="whatsapp"></div>
+<script>
+  fetch("whatsapp.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("whatsapp").innerHTML = html;
+    });
+</script>
+
 </body>
 </html>
