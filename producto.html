@@ -87,11 +87,11 @@
 
 if (!extra) {
   console.warn("❌ No se encontró descripción para:", nombre);
-} else if (!Array.isArray(extra.descripcion)) {
-  console.warn("❌ La descripción no es un array para:", nombre, extra.descripcion);
+} else if (!Array.isArray(extra.descripciones)) {
+  console.warn("❌ La descripción no es un array para:", nombre, extra.descripciones);
 } else {
   const descripcionDiv = document.createElement("div");
-  descripcionDiv.innerHTML = extra.descripcion.join("<br><br>");
+  descripcionDiv.innerHTML = extra.descripciones.join("<br><br>");
   descripcionDiv.style.marginTop = "30px";
   descripcionDiv.style.lineHeight = "1.7";
   descripcionDiv.style.fontSize = "16px";
