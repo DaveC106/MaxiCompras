@@ -1034,3 +1034,27 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border: none;
 }
+
+.encabezado-productos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  gap: 10px;
+}
+
+.encabezado-productos h2 {
+  font-size: 20px;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.ver-todos-link {
+  color: #0b5394;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: underline;
+  white-space: nowrap;
+}
