@@ -122,7 +122,14 @@ if (Array.isArray(extra.imagenes)) {
     });
   }, 4000);
 
-  return; // Finaliza aquí si ya se procesaron las imágenes
+if (Array.isArray(extra.descripciones)) {
+  const descripcionDiv = document.createElement("div");
+  descripcionDiv.innerHTML = extra.descripciones.join("<br><br>");
+  descripcionDiv.style.marginTop = "30px";
+  descripcionDiv.style.lineHeight = "1.7";
+  descripcionDiv.style.fontSize = "16px";
+  document.querySelector(".producto-container").appendChild(descripcionDiv);
+}
 }
  }); 
 
