@@ -90,47 +90,52 @@ if (Array.isArray(extra.imagenes)) {
   const miniaturas = document.getElementById("miniaturas");
   let indiceActual = 0;
   let intervaloCambio;
-  
-  // Unir la imagen principal con las adicionales
   let imagenesParaMostrar = [producto.imagenes[0], ...extra.imagenes];
 
-  imagenesParaMostrar.forEach((src, index) => {
-    const thumb = document.createElement("img");
-    thumb.src = src;
-    thumb.alt = `Miniatura ${index + 1}`;
-    if (index === 0) thumb.classList.add("activa");
+  const esMovil = window.innerWidth <= 768;
 
-   thumb.addEventListener("click", () => {
-  clearInterval(intervaloCambio); // Reiniciamos el loop
-  document.getElementById("imagen-principal").src = src;
+  if (!esMovil) {
+    // Mostrar miniaturas en pantallas grandes
+    imagenesParaMostrar.forEach((src, index) => {
+      const thumb = document.createElement("img");
+      thumb.src = src;
+      thumb.alt = `Miniatura ${index + 1}`;
+      if (index === 0) thumb.classList.add("activa");
 
-  miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
-  thumb.classList.add("activa");
+      thumb.addEventListener("click", () => {
+        clearInterval(intervaloCambio);
+        document.getElementById("imagen-principal").src = src;
 
-  // Reiniciar el loop pero cada 8 segundos
+        miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
+        thumb.classList.add("activa");
+
+        // Reiniciar autoplay más lento
+        intervaloCambio = setInterval(() => {
+          indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
+          const nuevaSrc = imagenesParaMostrar[indiceActual];
+          document.getElementById("imagen-principal").src = nuevaSrc;
+
+          miniaturas.querySelectorAll("img").forEach((img, idx) => {
+            img.classList.toggle("activa", idx === indiceActual);
+          });
+        }, 5000);
+      });
+
+      miniaturas.appendChild(thumb);
+    });
+  }
+
+  // Siempre correr autoplay (tanto en móvil como en escritorio)
   intervaloCambio = setInterval(() => {
     indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
     const nuevaSrc = imagenesParaMostrar[indiceActual];
     document.getElementById("imagen-principal").src = nuevaSrc;
 
-    miniaturas.querySelectorAll("img").forEach((img, idx) => {
-      img.classList.toggle("activa", idx === indiceActual);
-    });
-  }, 5000);
-});
-
-    miniaturas.appendChild(thumb);
-  });
-
-  // Autoplay de miniaturas
-  intervaloCambio = setInterval(() => {
-    indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
-    const nuevaSrc = imagenesParaMostrar[indiceActual];
-    document.getElementById("imagen-principal").src = nuevaSrc;
-
-    miniaturas.querySelectorAll("img").forEach((img, idx) => {
-      img.classList.toggle("activa", idx === indiceActual);
-    });
+    if (!esMovil) {
+      miniaturas.querySelectorAll("img").forEach((img, idx) => {
+        img.classList.toggle("activa", idx === indiceActual);
+      });
+    }
   }, 4000);
 
 if (Array.isArray(extra.descripciones)) {

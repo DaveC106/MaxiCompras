@@ -329,3 +329,9 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   border: 2px solid #007bff;
   opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .miniaturas {
+    display: none !important;
+  }
+}
