@@ -1128,6 +1128,7 @@ body {
 
   .card-testimonio {
     display: none;
+     margin-bottom: 20px; /* <-- Añadimos esto para separar mejor */
   }
 
   .card-testimonio.activo {
