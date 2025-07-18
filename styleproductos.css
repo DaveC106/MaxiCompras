@@ -446,3 +446,27 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     margin: 15px auto;
   }
 }
+
+
+/* Estilo para la sección de descripciones estructuradas */
+.producto-container .descripcion-estructurada {
+  text-align: center;
+  margin-top: 30px;
+  font-family: inherit;
+}
+
+/* Títulos centrados, en negrita, ligeramente más grandes */
+.producto-container .descripcion-estructurada h3 {
+  font-weight: bold;
+  font-size: 18px; /* puedes subir a 19px si quieres más notorio */
+  margin: 20px 0 5px;
+  color: #222;
+}
+
+/* Textos debajo de cada título */
+.producto-container .descripcion-estructurada p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+  font-size: 16px;
+  color: #444;
+}
