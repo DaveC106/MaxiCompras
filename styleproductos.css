@@ -400,3 +400,18 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     padding: 14px;
   }
 }
+
+@media (max-width: 768px) {
+  .producto-detalles {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .botones {
+    order: -1; /* Mover arriba */
+  }
+
+  .confianza-box {
+    order: 0; /* Mantener debajo */
+  }
+}
