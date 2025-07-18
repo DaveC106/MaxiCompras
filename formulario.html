@@ -38,86 +38,90 @@
     <h2>Finaliza tu compra</h2>
     <form id="pedidoForm" action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
       
-     <h3>1. Contacto y Envío</h3>
-<div class="form-grid">
+      <h3>1. Contacto y Envío</h3>
+      <div class="form-grid">
+        <!-- Todos los campos del formulario... -->
+        <div class="form-group">
+          <label for="email">Correo electrónico *</label>
+          <input type="email" id="email" name="CorreoElectronico" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Número Teléfono *</label>
+          <input type="tel" id="telefono" name="Telefono" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono_confirmar">Confirmar Teléfono *</label>
+          <input type="tel" id="telefono_confirmar" name="ConfirmarTelefono" required>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="Nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido *</label>
+          <input type="text" id="apellido" name="Apellido" required>
+        </div>
+        <div class="form-group">
+          <label for="pais">País *</label>
+          <select id="pais" name="Pais" required>
+            <option value="">Seleccione...</option>
+            <option value="Colombia">Colombia</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="estado">Departamento *</label>
+          <input type="text" id="estado" name="EstadoRegion" required>
+        </div>
+        <div class="form-group">
+          <label for="ciudad">Ciudad *</label>
+          <input type="text" id="ciudad" name="Ciudad" required>
+        </div>
+        <div class="form-group" style="grid-column: span 2;">
+          <label for="direccion">Dirección de envío *</label>
+          <input type="text" id="direccion" name="Direccion" required>
+        </div>
+        <div class="form-group">
+          <label for="apartamento">Apartamento / Casa (opcional)</label>
+          <input type="text" id="apartamento" name="ApartamentoCasa">
+        </div>
+        <div class="form-group">
+          <label for="ccnit">CC o NIT *</label>
+          <input type="text" id="ccnit" name="CCoNIT" required>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <label for="email">Correo electrónico *</label>
-    <input type="email" id="email" name="CorreoElectronico" required>
-  </div>
+      <!-- Productos y precios -->
+      <div id="productos-container">
+        <label for="producto">Producto</label>
+        <input type="text" id="producto" name="Producto" readonly>
 
-  <div class="form-group">
-    <label for="telefono">Número Teléfono *</label>
-    <input type="tel" id="telefono" name="Telefono" required>
-  </div>
+        <label for="precio">Precio</label>
+        <input type="text" id="precio" name="Precio" readonly>
+      </div>
 
-  <div class="form-group">
-    <label for="telefono_confirmar">Confirmar Teléfono *</label>
-    <input type="tel" id="telefono_confirmar" name="ConfirmarTelefono" required>
-  </div>
+      <div id="total-container" style="display:none;">
+        <label for="total">Total</label>
+        <input type="text" id="total" name="Total" readonly>
+      </div>
 
-  <div class="form-group">
-    <label for="nombre">Nombre *</label>
-    <input type="text" id="nombre" name="Nombre" required>
-  </div>
-
-  <div class="form-group">
-    <label for="apellido">Apellido *</label>
-    <input type="text" id="apellido" name="Apellido" required>
-  </div>
-
-  <div class="form-group">
-    <label for="pais">País *</label>
-    <select id="pais" name="Pais" required>
-      <option value="">Seleccione...</option>
-      <option value="Colombia">Colombia</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="estado">Departamento *</label>
-    <input type="text" id="estado" name="EstadoRegion" required>
-  </div>
-
-  <div class="form-group">
-    <label for="ciudad">Ciudad *</label>
-    <input type="text" id="ciudad" name="Ciudad" required>
-  </div>
-
-  <div class="form-group" style="grid-column: span 2;">
-    <label for="direccion">Dirección de envío *</label>
-    <input type="text" id="direccion" name="Direccion" required>
-  </div>
-
-  <div class="form-group">
-    <label for="apartamento">Apartamento / Casa (opcional)</label>
-    <input type="text" id="apartamento" name="ApartamentoCasa">
-  </div>
-
-  <div class="form-group">
-    <label for="ccnit">CC o NIT *</label>
-    <input type="text" id="ccnit" name="CCoNIT" required>
-  </div>
-    <h3>2. Pago</h3>
+      <!-- Sección de pago actualizada -->
+      <h3>Pago</h3>
       <label>
         <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
       </label>
 
-</div>
-
-</div>
-
-  
-
+      <!-- Datos ocultos -->
       <input type="hidden" name="_next" value="https://maxicomprass.store">
       <input type="hidden" name="_captcha" value="false">
 
+      <!-- Botón enviar -->
       <button type="submit">Enviar Pedido</button>
     </form>
+
+    <!-- Resumen visual de producto a la derecha -->
     <div id="resumen-productos" class="resumen-productos"></div>
   </div>
 </div>
-
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const producto = urlParams.get("producto");
