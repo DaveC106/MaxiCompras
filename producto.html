@@ -96,6 +96,27 @@ if (!extra) {
   descripcionDiv.style.lineHeight = "1.7";
   descripcionDiv.style.fontSize = "16px";
   document.querySelector(".producto-container").appendChild(descripcionDiv);
+  // 🔻 Mostrar imágenes adicionales si existen
+if (Array.isArray(extra.imagenes)) {
+  const galeria = document.createElement("div");
+  galeria.style.marginTop = "30px";
+  galeria.style.display = "flex";
+  galeria.style.flexWrap = "wrap";
+  galeria.style.gap = "10px";
+
+  extra.imagenes.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Imagen extra";
+    img.style.width = "100%";
+    img.style.maxWidth = "250px";
+    img.style.borderRadius = "10px";
+    img.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
+    galeria.appendChild(img);
+  });
+
+  document.querySelector(".producto-container").appendChild(galeria);
+}
 }
         });
 
