@@ -100,13 +100,24 @@ if (Array.isArray(extra.imagenes)) {
     thumb.alt = `Miniatura ${index + 1}`;
     if (index === 0) thumb.classList.add("activa");
 
-    thumb.addEventListener("click", () => {
-      clearInterval(intervaloCambio);
-      document.getElementById("imagen-principal").src = src;
+   thumb.addEventListener("click", () => {
+  clearInterval(intervaloCambio); // Reiniciamos el loop
+  document.getElementById("imagen-principal").src = src;
 
-      miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
-      thumb.classList.add("activa");
+  miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
+  thumb.classList.add("activa");
+
+  // Reiniciar el loop pero cada 8 segundos
+  intervaloCambio = setInterval(() => {
+    indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
+    const nuevaSrc = imagenesParaMostrar[indiceActual];
+    document.getElementById("imagen-principal").src = nuevaSrc;
+
+    miniaturas.querySelectorAll("img").forEach((img, idx) => {
+      img.classList.toggle("activa", idx === indiceActual);
     });
+  }, 5000);
+});
 
     miniaturas.appendChild(thumb);
   });
