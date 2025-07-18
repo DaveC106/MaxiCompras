@@ -84,14 +84,19 @@
         .then(res => res.json())
         .then(extraidos => {
           const extra = extraidos.find(p => p.producto.toLowerCase().trim() === nombre.toLowerCase().trim());
-          if (extra) {
-            const descripcionDiv = document.createElement("div");
-            descripcionDiv.innerHTML = extra.descripcion.join("<br><br>");
-            descripcionDiv.style.marginTop = "30px";
-            descripcionDiv.style.lineHeight = "1.7";
-            descripcionDiv.style.fontSize = "16px";
-            document.querySelector(".producto-container").appendChild(descripcionDiv);
-          }
+
+if (!extra) {
+  console.warn("❌ No se encontró descripción para:", nombre);
+} else if (!Array.isArray(extra.descripcion)) {
+  console.warn("❌ La descripción no es un array para:", nombre, extra.descripcion);
+} else {
+  const descripcionDiv = document.createElement("div");
+  descripcionDiv.innerHTML = extra.descripcion.join("<br><br>");
+  descripcionDiv.style.marginTop = "30px";
+  descripcionDiv.style.lineHeight = "1.7";
+  descripcionDiv.style.fontSize = "16px";
+  document.querySelector(".producto-container").appendChild(descripcionDiv);
+}
         });
 
       document.querySelector(".btn-carrito").addEventListener("click", () => {
