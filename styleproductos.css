@@ -286,3 +286,29 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   opacity: 1;
 }
 
+
+/*minitauras*/
+
+.miniaturas {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.miniaturas img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.miniaturas img:hover,
+.miniaturas img.activa {
+  border-color: #007bff;
+  transform: scale(1.1);
+}
