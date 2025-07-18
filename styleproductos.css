@@ -321,24 +321,49 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   }
 
   .producto-imagen {
-  width: 90vw;
-  max-width: 400px;
-  aspect-ratio: 1 / 1;
-  margin: 0 auto 10px auto;
-  border-radius: 20px;
-  overflow: hidden;
-}
+    width: 90vw;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 10px auto;
+    border-radius: 20px;
+    overflow: hidden;
+  }
 
-.producto-imagen img#imagen-principal {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .producto-imagen img#imagen-principal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   .producto-detalles {
     width: 100%;
     text-align: center;
     margin-top: 10px;
+  }
+
+  /* ⭐ Estrellas + Precios en fila */
+  .estrellas,
+  .precios {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .estrellas {
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  .precios {
+    text-align: right;
+    font-size: 15px;
+  }
+
+  /* 📷 Imagen tienda líder */
+  .producto-detalles img {
+    width: 100%;
+    max-width: 220px;
+    display: block;
+    margin: 10px auto;
   }
 
   .botones {
@@ -350,7 +375,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   .btn-comprar,
   .btn-carrito {
     width: 100%;
-    font-size: 16px;
-    padding: 12px;
+    font-size: 17px;
+    padding: 14px;
   }
 }
