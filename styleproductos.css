@@ -102,15 +102,17 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 
 .producto-imagen {
   flex: 1 1 400px;
+  border-radius: 20px;
+  overflow: hidden;
 }
-
 .producto-imagen img#imagen-principal {
   width: 100%;
-  height: 400px;              /* Tamaño fijo para evitar que se mueva el layout */
-  object-fit: contain;        /* Asegura que no se deforme la imagen */
-  border-radius: 20px;
-  margin-bottom: 10px;        /* Mejor un margen positivo para separación */
-  transition: all 0.3s ease;  /* Suaviza los cambios al cambiar de imagen */
+  height: 400px;
+  object-fit: contain;
+  border-radius: 20px; /* Fuerza los bordes redondos */
+  background-color: #fff; /* Fondo blanco por si la imagen tiene fondo transparente */
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
 }
 
 .producto-detalles {
