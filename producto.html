@@ -86,24 +86,13 @@
         .then(extraidos => {
           const extra = extraidos.find(p => p.producto.toLowerCase().trim() === nombre.toLowerCase().trim());
 
-if (!extra) {
-  console.warn("❌ No se encontró descripción para:", nombre);
-} else if (!Array.isArray(extra.descripciones)) {
-  console.warn("❌ La descripción no es un array para:", nombre, extra.descripciones);
-} else {
-  const descripcionDiv = document.createElement("div");
-  descripcionDiv.innerHTML = extra.descripciones.join("<br><br>");
-  descripcionDiv.style.marginTop = "30px";
-  descripcionDiv.style.lineHeight = "1.7";
-  descripcionDiv.style.fontSize = "16px";
-  document.querySelector(".producto-container").appendChild(descripcionDiv);
-  // 🔻 Mostrar imágenes adicionales si existen
 if (Array.isArray(extra.imagenes)) {
   const miniaturas = document.getElementById("miniaturas");
   let indiceActual = 0;
   let intervaloCambio;
+  let imagenesParaMostrar = [producto.imagenes[0], ...extra.imagenes]; // ← Primera del producto.json + extra
 
-  extra.imagenes.forEach((src, index) => {
+  imagenesParaMostrar.forEach((src, index) => {
     const thumb = document.createElement("img");
     thumb.src = src;
     thumb.alt = `Miniatura ${index + 1}`;
@@ -111,9 +100,8 @@ if (Array.isArray(extra.imagenes)) {
     if (index === 0) thumb.classList.add("activa");
 
     thumb.addEventListener("click", () => {
-      clearInterval(intervaloCambio); // Detener autoplay si toca el usuario
+      clearInterval(intervaloCambio);
       document.getElementById("imagen-principal").src = src;
-
       miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
       thumb.classList.add("activa");
     });
@@ -121,10 +109,9 @@ if (Array.isArray(extra.imagenes)) {
     miniaturas.appendChild(thumb);
   });
 
-  // Autoplay: cambiar imagen cada 4s si no ha tocado el usuario
   intervaloCambio = setInterval(() => {
-    indiceActual = (indiceActual + 1) % extra.imagenes.length;
-    const nuevaSrc = extra.imagenes[indiceActual];
+    indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
+    const nuevaSrc = imagenesParaMostrar[indiceActual];
     document.getElementById("imagen-principal").src = nuevaSrc;
 
     miniaturas.querySelectorAll("img").forEach((img, idx) => {
@@ -132,8 +119,9 @@ if (Array.isArray(extra.imagenes)) {
     });
   }, 4000);
 }
+
 }
-        });
+        );
 
       document.querySelector(".btn-carrito").addEventListener("click", () => {
         const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
