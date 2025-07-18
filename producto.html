@@ -154,6 +154,11 @@ principal.style.borderRadius = "20px"; // Fuerza el estilo siempre
           const h3 = document.createElement("h3");
           h3.textContent = item.titulo;
           h3.style.margin = "20px 0 5px";
+          // Estilos específicos para móvil
+  if (window.innerWidth <= 768) {
+    h3.style.margin = "10px 0 4px";
+    h3.style.fontSize = "1.3em";
+  }
           h3.style.fontWeight = "bold";
           descripcionDiv.appendChild(h3);
         }
