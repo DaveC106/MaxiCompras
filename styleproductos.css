@@ -321,18 +321,18 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   }
 
   .producto-imagen {
+    max-width: 280px;        /* Más pequeño pero con proporción */
     width: 100%;
-    max-width: 280px; /* Tamaño máximo */
-    height: 220px;     /* Alto fijo más pequeño */
-    margin: 0 auto 10px auto; /* Centrada y separada */
+    margin: 0 auto 10px auto;
     border-radius: 20px;
     overflow: hidden;
   }
 
   .producto-imagen img#imagen-principal {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;            /* Conserva proporción */
+    object-fit: contain;     /* Muestra la imagen completa */
+    border-radius: 20px;
   }
 
   .producto-detalles {
