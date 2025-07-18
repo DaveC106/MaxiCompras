@@ -80,11 +80,10 @@
       document.getElementById("precio-actual").textContent = "$" + precio.toLocaleString("es-CO");
       document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
 
-      // Segundo: cargar productos_extraidos.json para la descripción
       fetch("descripciones.json")
         .then(res => res.json())
         .then(extraidos => {
-          const extra = extraidos.find(p => p.producto === nombre);
+          const extra = extraidos.find(p => p.producto.toLowerCase().trim() === nombre.toLowerCase().trim());
           if (extra) {
             const descripcionDiv = document.createElement("div");
             descripcionDiv.innerHTML = extra.descripcion.join("<br><br>");
