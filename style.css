@@ -314,54 +314,6 @@ body {
     border-radius: 20px;
   }
 }
-.testimonios {
-  text-align: center;
-  padding: 60px 20px;
-  background-color: #fff;
-}
-
-
-.grid-testimonios {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.card-testimonio {
-  background-color: #f3f3f3;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 350px;
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: left;
-}
-
-.card-testimonio hr {
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 10px 0;
-}
-
-.card-testimonio strong {
-  color: #222;
-  font-size: 1em;
-}
-
-.card-testimonio .verificado {
-  color: #28a745;
-  font-size: 0.9em;
-}
-
-.card-testimonio .estrellas {
-  color: #ff9800;
-  font-size: 1.2em;
-}
 
 .banners-info {
   display: flex;
@@ -1085,30 +1037,100 @@ body {
   }
 }
 
-/*style de testimonios slider*/
-
-.testimonios-slider {
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+/* 📦 Sección testimonios */
+.testimonios {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff;
 }
 
-.grupo-testimonios {
+/* 🧱 Contenedor general */
+.grid-testimonios {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
-  min-width: 100%;
-  animation: cambiarTestimonios 24s infinite;
 }
 
-.testimonios-slider:hover .grupo-testimonios {
-  animation-play-state: paused;
+/* 🃏 Tarjetas individuales */
+.card-testimonio {
+  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
 }
 
-@keyframes cambiarTestimonios {
-  0%, 11% { transform: translateX(0); }
-  12%, 44% { transform: translateX(-100%); }
-  45%, 77% { transform: translateX(-200%); }
-  78%, 100% { transform: translateX(0); }
+.card-testimonio hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+.card-testimonio strong {
+  color: #222;
+  font-size: 1em;
+}
+
+.card-testimonio .verificado {
+  color: #28a745;
+  font-size: 0.9em;
+}
+
+.card-testimonio .estrellas {
+  color: #ff9800;
+  font-size: 1.2em;
+}
+
+/* 🖥️ Animación en PC */
+@media (min-width: 769px) {
+  .testimonios-slider {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .grupo-testimonios {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    min-width: 100%;
+    animation: cambiarTestimonios 24s infinite;
+  }
+
+  .testimonios-slider:hover .grupo-testimonios {
+    animation-play-state: paused;
+  }
+
+  @keyframes cambiarTestimonios {
+    0%, 11% { transform: translateX(0); }
+    12%, 44% { transform: translateX(-100%); }
+    45%, 77% { transform: translateX(-200%); }
+    78%, 100% { transform: translateX(0); }
+  }
+}
+
+/* 📱 Diseño solo para celulares: 2 testimonios abajo cada 5 seg */
+@media (max-width: 768px) {
+  .grid-testimonios {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+  }
+
+  .card-testimonio {
+    display: none;
+  }
+
+  .card-testimonio.activo {
+    display: block;
+  }
 }

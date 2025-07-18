@@ -552,3 +552,22 @@ actualizarContadorCarrito();
       document.getElementById("whatsapp").innerHTML = html;
     });
 </script>
+
+
+<script>
+  //script de testimonios en celulares, funcional 
+  if (window.innerWidth <= 768) {
+    const testimonios = document.querySelectorAll('.card-testimonio');
+    let index = 0;
+
+    function mostrarDosTestimonios() {
+      testimonios.forEach(t => t.classList.remove('activo'));
+      testimonios[index % testimonios.length].classList.add('activo');
+      testimonios[(index + 1) % testimonios.length].classList.add('activo');
+      index = (index + 2) % testimonios.length;
+    }
+
+    mostrarDosTestimonios();
+    setInterval(mostrarDosTestimonios, 5000); // ⏱️ cada 5 segundos
+  }
+</script>
