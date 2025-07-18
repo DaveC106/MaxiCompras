@@ -52,6 +52,11 @@
     const urlParams = new URLSearchParams(window.location.search);
     const categoriaSeleccionada = urlParams.get("cat");
 
+     // Si no hay categoría seleccionada, redirigir a all.html
+  if (!categoriaSeleccionada) {
+    window.location.href = "all.html";
+  }
+
     const contenedor = document.querySelector(".grid-productos");
     const titulo = document.getElementById("titulo-categoria");
 
