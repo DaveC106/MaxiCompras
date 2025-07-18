@@ -80,6 +80,13 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   cursor: pointer;
 }
 
+.imagen-tienda-lider {
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
 /* 🔸 CONTENIDO PRINCIPAL */
 .producto-container {
   display: flex;
