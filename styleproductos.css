@@ -395,3 +395,23 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     padding: 14px;
   }
 }
+
+.precios {
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.precio-original,
+.precio-descuento,
+.badge-descuento {
+  margin: 0;
+}
+
+.estrellas {
+  text-align: center;
+  width: 100%;
+}
