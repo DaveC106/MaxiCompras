@@ -51,9 +51,13 @@
   <div class="logo">
     <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
   </div>
+  <div class="barra-busqueda" id="barraBusqueda" style="display: none;">
+  <input type="text" id="input-busqueda" placeholder="Buscar productos..." />
+</div>
+<div id="resultados-busqueda"></div>
 </a>
   <div class="icons">
-  <img src="./img/search.webp" alt="Buscar" />
+  <img src="img/search.webp" alt="Buscar" id="iconoBusqueda" />
   <div class="carrito-icono">
     <img src="./img/cart.webp" alt="Carrito" />
     <span class="contador-carrito" id="contadorCarrito"></span>
@@ -284,13 +288,6 @@
   </footer>
 
 
-<div id="modal-busqueda" class="modal-busqueda oculto">
-  <div class="contenido-busqueda">
-    <button id="cerrar-busqueda" class="cerrar">✖</button>
-    <input type="text" id="input-modal" placeholder="Buscar producto..." />
-    <div id="resultados-modal" class="grid-productos"></div>
-  </div>
-</div>
 
 <script>
   const contenedor = document.querySelector(".grid-productos");
@@ -369,38 +366,49 @@
   return div;
 }
 
-  // ✅ Activar búsqueda modal
-  abrirModal.addEventListener("click", () => {
-    modal.classList.remove("oculto");
-    inputModal.focus();
+// ✅ Nuevo buscador en header (barra fija)
+const iconoBusqueda = document.getElementById("iconoBusqueda");
+const barraBusqueda = document.getElementById("barraBusqueda");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
+
+iconoBusqueda.addEventListener("click", () => {
+  barraBusqueda.style.display = "block";
+  inputBusqueda.focus();
+});
+
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  if (!texto) return;
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
+    return;
+  }
+
+  filtrados.forEach(producto => {
+    const div = document.createElement("div");
+    div.className = "producto-card";
+    div.innerHTML = `
+      <a href="producto.html?slug=${producto.slug}" style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eee;">
+        <img src="${producto.imagenes[0]}" style="width:60px;height:60px;object-fit:cover;border-radius:5px;" alt="${producto.nombre}">
+        <div>
+          <p style="margin:0;font-weight:bold;">${producto.nombre}</p>
+          <p style="margin:0;">$${producto.precio.toLocaleString('es-CO')}</p>
+        </div>
+      </a>
+    `;
+    resultadosBusqueda.appendChild(div);
   });
+});
 
-  cerrarModal.addEventListener("click", () => {
-    modal.classList.add("oculto");
-    inputModal.value = "";
-    resultadosModal.innerHTML = "";
-  });
-
-  // ✅ Búsqueda en el modal
-  inputModal.addEventListener("input", () => {
-    const texto = inputModal.value.toLowerCase();
-    resultadosModal.innerHTML = "";
-
-    const filtrados = productosCargados.filter(p =>
-      p.nombre.toLowerCase().includes(texto)
-    );
-
-    if (filtrados.length === 0) {
-      resultadosModal.innerHTML = "<p>No se encontraron productos.</p>";
-      return;
-    }
-
-    filtrados.forEach(producto => {
-      const div = crearTarjetaProducto(producto);
-      resultadosModal.appendChild(div);
-    });
-  });
-
+  
   // ✅ Escuchar clics en categorías
   document.querySelectorAll(".categoria").forEach(cat => {
     cat.addEventListener("click", () => {
