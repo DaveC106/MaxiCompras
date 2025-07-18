@@ -81,7 +81,7 @@
       document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
 
       // Segundo: cargar productos_extraidos.json para la descripción
-      fetch("productos_extraidos.json")
+      fetch("descripciones.json")
         .then(res => res.json())
         .then(extraidos => {
           const extra = extraidos.find(p => p.producto === nombre);
