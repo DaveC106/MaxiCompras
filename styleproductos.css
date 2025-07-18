@@ -470,3 +470,18 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   font-size: 16px;
   color: #444;
 }
+
+/* Asegura que el contenedor se ajuste bien en móviles */
+@media (max-width: 768px) {
+  .descripcion-producto {
+    padding: 15px;
+  }
+
+  .descripcion-producto .titulo {
+    font-size: 1.3em;
+  }
+
+  .descripcion-producto .texto {
+    font-size: 1em;
+  }
+}
