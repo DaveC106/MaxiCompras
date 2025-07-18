@@ -401,17 +401,32 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   }
 }
 
+
 @media (max-width: 768px) {
   .producto-detalles {
     display: flex;
     flex-direction: column;
   }
 
-  .botones {
-    order: -1; /* Mover arriba */
+  .producto-detalles h1 {
+    order: 0;
   }
 
-  .confianza-box {
-    order: 0; /* Mantener debajo */
+  .estrellas {
+    order: 1;
+  }
+
+  .precios {
+    order: 2;
+  }
+
+  .botones {
+    order: 3;
+    margin-top: 10px;
+  }
+
+  .img-tienda-lider {
+    order: 4;
+    margin-top: 15px;
   }
 }
