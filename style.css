@@ -1084,3 +1084,31 @@ body {
     display: none !important;
   }
 }
+
+/*style de testimonios slider*/
+
+.testimonios-slider {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.grupo-testimonios {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  min-width: 100%;
+  animation: cambiarTestimonios 24s infinite;
+}
+
+.testimonios-slider:hover .grupo-testimonios {
+  animation-play-state: paused;
+}
+
+@keyframes cambiarTestimonios {
+  0%, 11% { transform: translateX(0); }
+  12%, 44% { transform: translateX(-100%); }
+  45%, 77% { transform: translateX(-200%); }
+  78%, 100% { transform: translateX(0); }
+}
