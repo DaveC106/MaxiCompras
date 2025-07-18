@@ -51,15 +51,15 @@
     <a href="all.html" class="ver-todos-link">Ver Todos</a>
   </div>
 
-  <div class="slider-container" style="position: relative;">
+  <div class="slider-container">
   <div class="slider grid-productos"></div>
 
-  <!-- Flechas para PC -->
-  <button class="flecha izquierda flecha-pc">&#10094;</button>
-  <button class="flecha derecha flecha-pc">&#10095;</button>
+  <!-- Flechas de escritorio -->
+  <button class="flecha flecha-pc izquierda">&#10094;</button>
+  <button class="flecha flecha-pc derecha">&#10095;</button>
 
-  <!-- Flechas para celulares -->
-  <div class="flechas-movil">
+  <!-- Flechas móviles -->
+  <div class="contenedor-flechas-movil">
     <button class="flecha flecha-movil izquierda">&#10094;</button>
     <button class="flecha flecha-movil derecha">&#10095;</button>
   </div>
@@ -370,15 +370,17 @@ window.addEventListener("load", revisarScrollCategorias);
 
 <script>
   const slider = document.querySelector(".slider");
-  const flechaIzq = document.querySelector(".flecha.izquierda");
-  const flechaDer = document.querySelector(".flecha.derecha");
 
-  flechaIzq.addEventListener("click", () => {
-    slider.scrollBy({ left: -300, behavior: 'smooth' });
+  document.querySelectorAll(".flecha.izquierda").forEach(flecha => {
+    flecha.addEventListener("click", () => {
+      slider.scrollBy({ left: -300, behavior: 'smooth' });
+    });
   });
 
-  flechaDer.addEventListener("click", () => {
-    slider.scrollBy({ left: 300, behavior: 'smooth' });
+  document.querySelectorAll(".flecha.derecha").forEach(flecha => {
+    flecha.addEventListener("click", () => {
+      slider.scrollBy({ left: 300, behavior: 'smooth' });
+    });
   });
 </script>
 
