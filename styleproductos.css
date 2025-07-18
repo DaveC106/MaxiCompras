@@ -168,6 +168,12 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   margin-top: 15px;
 }
 
+.btn-mitad {
+  width: 45%;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
 .btn-carrito,
 .btn-comprar {
   padding: 12px;
