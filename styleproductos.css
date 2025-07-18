@@ -104,22 +104,6 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   object-fit: contain;
 }
 
-
-
-.miniatura {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: 0.2s;
-}
-
-.miniatura:hover {
-  border-color: #0055ff;
-}
-
 .producto-detalles {
   flex: 1 1 400px;
   display: flex;
@@ -260,11 +244,6 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   .producto-detalles,
   .producto-imagen {
     flex: 1 1 100%;
-  }
-
-  .miniatura {
-    width: 50px;
-    height: 50px;
   }
 
   .logo img {
