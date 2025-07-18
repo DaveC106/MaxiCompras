@@ -141,40 +141,42 @@ principal.style.borderRadius = "20px"; // Fuerza el estilo siempre
     }
   }, 4000);
 
- // 💡 Nueva lógica para descripciones estructuradas
-    if (Array.isArray(extra.descripciones)) {
-      const descripcionDiv = document.createElement("div");
-      descripcionDiv.className = "descripcion-estructurada";document.createElement("div");
-      descripcionDiv.style.marginTop = "30px";
-      descripcionDiv.style.lineHeight = "1.7";
-      descripcionDiv.style.fontSize = "16px";
+// 💡 Nueva lógica para descripciones estructuradas
+if (Array.isArray(extra.descripciones)) {
+  const descripcionDiv = document.createElement("div");
+  descripcionDiv.className = "descripcion-estructurada";
+  descripcionDiv.style.marginTop = "30px";
+  descripcionDiv.style.lineHeight = "1.7";
+  descripcionDiv.style.fontSize = "16px";
 
-      extra.descripciones.forEach(item => {
-        if (item.titulo) {
-          const h3 = document.createElement("h3");
-          h3.textContent = item.titulo;
-          h3.style.margin = "20px 0 5px";
-          // Estilos específicos para móvil
-  if (window.innerWidth <= 768) {
-    h3.style.margin = "-70px 0 4px";
-    h3.style.fontSize = "1.3em";
-  }
-          h3.style.fontWeight = "bold";
-          descripcionDiv.appendChild(h3);
-        }
+  const esMovil = window.innerWidth <= 768;
 
-        if (item.texto) {
-          const p = document.createElement("p");
-          p.textContent = item.texto;
-          p.style.marginBottom = "10px";
-          descripcionDiv.appendChild(p);
-        }
-      });
-
-      document.querySelector(".producto-container").appendChild(descripcionDiv);
+  extra.descripciones.forEach(item => {
+    if (item.titulo) {
+      const h3 = document.createElement("h3");
+      h3.textContent = item.titulo;
+      h3.style.fontWeight = "bold";
+      h3.style.textAlign = "center";
+      h3.style.lineHeight = "1.4";
+      h3.style.fontSize = esMovil ? "1.25rem" : "1.3rem";
+      h3.style.marginTop = esMovil ? "40px" : "25px";
+      h3.style.marginBottom = esMovil ? "12px" : "8px";
+      descripcionDiv.appendChild(h3);
     }
+
+    if (item.texto) {
+      const p = document.createElement("p");
+      p.textContent = item.texto;
+      p.style.textAlign = "center";
+      p.style.lineHeight = "1.6";
+      p.style.marginBottom = esMovil ? "18px" : "16px";
+      descripcionDiv.appendChild(p);
+    }
+  });
+
+  document.querySelector(".producto-container").appendChild(descripcionDiv);
 }
- }); 
+}});
 
 
       document.querySelector(".btn-carrito").addEventListener("click", () => {
