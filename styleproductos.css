@@ -301,7 +301,8 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   margin-top: 15px;
   flex-wrap: wrap;
   justify-content: center;
-  min-height: 80px; /* Evita que se mueva cuando cambian las imágenes */
+  height: 80px; /* Altura fija */
+  overflow: hidden; /* Evita que sobresalga */
 }
 
 .miniaturas img {
@@ -321,7 +322,6 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   transform: scale(1.1);
 }
 
-/* Ocultar miniaturas en celulares */
 @media (max-width: 768px) {
   .miniaturas {
     display: none;
