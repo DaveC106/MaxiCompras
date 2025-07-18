@@ -108,8 +108,8 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 .producto-imagen img#imagen-principal {
   width: 100%;
   height: 400px;
-  object-fit: contain;
-  border-radius: 20px; /* Fuerza los bordes redondos */
+  object-fit: cover;
+  border-radius: 65px; /* Fuerza los bordes redondos */
   background-color: #fff; /* Fondo blanco por si la imagen tiene fondo transparente */
   margin-bottom: 10px;
   transition: all 0.3s ease;
