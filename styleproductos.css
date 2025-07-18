@@ -111,7 +111,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover; /* CAMBIAMOS de contain a cover */
-  border-radius: 10; /* Ya no hace falta aquí */
+  border-radius: 10px; /* Ya no hace falta aquí */
   transition: all 0.3s ease;
 }
 
