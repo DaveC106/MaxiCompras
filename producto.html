@@ -120,16 +120,7 @@ document.head.appendChild(ogUrl);
       document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
       document.getElementById("descripcion-producto").innerHTML = descripcion;
 
-      const miniaturas = document.getElementById("miniaturas");
-      imagenes.forEach(img => {
-        const mini = document.createElement("img");
-        mini.src = img;
-        mini.onclick = () => {
-          document.getElementById("imagen-principal").src = img;
-        };
-        mini.classList.add("miniatura");
-        miniaturas.appendChild(mini);
-      });
+     
 
       document.querySelector(".btn-carrito").addEventListener("click", () => {
         const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
