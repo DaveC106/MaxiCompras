@@ -76,6 +76,34 @@
     .then(productos => {
       const producto = productos.find(p => p.slug === slug);
       if (!producto) return;
+      // 🔻 Metatags dinámicos
+const metaTitle = document.querySelector("title");
+metaTitle.textContent = producto.nombre + " | MaxiCompras";
+
+const metaDesc = document.createElement("meta");
+metaDesc.name = "description";
+metaDesc.content = producto.descripcion.replace(/<[^>]+>/g, "").slice(0, 150);
+document.head.appendChild(metaDesc);
+
+const ogTitle = document.createElement("meta");
+ogTitle.setAttribute("property", "og:title");
+ogTitle.content = producto.nombre + " | MaxiCompras";
+document.head.appendChild(ogTitle);
+
+const ogDesc = document.createElement("meta");
+ogDesc.setAttribute("property", "og:description");
+ogDesc.content = producto.descripcion.replace(/<[^>]+>/g, "").slice(0, 150);
+document.head.appendChild(ogDesc);
+
+const ogImg = document.createElement("meta");
+ogImg.setAttribute("property", "og:image");
+ogImg.content = producto.imagenes[0];
+document.head.appendChild(ogImg);
+
+const ogUrl = document.createElement("meta");
+ogUrl.setAttribute("property", "og:url");
+ogUrl.content = window.location.href;
+document.head.appendChild(ogUrl);
 
       const { imagenes, nombre, precio, descripcion } = producto;
       const precioAnterior = producto.precio_anterior || Math.round(precio * 1.5);
