@@ -471,19 +471,3 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   color: #444;
 }
 
-/* Asegura que el contenedor se ajuste bien en móviles */
-@media (max-width: 768px) {
-  .descripcion-producto {
-    padding-top: 10px; /* Antes 20px, ahora menos */
-    padding-bottom: 10px;
-    margin-top: -50px; /* Se puede ajustar según lo necesites */
-  }
-
-  .descripcion-producto .titulo {
-    font-size: 1.3em;
-  }
-
-  .descripcion-producto .texto {
-    font-size: 1em;
-  }
-}
