@@ -1060,7 +1060,7 @@ body {
 }
 /* Por defecto, oculta flechas móviles */
 .contenedor-flechas-movil {
-  display: none;
+  display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 10px;
