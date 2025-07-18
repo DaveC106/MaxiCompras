@@ -99,19 +99,24 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 }
 
 .producto-imagen {
-  flex: 1 1 400px;
+  flex: 1 1 350px;
+  height: auto;
+  max-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 20px;
   overflow: hidden;
-  height: 400px;
 }
 
 .producto-imagen img#imagen-principal {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: 350px;
+  object-fit: contain; /* Cambiado de cover a contain */
   border-radius: 10px;
-  transition: all 0.3s ease;
 }
+
 
 .producto-detalles {
   flex: 1 1 400px;
@@ -313,9 +318,9 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     padding: 0 15px;
   }
 
-  .producto-imagen {
+   .producto-imagen {
     width: 90vw;
-    max-width: 400px;
+    max-width: 360px;
     aspect-ratio: 1 / 1;
     margin: 0 auto 10px auto;
     border-radius: 20px;
@@ -325,8 +330,9 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   .producto-imagen img#imagen-principal {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* También aquí */
   }
+}
 
   .producto-detalles {
     width: 100%;
@@ -399,7 +405,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     font-size: 17px;
     padding: 14px;
   }
-}
+
 
 
 @media (max-width: 768px) {
