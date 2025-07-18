@@ -71,6 +71,11 @@
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
 
+  // Si no hay slug, redirigir a all.html
+if (!slug) {
+  window.location.href = "all.html";
+}
+
   fetch("productos.json")
     .then(res => res.json())
     .then(productos => {
