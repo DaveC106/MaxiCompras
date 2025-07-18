@@ -55,52 +55,22 @@
     </div>
   </div>
 </section>
-
-<!-- 🔻 Script: Producto -->
 <script>
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
 
-  // Si no hay slug, redirigir a all.html
-if (!slug) {
-  window.location.href = "all.html";
-}
+  if (!slug) {
+    window.location.href = "all.html";
+  }
 
+  // Primero: cargar productos.json para info general
   fetch("productos.json")
     .then(res => res.json())
     .then(productos => {
       const producto = productos.find(p => p.slug === slug);
       if (!producto) return;
-      // 🔻 Metatags dinámicos
-const metaTitle = document.querySelector("title");
-metaTitle.textContent = producto.nombre + " | MaxiCompras";
 
-const metaDesc = document.createElement("meta");
-metaDesc.name = "description";
-metaDesc.content = producto.descripcion.replace(/<[^>]+>/g, "").slice(0, 150);
-document.head.appendChild(metaDesc);
-
-const ogTitle = document.createElement("meta");
-ogTitle.setAttribute("property", "og:title");
-ogTitle.content = producto.nombre + " | MaxiCompras";
-document.head.appendChild(ogTitle);
-
-const ogDesc = document.createElement("meta");
-ogDesc.setAttribute("property", "og:description");
-ogDesc.content = producto.descripcion.replace(/<[^>]+>/g, "").slice(0, 150);
-document.head.appendChild(ogDesc);
-
-const ogImg = document.createElement("meta");
-ogImg.setAttribute("property", "og:image");
-ogImg.content = producto.imagenes[0];
-document.head.appendChild(ogImg);
-
-const ogUrl = document.createElement("meta");
-ogUrl.setAttribute("property", "og:url");
-ogUrl.content = window.location.href;
-document.head.appendChild(ogUrl);
-
-      const { imagenes, nombre, precio, descripcion } = producto;
+      const { imagenes, nombre, precio } = producto;
       const precioAnterior = producto.precio_anterior || Math.round(precio * 1.5);
       const descuento = Math.round(100 - (precio / precioAnterior) * 100);
 
@@ -109,9 +79,21 @@ document.head.appendChild(ogUrl);
       document.getElementById("precio-anterior").textContent = "$" + precioAnterior.toLocaleString("es-CO");
       document.getElementById("precio-actual").textContent = "$" + precio.toLocaleString("es-CO");
       document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
-      document.getElementById("descripcion-producto").innerHTML = descripcion;
 
-     
+      // Segundo: cargar productos_extraidos.json para la descripción
+      fetch("productos_extraidos.json")
+        .then(res => res.json())
+        .then(extraidos => {
+          const extra = extraidos.find(p => p.producto === nombre);
+          if (extra) {
+            const descripcionDiv = document.createElement("div");
+            descripcionDiv.innerHTML = extra.descripcion.join("<br><br>");
+            descripcionDiv.style.marginTop = "30px";
+            descripcionDiv.style.lineHeight = "1.7";
+            descripcionDiv.style.fontSize = "16px";
+            document.querySelector(".producto-container").appendChild(descripcionDiv);
+          }
+        });
 
       document.querySelector(".btn-carrito").addEventListener("click", () => {
         const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -130,9 +112,7 @@ document.head.appendChild(ogUrl);
         localStorage.setItem("carrito", JSON.stringify(carrito));
         const mensaje = document.getElementById("mensaje-carrito");
         mensaje.classList.add("mostrar");
-        setTimeout(() => {
-          mensaje.classList.remove("mostrar");
-        }, 3000);
+        setTimeout(() => mensaje.classList.remove("mostrar"), 3000);
         actualizarContadorCarrito();
       });
 
@@ -141,7 +121,7 @@ document.head.appendChild(ogUrl);
         window.location.href = url;
       });
     });
-</script>
+    </script>
 
 <!-- 🔻 Script: top-bar móvil -->
 <script>
