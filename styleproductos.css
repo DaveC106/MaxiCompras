@@ -184,13 +184,12 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 
 .btn-carrito,
 .btn-comprar {
-  padding: 12px;
+  padding: 15px;
   border: none;
   border-radius: 8px;
   font-size: 15px;
   cursor: pointer;
   text-align: center;
-  width: 50%;
 }
 
 .btn-carrito {
