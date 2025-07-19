@@ -113,10 +113,10 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 }
 
 .producto-imagen img#imagen-principal {
-  width: 100%;
+  width: 70%;
   height: auto;
-  max-height: 320px;
-  object-fit: contain;
+ /* max-height: 320px;*/
+  object-fit: cover;
   border-radius: 15px; /* recuperamos los bordes redondeados */
   background: white;
 }
