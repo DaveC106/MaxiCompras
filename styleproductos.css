@@ -298,6 +298,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
+  margin-top:-150px;
   border: 2px solid transparent;
   opacity: 0.8;
   transition: all 0.3s ease;
