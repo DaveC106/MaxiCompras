@@ -49,18 +49,16 @@
 </header>
 
   <h2 style="text-align: center;">Todos los Productos</h2>
-  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto 20px; padding: 0 10px;">
-  <div></div> <!-- para mantener el espacio a la izquierda -->
-  <div style="display: flex; align-items: center;">
-    <label for="ordenar" style="margin-right: 10px;">Ordenar por:</label>
-    <select id="ordenar">
-      <option value="mas-vendidos">Más vendidos</option>
-      <option value="az">Alfabéticamente, A–Z</option>
-      <option value="za">Alfabéticamente, Z–A</option>
-      <option value="precio-menor">Precio, menor a mayor</option>
-      <option value="precio-mayor">Precio, mayor a menor</option>
-    </select>
-  </div>
+  <div class="ordenar-container">
+  <label for="ordenar" class="ordenar-label">Ordenar por:</label>
+  <select id="ordenar" class="ordenar-select">
+    <option value="mas-vendidos">Más vendidos</option>
+    <option value="az">Alfabéticamente, A–Z</option>
+    <option value="za">Alfabéticamente, Z–A</option>
+    <option value="precio-menor">Precio, menor a mayor</option>
+    <option value="precio-mayor">Precio, mayor a menor</option>
+    <option value="mayor-descuento">Mayor descuento</option>
+  </select>
 </div>
 
   <div class="grid-productos" id="contenedor-todos"></div>
@@ -161,6 +159,13 @@
         break;
       case "precio-mayor":
         productosOrdenados.sort((a, b) => b.precio - a.precio);
+        break;
+           case "mayor-descuento":
+        productosOrdenados.sort((a, b) => {
+          const descA = 100 - (a.precio / (a.precio_anterior || a.precio * 1.5)) * 100;
+          const descB = 100 - (b.precio / (b.precio_anterior || b.precio * 1.5)) * 100;
+          return descB - descA;
+        });
         break;
       case "mas-vendidos":
       default:
