@@ -417,8 +417,7 @@
     "https://7huydi-je.myshopify.com/cdn/shop/files/image_-_2025-03-06T055203.052.webp?v=1741258333",
     "https://7huydi-je.myshopify.com/cdn/shop/files/image_-_2025-03-06T055402.698.webp?v=1741258454",
     "https://7huydi-je.myshopify.com/cdn/shop/files/image_-_2025-03-06T055435.202.webp?v=1741258483",
-    "https://7huydi-je.myshopify.com/cdn/shop/files/image_-_2025-03-06T055502.513.webp?v=1741258512",
-    "https://7huydi-je.myshopify.com/cdn/shop/files/image_-_2025-03-06T041245.377.webp?v=1741252372"
+    "https://7huydi-je.myshopify.com/cdn/shop/files/image_-_2025-03-06T055502.513.webp?v=1741258512"
   ]
  },
  {
@@ -469,7 +468,6 @@
     }
   ],
   "imagenes": [
-    "https://cdn.shopify.com/s/files/1/0623/3502/5261/files/minec.png?v=1745105933",
     "https://cdn.shopify.com/s/files/1/0691/7144/5974/files/Diseno_sin_titulo_-_2025-04-15T223206.967.gif?v=1744774444",
     "https://cdn.shopify.com/s/files/1/0691/7144/5974/files/Diseno_sin_titulo_-_2025-04-15T223010.865.gif?v=1744774444",
     "https://cdn.shopify.com/s/files/1/0691/7144/5974/files/Antorcha_sec_2.jpg?v=1744772583"
@@ -711,7 +709,10 @@
       "texto": "Ideal para cumpleaños, fechas especiales o para dar un detalle inolvidable lleno de ternura y nostalgia."
     }
   ],
-  "imagenes": []
+  "imagenes": [
+
+    "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Frame_2087328161.png?v=1749097057"
+  ]
 },
 {
   "producto": "Spin Easy Refuerzo de volante",
