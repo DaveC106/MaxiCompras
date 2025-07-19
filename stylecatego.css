@@ -161,11 +161,6 @@ body {
 
 
 
-.footer a {
-  color: #ffcc00;
-  text-decoration: none;
-}
-
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .logo img {
