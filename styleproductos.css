@@ -2,13 +2,16 @@
 
 * {
   font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   font-family: 'Montserrat', sans-serif !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* 🔶 TOP BAR */
@@ -103,18 +106,21 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  background-color: #f9f9f9;
+  background-color: #f9f9f9; /* fondo suave para marco */
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* sutil sombra */
 }
 
 .producto-imagen img#imagen-principal {
   width: 70%;
   height: auto;
+ /* max-height: 320px;*/
   object-fit: cover;
+  border-radius: 15px; /* recuperamos los bordes redondeados */
   background: white;
 }
+
 
 .producto-detalles {
   flex: 1 1 400px;
@@ -316,50 +322,39 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     padding: 0 15px;
   }
 
-  .producto-imagen {
-    width: 90vw;
-    max-width: 400px;
-    height: 400px;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+ .producto-imagen {
+  width: 90vw;
+  max-width: 400px;       /* Aumenté el ancho máximo del recuadro */
+  height: 400px;          /* Puedes fijar un alto más grande */
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra la imagen en el recuadro */
+}
 
-  .producto-imagen img#imagen-principal {
-    width: 70%;
-    height: auto;
-    object-fit: cover;
-    background: white;
-  }
+.producto-imagen img#imagen-principal {
+  width: 70%;              /* Imagen más pequeña */
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  background: white;
+}
 
   .producto-detalles {
     width: 100%;
     text-align: center;
     margin-top: 10px;
-    display: flex;
-    flex-direction: column;
   }
 
   .producto-detalles h1 {
     margin-top: 0px;
-    order: 0;
-  }
-
-  .estrellas {
-    order: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    gap: 4px;
   }
 
   .precios {
-    order: 2;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -368,9 +363,47 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     text-align: center;
   }
 
-  .botones {
-    order: 3;
+  .precio-original {
+    font-size: 13px;
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  .precio-descuento {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  .badge-descuento {
+    font-size: 12px;
+    background: #1a73e8;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-top: 4px;
+  }
+
+  .estrellas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
     margin-top: 10px;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .producto-detalles img {
+    width: 100%;
+    max-width: 450px;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .botones {
+    display: flex;
     flex-direction: column;
     gap: 10px;
   }
@@ -382,16 +415,83 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     padding: 14px;
   }
 
+
+
+@media (max-width: 768px) {
+  .producto-detalles {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .producto-detalles h1 {
+    order: 0;
+  }
+
+  .estrellas {
+    order: 1;
+  }
+
+  .precios {
+    order: 2;
+  }
+
+  .botones {
+    order: 3;
+    margin-top: 10px;
+  }
+
   .img-tienda-lider {
     order: 4;
+    margin-top: 15px;
+  }
+}
+
+/* Estilo base (PC): alineado a la izquierda y más pequeño */
+.img-tienda-lider {
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin: 10px -20px; /* ya no está centrado */
+}
+
+/* En móviles (centrado y más grande) */
+@media (max-width: 768px) {
+  .img-tienda-lider {
     max-width: 750px;
     margin: 15px auto;
   }
+}
 
+
+/* Estilo para la sección de descripciones estructuradas */
+.producto-container .descripcion-estructurada {
+  text-align: center;
+  margin-top: 30px;
+  font-family: inherit;
+}
+
+/* Títulos centrados, en negrita, ligeramente más grandes */
+.producto-container .descripcion-estructurada h3 {
+  font-weight: bold;
+  font-size: 18px; /* puedes subir a 19px si quieres más notorio */
+  margin: 20px 0 5px;
+  color: #222;
+}
+
+/* Textos debajo de cada título */
+.producto-container .descripcion-estructurada p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+  font-size: 16px;
+  color: #444;
+}
+
+/* Asegura que el contenedor se ajuste bien en móviles */
+@media (max-width: 768px) {
   .descripcion-producto {
-    padding-top: 10px;
+    padding-top: 10px; /* Antes 20px, ahora menos */
     padding-bottom: 10px;
-    margin-top: -50px;
+    margin-top: -50px; /* Se puede ajustar según lo necesites */
   }
 
   .descripcion-producto .titulo {
@@ -402,37 +502,8 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
     font-size: 1em;
   }
 }
-
-/* Sección descripciones estructuradas */
-.producto-container .descripcion-estructurada {
-  text-align: center;
-  margin-top: 30px;
-  font-family: inherit;
 }
 
-.producto-container .descripcion-estructurada h3 {
-  font-weight: bold;
-  font-size: 18px;
-  margin: 20px 0 5px;
-  color: #222;
-}
-
-.producto-container .descripcion-estructurada p {
-  margin-bottom: 15px;
-  line-height: 1.7;
-  font-size: 16px;
-  color: #444;
-}
-
-/* Imagen tienda líder en PC */
-.img-tienda-lider {
-  width: 100%;
-  max-width: 300px;
-  display: block;
-  margin: 10px -20px;
-}
-
-/* ✅ GLOBAL para TODAS las imágenes */
 img {
   border-radius: 20px !important;
   display: block;
