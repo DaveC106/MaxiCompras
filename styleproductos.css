@@ -336,9 +336,9 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
 }
 
 .producto-imagen img#imagen-principal {
-  width: 100%;              /* Imagen más pequeña */
+  width: 70%;              /* Imagen más pequeña */
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 15px;
   background: white;
 }
