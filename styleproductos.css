@@ -503,3 +503,11 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, span, div, input, select, textarea {
   }
 }
 }
+
+img {
+  border-radius: 20px !important;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
