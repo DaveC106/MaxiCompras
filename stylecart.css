@@ -16,6 +16,29 @@ body {
   animation: aparecer 0.3s ease;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  justify-content: space-between;
+}
+
+main {
+  flex: 1;
+}
+
+.footercar {
+  background: linear-gradient(to right, #ffc600, #ffa500);
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
+
 @keyframes aparecer {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
