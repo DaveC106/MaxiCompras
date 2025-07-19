@@ -511,3 +511,11 @@ img {
   height: auto;
   object-fit: cover;
 }
+
+.logo-descripcion {
+  display: block;
+  margin: 20px auto;
+  max-width: 160px;
+  width: 80%;
+  height: auto;
+}
