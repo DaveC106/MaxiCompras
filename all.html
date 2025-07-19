@@ -49,6 +49,19 @@
 </header>
 
   <h2 style="text-align: center;">Todos los Productos</h2>
+  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto 20px; padding: 0 10px;">
+  <div></div> <!-- para mantener el espacio a la izquierda -->
+  <div style="display: flex; align-items: center;">
+    <label for="ordenar" style="margin-right: 10px;">Ordenar por:</label>
+    <select id="ordenar">
+      <option value="mas-vendidos">Más vendidos</option>
+      <option value="az">Alfabéticamente, A–Z</option>
+      <option value="za">Alfabéticamente, Z–A</option>
+      <option value="precio-menor">Precio, menor a mayor</option>
+      <option value="precio-mayor">Precio, mayor a menor</option>
+    </select>
+  </div>
+</div>
 
   <div class="grid-productos" id="contenedor-todos"></div>
 
@@ -94,6 +107,69 @@
     .then(html => {
       document.getElementById("whatsapp").innerHTML = html;
     });
+</script>
+
+<script>
+  let productosOriginales = [];
+
+  function renderizarProductos(productos) {
+    const contenedor = document.getElementById("contenedor-todos");
+    contenedor.innerHTML = "";
+    productos.forEach(producto => {
+      if (producto.imagenes && producto.imagenes.length > 0) {
+        const div = document.createElement("div");
+        div.className = "producto-card";
+        const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
+        const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
+
+        div.innerHTML = `
+          <a href="producto.html?slug=${producto.slug}">
+            <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
+            <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
+            <h3 class="nombre-producto">${producto.nombre}</h3>
+            <div class="precio">
+              <span class="precio-actual">$${producto.precio.toLocaleString('es-CO')}</span>
+              <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
+            </div>
+            <div class="estrellas">★★★★★ <span class="valoracion">(5)</span></div>
+          </a>
+        `;
+        contenedor.appendChild(div);
+      }
+    });
+  }
+
+  fetch("productos.json")
+    .then(res => res.json())
+    .then(data => {
+      productosOriginales = data;
+      renderizarProductos(productosOriginales);
+    });
+
+  document.getElementById("ordenar").addEventListener("change", (e) => {
+    let productosOrdenados = [...productosOriginales];
+
+    switch (e.target.value) {
+      case "az":
+        productosOrdenados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        break;
+      case "za":
+        productosOrdenados.sort((a, b) => b.nombre.localeCompare(a.nombre));
+        break;
+      case "precio-menor":
+        productosOrdenados.sort((a, b) => a.precio - b.precio);
+        break;
+      case "precio-mayor":
+        productosOrdenados.sort((a, b) => b.precio - a.precio);
+        break;
+      case "mas-vendidos":
+      default:
+        productosOrdenados = [...productosOriginales]; // orden original
+        break;
+    }
+
+    renderizarProductos(productosOrdenados);
+  });
 </script>
 </body>
 </html>
