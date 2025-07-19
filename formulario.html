@@ -118,58 +118,7 @@
       <button type="submit">Enviar Pedido</button>
     </form>
 
-    <!-- Resumen visual de producto a la derecha -->
-    <div id="resumen-productos" class="resumen-productos"></div>
-  </div>
-</div>
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const producto = urlParams.get("producto");
-    const precio = urlParams.get("precio");
-
-    const productoInput = document.getElementById("producto");
-    const precioInput = document.getElementById("precio");
-    const productosContainer = document.getElementById("productos-container");
-    const totalContainer = document.getElementById("total-container");
-    const totalInput = document.getElementById("total");
-
-    if (producto && precio) {
-      productoInput.value = producto;
-      const precioNum = parseInt(precio.replace(/\./g, ""));
-      precioInput.value = "$" + precioNum.toLocaleString("es-CO");
-    } else {
-      productosContainer.innerHTML = "";
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      let total = 0;
-
-      carrito.forEach((prod, i) => {
-        total += prod.precio * prod.cantidad;
-
-        const inputProd = document.createElement("input");
-        inputProd.type = "text";
-        inputProd.name = `Producto_${i + 1}`;
-        inputProd.readOnly = true;
-        inputProd.value = `${prod.nombre} (x${prod.cantidad})`;
-        productosContainer.appendChild(inputProd);
-
-        const inputPrecio = document.createElement("input");
-        inputPrecio.type = "text";
-        inputPrecio.name = `Precio_${i + 1}`;
-        inputPrecio.readOnly = true;
-        inputPrecio.value = "$" + (prod.precio * prod.cantidad).toLocaleString("es-CO");
-        productosContainer.appendChild(inputPrecio);
-      });
-
-      totalContainer.style.display = "block";
-      totalInput.value = "$" + total.toLocaleString("es-CO");
-    }
-
-    document.getElementById("pedidoForm").addEventListener("submit", () => {
-      if (!producto || !precio) {
-        localStorage.removeItem("carrito");
-      }
-    });
-  </script>
+  
 
   <!-- Script: rotación top-bar móvil -->
   <script>
@@ -378,6 +327,10 @@
   mostrarResumenProductos();
 </script>
 
+<!-- Footer -->
+  <footer class="footer">
+    <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+  </footer>
 
 </body>
 </html>
