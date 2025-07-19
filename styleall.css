@@ -58,21 +58,6 @@
   }
 }
 
-.producto-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-  padding: 10px;
-  transition: transform 0.2s;
-}
-
-.producto-card img.producto-img {
-  width: 100%;
-  border-radius: 10px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
 @media (max-width: 768px) {
   .producto-card {
     padding: 6px;
