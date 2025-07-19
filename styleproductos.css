@@ -514,9 +514,8 @@ img {
 
 .logo-descripcion {
   display: block;
-  margin: 20px auto;
+  margin: 20px auto; /* centra horizontalmente */
   max-width: 350px;
   width: 80%;
   height: auto;
-  margin-left: -15px;
 }
