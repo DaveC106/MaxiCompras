@@ -17,21 +17,6 @@ body {
 }
 
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-}
 
 
 .footer {
@@ -115,7 +100,7 @@ main {
 
 .cart-container {
   max-width: 1000px;
-  margin: 10px 300px;
+  margin: 30px auto;
   background: white;
   padding: 30px;
   border-radius: 10px;
