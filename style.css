@@ -1261,7 +1261,7 @@ body {
 }
 #resultados-busqueda {
   position: absolute;
-  top: 80px;
+  top: 145px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
