@@ -147,41 +147,41 @@
   }
 
   // Mostrar productos en el checkout
-  const urlParams = new URLSearchParams(window.location.search);
-  const producto = urlParams.get("producto");
-  const precio = urlParams.get("precio");
-  const productosContainer = document.getElementById("lista-productos");
-  const totalContainer = document.getElementById("total-container");
-  const totalPagar = document.getElementById("total-pagar");
+  function mostrarProductosCheckout() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productoParam = urlParams.get("producto");
+    const precioParam = urlParams.get("precio");
+    const listaProductos = document.getElementById("lista-productos");
+    const totalPagar = document.getElementById("total-pagar");
 
-  function mostrarProductos() {
-    productosContainer.innerHTML = "";
+    // Limpiar lista primero
+    listaProductos.innerHTML = "";
     let total = 0;
 
-    if (producto && precio) {
-      // Modo producto individual
-      const precioNum = parseInt(precio.replace(/\./g, ""));
+    // Verificar si viene de producto individual
+    if (productoParam && precioParam) {
+      const precioNum = parseInt(precioParam.replace(/\./g, ""));
       total = precioNum;
       
       const productoHTML = `
         <div class="producto-item">
           <div class="producto-info">
             <div class="producto-texto">
-              <span class="producto-nombre">${producto}</span>
+              <span class="producto-nombre">${decodeURIComponent(productoParam)}</span>
             </div>
           </div>
           <span class="producto-precio">$${precioNum.toLocaleString("es-CO")}</span>
         </div>
       `;
-      productosContainer.innerHTML = productoHTML;
-      
-    } else {
-      // Modo carrito
+      listaProductos.innerHTML = productoHTML;
+    } 
+    // Si no, verificar el carrito
+    else {
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
       
       if (carrito.length === 0) {
-        productosContainer.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
-        totalContainer.style.display = "none";
+        listaProductos.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
+        document.getElementById("total-container").style.display = "none";
         return;
       }
       
@@ -201,34 +201,37 @@
             <span class="producto-precio">$${subtotal.toLocaleString("es-CO")}</span>
           </div>
         `;
-        productosContainer.innerHTML += productoHTML;
+        listaProductos.innerHTML += productoHTML;
       });
     }
     
+    // Actualizar total
     totalPagar.textContent = `$${total.toLocaleString("es-CO")}`;
-    totalContainer.style.display = "block";
+    document.getElementById("total-container").style.display = "block";
     
     // Agregar campos ocultos al formulario
-    agregarCamposOcultos();
+    agregarCamposOcultos(productoParam, precioParam);
   }
 
-  function agregarCamposOcultos() {
+  function agregarCamposOcultos(productoParam, precioParam) {
     const form = document.getElementById("pedidoForm");
     
-    if (producto && precio) {
+    // Eliminar campos ocultos antiguos
+    document.querySelectorAll('input[type="hidden"][name^="Producto_"], input[type="hidden"][name^="Precio_"]').forEach(el => el.remove());
+    
+    if (productoParam && precioParam) {
       // Producto individual
       const inputProd = document.createElement("input");
       inputProd.type = "hidden";
-      inputProd.name = "Producto_1";
-      inputProd.value = producto;
+      inputProd.name = "Producto";
+      inputProd.value = decodeURIComponent(productoParam);
       form.appendChild(inputProd);
       
       const inputPrecio = document.createElement("input");
       inputPrecio.type = "hidden";
-      inputPrecio.name = "Precio_1";
-      inputPrecio.value = precio;
+      inputPrecio.name = "Precio";
+      inputPrecio.value = precioParam;
       form.appendChild(inputPrecio);
-      
     } else {
       // Carrito
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -248,16 +251,19 @@
     }
     
     // Campo total
-    const inputTotal = document.createElement("input");
-    inputTotal.type = "hidden";
-    inputTotal.name = "Total";
-    inputTotal.value = totalPagar.textContent;
-    form.appendChild(inputTotal);
+    const totalHidden = document.querySelector('input[type="hidden"][name="Total"]') || document.createElement("input");
+    totalHidden.type = "hidden";
+    totalHidden.name = "Total";
+    totalHidden.value = document.getElementById("total-pagar").textContent;
+    if (!document.querySelector('input[type="hidden"][name="Total"]')) {
+      form.appendChild(totalHidden);
+    }
   }
 
   // Evento submit del formulario
   document.getElementById("pedidoForm").addEventListener("submit", () => {
-    if (!producto || !precio) {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.get("producto") || !urlParams.get("precio")) {
       localStorage.removeItem("carrito");
       actualizarContadorCarrito();
     }
@@ -383,7 +389,7 @@
   // Inicializar
   document.addEventListener("DOMContentLoaded", () => {
     actualizarContadorCarrito();
-    mostrarProductos();
+    mostrarProductosCheckout();
   });
 </script>
 
