@@ -46,7 +46,6 @@
       
       <h3>1. Contacto y Envío</h3>
       <div class="form-grid">
-        <!-- Todos los campos del formulario... -->
         <div class="form-group">
           <label for="email">Correo electrónico *</label>
           <input type="email" id="email" name="CorreoElectronico" required>
@@ -96,21 +95,24 @@
         </div>
       </div>
 
-      <!-- Productos y precios -->
+      <!-- Sección de productos mejorada -->
       <div id="productos-container">
-        <label for="producto">Producto</label>
-        <input type="text" id="producto" name="Producto" readonly>
-
-        <label for="precio">Precio</label>
-        <input type="text" id="precio" name="Precio" readonly>
+        <div class="producto-header">
+          <h4>Tus Productos</h4>
+        </div>
+        <div class="producto-list" id="lista-productos">
+          <!-- Los productos se generarán aquí dinámicamente -->
+        </div>
       </div>
 
-      <div id="total-container" style="display:none;">
-        <label for="total">Total</label>
-        <input type="text" id="total" name="Total" readonly>
+      <div id="total-container">
+        <div class="total-info">
+          <span class="total-label">Total a Pagar</span>
+          <span class="total-monto" id="total-pagar">$0</span>
+        </div>
       </div>
 
-      <!-- Sección de pago actualizada -->
+      <!-- Sección de pago -->
       <h3>Pago</h3>
       <label>
         <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
@@ -120,7 +122,7 @@
       <input type="hidden" name="_next" value="https://maxicomprass.store">
       <input type="hidden" name="_captcha" value="false">
 
-      <!-- Botón enviar -->
+      <!-- Botón enviar mejorado -->
       <button type="submit">Enviar Pedido</button>
     </form>
 
@@ -130,55 +132,138 @@
 </div>
 
 <script>
+  // Función para actualizar el contador del carrito
+  function actualizarContadorCarrito() {
+    const contador = document.getElementById("contadorCarrito");
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+
+    if (total > 0) {
+      contador.textContent = total;
+      contador.style.display = "inline-block";
+    } else {
+      contador.style.display = "none";
+    }
+  }
+
+  // Mostrar productos en el checkout
   const urlParams = new URLSearchParams(window.location.search);
   const producto = urlParams.get("producto");
   const precio = urlParams.get("precio");
-
-  const productoInput = document.getElementById("producto");
-  const precioInput = document.getElementById("precio");
-  const productosContainer = document.getElementById("productos-container");
+  const productosContainer = document.getElementById("lista-productos");
   const totalContainer = document.getElementById("total-container");
-  const totalInput = document.getElementById("total");
+  const totalPagar = document.getElementById("total-pagar");
 
-  if (producto && precio) {
-    productoInput.value = producto;
-    const precioNum = parseInt(precio.replace(/\./g, ""));
-    precioInput.value = "$" + precioNum.toLocaleString("es-CO");
-  } else {
+  function mostrarProductos() {
     productosContainer.innerHTML = "";
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let total = 0;
 
-    carrito.forEach((prod, i) => {
-      total += prod.precio * prod.cantidad;
-
-      const inputProd = document.createElement("input");
-      inputProd.type = "text";
-      inputProd.name = `Producto_${i + 1}`;
-      inputProd.readOnly = true;
-      inputProd.value = `${prod.nombre} (x${prod.cantidad})`;
-      productosContainer.appendChild(inputProd);
-
-      const inputPrecio = document.createElement("input");
-      inputPrecio.type = "text";
-      inputPrecio.name = `Precio_${i + 1}`;
-      inputPrecio.readOnly = true;
-      inputPrecio.value = "$" + (prod.precio * prod.cantidad).toLocaleString("es-CO");
-      productosContainer.appendChild(inputPrecio);
-    });
-
+    if (producto && precio) {
+      // Modo producto individual
+      const precioNum = parseInt(precio.replace(/\./g, ""));
+      total = precioNum;
+      
+      const productoHTML = `
+        <div class="producto-item">
+          <div class="producto-info">
+            <div class="producto-texto">
+              <span class="producto-nombre">${producto}</span>
+            </div>
+          </div>
+          <span class="producto-precio">$${precioNum.toLocaleString("es-CO")}</span>
+        </div>
+      `;
+      productosContainer.innerHTML = productoHTML;
+      
+    } else {
+      // Modo carrito
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      
+      if (carrito.length === 0) {
+        productosContainer.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
+        totalContainer.style.display = "none";
+        return;
+      }
+      
+      carrito.forEach(prod => {
+        const subtotal = prod.precio * prod.cantidad;
+        total += subtotal;
+        
+        const productoHTML = `
+          <div class="producto-item">
+            <div class="producto-info">
+              ${prod.imagen ? `<img src="${prod.imagen}" alt="${prod.nombre}" class="producto-imagen">` : ''}
+              <div class="producto-texto">
+                <span class="producto-nombre">${prod.nombre}</span>
+                <span class="producto-cantidad">Cantidad: ${prod.cantidad}</span>
+              </div>
+            </div>
+            <span class="producto-precio">$${subtotal.toLocaleString("es-CO")}</span>
+          </div>
+        `;
+        productosContainer.innerHTML += productoHTML;
+      });
+    }
+    
+    totalPagar.textContent = `$${total.toLocaleString("es-CO")}`;
     totalContainer.style.display = "block";
-    totalInput.value = "$" + total.toLocaleString("es-CO");
+    
+    // Agregar campos ocultos al formulario
+    agregarCamposOcultos();
   }
 
+  function agregarCamposOcultos() {
+    const form = document.getElementById("pedidoForm");
+    
+    if (producto && precio) {
+      // Producto individual
+      const inputProd = document.createElement("input");
+      inputProd.type = "hidden";
+      inputProd.name = "Producto_1";
+      inputProd.value = producto;
+      form.appendChild(inputProd);
+      
+      const inputPrecio = document.createElement("input");
+      inputPrecio.type = "hidden";
+      inputPrecio.name = "Precio_1";
+      inputPrecio.value = precio;
+      form.appendChild(inputPrecio);
+      
+    } else {
+      // Carrito
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.forEach((prod, i) => {
+        const inputProd = document.createElement("input");
+        inputProd.type = "hidden";
+        inputProd.name = `Producto_${i + 1}`;
+        inputProd.value = `${prod.nombre} (x${prod.cantidad})`;
+        form.appendChild(inputProd);
+        
+        const inputPrecio = document.createElement("input");
+        inputPrecio.type = "hidden";
+        inputPrecio.name = `Precio_${i + 1}`;
+        inputPrecio.value = `$${(prod.precio * prod.cantidad).toLocaleString("es-CO")}`;
+        form.appendChild(inputPrecio);
+      });
+    }
+    
+    // Campo total
+    const inputTotal = document.createElement("input");
+    inputTotal.type = "hidden";
+    inputTotal.name = "Total";
+    inputTotal.value = totalPagar.textContent;
+    form.appendChild(inputTotal);
+  }
+
+  // Evento submit del formulario
   document.getElementById("pedidoForm").addEventListener("submit", () => {
     if (!producto || !precio) {
       localStorage.removeItem("carrito");
+      actualizarContadorCarrito();
     }
   });
-</script>
 
-<script>
+  // Rotación de mensajes en top-bar para móviles
   const spans = document.querySelectorAll(".top-bar span");
   let index = 0;
 
@@ -192,9 +277,8 @@
     mostrarSiguiente();
     setInterval(mostrarSiguiente, 4000);
   }
-</script>
 
-<script>
+  // Cargar productos para búsqueda
   let productosCargados = [];
   fetch('productos.json')
     .then(res => res.json())
@@ -204,9 +288,8 @@
     .catch(err => {
       console.error('Error cargando productos:', err);
     });
-</script>
 
-<script>
+  // Búsqueda de productos
   const iconoBusqueda = document.getElementById("iconoBusqueda");
   const inputBusqueda = document.getElementById("input-busqueda");
   const resultadosBusqueda = document.getElementById("resultados-busqueda");
@@ -258,21 +341,8 @@
 
     resultadosBusqueda.style.display = "flex";
   });
-</script>
 
-<!-- Mini Carrito -->
-<div id="mini-carrito" class="modal-carrito oculto">
-  <div class="contenido-carrito">
-    <h2>Tu Carrito</h2>
-    <div id="mini-carrito-items"></div>
-    <div class="mini-carrito-footer">
-      <button onclick="window.location.href='cart.html'" class="btn-ir-carrito">Ir al carrito</button>
-    </div>
-  </div>
-</div>
-<div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
-
-<script>
+  // Mini carrito
   const iconoCarrito = document.querySelector('img[alt="Carrito"]');
   const miniCarrito = document.getElementById("mini-carrito");
   const fondoCarrito = document.getElementById("fondo-oscuro-carrito");
@@ -309,27 +379,25 @@
     miniCarrito.classList.add("oculto");
     fondoCarrito.classList.add("oculto");
   });
-</script>
 
-<script>
-  function actualizarContadorCarrito() {
-    const contador = document.getElementById("contadorCarrito");
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
-
-    if (total > 0) {
-      contador.textContent = total;
-      contador.style.display = "inline-block";
-    } else {
-      contador.style.display = "none";
-    }
-  }
-
+  // Inicializar
   document.addEventListener("DOMContentLoaded", () => {
     actualizarContadorCarrito();
+    mostrarProductos();
   });
 </script>
+
+<!-- Mini Carrito -->
+<div id="mini-carrito" class="modal-carrito oculto">
+  <div class="contenido-carrito">
+    <h2>Tu Carrito</h2>
+    <div id="mini-carrito-items"></div>
+    <div class="mini-carrito-footer">
+      <button onclick="window.location.href='cart.html'" class="btn-ir-carrito">Ir al carrito</button>
+    </div>
+  </div>
+</div>
+<div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
 
 <div id="whatsapp"></div>
 <script>
