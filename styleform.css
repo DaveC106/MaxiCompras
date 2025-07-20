@@ -274,3 +274,172 @@ body {
     padding: 0.625rem;
   }
 }
+
+/* ==================== */
+/* ESTILOS PARA PRODUCTOS */
+/* ==================== */
+
+#productos-container {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: var(--form-radius);
+  border: 1px solid var(--form-border);
+  margin: 1.5rem 0;
+}
+
+.producto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.producto-item:last-child {
+  border-bottom: none;
+}
+
+.producto-nombre {
+  font-weight: 500;
+  color: var(--form-text);
+  flex: 2;
+  padding-right: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.producto-precio {
+  font-weight: 600;
+  color: var(--form-primary);
+  flex: 1;
+  text-align: right;
+  min-width: fit-content;
+}
+
+/* ==================== */
+/* ESTILOS PARA TOTAL */
+/* ==================== */
+
+#total-container {
+  background: linear-gradient(135deg, var(--form-primary), #0056b3);
+  padding: 1.25rem;
+  border-radius: var(--form-radius);
+  margin: 1.5rem 0;
+  box-shadow: var(--form-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-label {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.total-monto {
+  color: white;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* ==================== */
+/* ESTILOS PARA BOTÓN MEJORADO */
+/* ==================== */
+
+.form-container button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--form-success), #1e7e34);
+  color: white;
+  border: none;
+  border-radius: var(--form-radius);
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--form-transition);
+  box-shadow: var(--form-shadow);
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-container button[type="submit"]:hover {
+  background: linear-gradient(135deg, #1e7e34, #155724);
+  transform: translateY(-2px);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.form-container button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.form-container button[type="submit"]::before {
+  content: "→";
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.form-container button[type="submit"]:hover::before {
+  transform: translateX(3px);
+}
+
+/* ==================== */
+/* AJUSTES RESPONSIVOS */
+/* ==================== */
+
+@media (max-width: 768px) {
+  .producto-item {
+    padding: 0.625rem 0;
+  }
+  
+  .producto-nombre {
+    font-size: 0.9375rem;
+  }
+  
+  .producto-precio {
+    font-size: 0.9375rem;
+  }
+  
+  .total-label {
+    font-size: 1rem;
+  }
+  
+  .total-monto {
+    font-size: 1.1rem;
+  }
+  
+  .form-container button[type="submit"] {
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #productos-container {
+    padding: 0.75rem;
+  }
+  
+  .producto-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+  }
+  
+  .producto-precio {
+    text-align: left;
+    align-self: flex-end;
+  }
+  
+  .form-container button[type="submit"] {
+    padding: 0.75rem;
+    font-size: 0.9375rem;
+    margin-top: 1rem;
+  }
+}
