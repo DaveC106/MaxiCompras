@@ -87,7 +87,7 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .form-grid,
   #productos-container,
   #total-container {
