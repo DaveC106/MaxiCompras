@@ -32,20 +32,25 @@
   <span><img src="img/importadores.webp" alt="Calidad" class="icono"> Somos Importadores</span>
 </div>
 
-<!-- Encabezado -->
+  <!-- Encabezado -->
 <header class="main-header">
-<a href="index.html">
   <div class="logo">
-    <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
+    <a href="index.html">
+      <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
+    </a>
   </div>
-</a>
+
+  <div class="barra-busqueda" id="barraBusqueda">
+    <input type="text" id="input-busqueda" placeholder="Buscar productos..." />
+  </div>
+
   <div class="icons">
-  <img src="./img/search.webp" alt="Buscar" />
-  <div class="carrito-icono">
-    <img src="./img/cart.webp" alt="Carrito" />
-    <span class="contador-carrito" id="contadorCarrito"></span>
+    <img src="img/search.webp" alt="Buscar" id="iconoBusqueda" />
+    <div class="carrito-icono">
+      <img src="./img/cart.webp" alt="Carrito" />
+      <span class="contador-carrito" id="contadorCarrito"></span>
+    </div>
   </div>
-</div>
 </header>
 
   <h2 style="text-align: center;">Todos los Productos</h2>
@@ -175,6 +180,120 @@
 
     renderizarProductos(productosOrdenados);
   });
+</script>
+
+<!--scripts relacionados a funcionamiento de buscador y de carro y toda su logica-->
+
+<script>
+const iconoBusqueda = document.getElementById("iconoBusqueda");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
+
+let buscadorActivo = false;
+
+iconoBusqueda.addEventListener("click", () => {
+  buscadorActivo = !buscadorActivo;
+  if (buscadorActivo) {
+    inputBusqueda.style.display = "block";
+    inputBusqueda.focus();
+  } else {
+    inputBusqueda.style.display = "none";
+    inputBusqueda.value = "";
+    resultadosBusqueda.style.display = "none";
+  }
+});
+
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.trim().toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  if (!texto) {
+    resultadosBusqueda.style.display = "none";
+    return;
+  }
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
+  } else {
+    filtrados.forEach(producto => {
+      const div = document.createElement("div");
+      div.className = "producto-card";
+      div.innerHTML = `
+        <a href="producto.html?slug=${producto.slug}">
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" style="width:100%;border-radius:5px;" />
+          <h3>${producto.nombre}</h3>
+          <p><strong>$${producto.precio.toLocaleString('es-CO')}</strong></p>
+        </a>
+      `;
+      resultadosBusqueda.appendChild(div);
+    });
+  }
+
+  resultadosBusqueda.style.display = "flex";
+});
+
+</script>
+
+<script>const iconoCarrito = document.querySelector('img[alt="Carrito"]');
+const miniCarrito = document.getElementById("mini-carrito");
+const fondoCarrito = document.getElementById("fondo-oscuro-carrito");
+const contenedorMini = document.getElementById("mini-carrito-items");
+
+iconoCarrito.addEventListener("click", () => {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  contenedorMini.innerHTML = "";
+
+  if (carrito.length === 0) {
+    contenedorMini.innerHTML = "<p>Tu carrito está vacío.</p>";
+  } else {
+    carrito.forEach(producto => {
+      const div = document.createElement("div");
+      div.style.marginBottom = "10px";
+      div.innerHTML = `
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img src="${producto.imagen}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:5px;">
+          <div>
+            <p style="margin:0;">${producto.nombre}</p>
+            <small>$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</small>
+          </div>
+        </div>
+      `;
+      contenedorMini.appendChild(div);
+    });
+  }
+
+  miniCarrito.classList.remove("oculto");
+  fondoCarrito.classList.remove("oculto");
+});
+
+fondoCarrito.addEventListener("click", () => {
+  miniCarrito.classList.add("oculto");
+  fondoCarrito.classList.add("oculto");
+});
+</script>
+
+<script>function actualizarContadorCarrito() {
+  const contador = document.getElementById("contadorCarrito");
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+
+  if (total > 0) {
+    contador.textContent = total;
+    contador.style.display = "inline-block";
+  } else {
+    contador.style.display = "none";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarContadorCarrito();
+});
+actualizarContadorCarrito();
 </script>
 </body>
 </html>
