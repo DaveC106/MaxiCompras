@@ -183,10 +183,33 @@ body {
     font-size: 12px;
   }
 }
-
-
 @media (max-width: 768px) {
   .grid-productos {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .producto-card {
+    padding: 10px;
+  }
+
+  .producto-card img.producto-img {
+    height: 140px;
+  }
+
+  .nombre-producto {
+    font-size: 14px;
+  }
+
+  .precio {
+    font-size: 14px;
+  }
+
+  .etiqueta-descuento {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  .estrellas {
+    font-size: 13px;
   }
 }
