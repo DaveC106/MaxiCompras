@@ -1,13 +1,4 @@
-/* Aplica solo a textos dentro del formulario */
-#pedidoForm label,
-#pedidoForm h2,
-#pedidoForm h3,
-#pedidoForm input,
-#pedidoForm select,
-#pedidoForm button,
-#pedidoForm p {
-  font-weight: bold;
-}
+
 .checkout-layout {
   max-width: 1000px;
   margin: 40px auto;
