@@ -1,25 +1,31 @@
-
-.checkout-layout {
-  max-width: 1000px;
-  margin: 40px auto;
+/* === Reset básico === */
+.form-container {
+  max-width: 1200px;
+  margin: 2rem auto;
   padding: 2rem;
-  background: #fefefe;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff8f0;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  color: #333;
+  font-family: 'Arial', sans-serif;
 }
 
-h2, h3 {
-  color: #333;
+.form-container h2,
+.form-container h3 {
+  color: #d35400;
   margin-bottom: 1rem;
-  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
 .form-group {
@@ -28,73 +34,225 @@ h2, h3 {
 }
 
 .form-group label {
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-  color: #444;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #e67e22;
 }
 
 .form-group input,
 .form-group select {
-  padding: 10px 12px;
+  padding: 0.75rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-  outline: none;
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #007bff;
+  outline: none;
+  border-color: #f39c12;
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+}
+
+button[type="submit"] {
+  background-color: #e67e22;
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #d35400;
 }
 
 #productos-container,
 #total-container {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-}
-
-#productos-container label,
-#total-container label {
-  font-weight: 500;
-  color: #333;
 }
 
 #productos-container input,
 #total-container input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 14px;
+  background-color: #fffdf6;
 }
 
-button[type="submit"] {
+input[readonly] {
+  background-color: #fefae0;
+  border: 1px solid #eee;
+}
+
+input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+label[for="producto"],
+label[for="precio"],
+label[for="total"] {
+  font-weight: bold;
+  color: #e67e22;
+  margin-top: 1rem;
+}
+
+/* === Responsive Grid para desktop === */
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* === Estilos resumen a la derecha (si deseas usarlo) === */
+.resumen-productos {
+  background-color: #fff3cd;
+  padding: 1rem;
+  border-radius: 10px;
   margin-top: 2rem;
-  padding: 12px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
+  border: 1px solid #ffeeba;
+}
+
+/* === Ajustes adicionales opcionales === */
+.checkout-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+/* === Fondo del formulario === */
+body {
+  background: linear-gradient(to bottom right, #fff3e0, #ffeaa7);
+}
+
+/* === Contenedor del formulario === */
+.form-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* === Títulos === */
+.form-container h2,
+.form-container h3 {
+  color: #d35400;
+  margin-bottom: 1rem;
+}
+
+/* === Estructura del formulario === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* === Grid de inputs === */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #e67e22;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #f39c12;
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+}
+
+/* === Inputs solo lectura === */
+input[readonly] {
+  background-color: #fefae0;
+  border: 1px solid #eee;
+}
+
+/* === Estilos para productos / precios / total === */
+#productos-container,
+#total-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* === Botón con degradado y animación === */
+button[type="submit"] {
+  background: linear-gradient(to right, #f39c12, #e67e22);
+  color: white;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   border: none;
-  border-radius: 12px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
+  box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
 }
 
-@media (max-width: 600px) {
-  .form-grid,
-  #productos-container,
-  #total-container {
-    grid-template-columns: 1fr;
-  }
+button[type="submit"]::after {
+  content: "";
+  position: absolute;
+  width: 140%;
+  height: 100%;
+  top: 0;
+  left: -140%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-30deg);
+  transition: left 0.5s ease;
+}
 
-  button[type="submit"] {
-    width: 100%;
+button[type="submit"]:hover::after {
+  left: 100%;
+}
+
+/* === Radios de pago === */
+input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+/* === Resumen de productos === */
+.resumen-productos {
+  background-color: #fff3cd;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ffeeba;
+  margin-top: 2rem;
+}
+
+/* === Responsive Grid para pantallas grandes === */
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
