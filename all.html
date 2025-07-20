@@ -5,17 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Todos los Productos</title>
   <link rel="icon" href="img/logomaxicompras.webp" type="image/webp">
-  <!-- Meta descripción -->
   <meta name="description" content="Explora todos los productos disponibles en MaxiCompras. Ofertas únicas en tecnología, hogar, bienestar y mucho más.">
-
-  <!-- Meta etiquetas Open Graph (para compartir en redes) -->
   <meta property="og:title" content="Todos los Productos | MaxiCompras" />
   <meta property="og:description" content="Descubre todo lo que tenemos para ti en MaxiCompras. Productos seleccionados con descuentos y envío gratis a toda Colombia." />
   <meta property="og:image" content="https://maxicomprass.store/img/logomaxicompras.webp" />
   <meta property="og:url" content="https://maxicomprass.store/all.html" />
   <meta property="og:type" content="website" />
-
-  <!-- Meta etiquetas Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Todos los Productos | MaxiCompras" />
   <meta name="twitter:description" content="Ofertas en todos los productos de MaxiCompras. Aprovecha descuentos únicos hoy mismo." />
@@ -25,31 +20,29 @@
 </head>
 <body>
 
-     <!-- Barra superior -->
-  <div class="top-bar">
+<div class="top-bar">
   <span><img src="img/camion.webp" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
   <span><img src="img/telefono.webp" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
   <span><img src="img/importadores.webp" alt="Calidad" class="icono"> Somos Importadores</span>
 </div>
 
-<!-- Encabezado -->
 <header class="main-header">
-<a href="index.html">
-  <div class="logo">
-    <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
-  </div>
-</a>
+  <a href="index.html">
+    <div class="logo">
+      <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
+    </div>
+  </a>
   <div class="icons">
-  <img src="./img/search.webp" alt="Buscar" />
-  <div class="carrito-icono">
-    <img src="./img/cart.webp" alt="Carrito" />
-    <span class="contador-carrito" id="contadorCarrito"></span>
+    <img src="./img/search.webp" alt="Buscar" />
+    <div class="carrito-icono">
+      <img src="./img/cart.webp" alt="Carrito" />
+      <span class="contador-carrito" id="contadorCarrito"></span>
+    </div>
   </div>
-</div>
 </header>
 
-  <h2 style="text-align: center;">Todos los Productos</h2>
-  <div class="ordenar-container">
+<h2 style="text-align: center;">Todos los Productos</h2>
+<div class="ordenar-container">
   <label for="ordenar" class="ordenar-label">Ordenar por:</label>
   <select id="ordenar" class="ordenar-select">
     <option value="mas-vendidos">Más vendidos</option>
@@ -58,54 +51,15 @@
     <option value="precio-menor">Precio, menor a mayor</option>
     <option value="precio-mayor">Precio, mayor a menor</option>
     <option value="mayor-descuento">Mayor descuento</option>
+    <option value="categoria">Categoría</option>
   </select>
 </div>
 
-  <div class="grid-productos" id="contenedor-todos"></div>
+<div class="grid-productos" id="contenedor-todos"></div>
 
-   <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
-  </footer>
-
-  <script>
-    fetch("productos.json")
-      .then(res => res.json())
-      .then(productos => {
-        const contenedor = document.getElementById("contenedor-todos");
-        productos.forEach(producto => {
-          if (producto.imagenes && producto.imagenes.length > 0) {
-            const div = document.createElement("div");
-            div.className = "producto-card";
-            const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
-            const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
-
-            div.innerHTML = `
-              <a href="producto.html?slug=${producto.slug}">
-                <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
-                <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
-                <h3 class="nombre-producto">${producto.nombre}</h3>
-                <div class="precio">
-                  <span class="precio-actual">$${producto.precio.toLocaleString('es-CO')}</span>
-                  <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
-                </div>
-                <div class="estrellas">★★★★★ <span class="valoracion">(5)</span></div>
-              </a>
-            `;
-            contenedor.appendChild(div);
-          }
-        });
-      });
-  </script>
-
-  <div id="whatsapp"></div>
-<script>
-  fetch("whatsapp.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("whatsapp").innerHTML = html;
-    });
-</script>
+<footer class="footer">
+  <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+</footer>
 
 <script>
   let productosOriginales = [];
@@ -160,21 +114,38 @@
       case "precio-mayor":
         productosOrdenados.sort((a, b) => b.precio - a.precio);
         break;
-           case "mayor-descuento":
+      case "mayor-descuento":
         productosOrdenados.sort((a, b) => {
           const descA = 100 - (a.precio / (a.precio_anterior || a.precio * 1.5)) * 100;
           const descB = 100 - (b.precio / (b.precio_anterior || b.precio * 1.5)) * 100;
           return descB - descA;
         });
         break;
+      case "categoria":
+        productosOrdenados.sort((a, b) => {
+          if (!a.categoria) return 1;
+          if (!b.categoria) return -1;
+          return a.categoria.localeCompare(b.categoria);
+        });
+        break;
       case "mas-vendidos":
       default:
-        productosOrdenados = [...productosOriginales]; // orden original
+        productosOrdenados = [...productosOriginales];
         break;
     }
 
     renderizarProductos(productosOrdenados);
   });
 </script>
+
+<div id="whatsapp"></div>
+<script>
+  fetch("whatsapp.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("whatsapp").innerHTML = html;
+    });
+</script>
+
 </body>
 </html>
