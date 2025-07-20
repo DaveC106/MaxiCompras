@@ -154,11 +154,12 @@
   }
 
   fetch("productos.json")
-    .then(res => res.json())
-    .then(data => {
-      productosOriginales = data;
-      renderizarProductos(productosOriginales);
-    });
+  .then(res => res.json())
+  .then(data => {
+    productosOriginales = data;
+    productosCargados = data; // 💥 aquí defines la variable que necesita el buscador
+    renderizarProductos(productosOriginales);
+  });
 
   document.getElementById("ordenar").addEventListener("change", (e) => {
     let productosOrdenados = [...productosOriginales];
