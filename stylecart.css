@@ -101,7 +101,7 @@ body {
 .cart-container {
   max-width: 1000px;
   margin: 30px auto;
-  background: white;
+  background: #f5f5f5;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
