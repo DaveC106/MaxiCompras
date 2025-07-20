@@ -16,18 +16,24 @@
     <span><img src="img/importadores.webp" alt="Calidad" class="icono"> Somos Importadores</span>
   </div>
 
+
   <!-- Encabezado -->
-  <header class="main-header">
-     <a href="index.html">
-    <div class="logo">
+<header class="main-header">
+  <div class="logo">
+    <a href="index.html">
       <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
-    </div>
-  </a>
-    <div class="icons">
-      <!-- Si no usas el icono de búsqueda, lo puedes quitar -->
-      <!-- <img src="./img/search.webp" alt="Buscar" /> -->
-    </div>
-  </header>
+    </a>
+  </div>
+
+  <div class="barra-busqueda" id="barraBusqueda">
+    <input type="text" id="input-busqueda" placeholder="Buscar productos..." />
+  </div>
+
+  <div class="icons">
+    <img src="img/search.webp" alt="Buscar" id="iconoBusqueda" />
+  </div>
+</header>
+<div id="resultados-busqueda" class="resultados-busqueda" style="display:none; flex-wrap: wrap; gap: 1rem; padding: 1rem;"></div>
 
   <!-- Contenido del carrito -->
   <main class="cart-container">
@@ -57,6 +63,7 @@
 
   <!-- Scripts -->
   <script>
+      let productosCargados = [];
     document.addEventListener("DOMContentLoaded", () => {
       const modal = document.getElementById("modal-confirmacion");
       const btnCancelar = document.getElementById("btn-cancelar");
@@ -167,5 +174,65 @@
   <footer class="footer">
     <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
   </footer>
+
+  <!--scripts relacionados a funcionamiento de buscador y de carro y toda su logica-->
+<script>
+const iconoBusqueda = document.getElementById("iconoBusqueda");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
+
+let buscadorActivo = false;
+
+iconoBusqueda.addEventListener("click", () => {
+  buscadorActivo = !buscadorActivo;
+
+  if (buscadorActivo) {
+    inputBusqueda.style.display = "block";
+    inputBusqueda.focus();
+  } else {
+    inputBusqueda.style.display = "none";
+    inputBusqueda.value = "";
+    resultadosBusqueda.style.display = "none";
+  }
+});
+
+
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.trim().toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  if (!texto) {
+    resultadosBusqueda.style.display = "none";
+    return;
+  }
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
+  } else {
+    filtrados.forEach(producto => {
+      const div = document.createElement("div");
+      div.className = "producto-card";
+      div.innerHTML = `
+        <a href="producto.html?slug=${producto.slug}">
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" style="width:100%;border-radius:5px;" />
+          <h3>${producto.nombre}</h3>
+          <p><strong>$${producto.precio.toLocaleString('es-CO')}</strong></p>
+        </a>
+      `;
+      resultadosBusqueda.appendChild(div);
+    });
+  }
+
+  resultadosBusqueda.style.display = "flex";
+});
+
+
+
+
+</script>
 </body>
 </html>
