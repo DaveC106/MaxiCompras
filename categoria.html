@@ -8,6 +8,7 @@
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="stylecatego.css" />
 </head>
 <body>
@@ -38,7 +39,7 @@
   <!-- CONTENIDO PRINCIPAL -->
   <section class="productos">
     <h2 id="titulo-categoria">Categoría</h2>
-    <div class="grid-productos"></div>
+    <div class="grid-productos-categoria"></div>
   </section>
 
   <!-- FOOTER -->
@@ -56,7 +57,7 @@
     window.location.href = "all.html";
   }
 
-    const contenedor = document.querySelector(".grid-productos");
+    const contenedor = document.querySelector(".grid-productos-categoria");
     const titulo = document.getElementById("titulo-categoria");
 
     titulo.textContent = categoriaSeleccionada.charAt(0).toUpperCase() + categoriaSeleccionada.slice(1);

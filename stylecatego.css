@@ -183,15 +183,22 @@ body {
     font-size: 12px;
   }
 }
+.grid-productos-categoria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
 @media (max-width: 768px) {
-  .grid-productos {
+  .grid-productos-categoria {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .producto-card {
     padding: 10px;
-    max-width: 100%; /* 🔥 Esto evita que se desborde */
-    width: 100%;      /* 🔥 Esto obliga a que se ajuste bien a su columna */
+    max-width: 100%;
+    width: 100%;
   }
 
   .producto-card img.producto-img {
