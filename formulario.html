@@ -340,45 +340,6 @@
     });
 </script>
 
-<script>
-  const resumenContainer = document.getElementById("resumen-productos");
-
-  function mostrarResumenProductos() {
-    resumenContainer.innerHTML = "";
-
-    let productos = [];
-
-    if (producto && precio) {
-      productos.push({
-        nombre: producto,
-        precio: parseInt(precio.replace(/\./g, "")),
-        imagen: "img/default.webp",
-        cantidad: 1
-      });
-    } else {
-      productos = JSON.parse(localStorage.getItem("carrito")) || [];
-    }
-
-    if (productos.length > 0) {
-      productos.forEach(p => {
-        const card = document.createElement("div");
-        card.className = "producto-resumen";
-        card.innerHTML = `
-          <img src="${p.imagen || 'img/default.webp'}" alt="${p.nombre}">
-          <div>
-            <p>${p.nombre}</p>
-            <strong>$${(p.precio * (p.cantidad || 1)).toLocaleString("es-CO")}</strong>
-            ${p.cantidad ? `<small>x${p.cantidad}</small>` : ""}
-          </div>
-        `;
-        resumenContainer.appendChild(card);
-      });
-    }
-  }
-
-  mostrarResumenProductos();
-</script>
-
 <!-- Footer -->
 <footer class="footer">
   <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
