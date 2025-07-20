@@ -1,25 +1,20 @@
-
-.checkout-layout {
-  max-width: 1000px;
-  margin: 40px auto;
+.form-container {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
   padding: 2rem;
-  background: #fefefe;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-h2, h3 {
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: center;
+.form-section {
+  margin-bottom: 2rem;
 }
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
 }
 
 .form-group {
@@ -27,74 +22,65 @@ h2, h3 {
   flex-direction: column;
 }
 
+.full-width {
+  grid-column: 1 / -1;
+}
+
 .form-group label {
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-  color: #444;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
 }
 
 .form-group input,
 .form-group select {
-  padding: 10px 12px;
+  padding: 0.8rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-  outline: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #007bff;
+  border-color: #5a67d8;
+  outline: none;
 }
 
-#productos-container,
-#total-container {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-#productos-container label,
-#total-container label {
-  font-weight: 500;
-  color: #333;
-}
-
-#productos-container input,
-#total-container input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-button[type="submit"] {
-  margin-top: 2rem;
-  padding: 12px 20px;
-  font-size: 16px;
-  background-color: #007bff;
+.btn-enviar {
+  width: 100%;
+  padding: 1rem;
+  background: #5a67d8;
   color: #fff;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
+  transition: background 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background-color: #0056b3;
+.btn-enviar:hover {
+  background: #434190;
 }
 
 @media (max-width: 600px) {
-  .form-grid,
-  #productos-container,
-  #total-container {
-    grid-template-columns: 1fr;
+  .form-container {
+    padding: 1rem;
   }
 
-  button[type="submit"] {
-    width: 100%;
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 0.95rem;
   }
 }
