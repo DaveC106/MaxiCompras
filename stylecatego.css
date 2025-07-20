@@ -161,28 +161,6 @@ body {
 
 
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .logo img {
-    width: 100px;
-  }
-
-  .icons img {
-    width: 24px;
-  }
-
-  .producto-card img.producto-img {
-    height: 160px;
-  }
-
-  .productos h2 {
-    font-size: 22px;
-  }
-
-  .etiqueta-descuento {
-    font-size: 12px;
-  }
-}
 @media (max-width: 768px) {
   .grid-productos {
     grid-template-columns: repeat(2, 1fr);
