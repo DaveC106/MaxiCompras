@@ -64,6 +64,14 @@
   <!-- Scripts -->
   <script>
       let productosCargados = [];
+      fetch('productos.json')
+  .then(res => res.json())
+  .then(data => {
+    productosCargados = data;
+  })
+  .catch(err => {
+    console.error('Error cargando productos:', err);
+  });
     document.addEventListener("DOMContentLoaded", () => {
       const modal = document.getElementById("modal-confirmacion");
       const btnCancelar = document.getElementById("btn-cancelar");
