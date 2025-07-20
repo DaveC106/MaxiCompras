@@ -368,10 +368,21 @@ const iconoBusqueda = document.getElementById("iconoBusqueda");
 const inputBusqueda = document.getElementById("input-busqueda");
 const resultadosBusqueda = document.getElementById("resultados-busqueda");
 
+let buscadorActivo = false;
+
 iconoBusqueda.addEventListener("click", () => {
-  inputBusqueda.style.display = "block";
-  inputBusqueda.focus();
+  buscadorActivo = !buscadorActivo;
+
+  if (buscadorActivo) {
+    inputBusqueda.style.display = "block";
+    inputBusqueda.focus();
+  } else {
+    inputBusqueda.style.display = "none";
+    inputBusqueda.value = "";
+    resultadosBusqueda.style.display = "none";
+  }
 });
+
 
 inputBusqueda.addEventListener("input", () => {
   const texto = inputBusqueda.value.trim().toLowerCase();
@@ -549,6 +560,9 @@ fondoCarrito.addEventListener("click", () => {
     setInterval(mostrarMensaje, 4000); // cambia cada 4 seg
   }
 </script>
+
+
+
 
 <script>
 function actualizarContadorCarrito() {
