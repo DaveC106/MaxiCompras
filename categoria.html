@@ -20,21 +20,27 @@
     <span><img src="img/importadores.webp" alt="Calidad" class="icono"> Somos Importadores</span>
   </div>
 
- <!-- Encabezado -->
+  <!-- Encabezado -->
 <header class="main-header">
-  <a href="index.html">
-    <div class="logo">
+  <div class="logo">
+    <a href="index.html">
       <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
-    </div>
-  </a>
+    </a>
+  </div>
+
+  <div class="barra-busqueda" id="barraBusqueda">
+    <input type="text" id="input-busqueda" placeholder="Buscar productos..." />
+  </div>
+
   <div class="icons">
-    <img src="img/search.webp" alt="Buscar" />
+    <img src="img/search.webp" alt="Buscar" id="iconoBusqueda" />
     <div class="carrito-icono">
-      <img src="img/cart.webp" alt="Carrito" />
+      <img src="./img/cart.webp" alt="Carrito" />
       <span class="contador-carrito" id="contadorCarrito"></span>
     </div>
   </div>
 </header>
+<div id="resultados-busqueda" class="resultados-busqueda" style="display:none; flex-wrap: wrap; gap: 1rem; padding: 1rem;"></div>
 
   <!-- CONTENIDO PRINCIPAL -->
   <section class="productos">
@@ -125,75 +131,75 @@
     }
   </script>
 
-<!-- Script: Buscador -->
-<div id="modal-busqueda" class="modal-busqueda oculto">
-  <div class="contenido-busqueda">
-    <button id="cerrar-busqueda" class="cerrar">✖</button>
-    <input type="text" id="input-modal" placeholder="Buscar producto..." />
-    <div id="resultados-modal" class="grid-productos"></div>
-  </div>
-</div>
 
+<!--scripts de carro y busqueda-->
 <script>
-  const modal = document.getElementById("modal-busqueda");
-  const abrirModal = document.querySelector('img[alt="Buscar"]');
-  const cerrarModal = document.getElementById("cerrar-busqueda");
-  const inputModal = document.getElementById("input-modal");
-  const resultadosModal = document.getElementById("resultados-modal");
-
-  let productosCargados = [];
-
-  fetch("productos.json")
-    .then(res => res.json())
-    .then(productos => {
-      productosCargados = productos;
-    });
-
-  abrirModal.addEventListener("click", () => {
-    modal.classList.remove("oculto");
-    inputModal.focus();
+   let productosCargados = [];
+      fetch('productos.json')
+  .then(res => res.json())
+  .then(data => {
+    productosCargados = data;
+  })
+  .catch(err => {
+    console.error('Error cargando productos:', err);
   });
+</script>
+ 
+<script>
+const iconoBusqueda = document.getElementById("iconoBusqueda");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
 
-  cerrarModal.addEventListener("click", () => {
-    modal.classList.add("oculto");
-    inputModal.value = "";
-    resultadosModal.innerHTML = "";
-  });
+let buscadorActivo = false;
 
-  inputModal.addEventListener("input", () => {
-    const texto = inputModal.value.toLowerCase();
-    resultadosModal.innerHTML = "";
+iconoBusqueda.addEventListener("click", () => {
+  buscadorActivo = !buscadorActivo;
 
-    const filtrados = productosCargados.filter(p =>
-      p.nombre.toLowerCase().includes(texto)
-    );
+  if (buscadorActivo) {
+    inputBusqueda.style.display = "block";
+    inputBusqueda.focus();
+  } else {
+    inputBusqueda.style.display = "none";
+    inputBusqueda.value = "";
+    resultadosBusqueda.style.display = "none";
+  }
+});
 
-    if (filtrados.length === 0) {
-      resultadosModal.innerHTML = "<p>No se encontraron productos.</p>";
-      return;
-    }
 
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.trim().toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  if (!texto) {
+    resultadosBusqueda.style.display = "none";
+    return;
+  }
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
+  } else {
     filtrados.forEach(producto => {
-      const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
-      const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
-
       const div = document.createElement("div");
       div.className = "producto-card";
       div.innerHTML = `
         <a href="producto.html?slug=${producto.slug}">
-          <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
-          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
-          <h3 class="nombre-producto">${producto.nombre}</h3>
-          <div class="precio">
-            <span class="precio-actual">$${producto.precio.toLocaleString('es-CO')}</span>
-            <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
-          </div>
-          <div class="estrellas">★★★★★ <span class="valoracion">(5)</span></div>
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" style="width:100%;border-radius:5px;" />
+          <h3>${producto.nombre}</h3>
+          <p><strong>$${producto.precio.toLocaleString('es-CO')}</strong></p>
         </a>
       `;
-      resultadosModal.appendChild(div);
+      resultadosBusqueda.appendChild(div);
     });
-  });
+  }
+
+  resultadosBusqueda.style.display = "flex";
+});
+
+
 </script>
 
 <!-- Script: Mini carrito -->
