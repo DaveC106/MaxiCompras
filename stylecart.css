@@ -102,6 +102,7 @@ body {
 }
 
 .cart-container {
+  width: 90wv;
   max-width: 1000px;
   margin: 30px auto;
   background: #f5f5f5;
