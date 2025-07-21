@@ -189,6 +189,44 @@ if (Array.isArray(extra.descripciones)) {
 
   document.querySelector(".producto-container").appendChild(descripcionDiv);
 }
+// 🔽 Te podría interesar...
+const relacionadosDiv = document.createElement("div");
+relacionadosDiv.className = "relacionados";
+relacionadosDiv.style.marginTop = "50px";
+
+const titulo = document.createElement("h2");
+titulo.textContent = "Te podría interesar...";
+titulo.style.textAlign = "center";
+titulo.style.marginBottom = "25px";
+titulo.style.fontSize = "1.6rem";
+titulo.style.fontWeight = "bold";
+relacionadosDiv.appendChild(titulo);
+
+const contenedor = document.createElement("div");
+contenedor.className = "productos-relacionados";
+contenedor.style.display = "grid";
+contenedor.style.gridTemplateColumns = "repeat(auto-fit, minmax(180px, 1fr))";
+contenedor.style.gap = "1rem";
+contenedor.style.padding = "0 1rem";
+
+let sugerencias = productos.filter(p => p.slug !== slug);
+sugerencias = sugerencias.sort(() => 0.5 - Math.random()).slice(0, 4); // 4 productos aleatorios
+
+sugerencias.forEach(p => {
+  const card = document.createElement("div");
+  card.innerHTML = `
+    <a href="producto.html?slug=${p.slug}" style="text-decoration:none;color:inherit;">
+      <img src="${p.imagenes[0]}" alt="${p.nombre}" style="width:100%;border-radius:10px;">
+      <h3 style="font-size:1rem;margin-top:0.5rem;">${p.nombre}</h3>
+      <p style="color:#e91e63;font-weight:bold;">$${p.precio.toLocaleString("es-CO")}</p>
+    </a>
+  `;
+  contenedor.appendChild(card);
+});
+
+relacionadosDiv.appendChild(contenedor);
+document.querySelector(".producto-container").appendChild(relacionadosDiv);
+
 }});
 
 
@@ -231,54 +269,7 @@ if (Array.isArray(extra.descripciones)) {
 });
 
     });
-    // 🔽 Te podría interesar...
-const relacionados = productos
-  .filter(p => p.slug !== slug) // Excluye el producto actual
-  .sort(() => 0.5 - Math.random()) // Aleatorio
-  .slice(0, 4); // Solo 4 productos
-
-const seccionInteres = document.createElement("div");
-seccionInteres.style.marginTop = "50px";
-seccionInteres.innerHTML = `
-  <h2 style="text-align:center; font-size:1.5rem; margin-bottom:20px;">🔎 Te podría interesar...</h2>
-  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;" id="productos-interes"></div>
-`;
-
-document.body.appendChild(seccionInteres); // Lo pone al final de todo
-
-const contenedor = document.getElementById("productos-interes");
-
-relacionados.forEach(p => {
-  const tarjeta = document.createElement("div");
-  tarjeta.style.width = "200px";
-  tarjeta.style.border = "1px solid #eee";
-  tarjeta.style.borderRadius = "10px";
-  tarjeta.style.overflow = "hidden";
-  tarjeta.style.textAlign = "center";
-  tarjeta.style.boxShadow = "0 0 8px rgba(0,0,0,0.05)";
-  tarjeta.style.transition = "transform 0.3s";
-  tarjeta.style.background = "#fff";
-  tarjeta.style.cursor = "pointer";
-
-  tarjeta.innerHTML = `
-    <a href="producto.html?slug=${p.slug}" style="text-decoration:none; color:inherit;">
-      <img src="${p.imagenes[0]}" alt="${p.nombre}" style="width:100%; height:150px; object-fit:cover;">
-      <h3 style="font-size:1rem; margin:0.5rem 0;">${p.nombre}</h3>
-      <p style="color:#28a745; font-weight:bold;">$${p.precio.toLocaleString("es-CO")}</p>
-    </a>
-  `;
-
-  tarjeta.addEventListener("mouseover", () => {
-    tarjeta.style.transform = "scale(1.05)";
-  });
-
-  tarjeta.addEventListener("mouseout", () => {
-    tarjeta.style.transform = "scale(1)";
-  });
-
-  contenedor.appendChild(tarjeta);
-});
-
+    
     </script>
 
 <!-- 🔻 Script: top-bar móvil -->
