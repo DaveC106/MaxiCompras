@@ -515,41 +515,4 @@ img {
 
 
 
-.relacionados {
-  margin-top: 50px;
-}
 
-.titulo-relacionados {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.6rem;
-  font-weight: bold;
-}
-
-.productos-relacionados {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  padding: 0 1rem;
-}
-
-.producto-card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.producto-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.producto-link h3 {
-  font-size: 1rem;
-  margin-top: 0.5rem;
-}
-
-.producto-link p {
-  color: #e91e63;
-  font-weight: bold;
-}
