@@ -204,33 +204,16 @@ relacionadosDiv.appendChild(titulo);
 
 const contenedor = document.createElement("div");
 contenedor.className = "productos-relacionados";
-
-// Estilos para pantallas grandes (grid normal)
-if (esMovil) {
-  contenedor.style.display = "flex";
-  contenedor.style.overflowX = "auto";
-  contenedor.style.gap = "1rem";
-  contenedor.style.padding = "1rem";
-  contenedor.style.scrollSnapType = "x mandatory";
-} else {
-  contenedor.style.display = "grid";
-  contenedor.style.gridTemplateColumns = "repeat(auto-fit, minmax(180px, 1fr))";
-  contenedor.style.gap = "1rem";
-  contenedor.style.padding = "0 1rem";
-}
+contenedor.style.display = "grid";
+contenedor.style.gridTemplateColumns = "repeat(auto-fit, minmax(180px, 1fr))";
+contenedor.style.gap = "1rem";
+contenedor.style.padding = "0 1rem";
 
 let sugerencias = productos.filter(p => p.slug !== slug);
-sugerencias = sugerencias.sort(() => 0.5 - Math.random()).slice(0, 10); // 10 productos aleatorios
+sugerencias = sugerencias.sort(() => 0.5 - Math.random()).slice(0, 4); // 4 productos aleatorios
 
 sugerencias.forEach(p => {
   const card = document.createElement("div");
-  card.style.flex = esMovil ? "0 0 70%" : "auto";
-  card.style.scrollSnapAlign = esMovil ? "start" : "none";
-  card.style.borderRadius = "10px";
-  card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
-  card.style.background = "#fff";
-  card.style.padding = "0.5rem";
-
   card.innerHTML = `
     <a href="producto.html?slug=${p.slug}" style="text-decoration:none;color:inherit;">
       <img src="${p.imagenes[0]}" alt="${p.nombre}" style="width:100%;border-radius:10px;">
@@ -243,7 +226,6 @@ sugerencias.forEach(p => {
 
 relacionadosDiv.appendChild(contenedor);
 document.querySelector(".producto-container").appendChild(relacionadosDiv);
-
 
 }});
 
