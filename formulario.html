@@ -218,19 +218,19 @@ function agregarCamposOcultos(productoParam, precioParam) {
   const form = document.getElementById("pedidoForm");
   document.querySelectorAll('input[type="hidden"][name^="Producto_"], input[type="hidden"][name^="Precio_"]').forEach(el => el.remove());
 
-  if (productoParam && precioParam) {
-    const inputProd = document.createElement("input");
-    inputProd.type = "hidden";
-    inputProd.name = "Producto";
-    inputProd.value = decodeURIComponent(productoParam);
-    form.appendChild(inputProd);
+if (productoSeleccionado) {
+  const inputProd = document.createElement("input");
+  inputProd.type = "hidden";
+  inputProd.name = "Producto";
+  inputProd.value = productoSeleccionado.nombre;
+  form.appendChild(inputProd);
 
-    const inputPrecio = document.createElement("input");
-    inputPrecio.type = "hidden";
-    inputPrecio.name = "Precio";
-    inputPrecio.value = precioParam;
-    form.appendChild(inputPrecio);
-  } else {
+  const inputPrecio = document.createElement("input");
+  inputPrecio.type = "hidden";
+  inputPrecio.name = "Precio";
+  inputPrecio.value = `$${productoSeleccionado.precio.toLocaleString("es-CO")}`;
+  form.appendChild(inputPrecio);
+} else {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     carrito.forEach((prod, i) => {
       const inputProd = document.createElement("input");
