@@ -1311,6 +1311,16 @@ body {
   font-size: 15px;
 }
 
+@media (max-width: 600px) {
+  #input-busqueda {
+    top: 110px; /* más abajo que el 85px original */
+  }
+
+  #resultados-busqueda {
+    top: 170px; /* también más abajo */
+  }
+}
+
 
 .producto-card {
   display: flex;
