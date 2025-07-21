@@ -39,7 +39,7 @@
 </header>
 <div id="resultados-busqueda" class="resultados-busqueda" style="display:none; flex-wrap: wrap; gap: 1rem; padding: 1rem;"></div>
 
-  <div class="checkout-layout">
+<div class="checkout-layout">
   <div class="form-container">
     <h2>Finaliza tu compra</h2>
     <form id="pedidoForm" action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
@@ -95,14 +95,12 @@
         </div>
       </div>
 
-      <!-- Sección de productos mejorada -->
+      <!-- Productos -->
       <div id="productos-container">
         <div class="producto-header">
           <h4>Tus Productos</h4>
         </div>
-        <div class="producto-list" id="lista-productos">
-          <!-- Los productos se generarán aquí dinámicamente -->
-        </div>
+        <div class="producto-list" id="lista-productos"></div>
       </div>
 
       <div id="total-container">
@@ -122,276 +120,11 @@
       <input type="hidden" name="_next" value="https://maxicomprass.store">
       <input type="hidden" name="_captcha" value="false">
 
-      <!-- Botón enviar mejorado -->
+      <!-- Botón enviar -->
       <button type="submit">Enviar Pedido</button>
     </form>
-
-    <!-- Resumen visual de producto a la derecha -->
-    <div id="resumen-productos" class="resumen-productos"></div>
   </div>
 </div>
-
-<script>
-  // Función para actualizar el contador del carrito
-  function actualizarContadorCarrito() {
-    const contador = document.getElementById("contadorCarrito");
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
-
-    if (total > 0) {
-      contador.textContent = total;
-      contador.style.display = "inline-block";
-    } else {
-      contador.style.display = "none";
-    }
-  }
-
-  // Mostrar productos en el checkout
-  function mostrarProductosCheckout() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const productoParam = urlParams.get("producto");
-    const precioParam = urlParams.get("precio");
-    const listaProductos = document.getElementById("lista-productos");
-    const totalPagar = document.getElementById("total-pagar");
-
-    // Limpiar lista primero
-    listaProductos.innerHTML = "";
-    let total = 0;
-
-    // Verificar si viene de producto individual
-    if (productoParam && precioParam) {
-      const precioNum = parseInt(precioParam.replace(/\./g, ""));
-      total = precioNum;
-      
-      const productoHTML = `
-        <div class="producto-item">
-          <div class="producto-info">
-            <div class="producto-texto">
-              <span class="producto-nombre">${decodeURIComponent(productoParam)}</span>
-            </div>
-          </div>
-          <span class="producto-precio">$${precioNum.toLocaleString("es-CO")}</span>
-        </div>
-      `;
-      listaProductos.innerHTML = productoHTML;
-    } 
-    // Si no, verificar el carrito
-    else {
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      
-      if (carrito.length === 0) {
-        listaProductos.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
-        document.getElementById("total-container").style.display = "none";
-        return;
-      }
-      
-      carrito.forEach(prod => {
-        const subtotal = prod.precio * prod.cantidad;
-        total += subtotal;
-        
-        const productoHTML = `
-          <div class="producto-item">
-            <div class="producto-info">
-              ${prod.imagen ? `<img src="${prod.imagen}" alt="${prod.nombre}" class="producto-imagen">` : ''}
-              <div class="producto-texto">
-                <span class="producto-nombre">${prod.nombre}</span>
-                <span class="producto-cantidad">Cantidad: ${prod.cantidad}</span>
-              </div>
-            </div>
-            <span class="producto-precio">$${subtotal.toLocaleString("es-CO")}</span>
-          </div>
-        `;
-        listaProductos.innerHTML += productoHTML;
-      });
-    }
-    
-    // Actualizar total
-    totalPagar.textContent = `$${total.toLocaleString("es-CO")}`;
-    document.getElementById("total-container").style.display = "block";
-    
-    // Agregar campos ocultos al formulario
-    agregarCamposOcultos(productoParam, precioParam);
-  }
-
-  function agregarCamposOcultos(productoParam, precioParam) {
-    const form = document.getElementById("pedidoForm");
-    
-    // Eliminar campos ocultos antiguos
-    document.querySelectorAll('input[type="hidden"][name^="Producto_"], input[type="hidden"][name^="Precio_"]').forEach(el => el.remove());
-    
-    if (productoParam && precioParam) {
-      // Producto individual
-      const inputProd = document.createElement("input");
-      inputProd.type = "hidden";
-      inputProd.name = "Producto";
-      inputProd.value = decodeURIComponent(productoParam);
-      form.appendChild(inputProd);
-      
-      const inputPrecio = document.createElement("input");
-      inputPrecio.type = "hidden";
-      inputPrecio.name = "Precio";
-      inputPrecio.value = precioParam;
-      form.appendChild(inputPrecio);
-    } else {
-      // Carrito
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito.forEach((prod, i) => {
-        const inputProd = document.createElement("input");
-        inputProd.type = "hidden";
-        inputProd.name = `Producto_${i + 1}`;
-        inputProd.value = `${prod.nombre} (x${prod.cantidad})`;
-        form.appendChild(inputProd);
-        
-        const inputPrecio = document.createElement("input");
-        inputPrecio.type = "hidden";
-        inputPrecio.name = `Precio_${i + 1}`;
-        inputPrecio.value = `$${(prod.precio * prod.cantidad).toLocaleString("es-CO")}`;
-        form.appendChild(inputPrecio);
-      });
-    }
-    
-    // Campo total
-    const totalHidden = document.querySelector('input[type="hidden"][name="Total"]') || document.createElement("input");
-    totalHidden.type = "hidden";
-    totalHidden.name = "Total";
-    totalHidden.value = document.getElementById("total-pagar").textContent;
-    if (!document.querySelector('input[type="hidden"][name="Total"]')) {
-      form.appendChild(totalHidden);
-    }
-  }
-
-  // Evento submit del formulario
-  document.getElementById("pedidoForm").addEventListener("submit", () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (!urlParams.get("producto") || !urlParams.get("precio")) {
-      localStorage.removeItem("carrito");
-      actualizarContadorCarrito();
-    }
-  });
-
-  // Rotación de mensajes en top-bar para móviles
-  const spans = document.querySelectorAll(".top-bar span");
-  let index = 0;
-
-  function mostrarSiguiente() {
-    spans.forEach((s, i) => s.classList.remove("activo"));
-    spans[index].classList.add("activo");
-    index = (index + 1) % spans.length;
-  }
-
-  if (window.innerWidth <= 768) {
-    mostrarSiguiente();
-    setInterval(mostrarSiguiente, 4000);
-  }
-
-  // Cargar productos para búsqueda
-  let productosCargados = [];
-  fetch('productos.json')
-    .then(res => res.json())
-    .then(data => {
-      productosCargados = data;
-    })
-    .catch(err => {
-      console.error('Error cargando productos:', err);
-    });
-
-  // Búsqueda de productos
-  const iconoBusqueda = document.getElementById("iconoBusqueda");
-  const inputBusqueda = document.getElementById("input-busqueda");
-  const resultadosBusqueda = document.getElementById("resultados-busqueda");
-
-  let buscadorActivo = false;
-
-  iconoBusqueda.addEventListener("click", () => {
-    buscadorActivo = !buscadorActivo;
-
-    if (buscadorActivo) {
-      inputBusqueda.style.display = "block";
-      inputBusqueda.focus();
-    } else {
-      inputBusqueda.style.display = "none";
-      inputBusqueda.value = "";
-      resultadosBusqueda.style.display = "none";
-    }
-  });
-
-  inputBusqueda.addEventListener("input", () => {
-    const texto = inputBusqueda.value.trim().toLowerCase();
-    resultadosBusqueda.innerHTML = "";
-
-    if (!texto) {
-      resultadosBusqueda.style.display = "none";
-      return;
-    }
-
-    const filtrados = productosCargados.filter(p =>
-      p.nombre.toLowerCase().includes(texto)
-    );
-
-    if (filtrados.length === 0) {
-      resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
-    } else {
-      filtrados.forEach(producto => {
-        const div = document.createElement("div");
-        div.className = "producto-card";
-        div.innerHTML = `
-          <a href="producto.html?slug=${producto.slug}">
-            <img src="${producto.imagenes[0]}" alt="${producto.nombre}" style="width:100%;border-radius:5px;" />
-            <h3>${producto.nombre}</h3>
-            <p><strong>$${producto.precio.toLocaleString('es-CO')}</strong></p>
-          </a>
-        `;
-        resultadosBusqueda.appendChild(div);
-      });
-    }
-
-    resultadosBusqueda.style.display = "flex";
-  });
-
-  // Mini carrito
-  const iconoCarrito = document.querySelector('img[alt="Carrito"]');
-  const miniCarrito = document.getElementById("mini-carrito");
-  const fondoCarrito = document.getElementById("fondo-oscuro-carrito");
-  const contenedorMini = document.getElementById("mini-carrito-items");
-
-  iconoCarrito.addEventListener("click", () => {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    contenedorMini.innerHTML = "";
-
-    if (carrito.length === 0) {
-      contenedorMini.innerHTML = "<p>Tu carrito está vacío.</p>";
-    } else {
-      carrito.forEach(producto => {
-        const div = document.createElement("div");
-        div.style.marginBottom = "10px";
-        div.innerHTML = `
-          <div style="display:flex;align-items:center;gap:10px;">
-            <img src="${producto.imagen}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:5px;">
-            <div>
-              <p style="margin:0;">${producto.nombre}</p>
-              <small>$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</small>
-            </div>
-          </div>
-        `;
-        contenedorMini.appendChild(div);
-      });
-    }
-
-    miniCarrito.classList.remove("oculto");
-    fondoCarrito.classList.remove("oculto");
-  });
-
-  fondoCarrito.addEventListener("click", () => {
-    miniCarrito.classList.add("oculto");
-    fondoCarrito.classList.add("oculto");
-  });
-
-  // Inicializar
-  document.addEventListener("DOMContentLoaded", () => {
-    actualizarContadorCarrito();
-    mostrarProductosCheckout();
-  });
-</script>
 
 <!-- Mini Carrito -->
 <div id="mini-carrito" class="modal-carrito oculto">
@@ -405,19 +138,142 @@
 </div>
 <div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
 
+<!-- WhatsApp -->
 <div id="whatsapp"></div>
-<script>
-  fetch("whatsapp.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("whatsapp").innerHTML = html;
-    });
-</script>
 
 <!-- Footer -->
 <footer class="footer">
   <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
 </footer>
+
+<script>
+function actualizarContadorCarrito() {
+  const contador = document.getElementById("contadorCarrito");
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+  if (total > 0) {
+    contador.textContent = total;
+    contador.style.display = "inline-block";
+  } else {
+    contador.style.display = "none";
+  }
+}
+
+function mostrarProductosCheckout() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productoParam = urlParams.get("producto");
+  const precioParam = urlParams.get("precio");
+  const listaProductos = document.getElementById("lista-productos");
+  const totalPagar = document.getElementById("total-pagar");
+  listaProductos.innerHTML = "";
+  let total = 0;
+
+  if (productoParam && precioParam) {
+    const precioNum = parseInt(precioParam.replace(/\./g, ""));
+    total = precioNum;
+    const productoHTML = `
+      <div class="producto-item">
+        <div class="producto-info">
+          <div class="producto-texto">
+            <span class="producto-nombre">${decodeURIComponent(productoParam)}</span>
+          </div>
+        </div>
+        <span class="producto-precio">$${precioNum.toLocaleString("es-CO")}</span>
+      </div>
+    `;
+    listaProductos.innerHTML = productoHTML;
+  } else {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    if (carrito.length === 0) {
+      listaProductos.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
+      document.getElementById("total-container").style.display = "none";
+      return;
+    }
+    carrito.forEach(prod => {
+      const subtotal = prod.precio * prod.cantidad;
+      total += subtotal;
+      const productoHTML = `
+        <div class="producto-item">
+          <div class="producto-info">
+            ${prod.imagen ? `<img src="${prod.imagen}" alt="${prod.nombre}" class="producto-imagen">` : ''}
+            <div class="producto-texto">
+              <span class="producto-nombre">${prod.nombre}</span>
+              <span class="producto-cantidad">Cantidad: ${prod.cantidad}</span>
+            </div>
+          </div>
+          <span class="producto-precio">$${subtotal.toLocaleString("es-CO")}</span>
+        </div>
+      `;
+      listaProductos.innerHTML += productoHTML;
+    });
+  }
+
+  totalPagar.textContent = `$${total.toLocaleString("es-CO")}`;
+  document.getElementById("total-container").style.display = "block";
+  agregarCamposOcultos(productoParam, precioParam);
+}
+
+function agregarCamposOcultos(productoParam, precioParam) {
+  const form = document.getElementById("pedidoForm");
+  document.querySelectorAll('input[type="hidden"][name^="Producto_"], input[type="hidden"][name^="Precio_"]').forEach(el => el.remove());
+
+  if (productoParam && precioParam) {
+    const inputProd = document.createElement("input");
+    inputProd.type = "hidden";
+    inputProd.name = "Producto";
+    inputProd.value = decodeURIComponent(productoParam);
+    form.appendChild(inputProd);
+
+    const inputPrecio = document.createElement("input");
+    inputPrecio.type = "hidden";
+    inputPrecio.name = "Precio";
+    inputPrecio.value = precioParam;
+    form.appendChild(inputPrecio);
+  } else {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.forEach((prod, i) => {
+      const inputProd = document.createElement("input");
+      inputProd.type = "hidden";
+      inputProd.name = `Producto_${i + 1}`;
+      inputProd.value = `${prod.nombre} (x${prod.cantidad})`;
+      form.appendChild(inputProd);
+
+      const inputPrecio = document.createElement("input");
+      inputPrecio.type = "hidden";
+      inputPrecio.name = `Precio_${i + 1}`;
+      inputPrecio.value = `$${(prod.precio * prod.cantidad).toLocaleString("es-CO")}`;
+      form.appendChild(inputPrecio);
+    });
+  }
+
+  const totalHidden = document.querySelector('input[type="hidden"][name="Total"]') || document.createElement("input");
+  totalHidden.type = "hidden";
+  totalHidden.name = "Total";
+  totalHidden.value = document.getElementById("total-pagar").textContent;
+  if (!document.querySelector('input[type="hidden"][name="Total"]')) {
+    form.appendChild(totalHidden);
+  }
+}
+
+document.getElementById("pedidoForm").addEventListener("submit", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (!urlParams.get("producto") || !urlParams.get("precio")) {
+    localStorage.removeItem("carrito");
+    actualizarContadorCarrito();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarContadorCarrito();
+  mostrarProductosCheckout();
+});
+
+fetch("whatsapp.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("whatsapp").innerHTML = html;
+  });
+</script>
 
 </body>
 </html>
