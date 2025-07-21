@@ -420,6 +420,15 @@ fetch("whatsapp.html")
     setInterval(mostrarMensaje, 4000); // cambia cada 4 seg
   }
 </script>
+
+
+<div id="modal-error" class="modal-error">
+  <div class="modal-content">
+    <p>⚠️ Los números de teléfono no coinciden. Por favor, revísalos.</p>
+    <button onclick="cerrarModal()">OK</button>
+  </div>
+</div>
+
 <script>
 function cerrarModal() {
   document.getElementById("modal-error").style.display = "none";
@@ -435,14 +444,6 @@ document.getElementById("pedidoForm").addEventListener("submit", function(e) {
   }
 });
 </script>
-
-<div id="modal-error" class="modal-error">
-  <div class="modal-content">
-    <p>⚠️ Los números de teléfono no coinciden. Por favor, revísalos.</p>
-    <button onclick="cerrarModal()">OK</button>
-  </div>
-</div>
-
 
 
 
