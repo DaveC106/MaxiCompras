@@ -244,3 +244,18 @@ body {
   background-color: #28a745;
   color: white;
 }
+
+
+@media (max-width: 480px) {
+  .acciones-carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* separa los botones verticalmente */
+    align-items: stretch;
+  }
+
+  .acciones-carrito a,
+  .acciones-carrito button {
+    width: 100%;
+  }
+}
