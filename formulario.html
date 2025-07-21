@@ -172,7 +172,27 @@ productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
   listaProductos.innerHTML = "";
   let total = 0;
 
- if (productoSeleccionado) {
+const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+if (carrito.length > 0) {
+  carrito.forEach(prod => {
+    const subtotal = prod.precio * prod.cantidad;
+    total += subtotal;
+    const productoHTML = `
+      <div class="producto-item">
+        <div class="producto-info">
+          ${prod.imagen ? `<img src="${prod.imagen}" alt="${prod.nombre}" class="producto-imagen">` : ''}
+          <div class="producto-texto">
+            <span class="producto-nombre">${prod.nombre}</span>
+            <span class="producto-cantidad">Cantidad: ${prod.cantidad}</span>
+          </div>
+        </div>
+        <span class="producto-precio">$${subtotal.toLocaleString("es-CO")}</span>
+      </div>
+    `;
+    listaProductos.innerHTML += productoHTML;
+  });
+} else if (productoSeleccionado) {
   total = productoSeleccionado.precio;
   const productoHTML = `
     <div class="producto-item">
@@ -186,8 +206,11 @@ productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
     </div>
   `;
   listaProductos.innerHTML = productoHTML;
-}else {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+} else {
+  listaProductos.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
+  document.getElementById("total-container").style.display = "none";
+  return;
+}
     if (carrito.length === 0) {
       listaProductos.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
       document.getElementById("total-container").style.display = "none";
@@ -215,7 +238,7 @@ productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
   totalPagar.textContent = `$${total.toLocaleString("es-CO")}`;
   document.getElementById("total-container").style.display = "block";
   agregarCamposOcultos(productoParam, precioParam);
-}
+
 
 function agregarCamposOcultos(productoParam, precioParam) {
   const form = document.getElementById("pedidoForm");
