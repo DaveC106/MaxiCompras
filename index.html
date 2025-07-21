@@ -613,3 +613,30 @@ actualizarContadorCarrito();
     setInterval(mostrarDosTestimonios, 5000); // ⏱️ cada 5 segundos
   }
 </script>
+
+<div id="modal-confirmacion" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+background:white; padding:2rem; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:1000; max-width:90%; text-align:center;">
+  <p style="font-size:1.2rem; font-weight:bold;">✅ ¡Gracias por tu pedido con MaxiKompras!</p>
+  <p>Nos comunicaremos contigo muy pronto. Tu envío llegará en las próximas horas.</p>
+  <button onclick="cerrarConfirmacion()" style="margin-top:1rem; background:#28a745; color:white; padding:0.5rem 1rem; border:none; border-radius:5px; cursor:pointer;">OK</button>
+</div>
+<div id="fondo-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;"></div>
+
+<script>
+  function cerrarConfirmacion() {
+    document.getElementById("modal-confirmacion").style.display = "none";
+    document.getElementById("fondo-modal").style.display = "none";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("pedidoEnviado") === "true") {
+      localStorage.removeItem("pedidoEnviado");
+      document.getElementById("modal-confirmacion").style.display = "block";
+      document.getElementById("fondo-modal").style.display = "block";
+
+      setTimeout(() => {
+        cerrarConfirmacion();
+      }, 5000);
+    }
+  });
+</script>

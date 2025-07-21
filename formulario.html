@@ -442,6 +442,10 @@ document.getElementById("pedidoForm").addEventListener("submit", function(e) {
     e.preventDefault(); // Evita que se envíe
     document.getElementById("modal-error").style.display = "flex";
   }
+  else {
+    // Marca el envío exitoso para mostrar el mensaje en index.html
+    localStorage.setItem("pedidoEnviado", "true");
+  }
 });
 </script>
 
