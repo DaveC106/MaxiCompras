@@ -626,7 +626,7 @@ body {
 
 .producto-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex: 2;
 }
 
