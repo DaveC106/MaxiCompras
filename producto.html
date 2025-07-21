@@ -71,7 +71,6 @@
 
 
 <script>
-    const esMovil = window.innerWidth <= 768; // ✅ Déjala aquí una vez
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
 
@@ -107,6 +106,7 @@ if (Array.isArray(extra.imagenes)) {
   let intervaloCambio;
   let imagenesParaMostrar = [producto.imagenes[0], ...extra.imagenes];
 
+  const esMovil = window.innerWidth <= 768;
 
   if (!esMovil) {
     // Mostrar miniaturas en pantallas grandes
@@ -206,7 +206,6 @@ const contenedor = document.createElement("div");
 contenedor.className = "productos-relacionados";
 
 // Estilos para pantallas grandes (grid normal)
-
 if (esMovil) {
   contenedor.style.display = "flex";
   contenedor.style.overflowX = "auto";
