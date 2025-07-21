@@ -161,28 +161,29 @@ function actualizarContadorCarrito() {
 
 function mostrarProductosCheckout() {
   const urlParams = new URLSearchParams(window.location.search);
-  const productoParam = urlParams.get("producto");
-  const precioParam = urlParams.get("precio");
+const productoParam = urlParams.get("producto");
+const precioParam = urlParams.get("precio");
+const productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
   const listaProductos = document.getElementById("lista-productos");
   const totalPagar = document.getElementById("total-pagar");
   listaProductos.innerHTML = "";
   let total = 0;
 
-  if (productoParam && precioParam) {
-    const precioNum = parseInt(precioParam.replace(/\./g, ""));
-    total = precioNum;
-    const productoHTML = `
-      <div class="producto-item">
-        <div class="producto-info">
-          <div class="producto-texto">
-            <span class="producto-nombre">${decodeURIComponent(productoParam)}</span>
-          </div>
+ if (productoSeleccionado) {
+  total = productoSeleccionado.precio;
+  const productoHTML = `
+    <div class="producto-item">
+      <div class="producto-info">
+        ${productoSeleccionado.imagen ? `<img src="${productoSeleccionado.imagen}" alt="${productoSeleccionado.nombre}" class="producto-imagen">` : ''}
+        <div class="producto-texto">
+          <span class="producto-nombre">${productoSeleccionado.nombre}</span>
         </div>
-        <span class="producto-precio">$${precioNum.toLocaleString("es-CO")}</span>
       </div>
-    `;
-    listaProductos.innerHTML = productoHTML;
-  } else {
+      <span class="producto-precio">$${productoSeleccionado.precio.toLocaleString("es-CO")}</span>
+    </div>
+  `;
+  listaProductos.innerHTML = productoHTML;
+}else {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     if (carrito.length === 0) {
       listaProductos.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';

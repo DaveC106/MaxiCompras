@@ -214,9 +214,14 @@ if (Array.isArray(extra.descripciones)) {
       });
 
       document.getElementById("btn-comprar").addEventListener("click", () => {
-        const url = `formulario.html?producto=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio.toLocaleString('es-CO'))}`;
-        window.location.href = url;
-      });
+  const productoSeleccionado = {
+    nombre: nombre,
+    precio: precio,
+    imagen: imagenes[0]
+  };
+  localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+  window.location.href = "formulario.html";
+});
     });
     </script>
 
