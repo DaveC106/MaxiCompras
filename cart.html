@@ -242,6 +242,24 @@ inputBusqueda.addEventListener("input", () => {
 
 
 </script>
+<script>
+
+  //script para el banner superior en celulares
+  const mensajes = document.querySelectorAll('.top-bar span');
+  let actual = 0;
+
+  function mostrarMensaje() {
+    mensajes.forEach((msg, i) => {
+      msg.classList.toggle('activo', i === actual);
+    });
+    actual = (actual + 1) % mensajes.length;
+  }
+
+  if (window.innerWidth <= 768) {
+    mostrarMensaje();
+    setInterval(mostrarMensaje, 4000); // cambia cada 4 seg
+  }
+</script>
 </body>
  <!-- Footer -->
   <footer class="footer">
