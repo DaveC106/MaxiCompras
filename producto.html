@@ -213,15 +213,23 @@ if (Array.isArray(extra.descripciones)) {
         actualizarContadorCarrito();
       });
 
-      document.getElementById("btn-comprar").addEventListener("click", () => {
+   document.getElementById("btn-comprar").addEventListener("click", () => {
+  // 🧹 Limpia el carrito por si venía de ahí
+  localStorage.removeItem("carrito");
+
   const productoSeleccionado = {
     nombre: nombre,
     precio: precio,
     imagen: imagenes[0]
   };
+
+  // Guarda el producto individual
   localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+
+  // Redirige al formulario
   window.location.href = "formulario.html";
 });
+
     });
     </script>
 

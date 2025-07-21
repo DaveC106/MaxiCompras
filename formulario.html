@@ -147,6 +147,9 @@
 </footer>
 
 <script>
+
+  let productoSeleccionado = null;
+
 function actualizarContadorCarrito() {
   const contador = document.getElementById("contadorCarrito");
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -163,7 +166,7 @@ function mostrarProductosCheckout() {
   const urlParams = new URLSearchParams(window.location.search);
 const productoParam = urlParams.get("producto");
 const precioParam = urlParams.get("precio");
-const productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
+productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
   const listaProductos = document.getElementById("lista-productos");
   const totalPagar = document.getElementById("total-pagar");
   listaProductos.innerHTML = "";
@@ -257,11 +260,9 @@ if (productoSeleccionado) {
 }
 
 document.getElementById("pedidoForm").addEventListener("submit", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  if (!urlParams.get("producto") || !urlParams.get("precio")) {
-    localStorage.removeItem("carrito");
-    actualizarContadorCarrito();
-  }
+  localStorage.removeItem("carrito");
+  localStorage.removeItem("productoSeleccionado");
+  actualizarContadorCarrito();
 });
 
 document.addEventListener("DOMContentLoaded", () => {

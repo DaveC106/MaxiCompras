@@ -86,7 +86,8 @@
       });
 
       btnConfirmar.addEventListener("click", () => {
-        window.location.href = "formulario.html";
+        localStorage.removeItem('productoSeleccionado');
+window.location.href = 'formulario.html';
       });
 
       function renderCarrito() {
