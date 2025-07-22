@@ -7,82 +7,6 @@
   <link rel="icon" href="img/logomaxicompras.webp" type="image/webp">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="styleproductos.css" />
-  <style>
-    /* Nuevos estilos para el diseño del producto */
-    .producto-header {
-      background-color: #ff0000;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    
-    .envio-gratis-banner {
-      background-color: #000;
-      color: white;
-      text-align: center;
-      padding: 8px 0;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-    
-    .producto-titulo {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    
-    .clientes-satisfechos {
-      text-align: center;
-      color: #555;
-      margin-bottom: 10px;
-    }
-    
-    .precio-destacado {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #ff0000;
-      margin-bottom: 20px;
-    }
-    
-    .btn-comprar-destacado {
-      display: block;
-      background-color: #ff0000;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      border-radius: 5px;
-      margin: 20px auto;
-      width: 80%;
-      text-decoration: none;
-    }
-    
-    .beneficios-lista {
-      padding: 0 20px;
-      margin-bottom: 30px;
-    }
-    
-    .beneficios-lista li {
-      margin-bottom: 15px;
-      line-height: 1.5;
-    }
-    
-    .descuento-banner {
-      background-color: #ff0000;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      font-weight: bold;
-      margin: 20px 0;
-      border-radius: 5px;
-    }
-  </style>
 </head>
 <body>
 <!-- Barra superior -->
@@ -114,41 +38,37 @@
 </header>
 <div id="resultados-busqueda" class="resultados-busqueda" style="display:none; flex-wrap: wrap; gap: 1rem; padding: 1rem;"></div>
 
-<!-- Nuevo diseño de producto -->
-<div class="producto-header">
-  ¡EL PICADOR MÁS RÍPIDO Y PODEROSO DEL MERCADO!
-</div>
 
-<div class="envio-gratis-banner">
-  ENVÍO GRATIS
-</div>
-
+<!-- 🔸 Producto -->
 <section class="producto-container">
   <div class="producto-imagen">
-    <img id="imagen-principal" src="" alt="Producto principal" style="border-radius: 20px; max-width: 100%;"/> 
+    <img id="imagen-principal" src="" alt="Producto principal" /> 
   </div>
 
+
   <div class="producto-detalles">
-    <h1 class="producto-titulo">Picador Eléctrico Multifuncional 4en1 + ENVÍO GRATIS</h1>
-    
-    <div class="clientes-satisfechos">+6.500 clientes satisfechos</div>
-    
-    <div class="precio-destacado">$12.900</div>
-    
-    <a href="#" class="btn-comprar-destacado">COMPRAR AHORA! 50% DESCUENTO</a>
-    
-    <ul class="beneficios-lista">
-      <li>¿Cansada de perder tiempo cortando a mano y ensuciando todo? Con el Picador Eléctrico Multifuncional –¡Dile adiós a las tablas de picar!, transforma tu forma de cocinar en segundos. <strong>Corta, rebana, tritura y mezcla</strong> con solo presionar un botón. ¡Ahora tiempo y esfuerzo en cada comida!</li>
-      <li>Equipado con cuchillas de acero inoxidable, carga rápida tipo C, diseño ergonómico y sistema de limpieza automática. ¡Ideal para verduras, carnes, ajos y más. ¡Hazlo todo más fácil, más rápido y sin complicaciones!</li>
-    </ul>
-    
-    <div class="descuento-banner">
-      ¡50% DCTO! + ENVÍO GRATIS
+    <h1 id="nombre-producto"></h1>
+    <div class="estrellas">★★★★★ (5)</div>
+    <div class="precios">
+      <span id="precio-anterior" class="precio-original"></span>
+      <span id="precio-actual" class="precio-descuento"></span>
+      <span id="descuento" class="badge-descuento"></span>
     </div>
+
+ <img src="img/tiendalider.png" alt="Tienda Líder Platinum" class="img-tienda-lider">
+   
+    <div class="botones">
+      <a id="btn-comprar" class="btn-comprar">Comprar ahora</a>
+      <button class="btn-carrito">Añadir al carrito</button>
+    </div>
+
   </div>
-  
   <div class="miniaturas" id="miniaturas"></div>
+  <!-- Imagen centrada encima de las descripciones -->
+<div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+</div>
 </section>
+
 
 <script>
   const params = new URLSearchParams(window.location.search);
@@ -170,161 +90,187 @@
       const descuento = Math.round(100 - (precio / precioAnterior) * 100);
 
       document.getElementById("imagen-principal").src = imagenes[0];
+      document.getElementById("nombre-producto").textContent = nombre;
+      document.getElementById("precio-anterior").textContent = "$" + precioAnterior.toLocaleString("es-CO");
+      document.getElementById("precio-actual").textContent = "$" + precio.toLocaleString("es-CO");
+      document.getElementById("descuento").textContent = `Ahorra ${descuento}%`;
 
       fetch("descripciones.json")
         .then(res => res.json())
         .then(extraidos => {
           const extra = extraidos.find(p => p.producto.toLowerCase().trim() === nombre.toLowerCase().trim());
 
-          if (Array.isArray(extra.imagenes)) {
-            const miniaturas = document.getElementById("miniaturas");
-            let indiceActual = 0;
-            let intervaloCambio;
-            let imagenesParaMostrar = [producto.imagenes[0], ...extra.imagenes];
+if (Array.isArray(extra.imagenes)) {
+  const miniaturas = document.getElementById("miniaturas");
+  let indiceActual = 0;
+  let intervaloCambio;
+  let imagenesParaMostrar = [producto.imagenes[0], ...extra.imagenes];
 
-            const esMovil = window.innerWidth <= 768;
+  const esMovil = window.innerWidth <= 768;
 
-            if (!esMovil) {
-              // Mostrar miniaturas en pantallas grandes
-              imagenesParaMostrar.forEach((src, index) => {
-                const thumb = document.createElement("img");
-                thumb.src = src;
-                thumb.alt = `Miniatura ${index + 1}`;
-                if (index === 0) thumb.classList.add("activa");
+  if (!esMovil) {
+    // Mostrar miniaturas en pantallas grandes
+    imagenesParaMostrar.forEach((src, index) => {
+      const thumb = document.createElement("img");
+      thumb.src = src;
+      thumb.alt = `Miniatura ${index + 1}`;
+      if (index === 0) thumb.classList.add("activa");
 
-                thumb.addEventListener("click", () => {
-                  clearInterval(intervaloCambio);
-                  const principal = document.getElementById("imagen-principal");
-                  principal.src = src;
-                  principal.style.borderRadius = "20px"; // Fuerza el estilo siempre
+      thumb.addEventListener("click", () => {
+        clearInterval(intervaloCambio);
+        const principal = document.getElementById("imagen-principal");
+principal.src = src;
+principal.style.borderRadius = "20px"; // Fuerza el estilo siempre
 
-                  miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
-                  thumb.classList.add("activa");
+        miniaturas.querySelectorAll("img").forEach(img => img.classList.remove("activa"));
+        thumb.classList.add("activa");
 
-                  // Reiniciar autoplay más lento
-                  intervaloCambio = setInterval(() => {
-                    indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
-                    const nuevaSrc = imagenesParaMostrar[indiceActual];
-                    document.getElementById("imagen-principal").src = nuevaSrc;
+        // Reiniciar autoplay más lento
+        intervaloCambio = setInterval(() => {
+          indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
+          const nuevaSrc = imagenesParaMostrar[indiceActual];
+          document.getElementById("imagen-principal").src = nuevaSrc;
 
-                    miniaturas.querySelectorAll("img").forEach((img, idx) => {
-                      img.classList.toggle("activa", idx === indiceActual);
-                    });
-                  }, 5000);
-                });
-
-                miniaturas.appendChild(thumb);
-              });
-            }
-
-            // Siempre correr autoplay (tanto en móvil como en escritorio)
-            intervaloCambio = setInterval(() => {
-              indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
-              const nuevaSrc = imagenesParaMostrar[indiceActual];
-              document.getElementById("imagen-principal").src = nuevaSrc;
-
-              if (!esMovil) {
-                miniaturas.querySelectorAll("img").forEach((img, idx) => {
-                  img.classList.toggle("activa", idx === indiceActual);
-                });
-              }
-            }, 4000);
-          }
-
-          // 💡 Nueva lógica para descripciones estructuradas
-          if (Array.isArray(extra.descripciones)) {
-            const descripcionDiv = document.createElement("div");
-            descripcionDiv.className = "descripcion-estructurada";
-            descripcionDiv.style.marginTop = "30px";
-            descripcionDiv.style.lineHeight = "1.7";
-            descripcionDiv.style.fontSize = "16px";
-
-            const esMovil = window.innerWidth <= 768;
-
-            extra.descripciones.forEach(item => {
-              if (item.titulo) {
-                const h3 = document.createElement("h3");
-                h3.textContent = item.titulo;
-                h3.style.fontWeight = "bold";
-                h3.style.textAlign = "center";
-                h3.style.lineHeight = "1.4";
-                h3.style.fontSize = esMovil ? "1.25rem" : "1.3rem";
-                h3.style.marginTop = esMovil ? "40px" : "25px";
-                h3.style.marginBottom = esMovil ? "12px" : "8px";
-                descripcionDiv.appendChild(h3);
-              }
-
-              if (item.texto) {
-                const p = document.createElement("p");
-                p.textContent = item.texto;
-                p.style.textAlign = "center";
-                p.style.lineHeight = "1.6";
-                p.style.marginBottom = esMovil ? "18px" : "16px";
-                descripcionDiv.appendChild(p);
-              }
-            });
-
-            document.querySelector(".producto-container").appendChild(descripcionDiv);
-          }
-
-          // 🔽 Te podría interesar...
-          const relacionadosDiv = document.createElement("div");
-          relacionadosDiv.className = "relacionados";
-          relacionadosDiv.style.marginTop = "50px";
-
-          const titulo = document.createElement("h2");
-          titulo.textContent = "Te podría interesar...";
-          titulo.style.textAlign = "center";
-          titulo.style.marginBottom = "25px";
-          titulo.style.fontSize = "1.6rem";
-          titulo.style.fontWeight = "bold";
-          relacionadosDiv.appendChild(titulo);
-
-          const contenedor = document.createElement("div");
-          contenedor.className = "productos-relacionados";
-          contenedor.style.display = "grid";
-          contenedor.style.gridTemplateColumns = "repeat(auto-fit, minmax(180px, 1fr))";
-          contenedor.style.gap = "1rem";
-          contenedor.style.padding = "0 1rem";
-
-          let sugerencias = productos.filter(p => p.slug !== slug);
-          sugerencias = sugerencias.sort(() => 0.5 - Math.random()).slice(0, 4); // 4 productos aleatorios
-
-          sugerencias.forEach(p => {
-            const card = document.createElement("div");
-            card.innerHTML = `
-              <a href="producto.html?slug=${p.slug}" style="text-decoration:none;color:inherit;">
-                <img src="${p.imagenes[0]}" alt="${p.nombre}" style="width:100%;border-radius:10px;">
-                <h3 style="font-size:1rem;margin-top:0.5rem;">${p.nombre}</h3>
-                <p style="color:#e91e63;font-weight:bold;">$${p.precio.toLocaleString("es-CO")}</p>
-              </a>
-            `;
-            contenedor.appendChild(card);
+          miniaturas.querySelectorAll("img").forEach((img, idx) => {
+            img.classList.toggle("activa", idx === indiceActual);
           });
-
-          relacionadosDiv.appendChild(contenedor);
-          document.querySelector(".producto-container").appendChild(relacionadosDiv);
-        });
-
-      document.querySelector(".btn-comprar-destacado").addEventListener("click", (e) => {
-        e.preventDefault();
-        // 🧹 Limpia el carrito por si venía de ahí
-        localStorage.removeItem("carrito");
-
-        const productoSeleccionado = {
-          nombre: nombre,
-          precio: precio,
-          imagen: imagenes[0]
-        };
-
-        // Guarda el producto individual
-        localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
-
-        // Redirige al formulario
-        window.location.href = "formulario.html";
+        }, 5000);
       });
+
+      miniaturas.appendChild(thumb);
     });
-</script>
+  }
+
+  // Siempre correr autoplay (tanto en móvil como en escritorio)
+  intervaloCambio = setInterval(() => {
+    indiceActual = (indiceActual + 1) % imagenesParaMostrar.length;
+    const nuevaSrc = imagenesParaMostrar[indiceActual];
+    document.getElementById("imagen-principal").src = nuevaSrc;
+
+    if (!esMovil) {
+      miniaturas.querySelectorAll("img").forEach((img, idx) => {
+        img.classList.toggle("activa", idx === indiceActual);
+      });
+    }
+  }, 4000);
+
+// 💡 Nueva lógica para descripciones estructuradas
+if (Array.isArray(extra.descripciones)) {
+  const descripcionDiv = document.createElement("div");
+  descripcionDiv.className = "descripcion-estructurada";
+  descripcionDiv.style.marginTop = "30px";
+  descripcionDiv.style.lineHeight = "1.7";
+  descripcionDiv.style.fontSize = "16px";
+
+  const esMovil = window.innerWidth <= 768;
+
+  extra.descripciones.forEach(item => {
+    if (item.titulo) {
+      const h3 = document.createElement("h3");
+      h3.textContent = item.titulo;
+      h3.style.fontWeight = "bold";
+      h3.style.textAlign = "center";
+      h3.style.lineHeight = "1.4";
+      h3.style.fontSize = esMovil ? "1.25rem" : "1.3rem";
+      h3.style.marginTop = esMovil ? "40px" : "25px";
+      h3.style.marginBottom = esMovil ? "12px" : "8px";
+      descripcionDiv.appendChild(h3);
+    }
+
+    if (item.texto) {
+      const p = document.createElement("p");
+      p.textContent = item.texto;
+      p.style.textAlign = "center";
+      p.style.lineHeight = "1.6";
+      p.style.marginBottom = esMovil ? "18px" : "16px";
+      descripcionDiv.appendChild(p);
+    }
+  });
+
+  document.querySelector(".producto-container").appendChild(descripcionDiv);
+}
+// 🔽 Te podría interesar...
+const relacionadosDiv = document.createElement("div");
+relacionadosDiv.className = "relacionados";
+relacionadosDiv.style.marginTop = "50px";
+
+const titulo = document.createElement("h2");
+titulo.textContent = "Te podría interesar...";
+titulo.style.textAlign = "center";
+titulo.style.marginBottom = "25px";
+titulo.style.fontSize = "1.6rem";
+titulo.style.fontWeight = "bold";
+relacionadosDiv.appendChild(titulo);
+
+const contenedor = document.createElement("div");
+contenedor.className = "productos-relacionados";
+contenedor.style.display = "grid";
+contenedor.style.gridTemplateColumns = "repeat(auto-fit, minmax(180px, 1fr))";
+contenedor.style.gap = "1rem";
+contenedor.style.padding = "0 1rem";
+
+let sugerencias = productos.filter(p => p.slug !== slug);
+sugerencias = sugerencias.sort(() => 0.5 - Math.random()).slice(0, 4); // 4 productos aleatorios
+
+sugerencias.forEach(p => {
+  const card = document.createElement("div");
+  card.innerHTML = `
+    <a href="producto.html?slug=${p.slug}" style="text-decoration:none;color:inherit;">
+      <img src="${p.imagenes[0]}" alt="${p.nombre}" style="width:100%;border-radius:10px;">
+      <h3 style="font-size:1rem;margin-top:0.5rem;">${p.nombre}</h3>
+      <p style="color:#e91e63;font-weight:bold;">$${p.precio.toLocaleString("es-CO")}</p>
+    </a>
+  `;
+  contenedor.appendChild(card);
+});
+
+relacionadosDiv.appendChild(contenedor);
+document.querySelector(".producto-container").appendChild(relacionadosDiv);
+
+}});
+
+
+      document.querySelector(".btn-carrito").addEventListener("click", () => {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        const existente = carrito.find(p => p.slug === producto.slug);
+        if (existente) {
+          existente.cantidad += 1;
+        } else {
+          carrito.push({
+            slug: producto.slug,
+            nombre,
+            imagen: imagenes[0],
+            precio,
+            cantidad: 1
+          });
+        }
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        const mensaje = document.getElementById("mensaje-carrito");
+        mensaje.classList.add("mostrar");
+        setTimeout(() => mensaje.classList.remove("mostrar"), 3000);
+        actualizarContadorCarrito();
+      });
+
+   document.getElementById("btn-comprar").addEventListener("click", () => {
+  // 🧹 Limpia el carrito por si venía de ahí
+  localStorage.removeItem("carrito");
+
+  const productoSeleccionado = {
+    nombre: nombre,
+    precio: precio,
+    imagen: imagenes[0]
+  };
+
+  // Guarda el producto individual
+  localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+
+  // Redirige al formulario
+  window.location.href = "formulario.html";
+});
+
+    });
+    
+    </script>
 
 <!-- 🔻 Script: top-bar móvil -->
 <script>
@@ -346,7 +292,9 @@
 
 <div id="mensaje-carrito" class="mensaje-flotante">Producto añadido al carrito</div>
 
+
 <!--funcion carro y busqueda-->
+
 <script>
    let productosCargados = [];
       fetch('productos.json')
@@ -378,6 +326,7 @@ iconoBusqueda.addEventListener("click", () => {
     resultadosBusqueda.style.display = "none";
   }
 });
+
 
 inputBusqueda.addEventListener("input", () => {
   const texto = inputBusqueda.value.trim().toLowerCase();
@@ -411,7 +360,10 @@ inputBusqueda.addEventListener("input", () => {
 
   resultadosBusqueda.style.display = "flex";
 });
+
+
 </script>
+
 
 <!-- 🔹 MINI CARRITO -->
 <div id="mini-carrito" class="modal-carrito oculto">
@@ -424,6 +376,8 @@ inputBusqueda.addEventListener("input", () => {
   </div>
 </div>
 <div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
+
+
 
 <!-- 🔻 Script: Mini carrito -->
 <script>
@@ -493,11 +447,10 @@ inputBusqueda.addEventListener("input", () => {
       document.getElementById("whatsapp").innerHTML = html;
     });
 </script>
-
-<!-- Footer -->
-<footer class="footer">
-  <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
-</footer>
+ <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+  </footer>
 
 </body>
 </html>
