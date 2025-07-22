@@ -7,6 +7,57 @@
     <meta name="description" content="Convierte tu cocina en un espacio más práctico con este picador eléctrico multifuncional. Ideal para cortar, picar y rebanar en segundos.">
     
     <style>
+
+        .caracteristicas {
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+.caracteristicas .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.caracteristicas .imagen img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.caracteristicas .texto {
+  max-width: 500px;
+}
+
+.caracteristicas .texto h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.caracteristicas .texto ul {
+  list-style: none;
+  padding: 0;
+}
+
+.caracteristicas .texto ul li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.caracteristicas .texto ul li::before {
+  content: "⭐";
+  margin-right: 8px;
+}
+
         /* Estilos principales */
         body {
             font-family: Montserrat;
@@ -248,23 +299,26 @@
             <a href="#comprar" class="btn-comprar">¡Comprar Ahora!</a>
         </div>
     </div>
-    
-    <!-- Sección de características -->
-    <div class="container flex-columns" style="display: flex; gap: 20px; margin: 30px auto;">
-        <div style="flex: 1;">
-            <img src="images/CREATIVOS-LANDING-NUEVOS-1-1.png" alt="Características">
-        </div>
-        <div style="flex: 1;">
-            <h2>CARACTERÍSTICAS</h2>
-            <p>⭐ Material: ABS + PP + Acero Inoxidable</p>
-            <p>⭐ Tamaño compacto: 18,5cm x 12cm</p>
-            <p>⭐ Carga rápida USB tipo C</p>
-            <p>⭐ Motor potente de 40W</p>
-            <p>⭐ Limpieza automática con botón</p>
-            <p>⭐ Cuchillas ultra afiladas y duraderas</p>
-        </div>
+
+    <!--seccion caracteristicas-->
+  <section class="caracteristicas">
+  <div class="contenedor">
+    <div class="imagen">
+      <img src="images/CREATIVOS-LANDING-NUEVOS-1-1.png" alt="Características del producto">
     </div>
-    
+    <div class="texto">
+      <h2>CARACTERÍSTICAS</h2>
+      <ul>
+        <li>⭐ Material: ABS + PP + Acero Inoxidable</li>
+        <li>⭐ Tamaño compacto: 18,5cm x 12cm</li>
+        <li>⭐ Carga rápida USB tipo C</li>
+        <li>⭐ Motor potente de 40W</li>
+        <li>⭐ Limpieza automática con botón</li>
+        <li>⭐ Cuchillas ultra afiladas y duraderas</li>
+      </ul>
+    </div>
+  </div>
+</section>
     <!-- Sección de comparación -->
     <div class="container" style="background: #f9f9f9; padding: 30px; margin: 30px 0; border-radius: 10px;">
         <h2>¿Aún sigues cortando a mano?</h2>
