@@ -98,14 +98,7 @@
 .highlight-black {
     color: #000000;
 }
-.product-title .line {
-    display: block;
-    line-height: 1.2;
-}
 
-.product-title .highlight-black {
-    font-weight: bold;
-}
 
 .rating-container {
     display: flex;
