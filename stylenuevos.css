@@ -131,8 +131,10 @@
 }
 
 .current-price {
-    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 45px;
     font-weight: bold;
+    color: #0ccb00;
 }
 
 .buy-button {
