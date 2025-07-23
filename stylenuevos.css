@@ -1,0 +1,531 @@
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos del encabezado */
+.header {
+    width: 100vw;
+}
+
+.header__logo {
+    width: 100vw;
+    height: auto;
+    display: block;
+}
+
+/* Contador de visitas */
+.view-counter {
+    text-align: center;
+    margin: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.view-counter__number {
+    color: #e74c3c;
+}
+
+.live-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #e74c3c;
+    box-shadow: 0 0 10px #e74c3c;
+    margin-right: 5px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px #e74c3c; }
+    50% { transform: scale(1.4); box-shadow: 0 0 20px #e74c3c; }
+    100% { transform: scale(1); box-shadow: 0 0 10px #e74c3c; }
+}
+
+/* Contenedor principal del producto */
+.product-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Galería de imágenes del producto */
+.product-gallery {
+    flex: 1;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 427.5px;
+    height: 427.5px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Información del producto */
+.product-info {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.product-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.highlight-black {
+    color: #000000;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.stars {
+    color: gold;
+}
+
+.rating-text {
+    color: #000000;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.old-price {
+    font-size: 24px;
+    color: #e74c3c;
+    font-weight: bold;
+    text-decoration: line-through;
+}
+
+.current-price {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.buy-button {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.divider {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+.product-description {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.shipping-info {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    color: #000;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.green-text {
+    color: #28a745;
+    font-style: italic;
+}
+
+.underline-text {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+/* Compradores recientes */
+.recent-buyers {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 20px 0;
+}
+
+.buyers-images {
+    display: flex;
+    margin-right: 10px;
+}
+
+.buyer-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: -10px;
+    border: 2px solid #fff;
+}
+
+.verified-icon {
+    width: 13px;
+    vertical-align: middle;
+    margin: 0 3px;
+}
+
+/* Contador de stock */
+.stock-counter {
+    margin: 20px 0;
+}
+
+.stock-number {
+    color: #ff0000;
+}
+
+.progress-bar {
+    background: #eee;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.progress-fill {
+    background: #e74c3c;
+    width: 24%;
+    height: 100%;
+}
+
+.stock-percentage {
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* Pedidos en tiempo real */
+.realtime-order {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-align: left;
+    margin: 10px auto;
+    max-width: 110%;
+    font-weight: normal;
+    color: #000;
+    line-height: 1.1;
+}
+
+.buyer-name {
+    font-weight: bold;
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.countdown-item {
+    text-align: center;
+}
+
+.countdown-number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.countdown-label {
+    font-size: 12px;
+}
+
+/* Testimonio */
+.testimonial {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+    font-style: italic;
+    color: #333;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.testimonial-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.testimonial-content {
+    flex: 1;
+}
+
+.testimonial-text {
+    margin-bottom: 8px;
+}
+
+.testimonial-stars {
+    margin: 8px 0;
+    color: gold;
+}
+
+.testimonial-author {
+    font-weight: bold;
+}
+
+/* Imágenes de garantía y características */
+.guarantee-image {
+    margin: 20px 0;
+    max-width: 100%;
+}
+
+.features-grid {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.feature-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.secure-text {
+    margin: 15px 0;
+}
+
+.secure-text span {
+    color: #000000;
+}
+
+/* Secciones */
+.functionality-section,
+.comparison-section,
+.included-section {
+    background: #f9f9f9;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.center-title {
+    text-align: center;
+}
+
+.section-text {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.button-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Sección de características */
+.features-section {
+    padding: 40px 20px;
+    background-color: #fff;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.features-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.features-text {
+    max-width: 500px;
+}
+
+.features-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+}
+
+.features-list li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* FAQ */
+.faq-container {
+    display: flex;
+    gap: 20px;
+    margin: 30px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.faq-image {
+    flex: 1;
+}
+
+.faq-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.faq-content {
+    flex: 1;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+.faq-answer {
+    padding: 10px;
+    display: none;
+}
+
+/* Alerta de inventario */
+.inventory-alert {
+    text-align: center;
+    margin: 30px 0;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+}
+
+.red-text {
+    color: red;
+}
+
+.blink {
+    animation: blink 1.1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Transportadoras */
+.carriers-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.carriers-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Testimonios */
+.testimonials-section {
+    margin: 30px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.testimonial-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.testimonial-name {
+    font-weight: bold;
+}
+
+.testimonial-location {
+    font-size: 14px;
+}
+
+.testimonial-text {
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-container,
+    .faq-container {
+        flex-direction: column;
+    }
+    
+    .product-image {
+        width: 100%;
+        height: auto;
+    }
+}

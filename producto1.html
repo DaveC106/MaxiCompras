@@ -5,345 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Picador Eléctrico Multifuncional 4en1 | Compraxpress</title>
     <meta name="description" content="Convierte tu cocina en un espacio más práctico con este picador eléctrico multifuncional. Ideal para cortar, picar y rebanar en segundos.">
-    
-    <style>
-
-        .caracteristicas {
-  padding: 40px 20px;
-  background-color: #fff;
-}
-
-.caracteristicas .contenedor {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.caracteristicas .imagen img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.caracteristicas .texto {
-  max-width: 500px;
-}
-
-.caracteristicas .texto h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #222;
-}
-
-.caracteristicas .texto ul {
-  list-style: none;
-  padding: 0;
-}
-
-.caracteristicas .texto ul li {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.caracteristicas .texto ul li::before {
-  content: "⭐";
-  margin-right: 8px;
-}
-
-     
-        
-        /* Estilos para el contador de visitas */
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 10px #e74c3c; }
-            50% { transform: scale(1.4); box-shadow: 0 0 20px #e74c3c; }
-            100% { transform: scale(1); box-shadow: 0 0 10px #e74c3c; }
-        }
-        
-        .live-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #e74c3c;
-            box-shadow: 0 0 10px #e74c3c;
-            margin-right: 5px;
-            animation: pulse 1s infinite;
-        }
-        
-        /* Estilos para el testimonio */
-        #testimonio {
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background: #f9f9f9;
-            font-style: italic;
-            color: #333;
-            max-width: 500px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        /* Estilos para botones */
-        .btn-comprar {
-            display: inline-block;
-            background: #000;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        /* Estilos para el contador de unidades */
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        
-        .blink {
-            animation: blink 1.1s infinite;
-        }
-        
-        /* Estilos responsive */
-        @media (max-width: 768px) {
-            .flex-columns {
-                flex-direction: column;
-            }
-        }
-    </style>
-
-     <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    header {
-      width: 100vw;
-    }
-
-    .imglogo {
-      width: 100vw;
-      height: auto;
-      display: block;
-    }
-  </style>
+    <link rel="stylesheet" href="stylenuevos.css">
 </head>
 
 <body>
-  <header>
-    <img src="images/logocompraxpress.png" alt="Picador eléctrico" class="imglogo">
+  <header class="header">
+    <img src="images/logocompraxpress.png" alt="Picador eléctrico" class="header__logo">
   </header>
   
-
     <!-- Contador de visitas -->
-    <div class="container" style="text-align: center; margin: 20px 0; font-family: 'Montserrat', sans-serif; font-size: 14px;">
+    <div class="view-counter">
         <span class="live-dot"></span>
-        <strong><span id="viewers-number" style="color: #e74c3c;"></span> personas están viendo esto ahora</strong>
+        <strong><span id="viewers-number" class="view-counter__number"></span> personas están viendo esto ahora</strong>
     </div>
     
     <!-- Contenido principal -->
-    <div class="container flex-columns" style="display: flex; gap: 20px;">
+    <div class="product-container">
         <!-- Columna de imágenes -->
-        <div style="flex: 1;">
-  <img src="images/PRIMERA-MEJORADA.png" alt="Picador eléctrico" style="width: 427.5px; height: 427.5px; object-fit: cover;">
-  <img src="images/CREATIVOS-LANDING-NUEVOS-3.png" alt="Picador eléctrico" style="width: 427.5px; height: 427.5px; object-fit: cover;">
-  <img src="images/2-1.png" alt="Picador eléctrico" style="width: 427.5px; height: 427.5px; object-fit: cover;">
-  <img src="images/CREATIVOS-LANDING-NUEVOS.png" alt="Picador eléctrico" style="width: 427.5px; height: 427.5px; object-fit: cover;">
-</div>
+        <div class="product-gallery">
+            <img src="images/PRIMERA-MEJORADA.png" alt="Picador eléctrico" class="product-image">
+            <img src="images/CREATIVOS-LANDING-NUEVOS-3.png" alt="Picador eléctrico" class="product-image">
+            <img src="images/2-1.png" alt="Picador eléctrico" class="product-image">
+            <img src="images/CREATIVOS-LANDING-NUEVOS.png" alt="Picador eléctrico" class="product-image">
+        </div>
         
         <!-- Columna de información -->
-        <div style="flex: 1;">
-            <h1>Picador Eléctrico Multifuncional 4en1 + <span style="color: #000000;">ENVÍO GRATIS</span></h1>
+        <div class="product-info">
+            <h1 class="product-title">Picador Eléctrico Multifuncional 4en1 + <span class="highlight-black">ENVÍO GRATIS</span></h1>
             
             <!-- Valoración -->
-            <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
-                <div style="color: gold;">★★★★★</div>
-                <span style="color: #000000;"><em><strong>+6.500 clientes satisfechos</strong></em></span>
+            <div class="rating-container">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text"><em><strong>+6.500 clientes satisfechos</strong></em></span>
             </div>
             
             <!-- Precios -->
-            <div style="display: flex; align-items: center; gap: 20px; margin: 20px 0;">
-                <div style="font-size: 24px; color: #e74c3c; font-weight: bold;">$129.900</div>
-                <div style="font-size: 24px; font-weight: bold;">$64.900</div>
+            <div class="price-container">
+                <div class="old-price">$129.900</div>
+                <div class="current-price">$64.900</div>
             </div>
             
             <!-- Botón de compra -->
-            <a href="#comprar" class="btn-comprar">
+            <a href="#comprar" class="buy-button">
                 ¡COMPRAR AHORA! 50% DESCUENTO
             </a>
             
-            <hr style="margin: 20px 0;">
+            <hr class="divider">
             
             <!-- Descripción -->
-            <p><strong>🚨 ¿Cansada de perder tiempo cortando a mano y ensuciando todo?</strong> Con el Picador Eléctrico Multifuncional <strong>– ¡Dile adiós a las tablas de picar!</strong>, transforma tu forma de cocinar en segundos. <strong>Corta, rebana, tritura y mezcla</strong> con solo <strong>presionar un botón.</strong> ¡Ahorra <strong>tiempo</strong> y <strong>esfuerzo</strong> en cada comida!</p>
+            <p class="product-description"><strong>🚨 ¿Cansada de perder tiempo cortando a mano y ensuciando todo?</strong> Con el Picador Eléctrico Multifuncional <strong>– ¡Dile adiós a las tablas de picar!</strong>, transforma tu forma de cocinar en segundos. <strong>Corta, rebana, tritura y mezcla</strong> con solo <strong>presionar un botón.</strong> ¡Ahorra <strong>tiempo</strong> y <strong>esfuerzo</strong> en cada comida!</p>
             
-            <p>🏆Equipado con cuchillas de <strong>acero inoxidable</strong>,<strong> carga rápida tipo C</strong>, diseño ergonómico y sistema de <strong>limpieza automática</strong>. Ideal para <strong>verduras, carnes, ajos y más.</strong> ¡Hazlo todo más fácil, más rápido y sin complicaciones!</p>
+            <p class="product-description">🏆Equipado con cuchillas de <strong>acero inoxidable</strong>,<strong> carga rápida tipo C</strong>, diseño ergonómico y sistema de <strong>limpieza automática</strong>. Ideal para <strong>verduras, carnes, ajos y más.</strong> ¡Hazlo todo más fácil, más rápido y sin complicaciones!</p>
             
-            <p>¡50% DCTO! + ENVÍO GRATIS</p>
+            <p class="product-description">¡50% DCTO! + ENVÍO GRATIS</p>
             
             <!-- Precios nuevamente -->
-            <div style="display: flex; align-items: center; gap: 20px; margin: 20px 0;">
-                <div style="font-size: 24px; color: #e74c3c; font-weight: bold;">$129.900</div>
-                <div style="font-size: 24px; font-weight: bold;">$64.900</div>
+            <div class="price-container">
+                <div class="old-price">$129.900</div>
+                <div class="current-price">$64.900</div>
             </div>
             
             <!-- Botón de compra -->
-            <a href="#comprar" class="btn-comprar">
+            <a href="#comprar" class="buy-button">
                 ¡COMPRAR AHORA!
             </a>
             
             <!-- Envío y pago -->
-            <div style="font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.4; color: #000; font-weight: bold; margin: 20px 0;">
-                ✅ <span style="color: #28a745; font-style: italic;">ENVÍO GRATIS</span> a toda Colombia<br>
-                ✅ <span style="text-decoration: underline; font-style: italic;">PAGAS AL RECIBIR EN TU CASA</span>
+            <div class="shipping-info">
+                ✅ <span class="green-text">ENVÍO GRATIS</span> a toda Colombia<br>
+                ✅ <span class="underline-text">PAGAS AL RECIBIR EN TU CASA</span>
             </div>
             
             <!-- Compradores recientes -->
-            <div id="compradores" style="display: flex; align-items: center; background: #fff; padding: 10px 15px; border-radius: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); width: 100%; font-family: sans-serif; font-size: 15px;">
-                <div id="img-container" style="display:flex; margin-right:10px;">
-                    <img src="images/1.jpg" style="width:30px;height:30px;border-radius:50%;margin-right:-10px;border:2px solid #fff;">
-                    <img src="images/2.jpg" style="width:30px;height:30px;border-radius:50%;margin-right:-10px;border:2px solid #fff;">
-                    <img src="images/3.jpg" style="width:30px;height:30px;border-radius:50%;margin-right:10px;border:2px solid #fff;">
+            <div class="recent-buyers">
+                <div class="buyers-images">
+                    <img src="images/1.jpg" class="buyer-image">
+                    <img src="images/2.jpg" class="buyer-image">
+                    <img src="images/3.jpg" class="buyer-image">
                 </div>
-                <span id="texto"><strong style="color:#000;">Gabriela</strong> 
-                    <img src="images/15659968.png" style="width:13px; vertical-align:middle; margin:0 3px;"> 
-                    y <strong style="color:#000;">120 personas</strong> compraron
+                <span class="buyers-text"><strong>Gabriela</strong> 
+                    <img src="images/15659968.png" class="verified-icon"> 
+                    y <strong>120 personas</strong> compraron
                 </span>
             </div>
             
             <!-- Contador de unidades -->
-            <div style="margin: 20px 0;">
-                <p>¡Apresúrate! Quedan solo <span id="units-left" style="color: #ff0000;">15</span> unidades disponibles</p>
-                <div style="background: #eee; height: 20px; border-radius: 10px; overflow: hidden;">
-                    <div style="background: #e74c3c; width: 24%; height: 100%;"></div>
+            <div class="stock-counter">
+                <p>¡Apresúrate! Quedan solo <span id="units-left" class="stock-number">15</span> unidades disponibles</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
                 </div>
-                <p style="text-align: right; margin-top: 5px;">24% (Unidades disponibles)</p>
+                <p class="stock-percentage">24% (Unidades disponibles)</p>
             </div>
             
             <!-- Pedidos en tiempo real -->
-            <div id="pedido" style="font-family: Arial, sans-serif; font-size: 18px; text-align: left; margin: 10px auto; max-width: 110%; font-weight: normal; color: #000; line-height: 1.1;">
+            <div id="pedido" class="realtime-order">
                 Cargando pedido...
             </div>
             
             <!-- Tiempo restante -->
-            <p>🚀 Compra <b>HOY</b> y recibe entre 2 a 5 días.</p>
-            <p>Oferta del 50% DCTO acaba en</p>
-            <div style="display: flex; gap: 10px; margin: 10px 0;">
-                <div style="text-align: center;">
-                    <div style="font-size: 24px; font-weight: bold;">03</div>
-                    <div style="font-size: 12px;">Hrs</div>
+            <p class="shipping-info">🚀 Compra <b>HOY</b> y recibe entre 2 a 5 días.</p>
+            <p class="offer-text">Oferta del 50% DCTO acaba en</p>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number">03</div>
+                    <div class="countdown-label">Hrs</div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 24px; font-weight: bold;">45</div>
-                    <div style="font-size: 12px;">Mins</div>
+                <div class="countdown-item">
+                    <div class="countdown-number">45</div>
+                    <div class="countdown-label">Mins</div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 24px; font-weight: bold;">22</div>
-                    <div style="font-size: 12px;">Segs</div>
+                <div class="countdown-item">
+                    <div class="countdown-number">22</div>
+                    <div class="countdown-label">Segs</div>
                 </div>
             </div>
             
             <!-- Testimonio -->
-            <div id="testimonio">
-                <img id="fotoCliente" src="" alt="Foto del cliente" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid #ccc;">
-                <div>
-                    <div id="textoTestimonio"></div>
-                    <div id="estrellasTestimonio" style="margin:8px 0;"></div>
-                    <div id="autorTestimonio" style="font-weight:bold;"></div>
+            <div class="testimonial">
+                <img id="fotoCliente" src="" alt="Foto del cliente" class="testimonial-image">
+                <div class="testimonial-content">
+                    <div id="textoTestimonio" class="testimonial-text"></div>
+                    <div id="estrellasTestimonio" class="testimonial-stars"></div>
+                    <div id="autorTestimonio" class="testimonial-author"></div>
                 </div>
             </div>
             
             <!-- Garantías -->
-            <img src="images/MCAFEE-SECURE-1080-X-600PX-IMAG-PRIN.-FORM.-1.png" alt="Garantías" style="margin: 20px 0;">
+            <img src="images/MCAFEE-SECURE-1080-X-600PX-IMAG-PRIN.-FORM.-1.png" alt="Garantías" class="guarantee-image">
             
             <!-- Características -->
-            <div style="display: flex; gap: 10px; margin: 20px 0;">
-                <img src="images/6.png" alt="Característica">
-                <img src="images/5.png" alt="Característica">
-                <img src="images/7.png" alt="Característica">
+            <div class="features-grid">
+                <img src="images/6.png" alt="Característica" class="feature-image">
+                <img src="images/5.png" alt="Característica" class="feature-image">
+                <img src="images/7.png" alt="Característica" class="feature-image">
             </div>
             
-            <p><strong><span style="color: #000000;">Compra 100% segura, con respaldo total en cada pedido. 🔒</span></strong></p>
+            <p class="secure-text"><strong><span>Compra 100% segura, con respaldo total en cada pedido. 🔒</span></strong></p>
         </div>
     </div>
     
     <!-- Sección de funcionalidad -->
-    <div class="container" style="background: #f9f9f9; padding: 30px; margin: 30px 0; border-radius: 10px;">
-        <h2>FUNCIONALIDAD</h2>
-        <p>🔥 <strong>Olvídate del desorden</strong>: Este picador eléctrico elimina el caos de las tablas, cuchillos y restos por toda la cocina. Todo queda en su lugar con solo presionar un botón.</p>
-        <p>🔥 <strong>Todo en uno</strong>: Pica, tritura y rebana en segundos. Desde verduras y frutas hasta carnes blandas, todo lo que necesitas en un solo dispositivo multifuncional.</p>
-        <p>🔥 <strong>Ideal para cualquier receta</strong>: ¿Sopas, guisos, ensaladas o batidos? Ahorra tiempo en la preparación y dedícalo a lo que realmente importa: disfrutar tu comida.</p>
+    <div class="functionality-section">
+        <h2 class="section-title">FUNCIONALIDAD</h2>
+        <p class="section-text">🔥 <strong>Olvídate del desorden</strong>: Este picador eléctrico elimina el caos de las tablas, cuchillos y restos por toda la cocina. Todo queda en su lugar con solo presionar un botón.</p>
+        <p class="section-text">🔥 <strong>Todo en uno</strong>: Pica, tritura y rebana en segundos. Desde verduras y frutas hasta carnes blandas, todo lo que necesitas en un solo dispositivo multifuncional.</p>
+        <p class="section-text">🔥 <strong>Ideal para cualquier receta</strong>: ¿Sopas, guisos, ensaladas o batidos? Ahorra tiempo en la preparación y dedícalo a lo que realmente importa: disfrutar tu comida.</p>
         
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="#comprar" class="btn-comprar">¡Comprar Ahora!</a>
+        <div class="button-center">
+            <a href="#comprar" class="buy-button">¡Comprar Ahora!</a>
         </div>
     </div>
 
     <!--seccion caracteristicas-->
-  <section class="caracteristicas">
-  <div class="contenedor">
-    <div class="imagen">
-      <img src="images/CREATIVOS-LANDING-NUEVOS-1-1.png" alt="Características del producto">
-    </div>
-    <div class="texto">
-      <h2>CARACTERÍSTICAS</h2>
-      <ul>
-        <li>⭐ Material: ABS + PP + Acero Inoxidable</li>
-        <li>⭐ Tamaño compacto: 18,5cm x 12cm</li>
-        <li>⭐ Carga rápida USB tipo C</li>
-        <li>⭐ Motor potente de 40W</li>
-        <li>⭐ Limpieza automática con botón</li>
-        <li>⭐ Cuchillas ultra afiladas y duraderas</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    <section class="features-section">
+        <div class="features-container">
+            <div class="features-image">
+                <img src="images/CREATIVOS-LANDING-NUEVOS-1-1.png" alt="Características del producto">
+            </div>
+            <div class="features-text">
+                <h2 class="features-title">CARACTERÍSTICAS</h2>
+                <ul class="features-list">
+                    <li>⭐ Material: ABS + PP + Acero Inoxidable</li>
+                    <li>⭐ Tamaño compacto: 18,5cm x 12cm</li>
+                    <li>⭐ Carga rápida USB tipo C</li>
+                    <li>⭐ Motor potente de 40W</li>
+                    <li>⭐ Limpieza automática con botón</li>
+                    <li>⭐ Cuchillas ultra afiladas y duraderas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
     <!-- Sección de comparación -->
-    <div class="container" style="background: #f9f9f9; padding: 30px; margin: 30px 0; border-radius: 10px;">
-        <h2>¿Aún sigues cortando a mano?</h2>
-        <p>Picar a mano no solo te quita tiempo, también deja tu cocina hecha un caos 🌀, aumenta el riesgo de cortarte 🔪 y puede ser un dolor de cabeza cuando tienes que preparar varios ingredientes. <strong>Ya no hace falta sufrir cada vez que cocinas.</strong></p>
+    <div class="comparison-section">
+        <h2 class="section-title">¿Aún sigues cortando a mano?</h2>
+        <p class="section-text">Picar a mano no solo te quita tiempo, también deja tu cocina hecha un caos 🌀, aumenta el riesgo de cortarte 🔪 y puede ser un dolor de cabeza cuando tienes que preparar varios ingredientes. <strong>Ya no hace falta sufrir cada vez que cocinas.</strong></p>
         
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="#comprar" class="btn-comprar">¡Comprar Ahora!</a>
+        <div class="button-center">
+            <a href="#comprar" class="buy-button">¡Comprar Ahora!</a>
         </div>
     </div>
     
     <!-- Preguntas frecuentes -->
-    <div class="container flex-columns" style="display: flex; gap: 20px; margin: 30px auto;">
-        <div style="flex: 1;">
+    <div class="faq-container">
+        <div class="faq-image">
             <img src="images/FOTO-LANDING.png" alt="Preguntas frecuentes">
         </div>
-        <div style="flex: 1;">
-            <h2>PREGUNTAS FRECUENTES</h2>
+        <div class="faq-content">
+            <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
             
-            <div style="margin-bottom: 15px;">
-                <div style="font-weight: bold; cursor: pointer; padding: 10px; background: #eee; border-radius: 5px;">
+            <div class="faq-item">
+                <div class="faq-question">
                     ¿Qué tipo de alimentos puede picar?
                 </div>
-                <div style="padding: 10px; display: none;">
+                <div class="faq-answer">
                     Está diseñado para picar fácilmente vegetales, frutas, hierbas, ajo, cebolla e incluso carnes blandas cocidas. Ideal tambien para preparar papillas o comidas para bebés. No se recomienda para alimentos duros como huesos o hielo.
                 </div>
             </div>
             
-            <div style="margin-bottom: 15px;">
-                <div style="font-weight: bold; cursor: pointer; padding: 10px; background: #eee; border-radius: 5px;">
+            <div class="faq-item">
+                <div class="faq-question">
                     ¿Es fácil de limpiar?
                 </div>
-                <div style="padding: 10px; display: none;">
+                <div class="faq-answer">
                     Sí, cuenta con una función de limpieza automática. Solo añade un poco de agua y jabón, presiona el botón y listo. También puedes desmontar sus piezas para una limpieza más profunda.
                 </div>
             </div>
@@ -351,59 +216,59 @@
     </div>
     
     <!-- Qué incluye -->
-    <div class="container" style="background: #f9f9f9; padding: 30px; margin: 30px 0; border-radius: 10px;">
-        <h2>¿QUÉ INCLUYE TU COMPRA?</h2>
-        <p>🔥 1 Picador Eléctrico Multifuncional</p>
-        <p>🔥 1 Cable de carga USB tipo C</p>
-        <p>🔥 2 Accesorios de corte intercambiables</p>
-        <p>🔥 2 Contenedores transparentes</p>
+    <div class="included-section">
+        <h2 class="section-title">¿QUÉ INCLUYE TU COMPRA?</h2>
+        <p class="included-item">🔥 1 Picador Eléctrico Multifuncional</p>
+        <p class="included-item">🔥 1 Cable de carga USB tipo C</p>
+        <p class="included-item">🔥 2 Accesorios de corte intercambiables</p>
+        <p class="included-item">🔥 2 Contenedores transparentes</p>
         
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="#comprar" class="btn-comprar">¡Comprar Ahora!</a>
+        <div class="button-center">
+            <a href="#comprar" class="buy-button">¡Comprar Ahora!</a>
         </div>
     </div>
     
     <!-- Alerta de inventario -->
-    <div class="container" style="text-align: center; margin: 30px 0; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 18px;">
-        <div class="blink">⚠️<span style="color: red;">Atención:</span> al ser un producto de <span style="color: red;">alta demanda</span>, contamos con <span style="color: red;">poco inventario</span>📦.</div>
-        <div class="blink">Por favor <span style="color: red;">realice su pedido</span> antes de que se agote🛒⏳.</div>
+    <div class="inventory-alert">
+        <div class="blink">⚠️<span class="red-text">Atención:</span> al ser un producto de <span class="red-text">alta demanda</span>, contamos con <span class="red-text">poco inventario</span>📦.</div>
+        <div class="blink">Por favor <span class="red-text">realice su pedido</span> antes de que se agote🛒⏳.</div>
     </div>
     
     <!-- Transportadoras -->
-    <div class="container" style="text-align: center; margin: 30px 0;">
-        <h2>TRANSPORTADORAS ALIADAS</h2>
-        <img src="images/MCAFEE-SECURE-1080-X-600PX-IMAG-PRIN.-FORM.png" alt="Transportadoras">
+    <div class="carriers-section">
+        <h2 class="section-title">TRANSPORTADORAS ALIADAS</h2>
+        <img src="images/MCAFEE-SECURE-1080-X-600PX-IMAG-PRIN.-FORM.png" alt="Transportadoras" class="carriers-image">
     </div>
     
     <!-- Testimonios -->
-    <div class="container" style="margin: 30px 0;">
-        <h2 style="text-align: center;">¿Qué dicen nuestros clientes?</h2>
+    <div class="testimonials-section">
+        <h2 class="section-title center-title">¿Qué dicen nuestros clientes?</h2>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+        <div class="testimonials-grid">
             <!-- Testimonio 1 -->
-            <div style="background: #f9f9f9; padding: 20px; border-radius: 10px;">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <img src="images/24-150x150.png" style="width: 60px; height: 60px; border-radius: 50%;">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="images/24-150x150.png" class="testimonial-avatar">
                     <div>
-                        <div style="color: gold;">★★★★★</div>
-                        <div style="font-weight: bold;">Camila M.</div>
-                        <div>Bogotá</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="testimonial-name">Camila M.</div>
+                        <div class="testimonial-location">Bogotá</div>
                     </div>
                 </div>
-                <p style="margin-top: 15px;">"¡Increíble lo útil que es este picador! No pensé que me facilitara tanto la vida en la cocina. Rápido, cómodo y sin esfuerzo. Lo recomiendo muchísimo."</p>
+                <p class="testimonial-text">"¡Increíble lo útil que es este picador! No pensé que me facilitara tanto la vida en la cocina. Rápido, cómodo y sin esfuerzo. Lo recomiendo muchísimo."</p>
             </div>
             
             <!-- Testimonio 2 -->
-            <div style="background: #f9f9f9; padding: 20px; border-radius: 10px;">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <img src="images/30-150x150.png" style="width: 60px; height: 60px; border-radius: 50%;">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="images/30-150x150.png" class="testimonial-avatar">
                     <div>
-                        <div style="color: gold;">★★★★★</div>
-                        <div style="font-weight: bold;">Wilson R.</div>
-                        <div>Medellín</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="testimonial-name">Wilson R.</div>
+                        <div class="testimonial-location">Medellín</div>
                     </div>
                 </div>
-                <p style="margin-top: 15px;">"Funciona mejor de lo que esperaba. En casa lo usamos todos los días, especialmente para las verduras. Ahorra tiempo y evita ensuciar tanto."</p>
+                <p class="testimonial-text">"Funciona mejor de lo que esperaba. En casa lo usamos todos los días, especialmente para las verduras. Ahorra tiempo y evita ensuciar tanto."</p>
             </div>
         </div>
     </div>
@@ -482,7 +347,7 @@
             function mostrarPedido() {
                 const pedido = generarPedido();
                 document.getElementById('pedido').innerHTML = 
-                    `🔥 Nuevo pedido realizado por <span style="font-weight:bold">${pedido.nombre}, ${pedido.ciudad}</span> ✔️ Verificado`;
+                    `🔥 Nuevo pedido realizado por <span class="buyer-name">${pedido.nombre}, ${pedido.ciudad}</span> ✔️ Verificado`;
             }
             
             mostrarPedido();
