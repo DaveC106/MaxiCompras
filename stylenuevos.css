@@ -193,7 +193,7 @@
 .divider {
     margin: 20px 0;
     border: 0;
-    border-top: 1px solid #ddd;
+    border-top: 6px solid #000000;
 }
 
 .product-description {
