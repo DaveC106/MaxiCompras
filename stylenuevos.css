@@ -65,7 +65,19 @@
     height: 427.5px;
     object-fit: cover;
     margin-bottom: 10px;
+
+    /* Efecto neón melito */
+    border: 3px solid #00ffe7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Efecto suave al pasar el mouse (opcional pero top) 
+.product-image:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}*/
 
 /* Información del producto */
 .product-info {
