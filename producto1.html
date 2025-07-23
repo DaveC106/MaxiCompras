@@ -89,11 +89,7 @@
             
             <!-- Compradores recientes -->
             <div class="recent-buyers">
-                <div class="buyers-images">
-                    <img src="https://randomuser.me/api/portraits/men/64.jpg" class="buyer-image">
-                    <img src="https://randomuser.me/api/portraits/women/8.jpg" class="buyer-image">
-                    <img src="https://randomuser.me/api/portraits/men/11.jpg" class="buyer-image">
-                </div>
+                <div class="buyers-images" id="buyers-images"></div>
                 <span class="buyers-text"><strong>Gabriela</strong> 
                     <img src="images/check.png" class="verified-icon"> 
                     y <strong>120 personas</strong> compraron
@@ -365,5 +361,48 @@
             setInterval(mostrarPedido, 5000);
         });
     </script>
+
+
+<script>
+    //script para ir recargando imagenes
+  const allImages = [
+   "https://randomuser.me/api/portraits/men/20.jpg",
+"https://randomuser.me/api/portraits/men/22.jpg",
+"https://randomuser.me/api/portraits/men/33.jpg",
+"https://randomuser.me/api/portraits/men/47.jpg",
+"https://randomuser.me/api/portraits/men/85.jpg",
+"https://randomuser.me/api/portraits/women/1.jpg",
+"https://randomuser.me/api/portraits/women/2.jpg",
+"https://randomuser.me/api/portraits/women/3.jpg",
+"https://randomuser.me/api/portraits/women/21.jpg",
+"https://randomuser.me/api/portraits/women/29.jpg",
+"https://randomuser.me/api/portraits/women/44.jpg",
+"https://randomuser.me/api/portraits/women/57.jpg",
+"https://randomuser.me/api/portraits/women/63.jpg",
+"https://randomuser.me/api/portraits/women/65.jpg",
+"https://randomuser.me/api/portraits/women/99.jpg"
+  ];
+   function getRandomImages(arr, count) {
+    const shuffled = arr.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  function updateImages() {
+    const container = document.getElementById('buyers-images');
+    container.innerHTML = ''; // Limpiar imágenes actuales
+    const selectedImages = getRandomImages(allImages, 3);
+
+    selectedImages.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = 'buyer-image';
+      container.appendChild(img);
+    });
+  }
+
+  updateImages(); // Mostrar al cargar
+  setInterval(updateImages, 5000); // Cambiar cada 5 segundos
+</script>
+
 </body>
 </html>
