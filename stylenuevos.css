@@ -139,14 +139,24 @@
 
 .buy-button {
     display: inline-block;
-    background: #000;
+    background: linear-gradient(180deg, #0ccb00, #04a700); /* degradado verde como en la imagen */
     color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 15px 30px;
+    border-radius: 12px;
     text-decoration: none;
     font-weight: bold;
-    margin: 10px 0;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
+    margin: 10px 0;
+    box-shadow: 0 0 15px #0ccb00, 0 0 25px #0ccb00; /* efecto glow verde */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto al pasar el mouse (más glow y animación) */
+.buy-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #0ccb00, 0 0 35px #0ccb00;
 }
 
 .divider {
