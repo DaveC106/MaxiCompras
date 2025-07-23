@@ -197,8 +197,23 @@
 }
 
 .product-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
     margin-bottom: 15px;
     line-height: 1.5;
+}
+
+.promo-banner {
+  background: #00e0ff; /* aguamarina claro */
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 15px 0;
 }
 
 .shipping-info {
