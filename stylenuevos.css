@@ -263,6 +263,7 @@
     opacity: 1; /* todas visibles */
     z-index: 0;
     transition: none;
+    border-radius: 50%;
 }
 
 .buyer-image.active {
