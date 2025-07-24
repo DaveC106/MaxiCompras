@@ -473,7 +473,7 @@
 
         if (!fin) {
             const ahora = new Date().getTime();
-            const finNuevo = ahora + 30 * 60 * 1000; // 30 minutos
+            const finNuevo = ahora + 30 * 60 * 1000; // 30 minutos en ms
             localStorage.setItem('contadorFin', finNuevo);
             fin = finNuevo;
         }
@@ -482,10 +482,13 @@
             const ahora = new Date().getTime();
             const diferencia = fin - ahora;
 
+            // Seleccionamos los elementos sin modificar HTML
+            const countdownItems = document.querySelectorAll('.countdown-number');
+
             if (diferencia <= 0) {
-                document.getElementById('hrs').textContent = "00";
-                document.getElementById('mins').textContent = "00";
-                document.getElementById('secs').textContent = "00";
+                countdownItems[0].textContent = "00"; // horas
+                countdownItems[1].textContent = "00"; // minutos
+                countdownItems[2].textContent = "00"; // segundos
                 clearInterval(intervalo);
                 return;
             }
@@ -493,9 +496,9 @@
             const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
             const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-            document.getElementById('hrs').textContent = "00";
-            document.getElementById('mins').textContent = minutos.toString().padStart(2, '0');
-            document.getElementById('secs').textContent = segundos.toString().padStart(2, '0');
+            countdownItems[0].textContent = "00";
+            countdownItems[1].textContent = minutos.toString().padStart(2, '0');
+            countdownItems[2].textContent = segundos.toString().padStart(2, '0');
         }
 
         actualizarContador();
