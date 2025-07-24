@@ -548,6 +548,7 @@ body {
 .section-text {
     margin-bottom: 15px;
     line-height: 1.5;
+    font-size: 17px;
 }
 
 .comparison-content {
@@ -601,6 +602,7 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    width:100%
 }
 
 /* Sección de características */
