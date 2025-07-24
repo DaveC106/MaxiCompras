@@ -149,7 +149,7 @@
     background-color: red;
     border-radius: 2px;
     opacity: 0;
-    animation: fadeX 10s infinite;
+    animation: fadeX 4s infinite;
 }
 
 .liner1 {
