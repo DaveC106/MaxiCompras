@@ -506,8 +506,9 @@
 }
 
 .feature-image {
-    max-width: 100%;
+    max-width: 29%;
     height: auto;
+    border-radius:12px;
 }
 
 .secure-text {
