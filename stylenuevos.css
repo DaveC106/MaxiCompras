@@ -157,7 +157,7 @@
     stroke-width: 8;
     stroke-linecap: round;
     opacity: 0;
-    animation: fadeX 5s infinite;
+    animation: fadeX 3s infinite;
 }
 
 .liner2 {
