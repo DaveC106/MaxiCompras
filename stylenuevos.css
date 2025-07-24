@@ -127,7 +127,7 @@
 
 .old-price {
     font-size: 24px;
-    color: #e74c3c;
+    color: #000000;
     font-weight: bold;
     position: relative;
 }
@@ -156,7 +156,7 @@
     stroke-width: 4;
     stroke-linecap: round;
     opacity: 0;
-    animation: fadeX 8s infinite;
+    animation: fadeX 6s infinite;
 }
 
 .liner2 {
