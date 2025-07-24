@@ -157,11 +157,11 @@
     stroke-width: 8;
     stroke-linecap: round;
     opacity: 0;
-    animation: fadeX 6s infinite;
+    animation: fadeX 5s infinite;
 }
 
 .liner2 {
-    animation-delay: 1s;
+    animation-delay: 0.5s;
 }
 
 @keyframes fadeX {
