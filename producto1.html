@@ -250,8 +250,53 @@
                     Sí, cuenta con una función de limpieza automática. Solo añade un poco de agua y jabón, presiona el botón y listo. También puedes desmontar sus piezas para una limpieza más profunda.
                 </div>
             </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cuánto tiempo dura la batería?
+                </div>
+                <div class="faq-answer">
+                    Con una carga completa, puede usarse varias veces dependiendo del tiempo de uso por sesión. Se recarga rápidamente con su cable USB tipo C.
+                </div>
+            </div> 
+              <div class="faq-item">
+                <div class="faq-question">
+                    ¿Es seguro de usar?
+                </div>
+                <div class="faq-answer">
+                    Totalmente. Tiene un diseño ergonómico y sistema de seguridad que evita el funcionamiento si no está bien cerrado. Además, sus cuchillas están protegidas.
+                </div>
+            </div>  
+              <div class="faq-item">
+                <div class="faq-question">
+                    ¿Hace mucho ruido al usarlo?
+                </div>
+                <div class="faq-answer">
+                  No. Su motor de 40W es potente pero silencioso, ideal para usar en cualquier momento sin molestar a nadie en casa. Perfecto si quieres cocinar temprano o tarde sin hacer escándalo.
+                </div>
+            </div>
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const items = document.querySelectorAll(".faq-item");
+
+        items.forEach(item => {
+            const question = item.querySelector(".faq-question");
+
+            question.addEventListener("click", () => {
+                // Cerrar cualquier otro activo
+                items.forEach(i => {
+                    if (i !== item) {
+                        i.classList.remove("active");
+                    }
+                });
+
+                // Toggle actual
+                item.classList.toggle("active");
+            });
+        });
+    });
+</script>
     
     <!-- Qué incluye -->
     <div class="included-section">

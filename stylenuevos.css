@@ -694,6 +694,12 @@
 .faq-answer {
     padding: 10px;
     display: none;
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.faq-item.active .faq-answer {
+    display: block;
 }
 
 /* Alerta de inventario */
