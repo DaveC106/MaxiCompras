@@ -251,22 +251,18 @@
 
 .buyers-images {
     display: flex;
+    gap: 5px; /* espacio entre imágenes */
     margin-right: 10px;
     position: relative;
-    width: 30px;
+    width: auto; /* dejar que se ajuste al contenido */
     height: 30px;
 }
 
 .buyer-image {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    position: static; /* ya no es absoluto */
+    opacity: 1; /* todas visibles */
+    z-index: 0;
+    transition: none;
 }
 
 .buyer-image.active {
