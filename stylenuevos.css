@@ -702,6 +702,55 @@
     display: block;
 }
 
+
+/*que incluye*/
+.included-section {
+    font-family: 'Montserrat', sans-serif;
+    margin: 40px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.included-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.included-text {
+    flex: 1 1 300px;
+    max-width: 500px;
+}
+
+.included-item,
+.extra-info {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.included-image {
+    flex: 1 1 300px;
+    text-align: center;
+}
+
+.included-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+.buy-button:hover {
+    background-color: #006ad1;
+}
 /* Alerta de inventario */
 .inventory-alert {
     text-align: center;
