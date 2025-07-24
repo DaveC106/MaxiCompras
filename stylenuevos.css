@@ -153,7 +153,7 @@
 .liner2 {
     fill: none;
     stroke: red;
-    stroke-width: 4;
+    stroke-width: 8;
     stroke-linecap: round;
     opacity: 0;
     animation: fadeX 6s infinite;
