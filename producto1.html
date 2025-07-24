@@ -116,7 +116,7 @@
     <div class="units-bar">Unida...</div>
 
     <!-- Pedido reciente -->
-    <p class="recent-order">🔥 Nuevo pedido realizado por <b>Tomás Hoyos, Ciénaga, Magdalena</b> ✅ Verificado</p>
+    <p id="pedido" class="recent-order"></p>🔥 Nuevo pedido realizado por <b>Tomás Hoyos, Ciénaga, Magdalena</b> ✅ Verificado</p>
 
     <!-- Envío -->
     <p class="shipping-infor">🚀 Compra <b>HOY</b> y recibe entre 2 a 5 días.</p>
@@ -354,26 +354,35 @@
             mostrarTestimonio();
             setInterval(mostrarTestimonio, 10000);
             
-            // Pedidos en tiempo real
-            const nombres = ["Daniel Cabrera", "Laura Gómez", "Andrés Martínez"];
-            const ciudades = ["Bogotá", "Medellín", "Cali"];
             
-            function generarPedido() {
-                const nombre = nombres[Math.floor(Math.random() * nombres.length)];
-                const ciudad = ciudades[Math.floor(Math.random() * ciudades.length)];
-                return {nombre, ciudad};
-            }
-            
-            function mostrarPedido() {
-                const pedido = generarPedido();
-                document.getElementById('pedido').innerHTML = 
-                    `🔥 Nuevo pedido realizado por <span class="buyer-name">${pedido.nombre}, ${pedido.ciudad}</span> ✔️ Verificado`;
-            }
-            
-            mostrarPedido();
-            setInterval(mostrarPedido, 5000);
         });
     </script>
+    <script>
+    // Pedidos en tiempo real
+    const nombres = ["Daniel Cabrera", "Laura Gómez", "Andrés Martínez", "Tomás Hoyos", "Karen Ríos"];
+    const ciudades = ["Bogotá", "Medellín", "Cali", "Ciénaga", "Cartagena"];
+
+    function generarPedido() {
+        const nombre = nombres[Math.floor(Math.random() * nombres.length)];
+        const ciudad = ciudades[Math.floor(Math.random() * ciudades.length)];
+        return { nombre, ciudad };
+    }
+
+    function mostrarPedido() {
+        const pedido = generarPedido();
+        const pedidoElemento = document.getElementById('pedido');
+        if (pedidoElemento) {
+            pedidoElemento.innerHTML = `🔥 Nuevo pedido realizado por <b>${pedido.nombre}, ${pedido.ciudad}</b> ✅ Verificado`;
+        }
+    }
+
+    // Ejecuta al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+        mostrarPedido();
+        setInterval(mostrarPedido, 5000);
+    });
+</script>
+
 
 
 <script>
