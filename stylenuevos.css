@@ -152,17 +152,17 @@
     animation: fadeX 10s infinite;
 }
 
-.line1 {
+.liner1 {
     transform: rotate(45deg);
     top: 50%;
     left: 0;
 }
 
-.line2 {
+.liner2 {
     transform: rotate(-45deg);
     top: 50%;
     left: 0;
-    animation-delay: 5s;
+    animation-delay: 1s;
 }
 
 @keyframes fadeX {
