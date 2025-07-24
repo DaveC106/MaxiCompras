@@ -374,12 +374,58 @@
 .buyer-name {
     font-weight: bold;
 }
+.info-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    max-width: 500px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
 
-/* Countdown */
+.stock-alert {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.red {
+    color: red;
+}
+
+.units-bar {
+    background-color: #ff9999;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.recent-order {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.shipping-infor {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.offer-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0 5px;
+}
+
+/* Countdown estilizado */
 .countdown {
     display: flex;
-    gap: 10px;
-    margin: 10px 0;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .countdown-item {
@@ -387,46 +433,19 @@
 }
 
 .countdown-number {
+    background-color: red;
+    color: white;
     font-size: 24px;
     font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 12px;
 }
 
 .countdown-label {
-    font-size: 12px;
+    font-size: 14px;
+    margin-top: 4px;
 }
 
-/* Contenedor principal estilo tarjeta */
-.info-box {
-    background: #fff;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    max-width: 500px;
-    margin: auto;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-}
-
-/* Countdown estilo más vistoso */
-.countdown-number {
-    background-color: red;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
-}
-
-/* Texto general */
-.stock-counter p,
-.shipping-infor,
-.offer-text {
-    margin: 10px 0;
-    font-weight: 500;
-}
-
-.offer-text {
-    font-size: 18px;
-    font-weight: bold;
-}
 
 /* Testimonio */
 .testimonial {
