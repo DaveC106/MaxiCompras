@@ -536,9 +536,10 @@ body {
 }
 
 .section-title {
-    font-size: 24px;
+    font-size: 35px;
     margin-bottom: 20px;
-    color: #222;
+    color: #ffffff;
+    font-weight: 900;
 }
 
 .center-title {
