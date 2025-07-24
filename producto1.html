@@ -357,32 +357,41 @@
             
         });
     </script>
-    <script>
-    // Pedidos en tiempo real
-    const nombres = ["Daniel Cabrera", "Laura Gómez", "Andrés Martínez", "Tomás Hoyos", "Karen Ríos"];
-    const ciudades = ["Bogotá", "Medellín", "Cali", "Ciénaga", "Cartagena"];
+   <script>
+    const pedidos = [
+        { nombre: "Laura Gómez", ciudad: "Cartagena" },
+        { nombre: "David López", ciudad: "Montería" },
+        { nombre: "Camila Ríos", ciudad: "Medellín" },
+        { nombre: "Juan Torres", ciudad: "Bogotá" },
+        { nombre: "Valentina Herrera", ciudad: "Barranquilla" },
+        { nombre: "Andrés Ramírez", ciudad: "Bucaramanga" },
+        { nombre: "Mariana Salazar", ciudad: "Pereira" },
+        { nombre: "Sebastián Duarte", ciudad: "Cúcuta" },
+        { nombre: "Juliana Mendoza", ciudad: "Ibagué" },
+        { nombre: "Nicolás Pardo", ciudad: "Villavicencio" },
+        { nombre: "Daniela Quintero", ciudad: "Neiva" },
+        { nombre: "Santiago Castaño", ciudad: "Manizales" },
+        { nombre: "Isabella Acosta", ciudad: "Santa Marta" },
+        { nombre: "Mateo Guerrero", ciudad: "Pasto" },
+        { nombre: "Paula Jiménez", ciudad: "Armenia" }
+    ];
 
-    function generarPedido() {
-        const nombre = nombres[Math.floor(Math.random() * nombres.length)];
-        const ciudad = ciudades[Math.floor(Math.random() * ciudades.length)];
-        return { nombre, ciudad };
-    }
+    let index = 0;
 
     function mostrarPedido() {
-        const pedido = generarPedido();
+        const pedido = pedidos[index];
         const pedidoElemento = document.getElementById('pedido');
         if (pedidoElemento) {
             pedidoElemento.innerHTML = `🔥 Nuevo pedido realizado por <b>${pedido.nombre}, ${pedido.ciudad}</b> ✅ Verificado`;
         }
+        index = (index + 1) % pedidos.length;
     }
 
-    // Ejecuta al cargar
     window.addEventListener('DOMContentLoaded', () => {
         mostrarPedido();
-        setInterval(mostrarPedido, 5000);
+        setInterval(mostrarPedido, 5000); // Cambia cada 5 segundos
     });
 </script>
-
 
 
 <script>
