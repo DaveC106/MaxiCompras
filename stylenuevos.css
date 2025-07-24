@@ -694,14 +694,14 @@ body {
     font-weight: bold;
     cursor: pointer;
     padding: 10px;
-    background: #eee;
+    background: #000000;
     border-radius: 5px;
 }
 
 .faq-answer {
     padding: 10px;
     display: none;
-    background: #f9f9f9;
+    background: #000000;
     border-radius: 5px;
     margin-top: 5px;
 }
