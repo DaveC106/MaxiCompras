@@ -278,8 +278,8 @@
 
 /* 👇 NUEVO: Apilamiento suave de las imágenes 👇 */
 .buyers-images .buyer-image {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     border: 2px solid #fff;
     margin-left: -10px;
