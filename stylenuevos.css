@@ -513,6 +513,8 @@
 
 .secure-text {
     margin: 15px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .secure-text span {
