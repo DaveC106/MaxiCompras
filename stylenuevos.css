@@ -451,19 +451,20 @@
 
 /* Testimonio */
 .testimonial {
+    font-family: 'Montserrat', sans-serif;
     margin-top: 20px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background: #f9f9f9;
+    background: #fff;
     font-style: italic;
-    color: #333;
+    color: #000000;
     max-width: 500px;
     display: flex;
     align-items: center;
     gap: 15px;
+    box-shadow: -1px -1px 15px 7px rgba(0, 0, 0, 0.2);
 }
-
 .testimonial-image {
     width: 60px;
     height: 60px;
