@@ -274,7 +274,7 @@
     background: #fff;
     padding: 10px 15px;
     border-radius: 20px;
-    box-shadow: -1 -1px 15px rgba(0,0,0,0.2);
+    box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
     width: 100%;
     font-family: sans-serif;
     font-size: 15px;
@@ -378,7 +378,7 @@
     background: #fff;
     border-radius: 20px;
     padding: 20px;
-    box-shadow: -1 -1px 15px rgba(0,0,0,0.2);
+    box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
     max-width: 500px;
     margin: auto;
     font-family: 'Arial', sans-serif;
