@@ -90,7 +90,8 @@
             <!-- Compradores recientes -->
             <div class="recent-buyers">
                 <div class="buyers-images" id="buyers-images"></div>
-                <span class="buyers-text"><strong>Gabriela</strong> 
+                <span class="buyers-text">
+                    <strong>Gabriela</strong> 
                     <img src="images/check.png" class="verified-icon"> 
                     y <strong>120 personas</strong> compraron
                 </span>
@@ -366,7 +367,7 @@
 <script>
     //script para ir recargando imagenes
   const allImages = [
-   "https://randomuser.me/api/portraits/men/20.jpg",
+      "https://randomuser.me/api/portraits/men/20.jpg",
 "https://randomuser.me/api/portraits/men/22.jpg",
 "https://randomuser.me/api/portraits/men/33.jpg",
 "https://randomuser.me/api/portraits/men/47.jpg",
@@ -382,26 +383,62 @@
 "https://randomuser.me/api/portraits/women/65.jpg",
 "https://randomuser.me/api/portraits/women/99.jpg"
   ];
-   function getRandomImages(arr, count) {
+
+  const names = [
+    "Gabriela", "Moisés", "Valery", "Angélica", "Valentina", "Camila",
+    "Lucas", "Roxana", "Samuel", "Isabella", "Juan", "Keiner",
+    "David"
+  ];
+
+  function getRandomItems(arr, count) {
     const shuffled = arr.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
   }
 
-  function updateImages() {
-    const container = document.getElementById('buyers-images');
-    container.innerHTML = ''; // Limpiar imágenes actuales
-    const selectedImages = getRandomImages(allImages, 3);
+  function updateContent() {
+    const buyersContainer = document.getElementById('buyers-images');
+    const buyersText = document.getElementById('buyers-text');
 
-    selectedImages.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.className = 'buyer-image';
-      container.appendChild(img);
-    });
+    // Fade out texto
+    buyersText.classList.add('fade-out');
+
+    setTimeout(() => {
+      // Limpiar imágenes actuales
+      buyersContainer.innerHTML = '';
+
+      // Obtener imágenes aleatorias
+      const selectedImages = getRandomItems(allImages, 3);
+      selectedImages.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'buyer-image';
+        buyersContainer.appendChild(img);
+
+        // Fade in imagen individual
+        setTimeout(() => {
+          img.classList.add('show');
+        }, 50);
+      });
+
+      // Nombre aleatorio
+      const randomName = names[Math.floor(Math.random() * names.length)];
+
+      // Número aleatorio de personas (80 a 200)
+      const randomCount = Math.floor(Math.random() * (200 - 80 + 1)) + 80;
+
+      // Actualizar texto
+      buyersText.innerHTML = `<strong>${randomName}</strong> 
+        <img src="images/check.png" class="verified-icon"> 
+        y <strong>${randomCount} personas</strong> compraron`;
+
+      // Fade in texto
+      buyersText.classList.remove('fade-out');
+    }, 500);
   }
 
-  updateImages(); // Mostrar al cargar
-  setInterval(updateImages, 5000); // Cambiar cada 5 segundos
+  // Ejecutar al cargar y luego cada 5s
+  updateContent();
+  setInterval(updateContent, 5000);
 </script>
 
 </body>

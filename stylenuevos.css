@@ -252,14 +252,26 @@
 .buyers-images {
     display: flex;
     margin-right: 10px;
+    position: relative;
+    width: 30px;
+    height: 30px;
 }
 
 .buyer-image {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-right: -10px;
     border: 2px solid #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.buyer-image.active {
+    opacity: 1;
+    z-index: 1;
 }
 
 .verified-icon {
