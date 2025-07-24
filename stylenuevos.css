@@ -153,13 +153,13 @@
 }
 
 .liner1 {
-    transform: rotate(45deg) skewY(8deg); /* curva ligera */
+    transform: rotate(306deg) skewY(180deg); /* curva ligera */
     top: 50%;
     left: 0;
 }
 
 .liner2 {
-    transform: rotate(-45deg) skewY(-8deg); /* curva opuesta */
+    transform: rotate(-306deg) skewY(-180deg); /* curva opuesta */
     top: 50%;
     left: 0;
     animation-delay: 5s;
