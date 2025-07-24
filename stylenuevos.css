@@ -838,3 +838,99 @@
         height: auto;
     }
 }
+
+
+/* FUNCIONALIDAD */
+.functionality-section {
+    background: #000;
+    box-shadow: 0px 0px 10px 0px #00FFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+    color: white;
+}
+.functionality-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
+
+/* CARACTERÍSTICAS */
+.features-section {
+    background: #000;
+    box-shadow: 0px 0px 10px 0px #00FFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+    color: white;
+}
+.features-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
+
+/* COMPARACIÓN */
+.comparison-section {
+    background: #000;
+    box-shadow: 0px 0px 10px 0px #00FFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+    color: white;
+}
+.comparison-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
+
+/* PREGUNTAS FRECUENTES */
+.faq-container {
+    background: #000;
+    box-shadow: 0px 0px 10px 0px #00FFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+    color: white;
+}
+.faq-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
+
+/* INCLUYE */
+.included-section {
+    background: #000;
+    box-shadow: 0px 0px 10px 0px #00FFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+    color: white;
+}
+.included-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
+.included-section img,
+.faq-container img,
+.comparison-section img,
+.features-section img,
+.functionality-section img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.included-section img:hover,
+.faq-container img:hover,
+.comparison-section img:hover,
+.features-section img:hover,
+.functionality-section img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}

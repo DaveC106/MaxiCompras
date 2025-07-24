@@ -276,29 +276,7 @@
             </div>
         </div>
     </div>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const items = document.querySelectorAll(".faq-item");
-
-        items.forEach(item => {
-            const question = item.querySelector(".faq-question");
-
-            question.addEventListener("click", () => {
-                // Cerrar cualquier otro activo
-                items.forEach(i => {
-                    if (i !== item) {
-                        i.classList.remove("active");
-                    }
-                });
-
-                // Toggle actual
-                item.classList.toggle("active");
-            });
-        });
-    });
-</script>
-    
-   <!-- Qué incluye -->
+     <!-- Qué incluye -->
 <div class="included-section">
     <h2 class="section-title">¿QUÉ INCLUYE TU COMPRA?</h2>
     <div class="included-content">
@@ -321,6 +299,28 @@
     </div>
 </div>
     
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const items = document.querySelectorAll(".faq-item");
+
+        items.forEach(item => {
+            const question = item.querySelector(".faq-question");
+
+            question.addEventListener("click", () => {
+                // Cerrar cualquier otro activo
+                items.forEach(i => {
+                    if (i !== item) {
+                        i.classList.remove("active");
+                    }
+                });
+
+                // Toggle actual
+                item.classList.toggle("active");
+            });
+        });
+    });
+</script>
+
     <!-- Alerta de inventario -->
     <div class="inventory-alert">
         <div class="blink">⚠️<span class="red-text">Atención:</span> al ser un producto de <span class="red-text">alta demanda</span>, contamos con <span class="red-text">poco inventario</span>📦.</div>
