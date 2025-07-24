@@ -364,33 +364,31 @@
 
 
 <script>
-    //script para ir recargando imagenes
   const allImages = [
-      "https://randomuser.me/api/portraits/men/20.jpg",
-"https://randomuser.me/api/portraits/men/22.jpg",
-"https://randomuser.me/api/portraits/men/33.jpg",
-"https://randomuser.me/api/portraits/men/47.jpg",
-"https://randomuser.me/api/portraits/men/85.jpg",
-"https://randomuser.me/api/portraits/women/1.jpg",
-"https://randomuser.me/api/portraits/women/2.jpg",
-"https://randomuser.me/api/portraits/women/3.jpg",
-"https://randomuser.me/api/portraits/women/21.jpg",
-"https://randomuser.me/api/portraits/women/29.jpg",
-"https://randomuser.me/api/portraits/women/44.jpg",
-"https://randomuser.me/api/portraits/women/57.jpg",
-"https://randomuser.me/api/portraits/women/63.jpg",
-"https://randomuser.me/api/portraits/women/65.jpg",
-"https://randomuser.me/api/portraits/women/99.jpg"
+    "https://randomuser.me/api/portraits/men/20.jpg",
+    "https://randomuser.me/api/portraits/men/22.jpg",
+    "https://randomuser.me/api/portraits/men/33.jpg",
+    "https://randomuser.me/api/portraits/men/47.jpg",
+    "https://randomuser.me/api/portraits/men/85.jpg",
+    "https://randomuser.me/api/portraits/women/1.jpg",
+    "https://randomuser.me/api/portraits/women/2.jpg",
+    "https://randomuser.me/api/portraits/women/3.jpg",
+    "https://randomuser.me/api/portraits/women/21.jpg",
+    "https://randomuser.me/api/portraits/women/29.jpg",
+    "https://randomuser.me/api/portraits/women/44.jpg",
+    "https://randomuser.me/api/portraits/women/57.jpg",
+    "https://randomuser.me/api/portraits/women/63.jpg",
+    "https://randomuser.me/api/portraits/women/65.jpg",
+    "https://randomuser.me/api/portraits/women/99.jpg"
   ];
 
   const names = [
     "Gabriela", "Moisés", "Valery", "Angélica", "Valentina", "Camila",
-    "Lucas", "Roxana", "Samuel", "Isabella", "Juan", "Keiner",
-    "David"
+    "Lucas", "Roxana", "Samuel", "Isabella", "Juan", "Keiner", "David"
   ];
 
   function getRandomItems(arr, count) {
-    const shuffled = arr.sort(() => 0.5 - Math.random());
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
   }
 
@@ -405,37 +403,33 @@
       // Limpiar imágenes actuales
       buyersContainer.innerHTML = '';
 
-      // Obtener imágenes aleatorias
+      // Obtener 3 imágenes aleatorias
       const selectedImages = getRandomItems(allImages, 3);
+
       selectedImages.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
-        img.className = 'buyer-image';
+        img.className = 'buyer-image show'; // usará CSS para mostrar
         buyersContainer.appendChild(img);
-
-        // Fade in imagen individual
-        setTimeout(() => {
-          img.classList.add('active');
-        }, 50);
       });
 
-      // Nombre aleatorio
+      // Elegir nombre aleatorio
       const randomName = names[Math.floor(Math.random() * names.length)];
 
-      // Número aleatorio de personas (80 a 200)
+      // Elegir número aleatorio de compradores
       const randomCount = Math.floor(Math.random() * (200 - 80 + 1)) + 80;
 
       // Actualizar texto
-      buyersText.innerHTML = `<strong>${randomName}</strong> 
+      buyersText.innerHTML = `
+        <strong>${randomName}</strong> 
         <img src="images/check.png" class="verified-icon"> 
-        y <strong>${randomCount} personas</strong> compraron`;
+        y <strong>${randomCount} personas</strong> compraron
+      `;
 
-      // Fade in texto
       buyersText.classList.remove('fade-out');
     }, 500);
   }
 
-  // Ejecutar al cargar y luego cada 5s
   updateContent();
   setInterval(updateContent, 5000);
 </script>
