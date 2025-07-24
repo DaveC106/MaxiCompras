@@ -123,21 +123,19 @@
 
     <!-- Texto oferta -->
     <p class="offer-text">Oferta del 50% DCTO acaba en</p>
-
-    <!-- Countdown -->
-    <div class="countdown">
-        <div class="countdown-item">
-            <div class="countdown-number">00</div>
-            <div class="countdown-label">Hrs</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number">00</div>
-            <div class="countdown-label">Mins</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number">00</div>
-            <div class="countdown-label">Segs</div>
-        </div>
+        <!--countdown-->
+  <div class="countdown">
+    <div class="countdown-item">
+        <div class="countdown-number" id="hrs">00</div>
+        <div class="countdown-label">Hrs</div>
+    </div>
+    <div class="countdown-item">
+        <div class="countdown-number" id="mins">00</div>
+        <div class="countdown-label">Mins</div>
+    </div>
+    <div class="countdown-item">
+        <div class="countdown-number" id="secs">00</div>
+        <div class="countdown-label">Segs</div>
     </div>
 </div>
             
@@ -463,6 +461,44 @@
 
   updateContent();
   setInterval(updateContent, 5000);
+</script>
+
+<script>
+    function iniciarContador() {
+        let fin = localStorage.getItem('contadorFin');
+
+        if (!fin) {
+            const ahora = new Date().getTime();
+            const finNuevo = ahora + 30 * 60 * 1000; // 30 minutos
+            localStorage.setItem('contadorFin', finNuevo);
+            fin = finNuevo;
+        }
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const diferencia = fin - ahora;
+
+            if (diferencia <= 0) {
+                document.getElementById('hrs').textContent = "00";
+                document.getElementById('mins').textContent = "00";
+                document.getElementById('secs').textContent = "00";
+                clearInterval(intervalo);
+                return;
+            }
+
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            document.getElementById('hrs').textContent = "00";
+            document.getElementById('mins').textContent = minutos.toString().padStart(2, '0');
+            document.getElementById('secs').textContent = segundos.toString().padStart(2, '0');
+        }
+
+        actualizarContador();
+        const intervalo = setInterval(actualizarContador, 1000);
+    }
+
+    window.addEventListener('DOMContentLoaded', iniciarContador);
 </script>
 
 </body>
