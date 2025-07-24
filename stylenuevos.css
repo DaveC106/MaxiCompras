@@ -132,36 +132,34 @@
     position: relative;
 }
 
-/* Línea animada en forma de X */
-.x-cross {
+.current-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+    color: #0ccb00;
+}
+
+/* X curva en SVG */
+.curved-x {
     position: absolute;
-    top: 8px; /* ajusta según tamaño de fuente */
+    top: 5px; /* ajusta según tamaño del texto */
     left: 0;
-    width: 110px;
-    height: 30px;
+    width: 120px;
+    height: 40px;
     pointer-events: none;
 }
 
-.line {
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: red;
-    border-radius: 50px;
+.liner1,
+.liner2 {
+    fill: none;
+    stroke: red;
+    stroke-width: 4;
+    stroke-linecap: round;
     opacity: 0;
-    animation: fadeX 4s infinite;
-}
-
-.liner1 {
-    transform: rotate(306deg) skewY(180deg); /* curva ligera */
-    top: 50%;
-    left: 0;
+    animation: fadeX 10s infinite;
 }
 
 .liner2 {
-    transform: rotate(-306deg) skewY(-180deg); /* curva opuesta */
-    top: 50%;
-    left: 0;
     animation-delay: 5s;
 }
 
@@ -171,13 +169,6 @@
     40% { opacity: 1; }
     50% { opacity: 0; }
     100% { opacity: 0; }
-}
-
-.current-price {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 45px;
-    font-weight: bold;
-    color: #0ccb00;
 }
 @keyframes pulse-glow {
     0% {
