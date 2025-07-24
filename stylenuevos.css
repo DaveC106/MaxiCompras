@@ -643,10 +643,11 @@ body {
 }
 
 .features-title {
-    font-size: 28px;
+    font-size: 35px;
     margin-bottom: 20px;
-    color: #222;
+    color: #ffffff;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
 }
 
 .features-list {
@@ -655,8 +656,8 @@ body {
 }
 
 .features-list li {
-    font-size: 16px;
-    color: #333;
+    font-size: 17px;
+    color: #ffffff;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
