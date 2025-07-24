@@ -590,6 +590,13 @@
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    flex-direction: row; /* Asegura imagen a la izquierda, texto a la derecha */
+}
+
+.features-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
 }
 
 .features-image img {
@@ -600,6 +607,8 @@
 }
 
 .features-text {
+    flex: 1;
+    min-width: 300px;
     max-width: 500px;
 }
 
@@ -607,6 +616,7 @@
     font-size: 28px;
     margin-bottom: 20px;
     color: #222;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .features-list {
@@ -620,6 +630,7 @@
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* FAQ */
