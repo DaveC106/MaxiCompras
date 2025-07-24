@@ -551,6 +551,30 @@
     text-align: center;
     margin-top: 20px;
 }
+.functionality-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.functionality-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.functionality-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: right;
+}
+
+.functionality-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
 
 /* Sección de características */
 .features-section {
