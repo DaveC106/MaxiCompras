@@ -836,6 +836,28 @@ body {
     margin-top: 15px;
     line-height: 1.5;
 }
+.testimonial-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.testimonial-footer {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.testimonial-name {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.testimonial-location {
+    font-size: 14px;
+    color: #777;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
