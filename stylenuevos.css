@@ -809,6 +809,8 @@ body {
     background: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
+    max-width: 300px;
+     box-shadow: -1px -1px 15px 7px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial-header {
