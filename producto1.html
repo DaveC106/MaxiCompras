@@ -331,10 +331,28 @@
     <!-- Texto adicional centrado con Montserrat -->
 <div style="text-align: center; font-family: 'Montserrat', sans-serif; margin-top: 20px;">
     <p style="font-size: 18px; font-weight: bold;">ORDENA FÁCIL NUESTRAS OFERTAS</p>
-    <p><strong>DEBES HACER CLIC EN COMPRAR AHORA Y PAGAR AL RECIBIR.</strong></p>
+   <p><strong>DEBES HACER CLIC EN <span style="color:#ff0000;">COMPRAR AHORA Y PAGAR AL RECIBIR</span>.</strong></p>
     <p><strong>SOLO QUEDAN</strong></p>
-    <p><strong>POCAS UNIDADES</strong></p>
+  <p class="pocas-unidades">POCAS UNIDADES</p>
+  
 </div>
+<style>
+@keyframes aparecerDesaparecer {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.pocas-unidades {
+  color: #ff0000;
+  font-weight: bold;
+  animation: aparecerDesaparecer 2s infinite ease-in-out;
+}
+</style>
+
 <!-- Imagen centrada -->
 <div style="text-align: center; margin-top: 30px;">
     <img src="images/camara.jpg" alt="Cámara en oferta" style="max-width: 100%; height: auto;">
