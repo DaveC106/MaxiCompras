@@ -48,7 +48,7 @@ body {
     100% { transform: scale(1); box-shadow: 0 0 10px #e74c3c; }
 }
 
-/* Contenedor principal del producto */
+/* Contenedor principal del producto - Se mantiene igual */
 .product-container {
     display: flex;
     gap: 20px;
@@ -57,9 +57,12 @@ body {
     padding: 0 20px;
 }
 
-/* Galería de imágenes del producto */
+/* Galería de imágenes del producto - Versión PC */
 .product-gallery {
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .product-image {
@@ -68,21 +71,42 @@ body {
     height: 427.5px;
     object-fit: cover;
     margin-bottom: 10px;
-
     border-style: groove;
     border-color: #9AFF00;
     border-width: 3px;
-    border-radius: 10px 10px 10px 10px;
-
+    border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #00FFFF;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
 }
-/* Efecto suave al pasar el mouse (opcional pero top) */
+
 .product-image:hover {
     transform: scale(1.03);
     box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
 
+/* Versión móvil */
+@media (max-width: 768px) {
+    .product-gallery {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 0;
+        -webkit-overflow-scrolling: touch; /* Para scroll suave en iOS */
+        scrollbar-width: none; /* Ocultar scrollbar en Firefox */
+    }
+    
+    .product-gallery::-webkit-scrollbar {
+        display: none; /* Ocultar scrollbar en Chrome/Safari */
+    }
+    
+    .product-image {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        margin-bottom: 0;
+        border-radius: 10px;
+        max-width: 100%;
+    }
 }
 
 /* Información del producto */
