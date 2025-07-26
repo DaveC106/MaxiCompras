@@ -667,5 +667,144 @@
     window.addEventListener('DOMContentLoaded', iniciarContador);
 </script>
 
+<!--script de imagenes en celulares-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const productGallery = document.querySelector('.product-gallery');
+    const images = document.querySelectorAll('.product-image');
+    let isMobile = window.matchMedia("(max-width: 768px)").matches;
+    let intervalId = null;
+    let currentIndex = 0;
+    let startX = 0;
+    let isDragging = false;
+
+    // Solo activar en móviles
+    if (isMobile && images.length > 1) {
+        // Configurar el slider
+        setupSlider();
+        
+        // Iniciar autoplay
+        startAutoPlay();
+        
+        // Event listeners para touch
+        productGallery.addEventListener('touchstart', handleTouchStart, { passive: true });
+        productGallery.addEventListener('touchmove', handleTouchMove, { passive: false });
+        productGallery.addEventListener('touchend', handleTouchEnd);
+        
+        // Pausar autoplay al interactuar
+        productGallery.addEventListener('mouseenter', pauseAutoPlay);
+        productGallery.addEventListener('mouseleave', startAutoPlay);
+        productGallery.addEventListener('touchstart', pauseAutoPlay);
+    }
+
+    function setupSlider() {
+        // Clonar primera y última imagen para scroll infinito
+        const firstClone = images[0].cloneNode(true);
+        const lastClone = images[images.length - 1].cloneNode(true);
+        
+        productGallery.insertBefore(lastClone, images[0]);
+        productGallery.appendChild(firstClone);
+        
+        // Ir a la primera imagen real
+        currentIndex = 1;
+        scrollToIndex(currentIndex, false);
+    }
+
+    function scrollToIndex(index, smooth = true) {
+        const imageWidth = productGallery.offsetWidth;
+        productGallery.scrollTo({
+            left: index * imageWidth,
+            behavior: smooth ? 'smooth' : 'auto'
+        });
+    }
+
+    function startAutoPlay() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = setInterval(() => {
+            currentIndex = (currentIndex + 1) % (images.length + 2);
+            scrollToIndex(currentIndex);
+            
+            // Si llegamos al clon, saltar sin animación a la imagen real
+            if (currentIndex === images.length + 1) {
+                setTimeout(() => {
+                    currentIndex = 1;
+                    scrollToIndex(currentIndex, false);
+                }, 500);
+            }
+        }, 4000);
+    }
+
+    function pauseAutoPlay() {
+        if (intervalId) clearInterval(intervalId);
+    }
+
+    function handleTouchStart(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        pauseAutoPlay();
+    }
+
+    function handleTouchMove(e) {
+        if (!isDragging) return;
+        const x = e.touches[0].clientX;
+        const diff = startX - x;
+        
+        // Prevenir scroll vertical cuando se desliza horizontalmente
+        if (Math.abs(diff) > 5) {
+            e.preventDefault();
+        }
+    }
+
+    function handleTouchEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        // Umbral para considerar un deslizamiento
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                // Deslizamiento a la derecha (siguiente imagen)
+                currentIndex = Math.min(currentIndex + 1, images.length + 1);
+            } else {
+                // Deslizamiento a la izquierda (imagen anterior)
+                currentIndex = Math.max(currentIndex - 1, 0);
+            }
+            scrollToIndex(currentIndex);
+            
+            // Manejar clones para scroll infinito
+            if (currentIndex === images.length + 1) {
+                setTimeout(() => {
+                    currentIndex = 1;
+                    scrollToIndex(currentIndex, false);
+                }, 500);
+            } else if (currentIndex === 0) {
+                setTimeout(() => {
+                    currentIndex = images.length;
+                    scrollToIndex(currentIndex, false);
+                }, 500);
+            }
+        }
+        
+        // Reiniciar autoplay después de la interacción
+        setTimeout(startAutoPlay, 4000);
+    }
+
+    // Reconfigurar al cambiar tamaño de pantalla
+    window.addEventListener('resize', function() {
+        const newIsMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (newIsMobile !== isMobile) {
+            isMobile = newIsMobile;
+            if (isMobile && images.length > 1) {
+                setupSlider();
+                startAutoPlay();
+            } else {
+                pauseAutoPlay();
+            }
+        }
+    });
+});
+</script>
 </body>
 </html>
