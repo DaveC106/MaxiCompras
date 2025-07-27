@@ -48,13 +48,14 @@ body {
     100% { transform: scale(1); box-shadow: 0 0 10px #e74c3c; }
 }
 
-/* Contenedor principal del producto - Se mantiene igual */
+/* Contenedor principal del producto */
 .product-container {
     display: flex;
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative; /* Añadido para posicionamiento relativo */
 }
 
 /* Galería de imágenes del producto - Versión PC */
@@ -63,6 +64,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    overflow: visible; /* Cambiado para permitir ver la paginación */
 }
 
 .product-image {
@@ -92,12 +94,13 @@ body {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 0;
-        -webkit-overflow-scrolling: touch; /* Para scroll suave en iOS */
-        scrollbar-width: none; /* Ocultar scrollbar en Firefox */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        position: relative;
     }
     
     .product-gallery::-webkit-scrollbar {
-        display: none; /* Ocultar scrollbar en Chrome/Safari */
+        display: none;
     }
     
     .product-image {
@@ -108,44 +111,79 @@ body {
         max-width: 100%;
     }
 }
-/* Indicadores de paginación */
-.slider-pagination {
+
+/* Contenedor de paginación */
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0 5px;
     position: absolute;
-    bottom: 15px;
+    bottom: -25px; /* Ajusta esta posición según necesites */
     left: 0;
-    right: 0;
+    z-index: 10;
+}
+
+.slider-pagination {
     display: flex;
     justify-content: center;
     gap: 8px;
-    z-index: 2;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 10px;
+    border-radius: 20px;
 }
 
 .pagination-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .pagination-dot.active {
     background-color: #9AFF00;
     transform: scale(1.2);
-}
-
-/* Asegurar que el contenedor tenga posición relativa */
-.product-gallery {
-    position: relative;
+    box-shadow: 0 0 5px rgba(154, 255, 0, 0.7);
 }
 
 /* Ocultar paginación en desktop */
 @media (min-width: 769px) {
-    .slider-pagination {
+    .pagination-container {
         display: none;
+    }
+    
+    /* Restaurar overflow para desktop si es necesario */
+    .product-gallery {
+        overflow: hidden;
     }
 }
 
+/* Efectos adicionales para mejor visibilidad */
+.product-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
+    pointer-events: none;
+    z-index: 1;
+    display: none; /* Solo mostrar en móvil */
+}
+
+@media (max-width: 768px) {
+    .product-container::after {
+        display: block;
+    }
+    
+    .product-container {
+        padding-bottom: 30px; /* Espacio para la paginación */
+    }
+}
 /* Información del producto */
 .product-info {
     flex: 1;

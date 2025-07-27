@@ -667,9 +667,8 @@
     window.addEventListener('DOMContentLoaded', iniciarContador);
 </script>
 
-
 <script>
-//slider en cel y paginacion carrusel
+    //script de carrusel y slider
 document.addEventListener('DOMContentLoaded', function() {
     const productGallery = document.querySelector('.product-gallery');
     const images = document.querySelectorAll('.product-image');
@@ -679,33 +678,46 @@ document.addEventListener('DOMContentLoaded', function() {
     let startX = 0;
     let isDragging = false;
 
-    // Crear indicadores de paginación
-    function createPagination() {
-        const pagination = document.createElement('div');
-        pagination.className = 'slider-pagination';
+    // Crear contenedor externo para la paginación
+    function createPaginationContainer() {
+        // Eliminar paginación existente si hay
+        const existingPagination = document.querySelector('.pagination-container');
+        if (existingPagination) existingPagination.remove();
+        
+        const paginationContainer = document.createElement('div');
+        paginationContainer.className = 'pagination-container';
+        
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'slider-pagination';
         
         images.forEach((_, index) => {
             const dot = document.createElement('span');
             dot.className = 'pagination-dot';
             if (index === 0) dot.classList.add('active');
-            pagination.appendChild(dot);
+            dotsContainer.appendChild(dot);
         });
         
-        productGallery.appendChild(pagination);
-        return pagination;
+        paginationContainer.appendChild(dotsContainer);
+        
+        // Insertar después del contenedor de la galería
+        productGallery.parentNode.insertBefore(paginationContainer, productGallery.nextSibling);
+        
+        return dotsContainer;
     }
 
     // Actualizar indicadores
     function updatePagination(index) {
         const dots = document.querySelectorAll('.pagination-dot');
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
+        if (dots.length > 0) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
     }
 
     // Solo activar en móviles
     if (isMobile && images.length > 1) {
-        const pagination = createPagination();
+        const pagination = createPaginationContainer();
         
         // Iniciar autoplay
         startAutoPlay();
@@ -722,31 +734,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function scrollToIndex(index, smooth = true) {
-        const imageWidth = productGallery.offsetWidth;
-        productGallery.scrollTo({
-            left: index * imageWidth,
-            behavior: smooth ? 'smooth' : 'auto'
-        });
-        currentIndex = index;
-        updatePagination(index);
+        if (index >= 0 && index < images.length) {
+            const imageWidth = productGallery.offsetWidth;
+            productGallery.scrollTo({
+                left: index * imageWidth,
+                behavior: smooth ? 'smooth' : 'auto'
+            });
+            currentIndex = index;
+            updatePagination(index);
+        }
     }
 
     function startAutoPlay() {
         if (intervalId) clearInterval(intervalId);
-        if (!isMobile) return;
+        if (!isMobile || images.length <= 1) return;
         
         intervalId = setInterval(() => {
-            if (currentIndex < images.length - 1) {
-                scrollToIndex(currentIndex + 1);
-            } else {
-                // Reiniciar al llegar al final
-                scrollToIndex(0);
-            }
+            const nextIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
+            scrollToIndex(nextIndex);
         }, 4000);
     }
 
     function pauseAutoPlay() {
-        if (intervalId) clearInterval(intervalId);
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
     }
 
     function handleTouchStart(e) {
@@ -789,15 +802,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (newIsMobile !== isMobile) {
             isMobile = newIsMobile;
             if (isMobile && images.length > 1) {
-                if (!document.querySelector('.slider-pagination')) {
-                    createPagination();
-                }
+                createPaginationContainer();
                 scrollToIndex(0, false);
                 startAutoPlay();
             } else {
                 pauseAutoPlay();
                 productGallery.scrollTo({ left: 0, behavior: 'auto' });
-                const pagination = document.querySelector('.slider-pagination');
+                const pagination = document.querySelector('.pagination-container');
                 if (pagination) pagination.remove();
             }
         }
