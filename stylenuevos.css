@@ -49,18 +49,18 @@ body {
 }
 
 /* Contenedor principal del producto */
+/* Contenedor principal del producto */
 .product-container {
     display: flex;
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px 40px;
+    padding: 0 20px 40px; /* Añadido más padding-bottom */
     position: relative;
 }
 
 /* Galería de imágenes - Versión PC */
 .product-gallery {
-    position: relative;
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -96,7 +96,7 @@ body {
         gap: 0;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding-bottom: 40px;
+        padding-bottom: 15px; /* Espacio para los puntos */
     }
     
     .product-gallery::-webkit-scrollbar {
@@ -112,16 +112,15 @@ body {
     }
 }
 
-/* PAGINACIÓN */
+/* PAGINACIÓN - ESTILOS CORREGIDOS */
 .pagination-container {
     position: absolute;
-    bottom: 20px; /* Posición desde el fondo del contenedor */
+    bottom: 15px;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     z-index: 10;
-    width: 100%;
 }
 
 .slider-pagination {
@@ -133,7 +132,6 @@ body {
     backdrop-filter: blur(4px);
 }
 
-
 .pagination-dot {
     width: 14px;
     height: 14px;
@@ -144,20 +142,11 @@ body {
     border: none;
 }
 
-
 .pagination-dot.active {
     background: #9AFF00;
     transform: scale(1.3);
     box-shadow: 0 0 8px rgba(154, 255, 0, 0.9);
 }
-
-/* Versión móvil - ajustes específicos */
-@media (max-width: 768px) {
-    .pagination-container {
-        bottom: 10px; /* Ajuste fino de posición en móviles */
-    }
-}
-
 
 /* Ocultar en desktop */
 @media (min-width: 769px) {
@@ -169,13 +158,10 @@ body {
         padding-bottom: 0;
     }
 }
-
-/* Información del producto - MODIFICADO */
+/* Información del producto */
 .product-info {
     flex: 1;
     padding: 0 20px;
-    max-width: 600px; /* Nuevo: límite de ancho */
-    margin: 0 auto; /* Nuevo: centrado */
 }
 
 .product-title {
@@ -184,18 +170,23 @@ body {
     font-weight: 900;
     margin-bottom: 15px;
     color: #222;
+    
+    /* Centrado solo para móviles */
+    @media (max-width: 768px) {
+        text-align: center;
+        width: 100%;
+    }
 }
-
 .highlight-black {
     color: #000000;
 }
+
 
 .rating-container {
     display: flex;
     align-items: center;
     gap: 10px;
     margin: 10px 0;
-    max-width: 600px; /* Nuevo */
 }
 
 .stars {
@@ -210,19 +201,9 @@ body {
 
 /* Centrado solo en móviles */
 @media (max-width: 768px) {
-    .product-title,
-    .rating-container {
-        text-align: center;
-        width: 100%;
-    }
-    
     .rating-container {
         justify-content: center;
-    }
-    
-    .product-info {
-        max-width: 100%;
-        padding: 0;
+        width: 100%;
     }
 }
 
@@ -231,7 +212,6 @@ body {
     align-items: center;
     gap: 20px;
     margin: 20px 0;
-    max-width: 600px; /* Nuevo */
 }
 
 .price-wrapper {
@@ -291,7 +271,6 @@ body {
     .price-container {
         justify-content: center;
         flex-wrap: wrap;
-        max-width: 100%;
     }
     
     .old-price {
@@ -303,7 +282,8 @@ body {
     }
 }
 
-/* ANIMACION DE BOTON COMPRAR */
+/*logica total boton comprar*/
+/* ANIMACION DE BOTON COMPRAR (se mantiene igual) */
 @keyframes pulse-glow {
     0% {
         transform: scale(1);
@@ -324,7 +304,7 @@ body {
     align-items: center;
     background: linear-gradient(180deg, #0ccb00, #04a700);
     color: #fff;
-    padding: 15px 40px;
+    padding: 15px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
     border-radius: 12px;
     text-decoration: none;
     font-weight: 900;
@@ -337,29 +317,26 @@ body {
     box-shadow: 0 0 0px #0ccb00;
     transition: transform 0.3s ease;
     white-space: nowrap;
-    min-height: 70px;
-    max-width: 600px; /* Nuevo */
-    width: 100%; /* Nuevo */
+    min-height: 70px; /* Altura mínima garantizada */
 }
 
 .arrow {
-    font-size: 40px;
+    font-size: 40px; /* Aumenté el tamaño de la flecha */
     line-height: 1;
 }
 
 .button-text span {
     display: block;
-    line-height: 1.2;
+    line-height: 1.2; /* Aumenté ligeramente el line-height */
     text-align: center;
 }
 
 /* Ajustes responsivos para pantallas pequeñas */
 @media (max-width: 768px) {
     .buy-button {
-        font-size: 26px;
-        padding: 12px 30px;
+        font-size: 26px; /* Reduzco menos el tamaño */
+        padding: 12px 30px; /* Mantengo buen padding */
         min-height: 60px;
-        max-width: 100%;
     }
     
     .arrow {
@@ -380,27 +357,12 @@ body {
     }
 }
 
-/* Divider modificado */
+/*aqui termina logica btn comprar*/
+
 .divider {
     margin: 20px 0;
     border: 0;
     border-top: 6px solid #000000;
-    max-width: 600px; /* Nuevo */
-    width: 100%; /* Nuevo */
-}
-
-/* Elementos con ancho limitado */
-.product-description,
-.promo-banner,
-.shipping-info,
-.recent-buyers,
-.info-box,
-.testimonial,
-.guarantee-image,
-.features-grid,
-.secure-text {
-    max-width: 600px; /* Nuevo */
-    width: 100%; /* Nuevo */
 }
 
 .product-description {
@@ -411,16 +373,16 @@ body {
 }
 
 .promo-banner {
-    background: #00e0ff;
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 15px 0;
+  background: #00e0ff; /* aguamarina claro */
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 15px 0;
 }
 
 .shipping-info {
@@ -441,7 +403,6 @@ body {
     text-decoration: underline;
     font-style: italic;
 }
-
 /* Compradores recientes */
 .recent-buyers {
     display: flex;
@@ -458,16 +419,16 @@ body {
 
 .buyers-images {
     display: flex;
-    gap: 5px;
+    gap: 5px; /* espacio entre imágenes */
     margin-right: 10px;
     position: relative;
-    width: auto;
+    width: auto; /* dejar que se ajuste al contenido */
     height: 30px;
 }
 
 .buyer-image {
-    position: static;
-    opacity: 1;
+    position: static; /* ya no es absoluto */
+    opacity: 1; /* todas visibles */
     z-index: 0;
     transition: none;
     border-radius: 50%;
@@ -484,6 +445,7 @@ body {
     margin: 0 3px;
 }
 
+/* 👇 NUEVO: Apilamiento suave de las imágenes 👇 */
 .buyers-images .buyer-image {
     width: 30px;
     height: 30px;
@@ -495,7 +457,7 @@ body {
 }
 
 .buyers-images .buyer-image:first-child {
-    margin-left: 0;
+    margin-left: 0; /* la primera no se monta */
 }
 
 .buyers-images .buyer-image:hover {
@@ -504,16 +466,60 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
-/* Info box */
+
+/* Contador de stock */
+.stock-counter {
+    margin: 20px 0;
+}
+
+.stock-number {
+    color: #ff0000;
+}
+
+.progress-bar {
+    background: #ff9494;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.progress-fill {
+    background: #e74c3c;
+    width: 24%;
+    height: 100%;
+}
+
+.stock-percentage {
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* Pedidos en tiempo real */
+.realtime-order {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-align: left;
+    margin: 10px auto;
+    max-width: 110%;
+    font-weight: normal;
+    color: #000;
+    line-height: 1.1;
+}
+
+.buyer-name {
+    font-weight: bold;
+}
 .info-box {
     background: #fff;
     border-radius: 20px;
     padding: 20px;
     box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
     max-width: 500px;
-    margin: 20px auto;
+    margin: auto;
     font-family: 'Arial', sans-serif;
     text-align: center;
+    margin-left: -1px;
 }
 
 .stock-alert {
@@ -578,6 +584,7 @@ body {
     margin-top: 4px;
 }
 
+
 /* Testimonio */
 .testimonial {
     font-family: 'Montserrat', sans-serif;
@@ -594,7 +601,6 @@ body {
     gap: 15px;
     box-shadow: -1px -1px 15px 7px rgba(0, 0, 0, 0.2);
 }
-
 .testimonial-image {
     width: 60px;
     height: 60px;
@@ -625,7 +631,8 @@ body {
     margin: 20px 0;
     max-width: 90%;
     border-radius: 12px;
-    box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
+     box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
+
 }
 
 .features-grid {
