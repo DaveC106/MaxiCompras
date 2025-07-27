@@ -150,6 +150,14 @@ body {
     color: #000000;
 }
 
+/* Centrado solo en móviles */
+@media (max-width: 768px) {
+    .rating-container {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
 .price-container {
     display: flex;
     align-items: center;
