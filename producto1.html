@@ -55,6 +55,28 @@
     </svg>
 </div>
 
+<script>document.addEventListener('DOMContentLoaded', function() {
+    function positionX() {
+        const oldPrice = document.querySelector('.old-price');
+        const curvedX = document.querySelector('.curved-x');
+        
+        if (oldPrice && curvedX) {
+            const oldPriceRect = oldPrice.getBoundingClientRect();
+            const containerRect = oldPrice.parentElement.getBoundingClientRect();
+            
+            // Calcular posición relativa
+            const xPosition = oldPriceRect.left - containerRect.left + (oldPriceRect.width / 2) - (curvedX.offsetWidth / 2);
+            
+            // Aplicar posición
+            curvedX.style.setProperty('--x-position', `${xPosition}px`);
+        }
+    }
+    
+    // Ejecutar al cargar y al redimensionar
+    positionX();
+    window.addEventListener('resize', positionX);
+});</script>
+
             
             <!-- Botón de compra -->
            <a href="#" class="buy-button">
