@@ -282,17 +282,7 @@ body {
     }
 }
 /*logica total boton comprar*/
-/* Contenedor padre para centrar el botón */
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-/* ANIMACION DE BOTON COMPRAR (manteniendo exactamente igual) */
+/* ANIMACION DE BOTON COMPRAR (se mantiene igual) */
 @keyframes pulse-glow {
     0% {
         transform: scale(1);
@@ -313,11 +303,11 @@ body {
     align-items: center;
     background: linear-gradient(180deg, #0ccb00, #04a700);
     color: #fff;
-    padding: 2px 30px;
+    padding: 15px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
     border-radius: 12px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 30px;
+    font-weight: 900;
+    font-size: 35px;
     font-family: 'Montserrat', sans-serif;
     text-align: left;
     margin: 10px 0;
@@ -325,47 +315,43 @@ body {
     animation: pulse-glow 2s ease-in-out infinite;
     box-shadow: 0 0 0px #0ccb00;
     transition: transform 0.3s ease;
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    white-space: nowrap;
+    min-height: 70px; /* Altura mínima garantizada */
 }
 
 .arrow {
-    font-size: 35px;
+    font-size: 40px; /* Aumenté el tamaño de la flecha */
     line-height: 1;
 }
 
 .button-text span {
     display: block;
-    line-height: 1.1;
-}
-
-.line2 {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+    line-height: 1.2; /* Aumenté ligeramente el line-height */
 }
 
 /* Ajustes responsivos para pantallas pequeñas */
 @media (max-width: 768px) {
     .buy-button {
-        font-size: 24px; /* Reducir un poco el tamaño en móviles */
-        padding: 2px 20px;
-        gap: 15px;
+        font-size: 26px; /* Reduzco menos el tamaño */
+        padding: 12px 30px; /* Mantengo buen padding */
+        min-height: 60px;
     }
     
     .arrow {
-        font-size: 30px;
+        font-size: 34px;
     }
 }
 
 @media (max-width: 480px) {
     .buy-button {
-        font-size: 20px; /* Tamaño más pequeño para móviles muy pequeños */
-        padding: 2px 15px;
-        gap: 10px;
+        font-size: 22px;
+        padding: 10px 25px;
+        min-height: 55px;
+        gap: 15px;
     }
     
     .arrow {
-        font-size: 25px;
+        font-size: 28px;
     }
 }
 
