@@ -151,6 +151,14 @@ body {
     box-shadow: 0 0 8px rgba(154, 255, 0, 0.9);
 }
 
+/* Versión móvil - ajustes específicos */
+@media (max-width: 768px) {
+    .pagination-container {
+        bottom: 10px; /* Ajuste fino de posición en móviles */
+    }
+}
+
+
 /* Ocultar en desktop */
 @media (min-width: 769px) {
     .pagination-container {
