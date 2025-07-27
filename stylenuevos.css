@@ -121,6 +121,12 @@ body {
     font-weight: 900;
     margin-bottom: 15px;
     color: #222;
+    
+    /* Centrado solo para móviles */
+    @media (max-width: 768px) {
+        text-align: center;
+        width: 100%;
+    }
 }
 .highlight-black {
     color: #000000;
