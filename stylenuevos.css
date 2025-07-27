@@ -281,7 +281,18 @@ body {
         font-size: 38px;
     }
 }
-/*ANIMACION DE BOTON COMPRAR*/
+/*logica total boton comprar*/
+/* Contenedor padre para centrar el botón */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* ANIMACION DE BOTON COMPRAR (manteniendo exactamente igual) */
 @keyframes pulse-glow {
     0% {
         transform: scale(1);
@@ -314,6 +325,7 @@ body {
     animation: pulse-glow 2s ease-in-out infinite;
     box-shadow: 0 0 0px #0ccb00;
     transition: transform 0.3s ease;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
 }
 
 .arrow {
@@ -332,7 +344,32 @@ body {
     gap: 10px;
 }
 
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .buy-button {
+        font-size: 24px; /* Reducir un poco el tamaño en móviles */
+        padding: 2px 20px;
+        gap: 15px;
+    }
+    
+    .arrow {
+        font-size: 30px;
+    }
+}
 
+@media (max-width: 480px) {
+    .buy-button {
+        font-size: 20px; /* Tamaño más pequeño para móviles muy pequeños */
+        padding: 2px 15px;
+        gap: 10px;
+    }
+    
+    .arrow {
+        font-size: 25px;
+    }
+}
+
+/*aqui termina logica btn comprar*/
 
 .divider {
     margin: 20px 0;
