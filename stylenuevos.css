@@ -601,28 +601,37 @@ body {
 
 }
 
+/* Contenedor para las características */
+.features-container {
+    max-width: 100%; /* O puedes usar un valor fijo como 800px si prefieres */
+    margin: 20px auto;
+}
+
 .features-grid {
     display: flex;
+    justify-content: center; /* Centra las imágenes horizontalmente */
     gap: 10px;
     margin: 20px 0;
 }
 
 .feature-image {
-    max-width: 29%;
+    width: 30%; /* Ajusta este valor según necesites */
+    max-width: 200px; /* Opcional: establece un máximo para cada imagen */
     height: auto;
-    border-radius:12px;
+    border-radius: 12px;
+    object-fit: cover; /* Para mantener proporciones */
 }
 
 .secure-text {
-    margin: 15px 0;
+    margin: 15px auto; /* Centrado horizontalmente */
     text-align: center;
     font-family: 'Montserrat', sans-serif;
+    max-width: 80%; /* Ajusta según el ancho de tus imágenes */
 }
 
 .secure-text span {
     color: #000000;
 }
-
 /* Secciones */
 .functionality-section,
 .comparison-section,
