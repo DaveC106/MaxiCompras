@@ -159,6 +159,7 @@ body {
 }
 
 /* Estilos base (igual que tenías) precios*/
+/* Estilos base (igual que tenías) */
 .price-container {
     display: flex;
     align-items: center;
@@ -230,12 +231,11 @@ body {
     }
 }
 
-/* Versión móvil - Centrado */
+/* Versión móvil - Centrado en misma línea */
 @media (max-width: 768px) {
     .price-container {
         justify-content: center;
-        flex-direction: column;
-        gap: 5px;
+        width: 100%;
     }
     
     .old-price {
@@ -250,7 +250,6 @@ body {
         left: 50%;
         transform: translateX(-50%);
         width: 80px;
-        top: 15px;
     }
 }
 
