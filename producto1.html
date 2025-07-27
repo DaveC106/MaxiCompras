@@ -669,46 +669,30 @@
 
 
 <script>
-    //script de slider imagenes en cel
+//slider en cel
 document.addEventListener('DOMContentLoaded', function() {
     const productGallery = document.querySelector('.product-gallery');
-    let images = document.querySelectorAll('.product-image'); // Usamos let para poder actualizarlo
+    const images = document.querySelectorAll('.product-image');
     let isMobile = window.matchMedia("(max-width: 768px)").matches;
     let intervalId = null;
     let currentIndex = 0;
     let startX = 0;
     let isDragging = false;
-    let clonesAdded = false;
 
-    // Función para limpiar clones
-    function removeClones() {
-        if (clonesAdded) {
-            const allImages = document.querySelectorAll('.product-image');
-            // Eliminar el primer y último elemento (que son los clones)
-            if (allImages.length > images.length) {
-                productGallery.removeChild(allImages[0]);
-                productGallery.removeChild(allImages[allImages.length - 1]);
-            }
-            clonesAdded = false;
-            images = document.querySelectorAll('.product-image'); // Actualizar lista
-        }
-    }
-
-    // Función para configurar slider
-    function setupSlider() {
-        if (images.length < 2 || clonesAdded) return;
+    // Solo activar en móviles
+    if (isMobile && images.length > 1) {
+        // Iniciar autoplay
+        startAutoPlay();
         
-        // Clonar primera y última imagen
-        const firstClone = images[0].cloneNode(true);
-        const lastClone = images[images.length - 1].cloneNode(true);
+        // Event listeners para touch
+        productGallery.addEventListener('touchstart', handleTouchStart, { passive: true });
+        productGallery.addEventListener('touchmove', handleTouchMove, { passive: false });
+        productGallery.addEventListener('touchend', handleTouchEnd);
         
-        productGallery.insertBefore(lastClone, images[0]);
-        productGallery.appendChild(firstClone);
-        
-        clonesAdded = true;
-        images = document.querySelectorAll('.product-image'); // Actualizar lista
-        currentIndex = 1;
-        scrollToIndex(currentIndex, false);
+        // Pausar autoplay al interactuar
+        productGallery.addEventListener('mouseenter', pauseAutoPlay);
+        productGallery.addEventListener('mouseleave', startAutoPlay);
+        productGallery.addEventListener('touchstart', pauseAutoPlay);
     }
 
     function scrollToIndex(index, smooth = true) {
@@ -721,18 +705,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function startAutoPlay() {
         if (intervalId) clearInterval(intervalId);
-        if (!isMobile || !clonesAdded) return;
+        if (!isMobile) return;
         
         intervalId = setInterval(() => {
-            currentIndex = (currentIndex + 1) % (images.length + 2);
-            scrollToIndex(currentIndex);
-            
-            if (currentIndex === images.length + 1) {
-                setTimeout(() => {
-                    currentIndex = 1;
-                    scrollToIndex(currentIndex, false);
-                }, 500);
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+            } else {
+                // Reiniciar al llegar al final
+                currentIndex = 0;
             }
+            scrollToIndex(currentIndex);
         }, 4000);
     }
 
@@ -740,7 +722,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (intervalId) clearInterval(intervalId);
     }
 
-    // Touch handlers (igual que antes)
     function handleTouchStart(e) {
         startX = e.touches[0].clientX;
         isDragging = true;
@@ -751,7 +732,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isDragging) return;
         const x = e.touches[0].clientX;
         const diff = startX - x;
-        if (Math.abs(diff) > 5) e.preventDefault();
+        
+        // Prevenir scroll vertical cuando se desliza horizontalmente
+        if (Math.abs(diff) > 5) {
+            e.preventDefault();
+        }
     }
 
     function handleTouchEnd(e) {
@@ -761,57 +746,35 @@ document.addEventListener('DOMContentLoaded', function() {
         const endX = e.changedTouches[0].clientX;
         const diff = startX - endX;
         
+        // Umbral para considerar un deslizamiento
         if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                currentIndex = Math.min(currentIndex + 1, images.length + 1);
-            } else {
-                currentIndex = Math.max(currentIndex - 1, 0);
+            if (diff > 0 && currentIndex < images.length - 1) {
+                // Deslizamiento a la derecha (siguiente imagen)
+                currentIndex++;
+            } else if (diff < 0 && currentIndex > 0) {
+                // Deslizamiento a la izquierda (imagen anterior)
+                currentIndex--;
             }
             scrollToIndex(currentIndex);
-            
-            if (currentIndex === images.length + 1) {
-                setTimeout(() => {
-                    currentIndex = 1;
-                    scrollToIndex(currentIndex, false);
-                }, 500);
-            } else if (currentIndex === 0) {
-                setTimeout(() => {
-                    currentIndex = images.length;
-                    scrollToIndex(currentIndex, false);
-                }, 500);
-            }
         }
         
+        // Reiniciar autoplay después de la interacción
         setTimeout(startAutoPlay, 4000);
     }
 
-    // Manejo inicial
-    if (isMobile && images.length > 1) {
-        setupSlider();
-        startAutoPlay();
-        
-        productGallery.addEventListener('touchstart', handleTouchStart, { passive: true });
-        productGallery.addEventListener('touchmove', handleTouchMove, { passive: false });
-        productGallery.addEventListener('touchend', handleTouchEnd);
-        productGallery.addEventListener('mouseenter', pauseAutoPlay);
-        productGallery.addEventListener('mouseleave', startAutoPlay);
-        productGallery.addEventListener('touchstart', pauseAutoPlay);
-    }
-
-    // Manejo de cambios de tamaño
+    // Reconfigurar al cambiar tamaño de pantalla
     window.addEventListener('resize', function() {
         const newIsMobile = window.matchMedia("(max-width: 768px)").matches;
-        
         if (newIsMobile !== isMobile) {
             isMobile = newIsMobile;
-            
             if (isMobile && images.length > 1) {
-                setupSlider();
+                // Resetear a la primera imagen
+                currentIndex = 0;
+                scrollToIndex(0, false);
                 startAutoPlay();
             } else {
                 pauseAutoPlay();
-                removeClones();
-                // Restablecer scroll en modo escritorio
+                // Resetear scroll en modo escritorio
                 productGallery.scrollTo({ left: 0, behavior: 'auto' });
             }
         }
