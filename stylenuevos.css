@@ -108,6 +108,43 @@ body {
         max-width: 100%;
     }
 }
+/* Indicadores de paginación */
+.slider-pagination {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 2;
+}
+
+.pagination-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-dot.active {
+    background-color: #9AFF00;
+    transform: scale(1.2);
+}
+
+/* Asegurar que el contenedor tenga posición relativa */
+.product-gallery {
+    position: relative;
+}
+
+/* Ocultar paginación en desktop */
+@media (min-width: 769px) {
+    .slider-pagination {
+        display: none;
+    }
+}
 
 /* Información del producto */
 .product-info {
