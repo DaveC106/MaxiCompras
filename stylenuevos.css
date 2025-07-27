@@ -60,6 +60,7 @@ body {
 
 /* Galería de imágenes - Versión PC */
 .product-gallery {
+    position: relative;
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -95,7 +96,7 @@ body {
         gap: 0;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding-bottom: 15px;
+        padding-bottom: 40px;
     }
     
     .product-gallery::-webkit-scrollbar {
@@ -114,12 +115,13 @@ body {
 /* PAGINACIÓN */
 .pagination-container {
     position: absolute;
-    bottom: 15px;
+    bottom: 20px; /* Posición desde el fondo del contenedor */
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     z-index: 10;
+    width: 100%;
 }
 
 .slider-pagination {
@@ -131,6 +133,7 @@ body {
     backdrop-filter: blur(4px);
 }
 
+
 .pagination-dot {
     width: 14px;
     height: 14px;
@@ -140,6 +143,7 @@ body {
     cursor: pointer;
     border: none;
 }
+
 
 .pagination-dot.active {
     background: #9AFF00;
