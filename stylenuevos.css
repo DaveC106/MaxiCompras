@@ -158,6 +158,7 @@ body {
     }
 }
 
+/* Estilos base (igual que tenías) precios*/
 .price-container {
     display: flex;
     align-items: center;
@@ -167,7 +168,7 @@ body {
 }
 
 .old-price {
-     font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 24px;
     color: #000000;
     font-weight: bold;
@@ -179,12 +180,13 @@ body {
     font-size: 45px;
     font-weight: bold;
     color: #0ccb00;
+    animation: pulse-glow 2s infinite;
 }
 
-/* X curva en SVG */
+/* X curva en SVG (igual que tenías) */
 .curved-x {
     position: absolute;
-    top: 5px; /* ajusta según tamaño del texto */
+    top: 5px;
     left: 0;
     width: 100px;
     height: 40px;
@@ -212,6 +214,7 @@ body {
     50% { opacity: 0; }
     100% { opacity: 0; }
 }
+
 @keyframes pulse-glow {
     0% {
         transform: scale(1);
@@ -224,6 +227,30 @@ body {
     100% {
         transform: scale(1);
         box-shadow: 0 0 30px 10px rgba(12, 203, 0, 0.5);
+    }
+}
+
+/* Versión móvil - Centrado */
+@media (max-width: 768px) {
+    .price-container {
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .old-price {
+        font-size: 20px;
+    }
+    
+    .current-price {
+        font-size: 38px;
+    }
+    
+    .curved-x {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        top: 15px;
     }
 }
 
