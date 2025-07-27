@@ -158,7 +158,7 @@ body {
     }
 }
 
- /* Estilos base (igual que tenías) */
+ /* Estilos base */
 .price-container {
     display: flex;
     align-items: center;
@@ -172,7 +172,7 @@ body {
     font-size: 24px;
     color: #000000;
     font-weight: bold;
-    position: relative;
+    position: relative; /* Necesario para referencia */
 }
 
 .current-price {
@@ -182,14 +182,17 @@ body {
     color: #0ccb00;
 }
 
-/* X curva en SVG (igual que tenías) */
+/* X curva en SVG - Posicionamiento mejorado */
 .curved-x {
     position: absolute;
-    top: 5px;
-    left: 0;
     width: 100px;
     height: 40px;
     pointer-events: none;
+    /* Nuevo posicionamiento */
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1; /* Asegura que esté sobre el texto */
 }
 
 .liner1,
@@ -214,14 +217,13 @@ body {
     100% { opacity: 0; }
 }
 
-/* Versión móvil - Centrado en misma línea */
+/* Versión móvil */
 @media (max-width: 768px) {
     .price-container {
         justify-content: center;
         width: 100%;
     }
     
-    /* Opcional: ajustar tamaños para móvil */
     .old-price {
         font-size: 20px;
     }
@@ -230,10 +232,10 @@ body {
         font-size: 38px;
     }
     
-    /* Ajustar posición de la X */
     .curved-x {
+        /* Ajuste para versión móvil */
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         width: 80px;
     }
 }
