@@ -158,13 +158,16 @@ body {
     }
 }
 
-/* Estilos base */
 .price-container {
     display: flex;
     align-items: center;
     gap: 20px;
     margin: 20px 0;
+}
+
+.price-wrapper {
     position: relative;
+    display: inline-block;
 }
 
 .old-price {
@@ -172,7 +175,6 @@ body {
     font-size: 24px;
     color: #000000;
     font-weight: bold;
-    position: relative; /* Necesario para referencia */
 }
 
 .current-price {
@@ -182,18 +184,15 @@ body {
     color: #0ccb00;
 }
 
-/* X curva en SVG - Posicionamiento exacto sobre old-price */
 .curved-x {
     position: absolute;
-    width: 100px;
+    width: 100%;
     height: 40px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
     pointer-events: none;
     z-index: 1;
-    
-    /* Posicionamiento exacto */
-    top: 50%;
-    left: var(--x-position); /* Usaremos JS para calcular esto */
-    transform: translateY(-50%);
 }
 
 .liner1,
@@ -222,7 +221,7 @@ body {
 @media (max-width: 768px) {
     .price-container {
         justify-content: center;
-        width: 100%;
+        flex-wrap: wrap;
     }
     
     .old-price {

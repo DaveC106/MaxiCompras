@@ -43,39 +43,27 @@
                 <span class="rating-text"><em><strong>+6.500 clientes satisfechos</strong></em></span>
             </div>
             
-          <!-- Precios -->
+          <!-- Precios 
         <div class="price-container">
     <div class="old-price">$129.900</div>
     <div class="current-price">$64.900</div>
 
-    <!-- X curva con clases liner1 y liner2 -->
     <svg class="curved-x" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path class="liner1" d="M-100,20 Q50,40 85,90" />
         <path class="liner2" d="M185,20 Q50,40 15,90" />
     </svg>
+</div> -->
+<div class="price-container">
+    <div class="price-wrapper">
+        <div class="old-price">$129.900</div>
+        <svg class="curved-x" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="liner1" d="M-100,20 Q50,40 85,90" />
+            <path class="liner2" d="M185,20 Q50,40 15,90" />
+        </svg>
+    </div>
+    <div class="current-price">$64.900</div>
 </div>
 
-<script>document.addEventListener('DOMContentLoaded', function() {
-    function positionX() {
-        const oldPrice = document.querySelector('.old-price');
-        const curvedX = document.querySelector('.curved-x');
-        
-        if (oldPrice && curvedX) {
-            const oldPriceRect = oldPrice.getBoundingClientRect();
-            const containerRect = oldPrice.parentElement.getBoundingClientRect();
-            
-            // Calcular posición relativa
-            const xPosition = oldPriceRect.left - containerRect.left + (oldPriceRect.width / 2) - (curvedX.offsetWidth / 2);
-            
-            // Aplicar posición
-            curvedX.style.setProperty('--x-position', `${xPosition}px`);
-        }
-    }
-    
-    // Ejecutar al cargar y al redimensionar
-    positionX();
-    window.addEventListener('resize', positionX);
-});</script>
 
             
             <!-- Botón de compra -->
