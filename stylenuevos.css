@@ -65,11 +65,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 100px;
+    margin-left: 150px;
 }
 
 .product-image {
-    width: 100%;
     max-width: 427.5px;
     height: 427.5px;
     object-fit: cover;
@@ -98,6 +97,7 @@ body {
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         padding-bottom: 15px; /* Espacio para los puntos */
+        margin-left: 0;
     }
     
     .product-gallery::-webkit-scrollbar {
