@@ -493,7 +493,6 @@ body {
     border-radius: 20px;
     padding: 20px;
     box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
-    max-width: 500px;
     margin: auto;
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -573,7 +572,6 @@ body {
     background: #fff;
     font-style: italic;
     color: #000000;
-    max-width: 500px;
     display: flex;
     align-items: center;
     gap: 15px;
