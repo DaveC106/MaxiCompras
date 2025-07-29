@@ -1085,6 +1085,6 @@ body {
 
 @media (min-width: 769px) and (max-width: 1150px) {
   .product-container {
-    justify-content: center;
+    margin-left: -100px; /* Ajustá este valor según cuánto querés moverlo */
   }
 }
