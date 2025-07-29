@@ -1090,11 +1090,7 @@ body {
   }
 }
 
-@media (min-width: 1191px) {
-  .product-container {
-    margin-left: -100px; /* Ajustá este valor según cuánto querés moverlo */
-  }
-}
+
 
 
 @media (min-width: 401px) and (max-width: 549px) {
