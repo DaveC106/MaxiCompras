@@ -97,7 +97,7 @@ body {
 }
 
 /* Versión móvil */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .product-gallery {
         display: flex;
         flex-wrap: nowrap;
@@ -126,7 +126,7 @@ body {
 
 
 /* Ocultar en desktop */
-@media (min-width: 769px) {
+@media (min-width: 1100px) {
     .pagination-container {
         display: none;
     }
@@ -149,7 +149,7 @@ body {
     color: #222;
     
     /* Centrado solo para móviles */
-    @media (max-width: 768px) {
+    @media (max-width: 1100px) {
         text-align: center;
         width: 100%;
     }
@@ -177,7 +177,7 @@ body {
 }
 
 /* Centrado solo en móviles */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .rating-container {
         justify-content: center;
         width: 100%;
@@ -244,7 +244,7 @@ body {
 }
 
 /* Versión móvil */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .price-container {
         justify-content: center;
         flex-wrap: wrap;
@@ -309,7 +309,7 @@ body {
 }
 
 /* Ajustes responsivos para pantallas pequeñas */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .buy-button {
         font-size: 26px; /* Reduzco menos el tamaño */
         padding: 12px 30px; /* Mantengo buen padding */
@@ -958,7 +958,7 @@ body {
 }
 
 /* Responsive para móviles */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .testimonials-grid {
         grid-template-columns: 1fr; /* Una sola columna en móviles */
         max-width: 400px; /* Limita el ancho máximo */
@@ -972,7 +972,7 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .product-container,
     .faq-container {
         flex-direction: column;
@@ -1083,34 +1083,8 @@ body {
 
 
 
-@media (max-width: 1100px) {
-  .product-gallery {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 0;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 15px;
-    margin-left: 0;
-  }
-
-  .product-gallery::-webkit-scrollbar {
-    display: none;
-  }
-
-  .product-image {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
-    margin-bottom: 0;
-    max-width: 100%;
-  }
-}
-
-@media (min-width: 1101px) and (max-width: 1150px) {
-  .product-gallery {
+@media (min-width: 769px) and (max-width: 1150px) {
+  .product-container {
     margin-left: -100px; /* Ajustá este valor según cuánto querés moverlo */
-  
   }
 }
