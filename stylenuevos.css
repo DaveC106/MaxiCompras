@@ -742,12 +742,14 @@ body {
 }
 
 .features-title {
-    font-size: 35px;
+    font-size: 30px;
     margin-bottom: 20px;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
+    text-align: center;
 }
+
 
 .features-list {
     list-style: none;
