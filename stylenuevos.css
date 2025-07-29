@@ -1082,11 +1082,12 @@ body {
 
 
 
-@media (min-width: 1101px) and (max-width: 1190px) {
+@media (min-width: 1101px) and (max-width: 1200px) {
   .product-container {
-    margin-left: -100px; /* Ajustá este valor según cuánto querés moverlo */
+    margin-left: -80px;
   }
 }
+
 
 
 
@@ -1107,3 +1108,4 @@ body {
     width: 80%;
   }
 }
+
