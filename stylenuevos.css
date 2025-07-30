@@ -1162,3 +1162,37 @@ body {
         border-radius: 0 !important;
     }
 }
+
+@media (max-width: 1100px) {
+    .product-container {
+        flex-direction: column;
+        gap: 10px; /* Reducimos el espacio entre galería y título */
+        padding-top: 10px; /* Reducimos padding superior */
+    }
+    
+    .product-title {
+        margin-top: 10px; /* Espacio entre imágenes y título */
+        margin-bottom: 10px; /* Reducimos espacio inferior */
+        padding: 0 5px; /* Pequeño padding lateral */
+        text-align: left !important; /* Alineamos a la izquierda */
+        width: 100%;
+        font-size: 22px; /* Opcional: ajuste de tamaño */
+        order: 1; /* Aseguramos que esté justo después de la galería */
+    }
+    
+    .product-gallery {
+        order: 0; /* Galería primero */
+        margin-bottom: 0; /* Eliminamos margen inferior */
+    }
+    
+    .product-info {
+        order: 2; /* Resto de información después */
+        margin-top: 5px; /* Espacio mínimo entre título y siguiente elemento */
+    }
+    
+    /* Ajuste adicional para el rating si es necesario */
+    .rating-container {
+        justify-content: flex-start !important;
+        margin-top: 5px !important;
+    }
+}
