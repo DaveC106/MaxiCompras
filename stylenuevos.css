@@ -327,6 +327,11 @@ body {
         padding: 10px 25px;
         min-height: 55px;
         gap: 15px;
+         display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .arrow {
