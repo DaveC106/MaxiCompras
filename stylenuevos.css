@@ -1128,10 +1128,4 @@ body {
         margin-left: 0;
         margin-right: 0;
     }
-    
-    /* Opcional: si quieres que el texto llegue casi al borde */
-    .product-description {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
 }
