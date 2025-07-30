@@ -1115,4 +1115,23 @@ body {
 
 
 
-
+/* Ajustes para pantallas pequeñas y medianas (320px - 1100px) */
+@media (min-width: 320px) and (max-width: 1100px) {
+    /* Si el texto está dentro de un contenedor con clase .container o similar */
+    .container, 
+    .main-container,
+    .content-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 10px; /* Reducir el padding izquierdo */
+        padding-right: 10px; /* Reducir el padding derecho */
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    /* Opcional: si quieres que el texto llegue casi al borde */
+    .product-description {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
