@@ -248,6 +248,7 @@ body {
     .price-container {
         justify-content: center;
         flex-wrap: wrap;
+        margin-top:-5px;
     }
     
     .old-price {
