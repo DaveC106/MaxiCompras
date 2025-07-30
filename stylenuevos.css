@@ -1146,9 +1146,8 @@ body {
     
     /* Ajuste especial para el divider */
     .divider {
-        margin-left: -10px !important;
-        margin-right: -10px !important;
-        width: calc(100% + 20px) !important;
+        margin-left: -5px !important;
+        margin-right: -5px !important;
     }
     
     /* Secciones especiales */
