@@ -1112,3 +1112,37 @@ body {
   }
 }
 
+
+
+
+
+/* Contenedor principal del producto */
+.product-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0; /* Eliminamos el margen automático que lo centraba */
+    padding: 0 10px 40px; /* Reducimos el padding horizontal */
+    position: relative;
+    width: calc(100% - 20px); /* Ocupa casi todo el ancho disponible */
+    margin-left: 10px; /* Pequeño margen a la izquierda */
+}
+
+/* Galería de imágenes - Versión PC */
+.product-gallery {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 0; /* Eliminamos el margen izquierdo grande */
+}
+
+/* Ajustes para diferentes tamaños de pantalla */
+@media (min-width: 768px) and (max-width: 1100px) {
+    .product-container {
+        padding: 0 15px 40px; /* Un poco más de padding en tablets */
+        width: calc(100% - 30px);
+        margin-left: 15px;
+    }
+}
+
