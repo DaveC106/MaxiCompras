@@ -1165,7 +1165,7 @@ body {
 
 @media (max-width: 1100px) {
 .product-title {
-        margin-top: 10px; /* Espacio entre imágenes y título */
+        margin-top: -30px; /* Espacio entre imágenes y título */
         margin-bottom: 10px; /* Reducimos espacio inferior */
         padding: 0 5px; /* Pequeño padding lateral */
         text-align: center !important; /* Alineamos a la izquierda */
