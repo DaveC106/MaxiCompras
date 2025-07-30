@@ -1114,16 +1114,54 @@ body {
 
 
 
-
-/* Ajustes para pantallas pequeñas y medianas (320px - 1100px) */
-@media (min-width: 320px) and (max-width: 1100px) {
-    /* Si el texto está dentro de un contenedor con clase .container o similar */
-    .product-description {
-        width: 100%;
-        max-width: 100%;
-        padding-left: 10px; /* Reducir el padding izquierdo */
-        padding-right: 10px; /* Reducir el padding derecho */
-        margin-left: 0;
-        margin-right: 0;
+/* Ajustes para pantallas de 320px a 1100px */
+@media (max-width: 1100px) {
+    .product-container {
+        max-width: 100% !important;
+        padding: 0 10px 40px !important; /* Reducimos el padding lateral */
+        margin: 0 !important;
+    }
+    
+    .product-info {
+        padding: 0 !important; /* Eliminamos el padding interno */
+        width: 100% !important;
+    }
+    
+    /* Elementos que deben ocupar todo el ancho */
+    .product-description,
+    .promo-banner,
+    .shipping-info,
+    .recent-buyers,
+    .info-box,
+    .testimonial,
+    .guarantee-image,
+    .features-grid,
+    .realtime-order,
+    .stock-counter {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    /* Ajuste especial para el divider */
+    .divider {
+        margin-left: -10px !important;
+        margin-right: -10px !important;
+        width: calc(100% + 20px) !important;
+    }
+    
+    /* Secciones especiales */
+    .functionality-section,
+    .features-section,
+    .comparison-section,
+    .faq-container,
+    .included-section {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-radius: 0 !important;
     }
 }
