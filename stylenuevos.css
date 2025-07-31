@@ -1194,9 +1194,9 @@ body {
   position: relative;
   width: 100%;
   padding: 30px 40px;
-  background-color: white;
+  /*background-color: white;*/
   border-radius: 12px;
-  box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
+  /*box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);*/
 }
 
 .process-step {
