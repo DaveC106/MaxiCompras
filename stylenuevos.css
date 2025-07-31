@@ -399,6 +399,9 @@ body {
     font-family: sans-serif;
     font-size: 15px;
     margin: 20px 0;
+      white-space: nowrap;
+          overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buyers-images {
@@ -1240,11 +1243,4 @@ body {
 
 .descripcion {
     color: #333;
-}
-
-@media (max-width: 390px) {
-    .recent-buyers {
-        font-size: 12px;
-        white-space: nowrap;
-    }
 }
