@@ -1185,11 +1185,10 @@ body {
     }
 }
 }
-
 .purchase-process {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center; /* Cambiado de flex-start a center */
     margin: 20px 0;
     background-color: white;
     box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
@@ -1198,6 +1197,15 @@ body {
     position: relative;
 }
 
+.process-connector {
+    flex: 1;
+    height: 3px;
+    background-color: #04a700;
+    margin: 0 -10px; /* Ajuste fino para conectar perfectamente */
+    /* Eliminado el top: 40px que causaba el problema */
+}
+
+/* El resto del CSS se mantiene igual */
 .process-step {
     display: flex;
     flex-direction: column;
@@ -1208,16 +1216,6 @@ body {
     box-sizing: border-box;
     position: relative;
     z-index: 2;
-}
-
-.process-connector {
-    flex: 1;
-    height: 3px;
-    background-color: #04a700;
-    margin: 0 -15px;
-    align-self: center;
-    position: relative;
-    top: 40px; /* Ajuste clave para alinear con el centro de las imágenes */
 }
 
 .process-step img {
