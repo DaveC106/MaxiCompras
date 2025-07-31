@@ -1250,6 +1250,6 @@ body {
 
 /* Conector entre imagen 2 y 3 */
 .connector-2 {
-  left: calc(66.666% - 40px);
-  right: 40px;
+  left: calc(66.666% - 50px);
+  right: 70px;
 }
