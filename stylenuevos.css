@@ -1200,13 +1200,6 @@ body {
     position: relative;
 }
 
-.process-connector {
-    flex: 1;
-    height: 3px;
-    background-color: #04a700;
-    margin: 0 -10px; /* Ajuste fino para conectar perfectamente */
-    /* Eliminado el top: 40px que causaba el problema */
-}
 
 .purchase-process {
     display: flex;
@@ -1256,20 +1249,22 @@ body {
 
 .process-connector {
     position: absolute;
-    top: 30px;
+    top: 50px;
     left: 0;
     right: 0;
     height: 3px;
     background-color: #04a700;
     z-index: 1;
 }
-
-.process-connector::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background-color: #04a700;
+/* Primer conector: desde el final del primer paso hasta el inicio del segundo */
+.process-step:first-child + .process-connector {
+    left: calc(33.333% - 30px);
+    right: calc(33.333% + 30px);
 }
+
+/* Segundo conector: desde el final del segundo paso hasta el inicio del tercero */
+.process-step:nth-child(3) + .process-connector {
+    left: calc(66.666% - 30px);
+    right: calc(0% + 30px);
+}
+
