@@ -1190,40 +1190,40 @@ body {
 .purchase-process {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start; /* importante */
     margin: 20px 0;
     background-color: white;
     box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
     border-radius: 12px;
+    padding: 10px 0;
 }
 
 .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 140px;
     text-align: center;
-    max-width: 120px;
 }
 
 .process-step img {
-    background-color: #04a700; /* Color rojo */
+    background-color: #04a700;
     border-radius: 50%;
     padding: 15px;
     width: 80px;
     height: 80px;
     object-fit: contain;
-    margin-bottom: 8px;
+    margin: 8px 0;
 }
 
-.process-step p {
+.fecha {
+    font-weight: bold;
+    margin: 0;
+    font-size: 14px;
+}
+
+.descripcion {
+    margin: 0;
     font-size: 14px;
     color: #333;
-    margin: 0;
-    line-height: 1.4;
-}
-.process-step {
-    text-align: center;
-    max-width: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* 🔥 Esto alinea la imagen arriba */
-    height: 150px; /* Ajusta esto si quieres más o menos altura total */
 }
