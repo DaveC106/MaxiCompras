@@ -1253,3 +1253,40 @@ body {
   left: calc(66.666% - 50px);
   right: 100px;
 }
+
+
+/* FUNCIONALIDAD */
+.functionality-section {
+    background: #000;
+    box-shadow: 0px 0px 10px 3px #00FFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 950px;
+    color: white;
+    width: calc(100% - 40px); /* Añade margen a los lados */
+}
+
+@media (max-width: 1100px) {
+    .functionality-section {
+        width: calc(100% - 20px); /* Menos margen en móviles */
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 20px;
+    }
+    
+    .functionality-content {
+        flex-direction: column;
+    }
+    
+    .functionality-image {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .functionality-image img {
+        max-width: 100%;
+        height: auto;
+    }
+}
