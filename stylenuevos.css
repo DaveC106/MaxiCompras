@@ -1241,3 +1241,9 @@ body {
 .descripcion {
     color: #333;
 }
+
+@media (max-width: 390px) {
+    .recent-buyers {
+        font-size: 12px;
+    }
+}
