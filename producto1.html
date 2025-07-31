@@ -833,5 +833,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<script>
+  const meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+  // Fecha real de Colombia
+  const hoy = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }));
+
+  const sumarDias = (fecha, dias) => {
+    let nueva = new Date(fecha);
+    nueva.setDate(nueva.getDate() + dias);
+    return nueva;
+  };
+
+  // FECHAS
+  const fechaPedido = `${hoy.getDate()} ${meses[hoy.getMonth()]}`;
+
+  const desp1 = hoy;
+  const desp2 = sumarDias(hoy, 1);
+  const fechaDespacho = `${desp1.getDate()}–${desp2.getDate()} ${meses[desp2.getMonth()]}`;
+
+  const ent1 = sumarDias(hoy, 2);
+  const ent2 = sumarDias(hoy, 4); // ← ¡dos días de entrega!
+  const fechaEntrega = `${ent1.getDate()}–${ent2.getDate()} ${meses[ent2.getMonth()]}`;
+
+  // INSERTAR EN HTML
+  const fechas = document.querySelectorAll(".fecha");
+  if (fechas.length >= 3) {
+    fechas[0].textContent = fechaPedido;
+    fechas[1].textContent = fechaDespacho;
+    fechas[2].textContent = fechaEntrega;
+  }
+</script>
 </body>
 </html>
