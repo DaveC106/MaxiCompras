@@ -1186,24 +1186,25 @@ body {
 }
 }
 
-
 .purchase-process {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start; /* importante */
+    justify-content: space-between; /* Cambiado de space-around a space-between */
+    align-items: flex-start;
     margin: 20px 0;
     background-color: white;
     box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
     border-radius: 12px;
-    padding: 10px 0;
+    padding: 20px 40px; /* Aumentado el padding lateral */
 }
 
 .process-step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 140px;
+    width: calc(100%/3); /* Cada paso ocupa 1/3 del ancho */
     text-align: center;
+    padding: 0 10px; /* Espaciado interno para separación */
+    box-sizing: border-box;
 }
 
 .process-step img {
