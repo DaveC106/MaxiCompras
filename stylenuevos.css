@@ -1255,38 +1255,3 @@ body {
 }
 
 
-/* FUNCIONALIDAD - Versión corregida */
-.functionality-section {
-    background: #000;
-    box-shadow: 0px 0px 10px 3px #00FFFF;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 30px;
-    margin: 30px 20px; /* Márgenes iguales a ambos lados */
-    border-radius: 10px;
-    max-width: 950px;
-    color: white;
-    width: auto; /* Cambiado a auto para que respete los márgenes */
-}
-
-@media (max-width: 1100px) {
-    .functionality-section {
-        margin: 20px 15px; /* Márgenes iguales a ambos lados */
-        padding: 20px;
-        width: auto; /* Asegura que use el espacio disponible menos los márgenes */
-        box-sizing: border-box; /* Incluye padding en el cálculo del ancho */
-    }
-    
-    .functionality-content {
-        flex-direction: column;
-    }
-    
-    .functionality-image {
-        text-align: center;
-        margin-top: 20px;
-    }
-    
-    .functionality-image img {
-        max-width: 100%;
-        height: auto;
-    }
-}
