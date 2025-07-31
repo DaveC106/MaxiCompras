@@ -1245,5 +1245,6 @@ body {
 @media (max-width: 390px) {
     .recent-buyers {
         font-size: 12px;
+        white-space: nowrap;
     }
 }
