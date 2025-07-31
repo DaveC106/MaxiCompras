@@ -1235,11 +1235,11 @@ body {
 }
 
 .process-connector {
-  position: absolute;
-  top: 50px; /* altura para que pase por detrás de las imágenes */
-  left: calc(33.333% - 30px); /* empieza después de la 1ra imagen */
-  right: calc(66.666% + 30px); /* termina justo antes de la 2da */
-  height: 3px;
-  background-color: #04a700;
-  z-index: 1;
+    position: absolute;
+    top: 60px;
+    left: calc(33.333% - 50px);
+    right: calc(66.666% + -80px);
+    height: 3px;
+    background-color: #04a700;
+    z-index: 1;
 }
