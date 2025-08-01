@@ -606,14 +606,10 @@ body {
 .testimonial-stars {
     margin: 8px 0;
     color: gold;
-    text-align: center;
 }
 
 .testimonial-author {
     font-weight: bold;
-    white-space: nowrap;
-    font-size: 14px;
-    text-align: center;
 }
 
 /* Imágenes de garantía y características */
@@ -1070,7 +1066,14 @@ body {
 .functionality-section img {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.included-section img:hover,
+.faq-container img:hover,
+.comparison-section img:hover,
+.features-section img:hover,
+.functionality-section img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
 
 
 
