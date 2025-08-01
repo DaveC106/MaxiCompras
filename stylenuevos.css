@@ -1243,33 +1243,3 @@ body {
     object-fit: contain; /* Para que se ajuste bien sin deformarse */
 }
 
-.faq-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-@media (min-width: 768px) {
-    .faq-content {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-
-    .faq-questions {
-        flex: 1;
-        padding-right: 20px;
-    }
-
-    .faq-image {
-        flex-shrink: 0;
-    }
-}
-
-.faq-image img {
-    max-width: 250px;
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
