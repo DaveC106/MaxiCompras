@@ -1236,10 +1236,9 @@ body {
 .features-section img,
 .functionality-section img {
     width: 100%;
-    max-width: 200px; /* Ajusta el tamaño máximo */
+    max-width: 200px; /* Mismo tamaño para todas */
     height: auto;
     display: block;
-    margin: 10px auto; /* Centra la imagen */
-    object-fit: contain; /* Para que se ajuste bien sin deformarse */
+    margin: 20px auto; /* Centrada */
+    object-fit: contain; /* No se deforma */
 }
-
