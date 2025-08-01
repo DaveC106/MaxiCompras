@@ -282,13 +282,13 @@ body {
     align-items: center;
     background: linear-gradient(180deg, #0ccb00, #04a700);
     color: #fff;
-    padding: 20px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
+    padding: 15px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
     border-radius: 12px;
     text-decoration: none;
     font-weight: 900;
     font-size: 35px;
     font-family: 'Montserrat', sans-serif;
-    text-align: center;
+    text-align: left;
     margin: 10px 0;
     gap: 20px;
     animation: pulse-glow 2s ease-in-out infinite;
@@ -315,7 +315,6 @@ body {
         font-size: 26px; /* Reduzco menos el tamaño */
         padding: 12px 30px; /* Mantengo buen padding */
         min-height: 60px;
-         padding: 20px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
     }
     
     .arrow {
@@ -325,6 +324,7 @@ body {
 
 @media (max-width: 480px) {
     .buy-button {
+        font-size: 22px;
         padding: 10px 25px;
         min-height: 55px;
         gap: 15px;
@@ -333,7 +333,6 @@ body {
         align-items: center;
         margin-left: auto;
         margin-right: auto;
-         padding: 20px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
     }
     
     .arrow {
@@ -684,8 +683,6 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    display: block;
-    margin: 0 auto;
 }
 .button-center {
     text-align: center;
@@ -756,7 +753,7 @@ body {
 .features-title {
     font-size: 30px;
     margin-bottom: 20px;
-    color: #000000;
+    color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     text-align: center;
@@ -770,7 +767,7 @@ body {
 
 .features-list li {
     font-size: 17px;
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -808,14 +805,14 @@ body {
     font-weight: bold;
     cursor: pointer;
     padding: 10px;
-    background: #ffffff;
+    background: #000000;
     border-radius: 5px;
 }
 
 .faq-answer {
     padding: 10px;
     display: none;
-    background: #ffffff;
+    background: #000000;
     border-radius: 5px;
     margin-top: 5px;
 }
@@ -863,6 +860,10 @@ body {
     border-radius: 10px;
 }
 
+
+.buy-button:hover {
+    background-color: #006ad1;
+}
 /* Alerta de inventario */
 .inventory-alert {
     text-align: center;
@@ -997,68 +998,83 @@ body {
 
 /* FUNCIONALIDAD */
 .functionality-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
+    background: #000;
+    box-shadow: 0px 0px 10px 3px #00FFFF;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 30px;
     margin: 30px auto;
     border-radius: 10px;
     max-width: 950px;
-    color: rgb(0, 0, 0);
+    color: white;
 }
-
+.functionality-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
 
 /* CARACTERÍSTICAS */
 .features-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
+    background: #000;
+    box-shadow: 0px 0px 10px 3px #00FFFF;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 30px;
     margin: 30px auto;
     border-radius: 10px;
     max-width: 950px;
-    color: rgb(255, 255, 255);
+    color: white;
 }
-
+.features-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
 
 /* COMPARACIÓN */
 .comparison-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
+    background: #000;
+    box-shadow: 0px 0px 10px 3px #00FFFF;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 30px;
     margin: 30px auto;
     border-radius: 10px;
     max-width: 950px;
-    color: rgb(0, 0, 0);
+    color: white;
 }
-
+.comparison-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
 
 /* PREGUNTAS FRECUENTES */
 .faq-container {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
+    background: #000;
+    box-shadow: 0px 0px 10px 3px #00FFFF;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 30px;
     margin: 30px auto;
     border-radius: 10px;
     max-width: 950px;
-    color: rgb(0, 0, 0);
+    color: white;
 }
-
+.faq-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
 
 /* INCLUYE */
 .included-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
+    background: #000;
+    box-shadow: 0px 0px 10px 3px #00FFFF;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 30px;
     margin: 30px auto;
     border-radius: 10px;
     max-width: 950px;
-    color: rgb(0, 0, 0);
+    color: white;
 }
-
+.included-section:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
 .included-section img,
 .faq-container img,
 .comparison-section img,
@@ -1094,7 +1110,6 @@ body {
     margin-right: auto;
     width: 100%;
     text-align: center;
-     padding: 20px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
   }
 }
 @media (min-width: 550px) and (max-width: 1100px) {
@@ -1103,8 +1118,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-     padding: 20px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
-     text-align: center;
   }
 }
 
@@ -1240,4 +1253,3 @@ body {
   left: calc(66.666% - 50px);
   right: 100px;
 }
-
