@@ -610,6 +610,7 @@ body {
 
 .testimonial-author {
     font-weight: bold;
+    white-space: nowrap;
 }
 
 /* Imágenes de garantía y características */
