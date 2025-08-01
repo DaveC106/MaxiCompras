@@ -288,7 +288,7 @@ body {
     font-weight: 900;
     font-size: 35px;
     font-family: 'Montserrat', sans-serif;
-    text-align: left;
+    text-align: center;
     margin: 10px 0;
     gap: 20px;
     animation: pulse-glow 2s ease-in-out infinite;
@@ -325,7 +325,6 @@ body {
 
 @media (max-width: 480px) {
     .buy-button {
-        font-size: 22px;
         padding: 10px 25px;
         min-height: 55px;
         gap: 15px;
@@ -1067,14 +1066,7 @@ body {
 .functionality-section img {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.included-section img:hover,
-.faq-container img:hover,
-.comparison-section img:hover,
-.features-section img:hover,
-.functionality-section img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
+
 
 
 
@@ -1105,6 +1097,7 @@ body {
     margin-right: auto;
     width: 80%;
      padding: 20px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
+     text-align: center;
   }
 }
 
