@@ -606,11 +606,13 @@ body {
 .testimonial-stars {
     margin: 8px 0;
     color: gold;
+    text-align: center;
 }
 
 .testimonial-author {
     font-weight: bold;
     white-space: nowrap;
+    font-size: 14px;
 }
 
 /* Imágenes de garantía y características */
