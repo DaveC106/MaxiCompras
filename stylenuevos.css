@@ -860,10 +860,6 @@ body {
     border-radius: 10px;
 }
 
-
-.buy-button:hover {
-    background-color: #006ad1;
-}
 /* Alerta de inventario */
 .inventory-alert {
     text-align: center;
@@ -1007,10 +1003,7 @@ body {
     max-width: 950px;
     color: white;
 }
-.functionality-section:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
+
 
 /* CARACTERÍSTICAS */
 .features-section {
@@ -1023,10 +1016,7 @@ body {
     max-width: 950px;
     color: white;
 }
-.features-section:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
+
 
 /* COMPARACIÓN */
 .comparison-section {
@@ -1039,10 +1029,7 @@ body {
     max-width: 950px;
     color: white;
 }
-.comparison-section:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
+
 
 /* PREGUNTAS FRECUENTES */
 .faq-container {
@@ -1055,10 +1042,7 @@ body {
     max-width: 950px;
     color: white;
 }
-.faq-container:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
+
 
 /* INCLUYE */
 .included-section {
@@ -1071,10 +1055,7 @@ body {
     max-width: 950px;
     color: white;
 }
-.included-section:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
+
 .included-section img,
 .faq-container img,
 .comparison-section img,
