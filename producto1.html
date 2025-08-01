@@ -869,25 +869,30 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const leftColumn = document.querySelector(".product-gallery");
-    const rightColumn = document.querySelector(".product-info");
     const body = document.body;
-    let isLocked = false;
-
-    // Controla el scroll
-    leftColumn.addEventListener("scroll", () => {
-        if (leftColumn.scrollHeight - leftColumn.scrollTop === leftColumn.clientHeight) {
-            // Si llegó al final, permite scroll en body
-            body.classList.remove("scroll-lock");
-            isLocked = false;
-        } else if (!isLocked) {
-            // Bloquea el scroll del body
-            body.classList.add("scroll-lock");
-            isLocked = true;
-        }
-    });
-
-    // Reset al cargar
-    body.classList.add("scroll-lock");
+    
+    if (leftColumn && window.matchMedia("(min-width: 1101px)").matches) {
+        let isLocked = true;
+        
+        const checkScroll = () => {
+            const tolerance = 5;
+            const isAtBottom = leftColumn.scrollHeight - leftColumn.scrollTop <= leftColumn.clientHeight + tolerance;
+            
+            if (isAtBottom && isLocked) {
+                body.classList.remove("scroll-lock");
+                isLocked = false;
+            } else if (!isAtBottom && !isLocked) {
+                body.classList.add("scroll-lock");
+                isLocked = true;
+            }
+        };
+        
+        leftColumn.addEventListener("scroll", checkScroll);
+        window.addEventListener("resize", checkScroll);
+        
+        // Inicializar
+        body.classList.add("scroll-lock");
+    }
 });
 </script>
 </body>
