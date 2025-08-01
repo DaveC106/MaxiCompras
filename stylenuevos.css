@@ -860,10 +860,6 @@ body {
     border-radius: 10px;
 }
 
-
-.buy-button:hover {
-    background-color: #006ad1;
-}
 /* Alerta de inventario */
 .inventory-alert {
     text-align: center;
@@ -1405,4 +1401,75 @@ body {
     .included-item {
         font-size: 15px;
     }
+}
+
+.custom-buy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #0ccb00, #04a700);
+  color: #fff;
+  padding: 18px 45px; /* un poquito más grande */
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 38px; /* un poquito más grande */
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin: 12px auto;
+  gap: 20px;
+  animation: pulse-glow 2s ease-in-out infinite;
+  box-shadow: 0 0 0px #0ccb00;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+  min-height: 80px;
+}
+
+.custom-button-container {
+  text-align: center;
+}
+
+/* Responsive: tablets */
+@media (max-width: 1100px) {
+  .custom-buy-button {
+    font-size: 28px;
+    padding: 15px 35px;
+    min-height: 65px;
+  }
+}
+
+/* Responsive: celulares pequeños */
+@media (max-width: 480px) {
+  .custom-buy-button {
+    font-size: 24px;
+    padding: 12px 28px;
+    min-height: 60px;
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Ajustes entre 401px y 549px */
+@media (min-width: 401px) and (max-width: 549px) {
+  .custom-buy-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Ajustes entre 550px y 1100px */
+@media (min-width: 550px) and (max-width: 1100px) {
+  .custom-buy-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
 }
