@@ -976,8 +976,14 @@ body {
         margin-right: 0 !important;
     }
 }
-
-.parent-container {
-  display: flex;
-  flex-direction: column; /* Esto fuerza que TODO esté en una sola columna */
+@media (min-width: 1100px) {
+  .functionality-section,
+  .features-section,
+  .comparison-section,
+  .faq-container,
+  .included-section {
+    flex: 0 0 100%;
+    max-width: 49%;
+    margin: 0 auto;
+  }
 }
