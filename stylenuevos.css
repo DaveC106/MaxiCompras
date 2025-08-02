@@ -126,7 +126,7 @@ body {
     .faq-container,
     .included-section {
         flex: 1 1 50%;
-        max-width: 50%;
+        max-width: 50%; /* Limitamos al mismo ancho que product-gallery */
         order: 3;
     }
 }
