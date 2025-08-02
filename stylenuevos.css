@@ -134,7 +134,6 @@ body {
 /* Imágenes de la galería */
 .product-image {
     max-width: 427.5px;
-    height: 427.5px;
     object-fit: cover;
     margin-bottom: 10px;
     border-style: groove;
