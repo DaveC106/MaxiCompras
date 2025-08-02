@@ -65,8 +65,9 @@ body {
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px 40px; /* Añadido más padding-bottom */
+    padding: 0 20px 40px;
     position: relative;
+    justify-content: center; /* Añadido para centrar el contenido */
 }
 
 /* Galería de imágenes - Versión PC */
@@ -75,7 +76,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 150px;
+    margin-left: 0; /* Quitamos el margen de 150px para centrar la galería */
 }
 
 .product-image {
@@ -1092,13 +1093,34 @@ body {
 }
 
 
-
-@media (min-width: 1101px) and (max-width: 1200px) {
-  .product-container {
-    margin-left: -80px;
-  }
+/* Contenedor principal del producto */
+.product-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    position: relative;
+    justify-content: center; /* Añadido para centrar el contenido */
 }
 
+/* Galería de imágenes - Versión PC */
+.product-gallery {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 0; /* Quitamos el margen de 150px para centrar la galería */
+}
+
+/* Eliminamos el margen negativo para pantallas entre 1101px y 1200px */
+@media (min-width: 1101px) and (max-width: 1200px) {
+    .product-container {
+        margin-left: 0; /* Quitamos el margen negativo */
+        margin-right: 0;
+        justify-content: center; /* Nos aseguramos de centrar */
+    }
+}
 
 
 
