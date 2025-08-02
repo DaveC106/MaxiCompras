@@ -370,20 +370,48 @@
             const productInfo = document.querySelector('.product-info');
             const leftColumn = document.querySelector('.left-column');
             const productContainer = document.querySelector('.product-container');
+            let isProductInfoScrolling = true;
 
             function adjustScrollBehavior() {
                 if (window.innerWidth >= 1100) {
                     const headerHeight = header.offsetHeight + viewCounter.offsetHeight;
                     productInfo.style.top = `${headerHeight + 20}px`;
 
-                    // Detectar cuando product-info llega al final de su scroll
-                    productInfo.addEventListener('scroll', () => {
-                        const scrollHeight = productInfo.scrollHeight - productInfo.clientHeight;
-                        const scrollTop = productInfo.scrollTop;
-                        if (scrollTop >= scrollHeight - 1) { // Tolerancia de 1px
-                            leftColumn.style.position = 'sticky';
-                            leftColumn.style.top = '0';
-                            leftColumn.style.height = 'fit-content';
+                    // Manejar el scroll de la página
+                    window.addEventListener('wheel', (e) => {
+                        if (isProductInfoScrolling) {
+                            e.preventDefault(); // Bloquear scroll de la página
+                            const scrollAmount = e.deltaY;
+                            productInfo.scrollTop += scrollAmount;
+
+                            // Verificar si product-info llegó al final
+                            const scrollHeight = productInfo.scrollHeight - productInfo.clientHeight;
+                            if (productInfo.scrollTop >= scrollHeight - 1) {
+                                isProductInfoScrolling = false;
+                                leftColumn.style.overflowY = 'auto';
+                                leftColumn.style.position = 'sticky';
+                                leftColumn.style.top = '0';
+                                leftColumn.style.height = 'fit-content';
+                            }
+                        }
+                    }, { passive: false });
+
+                    // Manejar scroll con flechas
+                    window.addEventListener('keydown', (e) => {
+                        if (isProductInfoScrolling && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+                            e.preventDefault();
+                            const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
+                            productInfo.scrollTop += scrollAmount;
+
+                            // Verificar si product-info llegó al final
+                            const scrollHeight = productInfo.scrollHeight - productInfo.clientHeight;
+                            if (productInfo.scrollTop >= scrollHeight - 1) {
+                                isProductInfoScrolling = false;
+                                leftColumn.style.overflowY = 'auto';
+                                leftColumn.style.position = 'sticky';
+                                leftColumn.style.top = '0';
+                                leftColumn.style.height = 'fit-content';
+                            }
                         }
                     });
 
@@ -391,14 +419,17 @@
                     leftColumn.style.position = 'fixed';
                     leftColumn.style.top = '0';
                     leftColumn.style.height = '100vh';
+                    leftColumn.style.overflowY = 'hidden';
                     productInfo.style.position = 'sticky';
                     productInfo.style.top = `${headerHeight + 20}px`;
                 } else {
                     leftColumn.style.position = 'static';
                     leftColumn.style.top = 'auto';
                     leftColumn.style.height = 'auto';
+                    leftColumn.style.overflowY = 'visible';
                     productInfo.style.position = 'static';
                     productInfo.style.top = 'auto';
+                    isProductInfoScrolling = false;
                 }
             }
 

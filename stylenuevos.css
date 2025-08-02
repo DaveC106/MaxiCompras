@@ -124,7 +124,7 @@ body {
         top: 0;
         left: 0;
         height: 100vh;
-        overflow-y: auto;
+        overflow-y: hidden; /* Evita scroll en left-column inicialmente */
         z-index: 5;
         padding-right: 10px;
     }
@@ -1010,6 +1010,7 @@ body {
     .left-column {
         position: static !important;
         max-width: 100% !important;
+        overflow-y: visible !important;
     }
     
     .product-description,
