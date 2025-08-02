@@ -611,6 +611,7 @@ body {
 .testimonial-author {
     font-weight: bold;
     white-space: nowrap;
+    font-size: 12px;
 }
 
 /* Imágenes de garantía y características */
