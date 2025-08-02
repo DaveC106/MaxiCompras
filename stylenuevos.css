@@ -730,6 +730,9 @@ body {
 
 .testimonial-author {
     font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .guarantee-image {
