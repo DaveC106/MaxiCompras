@@ -1094,23 +1094,23 @@ body {
 /* Contenedor principal del producto */
 .product-container {
     display: flex;
-    gap: 10px; /* Reducido de 20px a 10px para acercar las columnas */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 40px;
     position: relative;
     justify-content: center; /* Mantiene el centrado */
 }
+
 /* Galería de imágenes - Versión PC */
 .product-gallery {
     flex: 1;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 0; /* Asegura que no haya desplazamiento */
+    margin-left: 0;
 }
 
-/* Eliminamos el margen negativo para pantallas entre 1101px y 1200px */
+/* Remove the negative margin-left for screens between 1101px and 1200px */
 @media (min-width: 1101px) and (max-width: 1200px) {
     .product-container {
         margin-left: 0;
@@ -1150,11 +1150,11 @@ body {
         margin: 0 !important;
     }
     
-    .product-info {
-        padding: 0 !important; /* Eliminamos el padding interno */
-        width: 100% !important;
-    }
-    
+   /* Información del producto */
+.product-info {
+    flex: 1;
+    padding: 0 10px; /* Reducido de 20px a 10px para acercar más */
+}
     /* Elementos que deben ocupar todo el ancho */
     .product-description,
     .promo-banner,
