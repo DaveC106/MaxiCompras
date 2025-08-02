@@ -977,3 +977,7 @@ body {
     }
 }
 
+.parent-container {
+  display: flex;
+  flex-direction: column; /* Esto fuerza que TODO esté en una sola columna */
+}
