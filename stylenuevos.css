@@ -1225,98 +1225,28 @@ body {
 }
 
 
-/* FUNCIONALIDAD */
-.functionality-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 1.5rem;
-    margin: 1.5rem;
-    border-radius: 10px;
-    max-width: 90%;
-    width: min(950px, 100%);
-    color: rgb(0, 0, 0);
-    box-sizing: border-box;
-}
-
-/* CARACTERÍSTICAS */
-.features-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 1.5rem;
-    margin: 1.5rem;
-    border-radius: 10px;
-    max-width: 90%;
-    width: min(950px, 100%);
-    color: rgb(0, 0, 0);
-    box-sizing: border-box;
-}
-
-/* COMPARACIÓN */
-.comparison-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 1.5rem;
-    margin: 1.5rem;
-    border-radius: 10px;
-    max-width: 90%;
-    width: min(950px, 100%);
-    color: rgb(0, 0, 0);
-    box-sizing: border-box;
-}
-
-/* PREGUNTAS FRECUENTES */
-.faq-container {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 1.5rem;
-    margin: 1.5rem;
-    border-radius: 10px;
-    max-width: 90%;
-    width: min(950px, 100%);
-    color: rgb(0, 0, 0);
-    box-sizing: border-box;
-}
-
-/* INCLUYE */
-.included-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 1.5rem;
-    margin: 1.5rem;
-    border-radius: 10px;
-    max-width: 90%;
-    width: min(950px, 100%);
-    color: rgb(0, 0, 0);
-    box-sizing: border-box;
-}
-
-/* Media query para pantallas medianas (tablets) */
+/* Media query para pantallas medianas (tablets, hasta 768px) */
 @media (max-width: 768px) {
     .functionality-section,
     .features-section,
     .comparison-section,
     .faq-container,
     .included-section {
-        padding: 1rem;
-        margin: 1rem;
-        max-width: 95%;
+        padding: 20px; /* Menos padding para tablets */
+        margin: 20px; /* Margen para espacio en bordes */
+        max-width: 90%; /* Reduce el ancho para dejar espacio */
     }
 }
 
-/* Media query para pantallas pequeñas (móviles) */
+/* Media query para pantallas pequeñas (móviles, hasta 480px) */
 @media (max-width: 480px) {
     .functionality-section,
     .features-section,
     .comparison-section,
     .faq-container,
     .included-section {
-        padding: 0.75rem;
-        margin: 0.5rem;
-        max-width: 98%;
+        padding: 15px; /* Aún menos padding para móviles */
+        margin: 10px; /* Margen pequeño para espacio en bordes */
+        max-width: 95%; /* Usa más espacio, pero con pequeño margen */
     }
 }
