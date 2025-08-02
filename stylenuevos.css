@@ -89,7 +89,7 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #00FFFF;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-left: 60px;
+    margin-left: 75px;
 }
 
 .product-image:hover {
@@ -278,7 +278,7 @@ body {
 }
 
 .buy-button {
-    display: inline-flex;
+   /* display: inline-flex;*/
     align-items: center;
     background: linear-gradient(180deg, #0ccb00, #04a700);
     color: #fff;
@@ -296,6 +296,7 @@ body {
     transition: transform 0.3s ease;
     white-space: nowrap;
     min-height: 70px; /* Altura mínima garantizada */
+    display: block;
 }
 
 .arrow {
