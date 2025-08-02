@@ -1,4 +1,3 @@
-
 html, body {
     margin: 0;
     padding: 0;
@@ -987,80 +986,4 @@ body {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
-}
-
-
-
-/* ----- CSS ACTUALIZADO ----- */
-/* Reset de posicionamiento */
-.product-info {
-    position: static !important;
-    transform: none !important;
-    top: auto !important;
-    right: auto !important;
-}
-
-/* Contenedor principal */
-.product-container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 100vh;
-}
-
-/* Columnas */
-.product-gallery,
-.functionality-section,
-.features-section,
-.comparison-section,
-.faq-container,
-.included-section {
-    flex: 0 0 50%;
-    max-width: 50%;
-    transition: opacity 0.3s;
-}
-
-.product-info {
-    flex: 0 0 50%;
-    max-width: 50%;
-    height: 100vh;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    position: sticky;
-    top: 0;
-}
-
-.product-info::-webkit-scrollbar {
-    display: none;
-}
-
-/* Estados iniciales */
-body:not(.scroll-left-active) .product-gallery,
-body:not(.scroll-left-active) .functionality-section,
-body:not(.scroll-left-active) .features-section,
-body:not(.scroll-left-active) .comparison-section,
-body:not(.scroll-left-active) .faq-container,
-body:not(.scroll-left-active) .included-section {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-body.scroll-left-active .product-info {
-    height: auto;
-    overflow: visible;
-    position: static;
-}
-
-/* Ocultar contenido inferior inicialmente */
-.testimonials-section,
-.carriers-section,
-.inventory-alert {
-    display: none;
-}
-
-body.content-unlocked .testimonials-section,
-body.content-unlocked .carriers-section,
-body.content-unlocked .inventory-alert {
-    display: block;
 }
