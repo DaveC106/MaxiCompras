@@ -190,7 +190,6 @@
                 <img src="images/7.png" alt="Característica" class="feature-image">
             </div>
         </div>
-    </div>
     
    <!-- Sección de funcionalidad -->
 <div class="functionality-section">
@@ -324,6 +323,7 @@
             <img src="images/incluye.png" alt="Qué incluye" />
         </div>
     </div>
+</div>
 </div>
     
     <script>
@@ -868,30 +868,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const leftColumn = document.querySelector(".product-gallery");
-    const body = document.body;
+    const mainContent = document.querySelector(".product-container");
+    const stickySidebar = document.querySelector(".product-info");
     
-    if (leftColumn && window.matchMedia("(min-width: 1101px)").matches) {
+    if (window.matchMedia("(min-width: 1101px)").matches) {
         let isLocked = true;
         
         const checkScroll = () => {
-            const tolerance = 5;
-            const isAtBottom = leftColumn.scrollHeight - leftColumn.scrollTop <= leftColumn.clientHeight + tolerance;
+            const scrollEnd = mainContent.scrollHeight - window.innerHeight;
+            const currentPos = window.scrollY;
             
-            if (isAtBottom && isLocked) {
-                body.classList.remove("scroll-lock");
+            if (currentPos >= scrollEnd - 50 && isLocked) {
+                document.body.classList.remove("scroll-lock");
                 isLocked = false;
-            } else if (!isAtBottom && !isLocked) {
-                body.classList.add("scroll-lock");
+            } else if (currentPos < scrollEnd - 50 && !isLocked) {
+                document.body.classList.add("scroll-lock");
                 isLocked = true;
             }
         };
         
-        leftColumn.addEventListener("scroll", checkScroll);
+        window.addEventListener("scroll", checkScroll);
         window.addEventListener("resize", checkScroll);
         
         // Inicializar
-        body.classList.add("scroll-lock");
+        document.body.classList.add("scroll-lock");
     }
 });
 </script>
