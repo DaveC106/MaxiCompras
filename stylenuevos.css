@@ -152,8 +152,8 @@ body {
 /* Ajuste de tamaño para pantallas grandes */
 @media (min-width: 768px) {
     .product-image {
-        max-width: 550px;
-        height: 550px;
+        max-width: 580px;
+        height: 580px;
     }
 }
 
