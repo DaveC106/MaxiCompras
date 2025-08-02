@@ -657,5 +657,54 @@
             fechas[2].textContent = fechaEntrega;
         }
     </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos a controlar
+    const productContainer = document.querySelector('.product-container');
+    const leftColumn = document.querySelector('.product-gallery');
+    const rightColumn = document.querySelector('.product-info');
+    const body = document.body;
+    
+    // Solo aplicar en desktop
+    if (window.matchMedia("(min-width: 1100px)").matches) {
+        let rightColumnScrolled = false;
+        let leftColumnScrolled = false;
+        
+        // Verificar si el usuario ha llegado al final de la columna derecha
+        rightColumn.addEventListener('scroll', function() {
+            if (!rightColumnScrolled && 
+                rightColumn.scrollHeight - rightColumn.scrollTop <= rightColumn.clientHeight + 100) {
+                
+                rightColumnScrolled = true;
+                body.classList.add('scroll-left-active');
+                
+                // Asegurar que la columna izquierda comience desde arriba
+                window.scrollTo(0, 0);
+            }
+        });
+        
+        // Verificar si el usuario ha llegado al final de la columna izquierda
+        window.addEventListener('scroll', function() {
+            if (rightColumnScrolled && !leftColumnScrolled) {
+                const leftColumnEnd = leftColumn.offsetTop + leftColumn.offsetHeight;
+                
+                if (window.scrollY + window.innerHeight >= leftColumnEnd - 100) {
+                    leftColumnScrolled = true;
+                    body.classList.add('content-unlocked');
+                }
+            }
+        });
+        
+        // Forzar el scroll inicial en la columna derecha
+        setTimeout(function() {
+            rightColumn.scrollTop = 1;
+        }, 100);
+    } else {
+        // En móvil, mostrar todo normalmente
+        body.classList.add('content-unlocked');
+    }
+});
+</script>
 </body>
 </html>

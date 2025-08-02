@@ -988,3 +988,87 @@ body {
         margin-right: 0 !important;
     }
 }
+
+
+
+/* Agrega estos estilos al final de tu CSS */
+
+/* Estado inicial - Bloquea izquierda */
+.product-gallery,
+.functionality-section,
+.features-section,
+.comparison-section,
+.faq-container,
+.included-section {
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.product-info {
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 50%;
+    padding-bottom: 100px; /* Espacio para el scroll */
+}
+
+/* Cuando se active el scroll izquierdo */
+.scroll-left-active .product-gallery,
+.scroll-left-active .functionality-section,
+.scroll-left-active .features-section,
+.scroll-left-active .comparison-section,
+.scroll-left-active .faq-container,
+.scroll-left-active .included-section {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.scroll-left-active .product-info {
+    position: static;
+    height: auto;
+    overflow-y: visible;
+    width: 100%;
+}
+
+/* Cuando ambas columnas estén alineadas */
+.content-unlocked .product-container {
+    display: block;
+}
+
+.content-unlocked .product-gallery,
+.content-unlocked .functionality-section,
+.content-unlocked .features-section,
+.content-unlocked .comparison-section,
+.content-unlocked .faq-container,
+.content-unlocked .included-section,
+.content-unlocked .product-info {
+    position: static;
+    height: auto;
+    overflow-y: visible;
+    width: 100%;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+/* Ajustes para móvil */
+@media (max-width: 1100px) {
+    .product-info {
+        position: static;
+        width: 100%;
+        height: auto;
+        overflow-y: visible;
+    }
+    
+    .product-gallery,
+    .functionality-section,
+    .features-section,
+    .comparison-section,
+    .faq-container,
+    .included-section {
+        pointer-events: auto;
+        opacity: 1;
+    }
+}
