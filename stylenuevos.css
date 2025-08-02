@@ -1094,21 +1094,20 @@ body {
 /* Contenedor principal del producto */
 .product-container {
     display: flex;
-    gap: 20px;
+    gap: 10px; /* Reducido de 20px a 10px para acercar las columnas */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 40px;
     position: relative;
-    justify-content: center; /* Añadido para centrar el contenido */
+    justify-content: center; /* Mantiene el centrado */
 }
-
 /* Galería de imágenes - Versión PC */
 .product-gallery {
     flex: 1;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 0; /* Quitamos el margen de 150px para centrar la galería */
+    margin-left: 0; /* Asegura que no haya desplazamiento */
 }
 
 /* Eliminamos el margen negativo para pantallas entre 1101px y 1200px */
