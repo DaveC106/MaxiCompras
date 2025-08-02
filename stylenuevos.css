@@ -62,12 +62,12 @@ body {
 /* Contenedor principal del producto */
 .product-container {
     display: flex;
-    gap: 20px;
+    gap: 10px; /* Reducido de 20px a 10px para acercar las columnas */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 40px;
     position: relative;
-    justify-content: center; /* Añadido para centrar el contenido */
+    justify-content: center; /* Mantiene el centrado */
 }
 
 /* Galería de imágenes - Versión PC */
@@ -76,9 +76,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 0; /* Quitamos el margen de 150px para centrar la galería */
+    margin-left: 0; /* Asegura que no haya desplazamiento */
 }
-
 .product-image {
     max-width: 427.5px;
     height: 427.5px;
@@ -141,7 +140,6 @@ body {
     flex: 1;
     padding: 0 20px;
 }
-
 .product-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 25px;
@@ -1116,9 +1114,9 @@ body {
 /* Eliminamos el margen negativo para pantallas entre 1101px y 1200px */
 @media (min-width: 1101px) and (max-width: 1200px) {
     .product-container {
-        margin-left: 0; /* Quitamos el margen negativo */
+        margin-left: 0;
         margin-right: 0;
-        justify-content: center; /* Nos aseguramos de centrar */
+        justify-content: center;
     }
 }
 
