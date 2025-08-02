@@ -68,20 +68,26 @@ body {
     position: relative;
 }
 
+/* Envoltorio para la columna izquierda */
+.left-column {
+    flex: 1 1 100%;
+    order: 1;
+    position: relative;
+}
+
 /* Galería de imágenes */
 .product-gallery {
     flex: 1 1 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    order: 1; /* Asegura que esté primero en el flujo */
 }
 
 /* Información del producto */
 .product-info {
     flex: 1 1 100%;
     padding: 0 20px;
-    order: 2; /* Mueve esto a la derecha en desktop */
+    order: 2;
 }
 
 /* Secciones movidas */
@@ -99,26 +105,40 @@ body {
     margin: 0 0 30px 0;
     border-radius: 10px;
     color: white;
-    order: 3; /* Secciones quedan después */
 }
 
 /* Desktop layout */
 @media (min-width: 1100px) {
-    .product-gallery {
-        flex: 1 1 50%;
-        max-width: 50%;
-        order: 1;
+    .product-container {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
     }
 
+    .left-column {
+        flex: 1 1 50%;
+        max-width: 50%;
+        position: sticky;
+        top: 0;
+        align-self: flex-start;
+        height: fit-content;
+    }
+
+    .product-gallery {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
 
     .product-info {
         flex: 1 1 50%;
         max-width: 50%;
-        order: 2;
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%; /* Opcional, ajusta según contenido */
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        height: fit-content;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        padding-right: 10px;
     }
 
     .functionality-section,
@@ -126,9 +146,8 @@ body {
     .comparison-section,
     .faq-container,
     .included-section {
-        flex: 1 1 50%;
-        max-width: 50%; /* Limitamos al mismo ancho que product-gallery */
-        order: 3;
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 }
 
@@ -872,7 +891,7 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 12px;
-    box-shadow: -1px -1px 15px 7px rgba(0, 0, 0, 0.2);
+    box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
 }
 
 .inventory-alert {
@@ -970,7 +989,13 @@ body {
     .product-info {
         padding: 0 !important;
         width: 100% !important;
-        order: 6; /* Mantiene el orden en móvil */
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+    
+    .left-column {
+        position: static !important;
     }
     
     .product-description,
