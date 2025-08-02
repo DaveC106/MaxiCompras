@@ -133,8 +133,8 @@ body {
 
 /* Imágenes de la galería */
 .product-image {
-    max-width: 550px; /* Aumentamos para igualar el ancho visual de las secciones */
-    height: 550px; /* Ajustamos altura proporcionalmente */
+    max-width: 427.5px;
+    height: 427.5px;
     object-fit: cover;
     margin-bottom: 10px;
     border-style: groove;
@@ -148,6 +148,14 @@ body {
 .product-image:hover {
     transform: scale(1.03);
     box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
+}
+
+/* Ajuste de tamaño para pantallas grandes */
+@media (min-width: 768px) {
+    .product-image {
+        max-width: 550px;
+        height: 550px;
+    }
 }
 
 /* Versión móvil para galería */
