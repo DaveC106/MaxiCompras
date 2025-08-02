@@ -361,6 +361,42 @@
                     item.classList.toggle("active");
                 });
             });
+
+            // Ajustar la posición de .product-info en desktop
+            const header = document.querySelector('.header');
+            const viewCounter = document.querySelector('.view-counter');
+            const productInfo = document.querySelector('.product-info');
+            const leftColumn = document.querySelector('.left-column');
+            const productContainer = document.querySelector('.product-container');
+
+            function adjustProductInfoPosition() {
+                if (window.innerWidth >= 1100) {
+                    const headerHeight = header.offsetHeight + viewCounter.offsetHeight;
+                    productInfo.style.top = `${headerHeight + 20}px`;
+                    const leftColumnRect = leftColumn.getBoundingClientRect();
+                    const containerRect = productContainer.getBoundingClientRect();
+                    const leftColumnBottom = leftColumnRect.bottom + window.scrollY;
+                    const containerBottom = containerRect.bottom + window.scrollY;
+
+                    if (window.scrollY + window.innerHeight >= leftColumnBottom) {
+                        productInfo.style.position = 'absolute';
+                        productInfo.style.top = `${leftColumn.offsetHeight}px`;
+                        productInfo.style.right = '20px';
+                    } else {
+                        productInfo.style.position = 'sticky';
+                        productInfo.style.top = `${headerHeight + 20}px`;
+                        productInfo.style.right = '20px';
+                    }
+                } else {
+                    productInfo.style.position = 'static';
+                    productInfo.style.top = 'auto';
+                    productInfo.style.right = 'auto';
+                }
+            }
+
+            window.addEventListener('resize', adjustProductInfoPosition);
+            window.addEventListener('scroll', adjustProductInfoPosition);
+            adjustProductInfoPosition();
         });
     </script>
     <script>

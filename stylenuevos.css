@@ -19,6 +19,8 @@ body {
 /* Header */
 .header {
     width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
 .header__logo {
@@ -34,6 +36,8 @@ body {
     margin: 20px 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
+    position: relative;
+    z-index: 10;
 }
 
 .view-counter__number {
@@ -66,6 +70,7 @@ body {
     margin: 0 auto;
     padding: 0 20px 40px;
     position: relative;
+    min-height: 100vh;
 }
 
 /* Envoltorio para la columna izquierda */
@@ -122,6 +127,7 @@ body {
         top: 0;
         align-self: flex-start;
         height: fit-content;
+        z-index: 5;
     }
 
     .product-gallery {
@@ -132,13 +138,14 @@ body {
     .product-info {
         flex: 1 1 50%;
         max-width: 50%;
-        position: fixed;
-        top: 20px;
-        right: 20px;
+        position: sticky;
+        top: 0; /* Será ajustado dinámicamente por JavaScript */
+        align-self: flex-start;
         height: fit-content;
-        max-height: calc(100vh - 40px);
+        max-height: calc(100vh - 20px);
         overflow-y: auto;
         padding-right: 10px;
+        z-index: 5;
     }
 
     .functionality-section,
