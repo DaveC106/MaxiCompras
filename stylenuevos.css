@@ -991,9 +991,7 @@ body {
 
 
 
-/* Agrega estos estilos al final de tu CSS */
-
-/* Estado inicial - Bloquea izquierda */
+/* Estado inicial - Bloquea izquierda y oculta contenido inferior */
 .product-gallery,
 .functionality-section,
 .features-section,
@@ -1006,13 +1004,42 @@ body {
 }
 
 .product-info {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+/* Ocultar todo el contenido que está después de las columnas */
+.testimonials-section,
+.carriers-section,
+.inventory-alert,
+.purchase-process,
+.testimonial-card,
+.view-counter {
+    display: none;
+}
+
+/* Cuando se active el scroll derecho */
+.scroll-right-active .product-info {
     height: 100vh;
     overflow-y: auto;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 50%;
-    padding-bottom: 100px; /* Espacio para el scroll */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scroll-right-active .product-info::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+}
+
+.scroll-right-active .product-gallery,
+.scroll-right-active .functionality-section,
+.scroll-right-active .features-section,
+.scroll-right-active .comparison-section,
+.scroll-right-active .faq-container,
+.scroll-right-active .included-section {
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 /* Cuando se active el scroll izquierdo */
@@ -1027,10 +1054,8 @@ body {
 }
 
 .scroll-left-active .product-info {
-    position: static;
     height: auto;
     overflow-y: visible;
-    width: 100%;
 }
 
 /* Cuando ambas columnas estén alineadas */
@@ -1053,6 +1078,47 @@ body {
     opacity: 1;
 }
 
+/* Mostrar contenido inferior solo cuando esté desbloqueado */
+.content-unlocked ~ .testimonials-section,
+.content-unlocked ~ .carriers-section,
+.content-unlocked ~ .inventory-alert,
+.content-unlocked ~ .purchase-process,
+.content-unlocked ~ .testimonial-card,
+.content-unlocked ~ .view-counter {
+    display: block;
+}
+
+/* Ajustes para desktop */
+@media (min-width: 1100px) {
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .product-gallery,
+    .functionality-section,
+    .features-section,
+    .comparison-section,
+    .faq-container,
+    .included-section {
+        flex: 1 1 50%;
+        max-width: 50%;
+    }
+    
+    .product-info {
+        flex: 1 1 50%;
+        max-width: 50%;
+    }
+    
+    .scroll-right-active .product-info {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 50%;
+        padding-top: 20px;
+    }
+}
+
 /* Ajustes para móvil */
 @media (max-width: 1100px) {
     .product-info {
@@ -1070,5 +1136,9 @@ body {
     .included-section {
         pointer-events: auto;
         opacity: 1;
+    }
+    
+    body.content-unlocked {
+        display: block;
     }
 }

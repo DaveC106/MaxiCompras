@@ -661,42 +661,57 @@
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos a controlar
-    const productContainer = document.querySelector('.product-container');
-    const leftColumn = document.querySelector('.product-gallery');
-    const rightColumn = document.querySelector('.product-info');
     const body = document.body;
+    const rightColumn = document.querySelector('.product-info');
+    const leftColumnSections = [
+        document.querySelector('.product-gallery'),
+        document.querySelector('.functionality-section'),
+        document.querySelector('.features-section'),
+        document.querySelector('.comparison-section'),
+        document.querySelector('.faq-container'),
+        document.querySelector('.included-section')
+    ];
     
     // Solo aplicar en desktop
     if (window.matchMedia("(min-width: 1100px)").matches) {
         let rightColumnScrolled = false;
         let leftColumnScrolled = false;
         
-        // Verificar si el usuario ha llegado al final de la columna derecha
+        // Estado inicial - Scroll derecho activo
+        body.classList.add('scroll-right-active');
+        
+        // Verificar scroll en columna derecha
         rightColumn.addEventListener('scroll', function() {
             if (!rightColumnScrolled && 
                 rightColumn.scrollHeight - rightColumn.scrollTop <= rightColumn.clientHeight + 100) {
                 
                 rightColumnScrolled = true;
+                body.classList.remove('scroll-right-active');
                 body.classList.add('scroll-left-active');
                 
-                // Asegurar que la columna izquierda comience desde arriba
+                // Asegurar que el scroll comience desde arriba
                 window.scrollTo(0, 0);
             }
         });
         
-        // Verificar si el usuario ha llegado al final de la columna izquierda
+        // Verificar scroll en página (columna izquierda)
         window.addEventListener('scroll', function() {
             if (rightColumnScrolled && !leftColumnScrolled) {
-                const leftColumnEnd = leftColumn.offsetTop + leftColumn.offsetHeight;
+                // Calcular el final de la última sección izquierda
+                const lastLeftSection = leftColumnSections[leftColumnSections.length - 1];
+                const leftColumnEnd = lastLeftSection.offsetTop + lastLeftSection.offsetHeight;
                 
                 if (window.scrollY + window.innerHeight >= leftColumnEnd - 100) {
                     leftColumnScrolled = true;
                     body.classList.add('content-unlocked');
+                    
+                    // Restaurar comportamiento normal de scroll
+                    body.classList.remove('scroll-left-active');
                 }
             }
         });
         
-        // Forzar el scroll inicial en la columna derecha
+        // Forzar un pequeño scroll inicial para activar el evento
         setTimeout(function() {
             rightColumn.scrollTop = 1;
         }, 100);
