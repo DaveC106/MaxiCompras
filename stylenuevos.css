@@ -1,4 +1,4 @@
-/* Reset completo y estilos base */
+
 html, body {
     margin: 0;
     padding: 0;
@@ -19,8 +19,6 @@ body {
 /* Header */
 .header {
     width: 100%;
-    position: relative;
-    z-index: 10;
 }
 
 .header__logo {
@@ -36,8 +34,6 @@ body {
     margin: 20px 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    position: relative;
-    z-index: 10;
 }
 
 .view-counter__number {
@@ -70,26 +66,22 @@ body {
     margin: 0 auto;
     padding: 0 20px 40px;
     position: relative;
-    min-height: 100vh;
 }
 
-/* Envoltorio para la columna izquierda */
-.left-column {
+/* Galería de imágenes */
+.product-gallery {
     flex: 1 1 100%;
-    order: 1;
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    order: 1; /* Asegura que esté primero en el flujo */
 }
 
-/* Contenedor interno para product-info */
-.product-info-wrapper {
-    flex: 1 1 100%;
-    order: 2;
-    position: relative;
-}
-
+/* Información del producto */
 .product-info {
-    width: 100%;
+    flex: 1 1 100%;
     padding: 0 20px;
+    order: 2; /* Mueve esto a la derecha en desktop */
 }
 
 /* Secciones movidas */
@@ -107,43 +99,26 @@ body {
     margin: 0 0 30px 0;
     border-radius: 10px;
     color: white;
+    order: 3; /* Secciones quedan después */
 }
 
 /* Desktop layout */
 @media (min-width: 1100px) {
-    .product-container {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: flex-start;
-    }
-
-    .left-column {
+    .product-gallery {
         flex: 1 1 50%;
         max-width: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        overflow-y: hidden; /* Evita scroll en left-column inicialmente */
-        z-index: 5;
-        padding-right: 10px;
+        order: 1;
     }
 
-    .product-info-wrapper {
-        flex: 1 1 50%;
-        max-width: 50%;
-        margin-left: 50%;
-        position: relative;
-    }
 
     .product-info {
-        position: sticky;
+        flex: 1 1 50%;
+        max-width: 50%;
+        order: 2;
+        position: absolute;
         top: 0;
-        height: fit-content;
-        max-height: calc(100vh - 20px);
-        overflow-y: auto;
-        padding-right: 10px;
-        z-index: 6;
+        right: 0;
+        height: 100%; /* Opcional, ajusta según contenido */
     }
 
     .functionality-section,
@@ -151,8 +126,9 @@ body {
     .comparison-section,
     .faq-container,
     .included-section {
-        flex: 1 1 100%;
-        max-width: 100%;
+        flex: 1 1 50%;
+        max-width: 50%; /* Limitamos al mismo ancho que product-gallery */
+        order: 3;
     }
 }
 
@@ -896,7 +872,7 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 12px;
-    box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
+    box-shadow: -1px -1px 15px 7px rgba(0, 0, 0, 0.2);
 }
 
 .inventory-alert {
@@ -991,26 +967,10 @@ body {
         margin: 0 !important;
     }
     
-    .product-info-wrapper {
-        padding: 0 !important;
-        width: 100% !important;
-        position: static !important;
-        max-height: none !important;
-        overflow-y: visible !important;
-    }
-    
     .product-info {
         padding: 0 !important;
         width: 100% !important;
-        position: static !important;
-        max-height: none !important;
-        overflow-y: visible !important;
-    }
-    
-    .left-column {
-        position: static !important;
-        max-width: 100% !important;
-        overflow-y: visible !important;
+        order: 6; /* Mantiene el orden en móvil */
     }
     
     .product-description,
