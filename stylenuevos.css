@@ -976,3 +976,25 @@ body {
         margin-right: 0 !important;
     }
 }
+
+@media (min-width: 1100px) {
+  .functionality-section,
+  .features-section,
+  .comparison-section,
+  .faq-container,
+  .included-section {
+    flex: 0 0 100%;       /* Ocupa toda la fila para no romper el orden */
+    max-width: 100%;      /* Se asegura de que no se desborde */
+    display: flex;        /* Permite trabajar con su contenido interno */
+    justify-content: center; /* Centra el contenido */
+  }
+
+  /* Para reducir el ancho del contenido dentro de cada sección */
+  .functionality-section > *,
+  .features-section > *,
+  .comparison-section > *,
+  .faq-container > *,
+  .included-section > * {
+    width: 90%;   /* O el valor que quieras (49%, 80%, etc.) */
+  }
+}
