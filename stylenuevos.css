@@ -726,6 +726,7 @@ body {
 .testimonial-stars {
     margin: 8px 0;
     color: gold;
+    text-align: center;
 }
 
 .testimonial-author {
