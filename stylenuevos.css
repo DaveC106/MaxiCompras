@@ -60,23 +60,19 @@ body {
 }
 
 /* Contenedor principal del producto */
-/* Contenedor principal del producto */
 .product-container {
-    display: flex;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px 40px; /* Añadido más padding-bottom */
-    position: relative;
+    display: flex; /* Convierte el contenedor en un Flexbox */
+    gap: 7rem; /* Esto crea un espacio entre los dos elementos, si lo necesitas */
+    margin: 3rem 5rem; /* Ajusta los márgenes para centrar el contenido */
+    align-items: flex-start; /* Esto asegura que los elementos se alineen en la parte superior */
 }
 
 /* Galería de imágenes - Versión PC */
 .product-gallery {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-left: 150px;
+    position: sticky; /* Habilita el posicionamiento "sticky" */
+    top: 50px; /* Define a qué distancia del borde superior de la ventana debe "pegarse" */
+    /* Puedes ajustar el valor '50px' según el espacio que desees dejar,
+    por ejemplo, para que no quede debajo del encabezado. */
 }
 
 .product-image {
