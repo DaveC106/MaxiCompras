@@ -425,3 +425,95 @@
         align-items: flex-start;
     }
 }
+
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.price-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.old-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.current-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+    color: #381cd4;
+}
+
+.curved-x {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.liner1,
+.liner2 {
+    fill: none;
+    stroke: red;
+    stroke-width: 8;
+    stroke-linecap: round;
+    opacity: 0;
+    animation: fadeX 3s infinite;
+}
+
+.liner2 {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeX {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    40% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.buy-button {
+    display: inline-flex;
+    align-items: center;
+   /* background: linear-gradient(180deg, #0ccb00, #04a700);*/
+     background: linear-gradient(180deg, #2f17b7, #381cd4);
+    color: #fff;
+    padding: 15px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+    margin: 10px 0;
+    gap: 20px;
+    animation: pulse-glow 2s ease-in-out infinite;
+    box-shadow: 0 0 0px #381cd4;
+    transition: transform 0.3s ease;
+    white-space: nowrap;
+    min-height: 70px; /* Altura mínima garantizada */
+}
+
+.arrow {
+    font-size: 40px; /* Aumenté el tamaño de la flecha */
+    line-height: 1;
+}
+
+.button-text span {
+    display: block;
+    line-height: 1.2; /* Aumenté ligeramente el line-height */
+    text-align: center;
+}
