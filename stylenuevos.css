@@ -92,10 +92,7 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product-image:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
+
 
 /* Versión móvil */
 @media (max-width: 1100px) {
@@ -1268,10 +1265,10 @@ body {
     height: 427.5px;
     object-fit: cover;
     border-style: groove;
-    border-color: #9AFF00;
+    border-color: #f5e2d0;
     border-width: 3px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px #00FFFF;
+    box-shadow: 0px 0px 10px 0px #f4ece4;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: absolute;
     opacity: 0;
