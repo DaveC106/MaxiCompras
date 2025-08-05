@@ -291,7 +291,7 @@ body {
     margin: 10px 0;
     gap: 20px;
     animation: pulse-glow 2s ease-in-out infinite;
-    box-shadow: 0 0 0px #0ccb00;
+    box-shadow: 0 0 0px #381cd4;
     transition: transform 0.3s ease;
     white-space: nowrap;
     min-height: 70px; /* Altura mínima garantizada */
