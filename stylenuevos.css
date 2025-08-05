@@ -1379,3 +1379,11 @@ body {
     box-shadow: 0px 0px 10px 0px #f4ece4;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* En móviles y pantallas pequeñas: sin sticky */
+@media (max-width: 768px) {
+  .product-gallery {
+    position: static; /* vuelve al flujo normal */
+    top: auto;
+  }
+}
