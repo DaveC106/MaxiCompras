@@ -1359,7 +1359,6 @@ body {
     margin: 0 auto;
     padding: 0 20px 40px;
     position: relative;
-    min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la pantalla */
 }
 
 /* Galería de imágenes fija */
@@ -1392,13 +1391,17 @@ body {
     opacity: 1;
 }
 
-/* Información del producto desplazable */
-.product-info {
+/* Contenedor de información con desplazamiento interno */
+.product-info-wrapper {
     flex: 1;
-    padding: 0 20px;
     max-height: calc(100vh - 40px); /* Altura máxima ajustada al viewport */
-    overflow-y: auto; /* Permite desplazamiento vertical */
+    overflow-y: auto; /* Desplazamiento vertical solo en esta sección */
     scroll-behavior: smooth; /* Suaviza el desplazamiento */
+    padding: 0 20px;
+}
+
+.product-info {
+    padding: 0;
 }
 
 /* Ajuste para que el scroll continúe normalmente al llegar a features-grid */
@@ -1406,6 +1409,13 @@ body {
     position: relative;
     z-index: 1; /* Asegura que esté por encima del sticky */
     margin-top: -20px; /* Ajuste para alineación suave */
+}
+
+/* Estilo adicional para que el contenido después de features-grid fluya normalmente */
+.product-container::after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 /* Media query para móviles (desactiva el sticky en pantallas pequeñas) */
@@ -1427,10 +1437,9 @@ body {
         height: auto;
     }
 
-    .product-info {
+    .product-info-wrapper {
         max-height: none;
         overflow-y: visible;
-        padding: 0;
     }
 
     .features-grid {
