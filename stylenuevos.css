@@ -263,15 +263,15 @@ body {
 @keyframes pulse-glow {
     0% {
         transform: scale(1);
-        box-shadow: 0 0 0px #0ccb00;
+        box-shadow: 0 0 0px #381cd4;
     }
     50% {
         transform: scale(0.97);
-        box-shadow: 0 0 0px #0ccb00;
+        box-shadow: 0 0 0px #381cd5;
     }
     100% {
         transform: scale(1);
-        box-shadow: 0 0 30px 10px rgba(12, 203, 0, 0.5);
+        box-shadow: 0 0 30px 10px rgba(87, 3, 160, 0.5);
     }
 }
 
