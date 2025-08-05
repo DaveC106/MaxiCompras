@@ -14,10 +14,7 @@
 <body>
 <header class="header">
     <div class="marquee">
-        <span class="marquee-text">
-            🚚 ENVÍO GRATIS A TODA COLOMBIA &nbsp;&nbsp; 📦 PAGAS AL RECIBIR &nbsp;&nbsp; ✅ PRODUCTOS 100% GARANTIZADOS &nbsp;&nbsp; 
-            🚚 ENVÍO GRATIS A TODA COLOMBIA &nbsp;&nbsp; 📦 PAGAS AL RECIBIR &nbsp;&nbsp; ✅ PRODUCTOS 100% GARANTIZADOS &nbsp;&nbsp;
-        </span>
+        <span class="marquee-text"></span> <!-- El texto se inyectará con JS -->
     </div>
 </header>
   
@@ -901,6 +898,17 @@ document.addEventListener('DOMContentLoaded', function() {
             images[currentIndex].classList.add('active');
         }, 4000); // Cambia cada 4 segundos
     }
+});
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const marqueeText = document.querySelector('.marquee-text');
+    const originalText = '🚚 ENVÍO GRATIS A TODA COLOMBIA · 📦 PAGAS AL RECIBIR · ✅ PRODUCTOS 100% GARANTIZADOS';
+    
+    // Duplicamos el texto 3 veces para evitar vacíos
+    marqueeText.textContent = originalText + ' · ' + originalText + ' · ' + originalText;
 });
 </script>
 </body>
