@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sticky Sidebar | Flexbox CSS Tutorial</title>
+    <title>Picador Eléctrico Multifuncional 4en1</title>
     <style>
         *{
             margin: 0;
@@ -37,13 +37,10 @@
         }
 
         .right > div{
-            height: 250px;
             background-color: #a1a1a175;
             border-radius: 1rem;
-        }
-
-        .right > div + div{
-            margin-top: 50px;
+            padding: 20px;
+            margin-bottom: 30px;
         }
 
         .container{
@@ -57,21 +54,459 @@
             display: table;
             clear: both;
         }
+
+        /* Estilos para el contenido del producto */
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-black {
+            background-color: black;
+            color: white;
+            padding: 2px 5px;
+        }
+        
+        .rating-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stars {
+            color: gold;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
+        .rating-text {
+            font-style: italic;
+        }
+        
+        .price-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .price-wrapper {
+            position: relative;
+            margin-right: 15px;
+        }
+        
+        .old-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 18px;
+        }
+        
+        .current-price {
+            color: #e53935;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .curved-x {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .liner1, .liner2 {
+            stroke: #e53935;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .button-container {
+            margin: 20px 0;
+        }
+        
+        .buy-button {
+            display: block;
+            background-color: #ff5722;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .buy-button:hover {
+            background-color: #e64a19;
+        }
+        
+        .line1 {
+            font-size: 18px;
+            display: block;
+        }
+        
+        .line2 {
+            font-size: 14px;
+            display: block;
+        }
+        
+        .divider {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+        
+        .product-description {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .promo-banner {
+            background-color: #ff5722;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .shipping-info {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .green-text {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .underline-text {
+            text-decoration: underline;
+        }
+        
+        .purchase-process {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .process-step img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .process-connector {
+            flex: 1;
+            height: 2px;
+            background-color: #ddd;
+        }
+        
+        .fecha {
+            font-size: 12px;
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .descripcion {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .recent-buyers {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .buyers-images {
+            width: 40px;
+            height: 40px;
+            background-color: #ddd;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .verified-icon {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+        
+        .info-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .stock-alert {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .red {
+            color: #e53935;
+            font-weight: bold;
+        }
+        
+        .units-bar {
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .recent-order {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .shipping-infor {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .offer-text {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .countdown-item {
+            text-align: center;
+        }
+        
+        .countdown-number {
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .testimonial {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .testimonial-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-stars {
+            color: gold;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+        }
+        
+        .guarantee-image {
+            width: 100%;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .feature-image {
+            width: 100%;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Sticky Sidebar on Scroll</h1>
+        <h1>Picador Eléctrico Multifuncional</h1>
     </header>
     <div class="container">
         <div class="left"></div>
         <div class="right">
-            <div> hola mundo</div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <!-- Título y rating -->
+            <div>
+                <h1 class="product-title">Picador Eléctrico Multifuncional 4en1 + <span class="highlight-black">ENVÍO GRATIS</span></h1>
+                <div class="rating-container">
+                    <div class="stars">★★★★★</div>
+                    <span class="rating-text"><em><strong>+6.500 clientes satisfechos</strong></em></span>
+                </div>
+            </div>
+            
+            <!-- Precio y botón -->
+            <div>
+                <div class="price-container">
+                    <div class="price-wrapper">
+                        <div class="old-price">$129.900</div>
+                        <svg class="curved-x" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path class="liner1" d="M-100,20 Q50,40 85,90" />
+                            <path class="liner2" d="M185,20 Q50,40 15,90" />
+                        </svg>
+                    </div>
+                    <div class="current-price">$64.900</div>
+                </div>
+                <div class="button-container">
+                    <a href="#" class="buy-button">
+                        <div class="button-text">
+                            <span class="line1"> »¡COMPRAR AHORA! </span>
+                            <span class="line2"> 50% DESCUENTO</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Descripción -->
+            <div>
+                <p class="product-description"><strong>🚨 ¿Cansada de perder tiempo cortando a mano y ensuciando todo?</strong> Con el Picador Eléctrico Multifuncional <strong>– ¡Dile adiós a las tablas de picar!</strong>, transforma tu forma de cocinar en segundos. <strong>Corta, rebana, tritura y mezcla</strong> con solo <strong>presionar un botón.</strong> ¡Ahorra <strong>tiempo</strong> y <strong>esfuerzo</strong> en cada comida!</p>
+                <p class="product-description">🏆Equipado con cuchillas de <strong>acero inoxidable</strong>,<strong> carga rápida tipo C</strong>, diseño ergonómico y sistema de <strong>limpieza automática</strong>. Ideal para <strong>verduras, carnes, ajos y más.</strong> ¡Hazlo todo más fácil, más rápido y sin complicaciones!</p>
+                <div class="promo-banner">¡50% DCTO! + ENVÍO GRATIS</div>
+            </div>
+            
+            <!-- Segundo precio y botón -->
+            <div>
+                <div class="price-container">
+                    <div class="price-wrapper">
+                        <div class="old-price">$129.900</div>
+                        <svg class="curved-x" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path class="liner1" d="M-100,20 Q50,40 85,90" />
+                            <path class="liner2" d="M185,20 Q50,40 15,90" />
+                        </svg>
+                    </div>
+                    <div class="current-price">$64.900</div>
+                </div>
+                <div class="button-container">
+                    <a href="#" class="buy-button">
+                        <div class="button-text">
+                            <span class="line1">»¡COMPRAR AHORA! </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="shipping-info">
+                    ✅ <span class="green-text">ENVÍO GRATIS</span> a toda Colombia<br>
+                    ✅ <span class="underline-text">PAGAS AL RECIBIR EN TU CASA</span>
+                </div>
+            </div>
+            
+            <!-- Proceso de compra -->
+            <div>
+                <div class="purchase-process">
+                    <div class="process-step">
+                        <img src="images/carrito2.png" alt="Pedido" />
+                        <p class="fecha">30 Jul</p>
+                        <p class="descripcion">Pedido</p>
+                    </div>
+                    <div class="process-connector connector-1"></div>
+                    <div class="process-step">
+                        <img src="images/camion2.png" alt="Despacho" />
+                        <p class="fecha">30–31 Jul</p>
+                        <p class="descripcion">Despacho</p>
+                    </div>
+                    <div class="process-connector connector-2"></div>
+                    <div class="process-step">
+                        <img src="images/caja2.png" alt="Entrega" />
+                        <p class="fecha">2–4 Ago</p>
+                        <p class="descripcion">Entrega</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Compradores recientes e info box -->
+            <div>
+                <div class="recent-buyers">
+                    <div class="buyers-images" id="buyers-images"></div>
+                    <span class="buyers-text" id="buyers-text">
+                        <strong>Gabriela</strong> 
+                        <img src="images/check.png" class="verified-icon"> 
+                        y <strong>120 personas</strong> compraron
+                    </span>
+                </div>
+                <div class="info-box"> 
+                    <p class="stock-alert">¡Apresúrate! Quedan solo <span class="red">15</span> unidades disponibles</p>
+                    <div class="units-bar">Unidades...</div>
+                    <p id="pedido" class="recent-order"></p>
+                    <p class="shipping-infor">🚀 Compra <b>HOY</b> y recibe entre 2 a 5 días.</p>
+                    <p class="offer-text">Oferta del 50% DCTO acaba en</p>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-number">00</div>
+                            <div class="countdown-label">Hrs</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number">00</div>
+                            <div class="countdown-label">Mins</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number">00</div>
+                            <div class="countdown-label">Segs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonio y garantías -->
+            <div>
+                <div class="testimonial">
+                    <img id="fotoCliente" src="" alt="Foto del cliente" class="testimonial-image">
+                    <div class="testimonial-content">
+                        <div id="textoTestimonio" class="testimonial-text"></div>
+                        <div id="estrellasTestimonio" class="testimonial-stars"></div>
+                        <div id="autorTestimonio" class="testimonial-author"></div>
+                    </div>
+                </div>
+                <img src="images/garantis.png" alt="Garantías" class="guarantee-image">
+            </div>
+            
+            <!-- Características -->
+            <div>
+                <div class="features-grid">
+                    <img src="images/6.png" alt="Característica" class="feature-image">
+                    <img src="images/5.png" alt="Característica" class="feature-image">
+                    <img src="images/7.png" alt="Característica" class="feature-image">
+                </div>
+            </div>
         </div>
     </div>
 </body>
