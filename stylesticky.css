@@ -507,11 +507,6 @@
     min-height: 70px; /* Altura mínima garantizada */
 }
 
-.arrow {
-    font-size: 40px; /* Aumenté el tamaño de la flecha */
-    line-height: 1;
-}
-
 .button-text span {
     display: block;
     line-height: 1.2; /* Aumenté ligeramente el line-height */
