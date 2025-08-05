@@ -278,7 +278,8 @@ body {
 .buy-button {
     display: inline-flex;
     align-items: center;
-    background: linear-gradient(180deg, #0ccb00, #04a700);
+   /* background: linear-gradient(180deg, #0ccb00, #04a700);*/
+     background: linear-gradient(180deg, #2f17b7, #381cd4);
     color: #fff;
     padding: 15px 40px; /* Aumenté el padding vertical (15px) y horizontal (40px) */
     border-radius: 12px;
