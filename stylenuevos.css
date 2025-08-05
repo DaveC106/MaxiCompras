@@ -62,11 +62,12 @@ body {
 /* Contenedor principal del producto */
 .product-container {
     display: flex;
-    gap: 20px;
+    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 40px; /* Añadido más padding-bottom */
-    position: relative;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 /* Galería de imágenes - Versión PC */
@@ -75,20 +76,22 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 150px;
+
 }
 
 .product-image {
-    max-width: 427.5px;
+    width: 100%;
     height: 427.5px;
     object-fit: cover;
-    margin-bottom: 10px;
     border-style: groove;
     border-color: #9AFF00;
     border-width: 3px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #00FFFF;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    left: 0; /* Asegura que empiece desde la izquierda */
 }
 
 .product-image:hover {
@@ -122,6 +125,7 @@ body {
         max-width: 100%;
     }
 }
+
 
 
 
@@ -1063,17 +1067,6 @@ body {
 
 
 
-
-@media (min-width: 1101px) and (max-width: 1200px) {
-  .product-container {
-    margin-left: -80px;
-  }
-}
-
-
-
-
-
 @media (min-width: 401px) and (max-width: 549px) {
   .buy-button {
     display: block;
@@ -1253,102 +1246,21 @@ body {
 }
 
 
-/* Galería de imágenes - Versión PC */
+
+/* Columna de imágenes */
 .product-gallery {
-    flex: 1;
-    display: flex;
-    overflow: hidden; /* Oculta el scroll */
-    position: relative;
-    margin-left: 150px;
-    height: 427.5px; /* Altura fija para el contenedor */
+    flex: 0 0 500px; /* Ancho fijo para la galería */
+    max-width: 500px;
 }
 
-.product-image {
-    width: 100%;
-    height: 427.5px;
-    object-fit: cover;
-    border-style: groove;
-    border-color: #9AFF00;
-    border-width: 3px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px #00FFFF;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.product-image.active {
-    opacity: 1;
-}
-
-.product-image:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #00ffe7, 0 0 25px #00ffe7;
-}
-
-/* Versión móvil */
-@media (max-width: 1100px) {
-    .product-gallery {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 0;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding-bottom: 15px;
-        margin-left: 0;
-        height: auto;
-    }
-    
-    .product-gallery::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .product-image {
-        flex: 0 0 100%;
-        scroll-snap-align: start;
-        margin-bottom: 0;
-        border-radius: 10px;
-        max-width: 100%;
-        position: relative;
-        opacity: 1;
-        height: auto;
-    }
-}
-
-/* Contenedor principal del producto */
-.product-container {
-    display: flex;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px 40px;
-    position: relative;
-    justify-content: center; /* Centra el contenido horizontalmente */
-}
-
-/* Galería de imágenes - Versión PC */
-.product-gallery {
-    flex: 1;
-    max-width: 500px; /* Limita el ancho máximo de la galería */
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    height: 427.5px;
-}
-
-/* Información del producto */
+/* Columna de información */
 .product-info {
-    flex: 1;
-    max-width: 500px; /* Limita el ancho máximo de la info */
-    padding: 0 20px;
+    flex: 0 0 500px; /* Ancho fijo para la info */
+    max-width: 500px;
 }
 
-/* Eliminar el ajuste específico para 1101px-1200px ya que no es necesario */
-@media (min-width: 1101px) and (max-width: 1200px) {
+@media (min-width: 1400px) {
     .product-container {
-        margin-left: 0; /* Eliminamos este ajuste */
+        max-width: 1300px;
     }
 }
