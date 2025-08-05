@@ -394,5 +394,34 @@
 }
 
 
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
+.title-rating-section {
+    flex: 1;
+    min-width: 300px;
+}
 
+.price-button-section {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+    .product-header {
+        flex-direction: column;
+    }
+    
+    .price-button-section {
+        align-items: flex-start;
+    }
+}
