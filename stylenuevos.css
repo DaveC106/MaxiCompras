@@ -1383,6 +1383,11 @@ body {
 /* Versión móvil */
 @media (max-width: 1100px) {
     .product-gallery {
+        position: static; /* 🔹 desactiva sticky en móviles */
+    }
+}
+@media (max-width: 1100px) {
+    .product-gallery {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
