@@ -1317,3 +1317,38 @@ body {
         height: auto;
     }
 }
+
+/* Contenedor principal del producto */
+.product-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    position: relative;
+    justify-content: center; /* Centra el contenido horizontalmente */
+}
+
+/* Galería de imágenes - Versión PC */
+.product-gallery {
+    flex: 1;
+    max-width: 500px; /* Limita el ancho máximo de la galería */
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    height: 427.5px;
+}
+
+/* Información del producto */
+.product-info {
+    flex: 1;
+    max-width: 500px; /* Limita el ancho máximo de la info */
+    padding: 0 20px;
+}
+
+/* Eliminar el ajuste específico para 1101px-1200px ya que no es necesario */
+@media (min-width: 1101px) and (max-width: 1200px) {
+    .product-container {
+        margin-left: 0; /* Eliminamos este ajuste */
+    }
+}
