@@ -62,12 +62,11 @@ body {
 /* Contenedor principal del producto */
 .product-container {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 40px; /* Añadido más padding-bottom */
-    justify-content: center;
-    align-items: flex-start;
+    position: relative;
 }
 
 /* Galería de imágenes - Versión PC */
@@ -76,22 +75,20 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-
+    margin-left: 150px;
 }
 
 .product-image {
-    width: 100%;
+    max-width: 427.5px;
     height: 427.5px;
     object-fit: cover;
+    margin-bottom: 10px;
     border-style: groove;
     border-color: #9AFF00;
     border-width: 3px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #00FFFF;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    left: 0; /* Asegura que empiece desde la izquierda */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-image:hover {
@@ -125,7 +122,6 @@ body {
         max-width: 100%;
     }
 }
-
 
 
 
@@ -616,7 +612,6 @@ body {
     font-weight: bold;
     white-space: nowrap;
     font-size: 12px;
-    text-align: center;
 }
 
 /* Imágenes de garantía y características */
@@ -1067,6 +1062,17 @@ body {
 
 
 
+
+@media (min-width: 1101px) and (max-width: 1200px) {
+  .product-container {
+    margin-left: -80px;
+  }
+}
+
+
+
+
+
 @media (min-width: 401px) and (max-width: 549px) {
   .buy-button {
     display: block;
@@ -1242,25 +1248,5 @@ body {
         padding: 15px; /* Aún menos padding para móviles */
         margin: 10px; /* Margen pequeño para espacio en bordes */
         max-width: 95%; /* Usa más espacio, pero con pequeño margen */
-    }
-}
-
-
-
-/* Columna de imágenes */
-.product-gallery {
-    flex: 0 0 500px; /* Ancho fijo para la galería */
-    max-width: 500px;
-}
-
-/* Columna de información */
-.product-info {
-    flex: 0 0 500px; /* Ancho fijo para la info */
-    max-width: 500px;
-}
-
-@media (min-width: 1400px) {
-    .product-container {
-        max-width: 1300px;
     }
 }
