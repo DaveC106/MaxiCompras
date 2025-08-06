@@ -365,6 +365,7 @@ body {
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 15px 0;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
 }
 
 .shipping-info {
