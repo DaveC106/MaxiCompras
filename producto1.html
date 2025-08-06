@@ -654,43 +654,41 @@
   updateContent();
   setInterval(updateContent, 5000);
 </script>
-
 <script>
     function iniciarContador() {
-        let fin = localStorage.getItem('contadorFin');
-
-        if (!fin) {
-            const ahora = new Date().getTime();
-            const finNuevo = ahora + 30 * 60 * 1000; // 30 minutos en ms
-            localStorage.setItem('contadorFin', finNuevo);
-            fin = finNuevo;
+        function obtenerNuevoFin() {
+            return new Date().getTime() + 2 * 60 * 60 * 1000; // 2 horas en ms
         }
 
         function actualizarContador() {
-            const ahora = new Date().getTime();
-            const diferencia = fin - ahora;
+            let fin = parseInt(localStorage.getItem('contadorFin'));
 
-            // Seleccionamos los elementos sin modificar HTML
-            const countdownItems = document.querySelectorAll('.countdown-number');
+            const ahora = new Date().getTime();
+            let diferencia = fin - ahora;
 
             if (diferencia <= 0) {
-                countdownItems[0].textContent = "00"; // horas
-                countdownItems[1].textContent = "00"; // minutos
-                countdownItems[2].textContent = "00"; // segundos
-                clearInterval(intervalo);
-                return;
+                fin = obtenerNuevoFin(); // reinicia a 2h
+                localStorage.setItem('contadorFin', fin);
+                diferencia = fin - ahora;
             }
 
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
             const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-            countdownItems[0].textContent = "00";
+            const countdownItems = document.querySelectorAll('.countdown-number');
+            countdownItems[0].textContent = horas.toString().padStart(2, '0');
             countdownItems[1].textContent = minutos.toString().padStart(2, '0');
             countdownItems[2].textContent = segundos.toString().padStart(2, '0');
         }
 
+        // Inicializar fin si no existe
+        if (!localStorage.getItem('contadorFin')) {
+            localStorage.setItem('contadorFin', obtenerNuevoFin());
+        }
+
         actualizarContador();
-        const intervalo = setInterval(actualizarContador, 1000);
+        setInterval(actualizarContador, 1000);
     }
 
     window.addEventListener('DOMContentLoaded', iniciarContador);
