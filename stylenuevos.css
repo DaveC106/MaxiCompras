@@ -536,85 +536,81 @@ body {
 
 
 
-/*nuevo product-container product-gallery y product-image*/
-
 /* Contenedor principal del producto */
 .product-container {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 40px;
-    position: relative;
 }
 
 /* Galería de imágenes - Versión Desktop */
 .product-gallery {
-    flex: 1;
     position: sticky;
     top: 20px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-left: 150px;
-    height: 427.5px;
-}
-
-.product-image {
-    width: 100%;
-    max-width: 427.5px;
-    height: 427.5px;
-    object-fit: cover;
-    border: 3px groove #f0e1d1;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #f4ece4;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-image:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #f4ece4, 0 0 25px #f4ece4;
 }
 
 /* Versión móvil */
 @media (max-width: 1100px) {
     .product-container {
-        padding: 0 10px 40px;
+        padding: 0 10px;
     }
     
     .product-gallery {
         position: static;
         display: flex;
-        flex-wrap: nowrap;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         margin-left: 0;
-        height: auto;
         padding-bottom: 15px;
+        grid-template-columns: none;
     }
     
     .product-gallery::-webkit-scrollbar {
         display: none;
     }
-    
+}
+
+/* Estilos para las imágenes */
+.product-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border: 3px groove #f0e1d1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #f4ece4;
+    transition: transform 0.3s ease;
+    scroll-snap-align: start;
+}
+
+@media (min-width: 1101px) {
     .product-image {
-        flex: 0 0 100%;
-        scroll-snap-align: start;
-        max-width: 100%;
+        max-width: 427.5px;
+        height: 427.5px;
+    }
+    
+    .product-image:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 15px #f4ece4, 0 0 25px #f4ece4;
     }
 }
 
+/* Mostrar solo la primera imagen en desktop */
 @media (min-width: 769px) {
-  .product-image {
-    display: none;
-  }
-  .product-image:first-child {
-    display: block;
-  }
+    .product-image:not(:first-child) {
+        display: none;
+    }
 }
-
 
 /*style product-info*/
 
