@@ -840,6 +840,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    // Slider automático para PC
+if (!isMobile && images.length > 1) {
+    images.forEach((img, i) => {
+        img.style.display = i === 0 ? 'block' : 'none';
+    });
+
+    setInterval(() => {
+        images[currentIndex].style.display = 'none';
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].style.display = 'block';
+    }, 4000);
+}
 });
 </script>
 
