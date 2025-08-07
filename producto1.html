@@ -919,45 +919,28 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>/* Estilos del botón flotante */
 /* Contenedor del botón flotante */
 .floating-button-container {
-  display: none;
   position: fixed;
   bottom: 20px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 999;
-   transition: opacity 0.3s ease, transform 0.3s ease;
-  text-align: center;
-  padding: 0 15px;
+  transition: opacity 0.3s ease;
 }
 
-/* Botón flotante */
-.floating-button {
-  display: inline-block;
-  background: linear-gradient(180deg, #2f17b7, #381cd4);
-  color: white;
-  padding: 15px 30px;
-  border-radius: 50px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: 16px;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  animation: pulse-glow 2s ease-in-out infinite;
-  white-space: nowrap;
-  width: auto;
-  max-width: 100%;
-}
-
-.floating-button-container.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(100%);
-}
-/* Mostrar solo en móviles */
 @media (max-width: 768px) {
   .floating-button-container {
-    display: block;
+    display: block !important;
+    opacity: 1;
   }
+}
+
+.floating-button {
+  /* Tus estilos existentes */
+  transition: transform 0.2s ease;
+}
+
+.floating-button:hover {
+  transform: scale(1.05) translateX(-50%);
 }
 
 /* Animación (igual que tu botón principal) */
@@ -981,29 +964,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>document.addEventListener('DOMContentLoaded', function() {
   const floatingBtn = document.querySelector('.floating-button-container');
-  const mainBuyButtons = document.querySelectorAll('.buy-button'); // Selecciona todos los botones principales
+  const mainButtons = document.querySelectorAll('.buy-button');
   
-  // Solo ejecutar en móviles
-  if (window.innerWidth <= 768 && floatingBtn && mainBuyButtons.length > 0) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Si algún botón principal es visible, ocultar el flotante
-          floatingBtn.style.display = 'none';
-        } else {
-          // Si ningún botón principal es visible, mostrar el flotante
-          floatingBtn.style.display = 'block';
-        }
-      });
-    }, {
-      threshold: 0.1 // 10% del elemento visible
-    });
-
-    // Observar todos los botones principales
-    mainBuyButtons.forEach(button => {
-      observer.observe(button);
-    });
+  if (window.innerWidth > 768) {
+    floatingBtn.style.display = 'none';
+    return;
   }
+
+  const checkButtonVisibility = () => {
+    let shouldHide = false;
+    
+    mainButtons.forEach(button => {
+      const rect = button.getBoundingClientRect();
+      const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+      const buttonHeight = rect.height;
+      
+      // Si más del 50% del botón es visible
+      if (visibleHeight > buttonHeight * 0.5) {
+        shouldHide = true;
+      }
+    });
+    
+    // Transición suave
+    if (shouldHide) {
+      floatingBtn.style.opacity = '0';
+      floatingBtn.style.pointerEvents = 'none';
+    } else {
+      floatingBtn.style.opacity = '1';
+      floatingBtn.style.pointerEvents = 'auto';
+    }
+  };
+
+  // Configurar el IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    checkButtonVisibility();
+  }, {
+    threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+    rootMargin: '0px 0px -100px 0px'
+  });
+
+  // Observar todos los botones principales
+  mainButtons.forEach(button => {
+    observer.observe(button);
+  });
+
+  // También verificar al cargar y hacer scroll
+  checkButtonVisibility();
+  window.addEventListener('scroll', checkButtonVisibility);
+  window.addEventListener('resize', checkButtonVisibility);
 });</script>
 </body>
 </html>
