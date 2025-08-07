@@ -1479,3 +1479,75 @@ body {
 
 
 
+/*nuevo style de preguntas frecuentes*/
+.faq_questioners_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.faq_questioners_image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.faq_questioners_content {
+    width: 100%;
+}
+
+.faq_questioners_title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.faq_questioners_item {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.faq_questioners_q {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.faq_questioners_a {
+    font-size: 16px;
+    color: #555;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 0;
+}
+
+.faq_questioners_item.active .faq_questioners_a {
+    max-height: 500px;
+    padding: 10px 0;
+}
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 768px) {
+    .faq_questioners_wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .faq_questioners_image {
+        flex: 1;
+        padding-right: 20px;
+    }
+
+    .faq_questioners_content {
+        flex: 2;
+    }
+
+    .faq_questioners_title {
+        text-align: left;
+    }
+}
