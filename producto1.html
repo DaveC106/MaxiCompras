@@ -921,5 +921,48 @@ document.addEventListener('DOMContentLoaded', function() {
     marqueeText.textContent = originalText + '  ·  ' + originalText + '  ·  ' + originalText + '  ·  ' + originalText + '  ·  ' + originalText;
 });
 </script>
+<a href="#" class="floating-button">¡COMPRAR AHORA!</a>
+<style>/* Estilos del botón flotante */
+.floating-button {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background: linear-gradient(180deg, #2f17b7, #381cd4);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: pulse-glow 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* Mostrar solo en móviles */
+@media (max-width: 768px) {
+  .floating-button {
+    display: block;
+  }
+}
+
+/* Animación del botón (la misma que tu botón principal) */
+@keyframes pulse-glow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0px #381cd4;
+  }
+  50% {
+    transform: scale(0.97);
+    box-shadow: 0 0 0px #381cd5;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px 10px rgba(87, 3, 160, 0.5);
+  }
+}</style>
 </body>
 </html>
