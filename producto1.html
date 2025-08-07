@@ -925,6 +925,7 @@ document.addEventListener('DOMContentLoaded', function() {
   left: 0;
   right: 0;
   z-index: 999;
+   transition: opacity 0.3s ease, transform 0.3s ease;
   text-align: center;
   padding: 0 15px;
 }
@@ -947,6 +948,11 @@ document.addEventListener('DOMContentLoaded', function() {
   max-width: 100%;
 }
 
+.floating-button-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+}
 /* Mostrar solo en móviles */
 @media (max-width: 768px) {
   .floating-button-container {
@@ -968,6 +974,36 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: scale(1);
     box-shadow: 0 0 30px 10px rgba(87, 3, 160, 0.5);
   }
+  
 }</style>
+
+
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+  const floatingBtn = document.querySelector('.floating-button-container');
+  const mainBuyButtons = document.querySelectorAll('.buy-button'); // Selecciona todos los botones principales
+  
+  // Solo ejecutar en móviles
+  if (window.innerWidth <= 768 && floatingBtn && mainBuyButtons.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Si algún botón principal es visible, ocultar el flotante
+          floatingBtn.style.display = 'none';
+        } else {
+          // Si ningún botón principal es visible, mostrar el flotante
+          floatingBtn.style.display = 'block';
+        }
+      });
+    }, {
+      threshold: 0.1 // 10% del elemento visible
+    });
+
+    // Observar todos los botones principales
+    mainBuyButtons.forEach(button => {
+      observer.observe(button);
+    });
+  }
+});</script>
 </body>
 </html>
