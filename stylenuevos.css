@@ -1536,15 +1536,20 @@ body {
         flex-direction: row;
         justify-content: center;
         align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 40px;
+    }
+
+    .faq_questioners_image,
+    .faq_questioners_content {
+        width: 50%;
     }
 
     .faq_questioners_image {
-        flex: 1;
-        padding-right: 20px;
-    }
-
-    .faq_questioners_content {
-        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .faq_questioners_title {
