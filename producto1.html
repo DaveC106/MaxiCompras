@@ -921,17 +921,29 @@ document.addEventListener('DOMContentLoaded', function() {
     marqueeText.textContent = originalText + '  ·  ' + originalText + '  ·  ' + originalText + '  ·  ' + originalText + '  ·  ' + originalText;
 });
 </script>
-<a href="#" class="floating-button">¡COMPRAR AHORA!</a>
+
+<div class="floating-button-container">
+  <a href="#" class="floating-button">¡COMPRAR AHORA!</a>
+</div>
 <style>/* Estilos del botón flotante */
-.floating-button {
-  display: none; /* Oculto por defecto */
+/* Contenedor del botón flotante */
+.floating-button-container {
+  display: none;
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 0;
+  right: 0;
   z-index: 999;
+  text-align: center;
+  padding: 0 15px;
+}
+
+/* Botón flotante */
+.floating-button {
+  display: inline-block;
   background: linear-gradient(180deg, #2f17b7, #381cd4);
   color: white;
-  padding: 15px 25px;
+  padding: 15px 30px;
   border-radius: 50px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
@@ -940,16 +952,18 @@ document.addEventListener('DOMContentLoaded', function() {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   animation: pulse-glow 2s ease-in-out infinite;
   white-space: nowrap;
+  width: auto;
+  max-width: 100%;
 }
 
 /* Mostrar solo en móviles */
 @media (max-width: 768px) {
-  .floating-button {
+  .floating-button-container {
     display: block;
   }
 }
 
-/* Animación del botón (la misma que tu botón principal) */
+/* Animación (igual que tu botón principal) */
 @keyframes pulse-glow {
   0% {
     transform: scale(1);
