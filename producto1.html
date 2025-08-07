@@ -926,6 +926,26 @@ document.addEventListener('DOMContentLoaded', function() {
   z-index: 999;
   transition: opacity 0.3s ease;
 }
+/* BOTÓN FLOTANTE (ESTILO EXACTO) */
+.floating-button {
+  display: inline-block;
+  background: linear-gradient(180deg, #2f17b7, #381cd4);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 21px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: pulse-glow 2s ease-in-out infinite;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
 @media (max-width: 768px) {
   .floating-button-container {
