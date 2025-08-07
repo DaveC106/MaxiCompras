@@ -1419,4 +1419,66 @@ body {
   }
 }
 
+/*nuevo css seccion funcionalidad*/
+.custom-func-section {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 1200px;
+}
+
+.custom-func-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.custom-func-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.custom-func-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.custom-func-paragraph {
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-size: 18px;
+}
+
+.custom-func-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-func-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* 🟢 Media query para hacerlo responsive en celulares */
+@media (max-width: 768px) {
+    .custom-func-content {
+        flex-direction: column;
+    }
+
+    .custom-func-title {
+        font-size: 24px;
+    }
+
+    .custom-func-paragraph {
+        font-size: 16px;
+    }
+}
+
+
 
