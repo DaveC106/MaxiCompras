@@ -722,7 +722,6 @@ body {
 /* Sección de características */
 .features-section {
     padding: 40px 20px;
-    background-color: #fff;
 }
 
 .features-container {
@@ -1014,9 +1013,6 @@ body {
 
 /* CARACTERÍSTICAS */
 .features-section {
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 3px #c7c7c7;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 30px;
     margin: 30px auto;
     border-radius: 10px;
