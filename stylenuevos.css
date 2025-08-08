@@ -1556,3 +1556,82 @@ body {
         text-align: left;
     }
 }
+
+/*nuevo css de características*/
+
+.caracteristicas-seccion {
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.caracteristicas-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.caracteristicas-texto,
+.caracteristicas-imagen {
+    flex: 1;
+    min-width: 300px;
+    box-sizing: border-box;
+}
+
+.caracteristicas-titulo {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.caracteristicas-lista {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    line-height: 20px;
+}
+
+.caracteristicas-lista li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Imagen responsiva */
+.caracteristicas-imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caracteristicas-imagen img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Responsive: móviles y tablets */
+@media screen and (max-width: 768px) {
+    .caracteristicas-contenedor {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .caracteristicas-texto,
+    .caracteristicas-imagen {
+        width: 100%;
+    }
+
+    .caracteristicas-titulo {
+        font-size: 24px;
+    }
+
+    .caracteristicas-lista li {
+        font-size: 16px;
+    }
+}
