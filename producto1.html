@@ -107,10 +107,11 @@
 
             
             <!-- Botón de compra -->
-   <div class="button-container">
-    <a href="#" class="buy-button">
+  <!-- Botón de compra -->
+<div class="button-container">
+    <a href="#" class="buy-button" id="openModal">
         <div class="button-text">
-            <span class="line1">¡COMPRAR AHORA! </span>
+            <span class="line1"> ¡COMPRAR AHORA! </span>
         </div>
     </a>
 </div>
@@ -164,9 +165,9 @@
     </div>
 </section>
      
-           <!-- Botón de compra -->
+<!-- Botón de compra -->
 <div class="button-container">
-    <a href="#" class="buy-button">
+    <a href="#" class="buy-button" id="openModal">
         <div class="button-text">
             <span class="line1">¡Llévatelo ya!</span>
         </div>
@@ -411,6 +412,53 @@
         </div>
     </div>
 </div>
+
+          <!-- Botón de compra -->
+<div class="cta-wrapper">
+  <a href="#" class="cta-button">
+    <div class="cta-text">
+      <span class="line1">¡Yo también lo quiero!</span>
+    </div>
+  </a>
+</div>
+<style>.cta-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.cta-button {
+  background-color: #381cd4; /* Cambia este color si deseas */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 90%; /* Móvil por defecto */
+  max-width: 100%;
+   animation: pulse-glow 2s ease-in-out infinite;
+    box-shadow: 0 0 0px #381cd4;
+    transition: transform 0.3s ease;
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+  background-color: #381cd4;
+}
+
+.cta-text {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .cta-button {
+    width: 50%;
+  }
+}</style>
     <!-- Transportadoras -->
     <div class="carriers-section">
         <h2 class="section-title">TRANSPORTADORAS ALIADAS</h2>
