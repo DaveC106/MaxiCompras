@@ -1562,7 +1562,6 @@ body {
 
 .caracteristicas-seccion {
     width: 100%;
-    padding: 40px 0; /* Quitamos padding lateral */
 }
 
 .caracteristicas-contenedor {
@@ -1622,7 +1621,6 @@ body {
     .caracteristicas-contenedor {
         flex-direction: column;
         gap: 20px;
-        padding: 0 10px; /* Un poco de espacio en móvil para que no se pegue tanto al borde del viewport */
     }
 
     .caracteristicas-texto,
