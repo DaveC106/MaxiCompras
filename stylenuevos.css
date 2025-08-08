@@ -1460,6 +1460,7 @@ body {
 .custom-func-image img {
     max-width: 100%;
     border-radius: 10px;
+    width:480px;
 }
 
 /* 🟢 Media query para hacerlo responsive en celulares */
