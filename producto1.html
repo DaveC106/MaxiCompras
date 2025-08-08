@@ -1025,42 +1025,63 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 </script>
 
-
-<!-- Modal -->
+<!-- 🔥 MODAL FORMULARIO DE COMPRA -->
 <div id="formModal" class="modal">
   <div class="modal-content">
     <span class="close-button">&times;</span>
-    <h2>Formulario de Compra</h2>
+    <h2>🛒 Formulario de Compra</h2>
     <form id="compraForm">
-      <label>Nombre:</label>
+      <label>Nombre <span class="required">*</span></label>
       <input type="text" name="nombre" required>
-      <label>Email:</label>
-      <input type="email" name="email" required>
-      <label>Teléfono:</label>
-      <input type="tel" name="telefono" required>
-      <label>Dirección:</label>
+
+      <label>Apellido <span class="required">*</span></label>
+      <input type="text" name="apellido" required>
+
+      <label>Celular (WhatsApp) <span class="required">*</span></label>
+      <input type="tel" name="celular" required>
+
+      <label>Dirección completa <span class="required">*</span></label>
       <input type="text" name="direccion" required>
-      <button type="submit">Enviar Pedido</button>
+
+      <label>Barrio <span class="required">*</span></label>
+      <input type="text" name="barrio" required>
+
+      <label>Ciudad <span class="required">*</span></label>
+      <input type="text" name="ciudad" required>
+
+      <label>Nota adicional del pedido</label>
+      <textarea name="nota"></textarea>
+
+      <label>
+        <input type="checkbox" name="metodo_pago" checked>
+        Contraentrega
+      </label>
+
+      <button type="submit" class="send-button">📦 Enviar Pedido</button>
     </form>
   </div>
 </div>
 
 
 <script>
-document.getElementById('openModal').addEventListener('click', function(e) {
+  const modal = document.getElementById('formModal');
+  const openModal = document.getElementById('openModal');
+  const closeModal = document.querySelector('.close-button');
+
+  openModal.addEventListener('click', function(e) {
     e.preventDefault();
-    document.getElementById('formModal').style.display = 'block';
-});
+    modal.style.display = 'block';
+  });
 
-document.querySelector('.close-button').addEventListener('click', function() {
-    document.getElementById('formModal').style.display = 'none';
-});
+  closeModal.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
 
-window.addEventListener('click', function(e) {
-    if (e.target === document.getElementById('formModal')) {
-        document.getElementById('formModal').style.display = 'none';
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
     }
-});
+  });
 </script>
 </body>
 </html>
