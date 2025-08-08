@@ -1032,28 +1032,28 @@ document.addEventListener('DOMContentLoaded', function() {
     <h2>🛒 Formulario de Compra</h2>
     <form id="compraForm">
       <label>Nombre <span class="required">*</span></label>
-      <input type="text" name="nombre" required>
+      <input type="text" name="entry.1892785104" required>
 
       <label>Apellido <span class="required">*</span></label>
-      <input type="text" name="apellido" required>
+      <input type="text" name="entry.983889503" required>
 
       <label>Celular (WhatsApp) <span class="required">*</span></label>
-      <input type="tel" name="celular" required>
+      <input type="tel" name="entry.90879670" required>
 
       <label>Dirección completa <span class="required">*</span></label>
-      <input type="text" name="direccion" required>
+      <input type="text" name="entry.1420509114" required>
 
       <label>Barrio <span class="required">*</span></label>
-      <input type="text" name="barrio" required>
+      <input type="text" name="entry.632674694" required>
 
       <label>Ciudad <span class="required">*</span></label>
-      <input type="text" name="ciudad" required>
+      <input type="text" name="entry.168122109" required>
 
       <label>Nota adicional del pedido</label>
-      <textarea name="nota"></textarea>
+      <textarea name="entry.140924995"></textarea>
 
       <label>
-        <input type="checkbox" name="metodo_pago" checked>
+        <input type="checkbox" name="entry.46049132" checked>
         Contraentrega
       </label>
 
@@ -1061,8 +1061,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </form>
   </div>
 </div>
-
-
+<!-- Script del modal -->
 <script>
   const modal = document.getElementById('formModal');
   const openModal = document.getElementById('openModal');
@@ -1081,6 +1080,32 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.target === modal) {
       modal.style.display = 'none';
     }
+  });
+</script>
+
+<!-- Script para enviar a Google Forms -->
+<script>
+  document.querySelector("#compraForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+    const query = new URLSearchParams(data).toString();
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdlTu1-WGWBrOTh4otpAs3SnuTBTIGGkMaJkieQzAVdYO63NA/formResponse", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: query
+    }).then(() => {
+      alert("✅ Pedido enviado correctamente");
+      form.reset();
+      modal.style.display = "none";
+    }).catch(() => {
+      alert("❌ Error al enviar el pedido");
+    });
   });
 </script>
 </body>
