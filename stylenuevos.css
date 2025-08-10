@@ -78,7 +78,6 @@ body {
     margin-left: 150px;
 }
 
-
 .product-image {
     max-width: 427.5px;
     height: 427.5px;
@@ -296,6 +295,7 @@ body {
     transition: transform 0.3s ease;
     white-space: nowrap;
     min-height: 70px; /* Altura mínima garantizada */
+    margin:0;
     display:block;
 }
 
@@ -880,7 +880,7 @@ body {
 }
 
 .red-text {
-    color: #381cd4;
+    color: red;
 }
 
 .blink {
@@ -986,7 +986,6 @@ body {
         max-width: 100%; /* Ocupa el ancho disponible */
     }
 }
-
 
 /* Responsive */
 @media (max-width: 1100px) {
@@ -1163,7 +1162,7 @@ body {
   align-items: center;
   position: relative;
   width: 100%;
-  padding: 10px 40px;
+  padding: 30px 40px;
   /*background-color: white;*/
   border-radius: 12px;
   /*box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);*/
@@ -1204,11 +1203,9 @@ body {
   color: #333;
 }
 
-
-/*A partir de 635 pixeles se empiezan a desconfigurar los conectores*/
 .process-connector {
   position: absolute;
-  top: 40px;
+  top: 60px;
   height: 3px;
   background-color: #76b1b1;
   z-index: 1;
@@ -1222,7 +1219,7 @@ body {
 
 /* Conector entre imagen 2 y 3 */
 .connector-2 {
-  left: calc(66.666% - 150px);
+  left: calc(66.666% - 50px);
   right: 100px;
 }
 
@@ -1283,7 +1280,10 @@ body {
     opacity: 1;
 }
 
-
+.product-image:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #f4ece4, 0 0 25px #f4ece4;
+}
 
 /* Versión móvil */
 @media (max-width: 1100px) {
@@ -1462,7 +1462,7 @@ body {
 .custom-func-image img {
     max-width: 100%;
     border-radius: 10px;
-    width:550px;
+    width:480px;
 }
 
 /* 🟢 Media query para hacerlo responsive en celulares */
