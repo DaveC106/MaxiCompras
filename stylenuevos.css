@@ -305,7 +305,6 @@ body {
 
 .button-text span {
     display: block;
-    line-height: 1.2; /* Aumenté ligeramente el line-height */
     text-align: center;
 }
 
