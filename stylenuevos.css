@@ -226,7 +226,7 @@ body {
     stroke-width: 8;
     stroke-linecap: round;
     opacity: 0;
-    animation: fadeX 3s infinite;
+    animation: fadeX 4s infinite;
 }
 
 .liner2 {
@@ -236,8 +236,8 @@ body {
 @keyframes fadeX {
     0% { opacity: 0; }
     10% { opacity: 1; }
-    40% { opacity: 1; }
-    50% { opacity: 0; }
+    75% { opacity: 1; }
+    85% { opacity: 0; }
     100% { opacity: 0; }
 }
 
