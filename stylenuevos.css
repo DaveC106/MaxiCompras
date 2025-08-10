@@ -1715,36 +1715,34 @@ body {
 
   /* nuevo estilo de seccion de incluye tu compra */
 
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
-
-.seccion-incluye {
+  .seccion-incluye {
     width: 100%;
     padding: 0;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .titulo-incluye {
     font-size: 30px;
     font-weight: 900;
-    margin: 0;
-    padding: 0;
+    margin: 0 0 20px 0;
+    text-align: center;
     width: 100%;
 }
 
 .contenido-incluye {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 .texto-incluye {
-    flex: 1;
     font-size: 18px;
-    margin: 0;
     padding: 0;
+    margin: 0 0 20px 0;
 }
 
 .item-incluye,
@@ -1754,15 +1752,15 @@ body {
 }
 
 .imagen-incluye {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: auto;
 }
 
 .imagen-incluye img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    max-width: 100%;
 }
-
 
