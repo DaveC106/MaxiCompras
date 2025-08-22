@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Compra</title>
+  <link rel="icon" href="img/logomaxicompras.webp" type="image/webp">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styleform.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span><img src="img/camion.webp" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+    <span><img src="img/telefono.webp" alt="WhatsApp" class="icono"> Asesoramiento vía Whatsapp</span>
+    <span><img src="img/importadores.webp" alt="Calidad" class="icono"> Somos Importadores</span>
+  </div>
+ <!-- Encabezado -->
+<header class="main-header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
+    </a>
+  </div>
+
+  <div class="barra-busqueda" id="barraBusqueda">
+    <input type="text" id="input-busqueda" placeholder="Buscar productos..." />
+  </div>
+
+  <div class="icons">
+    <img src="img/search.webp" alt="Buscar" id="iconoBusqueda" />
+    <div class="carrito-icono">
+      <img src="./img/cart.webp" alt="Carrito" />
+      <span class="contador-carrito" id="contadorCarrito"></span>
+    </div>
+  </div>
+</header>
+<div id="resultados-busqueda" class="resultados-busqueda" style="display:none; flex-wrap: wrap; gap: 1rem; padding: 1rem;"></div>
+
+<div class="checkout-layout">
+  <div class="form-container">
+    <h2>Finaliza tu compra</h2>
+    <form id="pedidoForm" action="https://formsubmit.co/ventasmaxikompras@gmail.com" method="POST">
+      
+      <h3>1. Contacto y Envío</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="email">Correo electrónico *</label>
+          <input type="email" id="email" name="CorreoElectronico" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Número Teléfono *</label>
+          <input type="tel" id="telefono" name="Telefono" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono_confirmar">Confirmar Teléfono *</label>
+          <input type="tel" id="telefono_confirmar" name="ConfirmarTelefono" required>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="Nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido *</label>
+          <input type="text" id="apellido" name="Apellido" required>
+        </div>
+        <div class="form-group">
+          <label for="pais">País *</label>
+          <select id="pais" name="Pais" required>
+            <option value="">Seleccione...</option>
+            <option value="Colombia">Colombia</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="estado">Departamento *</label>
+          <input type="text" id="estado" name="EstadoRegion" required>
+        </div>
+        <div class="form-group">
+          <label for="ciudad">Ciudad *</label>
+          <input type="text" id="ciudad" name="Ciudad" required>
+        </div>
+        <div class="form-group" style="grid-column: span 2;">
+          <label for="direccion">Dirección de envío *</label>
+          <input type="text" id="direccion" name="Direccion" required>
+        </div>
+        <div class="form-group">
+          <label for="apartamento">Apartamento / Casa (opcional)</label>
+          <input type="text" id="apartamento" name="ApartamentoCasa">
+        </div>
+        <div class="form-group">
+          <label for="ccnit">CC o NIT *</label>
+          <input type="text" id="ccnit" name="CCoNIT" required>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div id="productos-container">
+        <div class="producto-header">
+          <h4>Tus Productos</h4>
+        </div>
+        <div class="producto-list" id="lista-productos"></div>
+      </div>
+
+      <div id="total-container">
+        <div class="total-info">
+          <span class="total-label">Total a Pagar</span>
+          <span class="total-monto" id="total-pagar">$0</span>
+        </div>
+      </div>
+
+      <!-- Sección de pago -->
+      <h3>Pago</h3>
+      <label>
+        <input type="radio" name="MetodoPago" value="Contraentrega" checked> Pago Contraentrega
+      </label>
+
+      <!-- Datos ocultos -->
+      <input type="hidden" name="_next" value="https://maxicomprass.store">
+      <input type="hidden" name="_captcha" value="false">
+
+      <!-- Botón enviar -->
+      <button type="submit">Enviar Pedido</button>
+     <div style="margin-top: 1rem; padding: 1rem; background-color: #ffffff; color: #000000; border: 1px solid #ffeeba; border-radius: 5px; font-weight: bold; text-align: center;">
+  <span style="color: red; font-weight: bold;">⚠️ ¡ATENCIÓN! TU COMPRA ES UN COMPROMISO ⚠️</span><br>
+  Por favor, confirma tu pedido solo si estás 100% seguro de recibirlo.<br>
+  El envío sin pago previo nos genera un costo alto, y confiamos en tu palabra.<br>
+  <span style="color: red; font-weight: bold;">¡Contamos contigo!</span>
+</div>
+    </form>
+  </div>
+</div>
+
+<!-- Mini Carrito -->
+<div id="mini-carrito" class="modal-carrito oculto">
+  <div class="contenido-carrito">
+    <h2>Tu Carrito</h2>
+    <div id="mini-carrito-items"></div>
+    <div class="mini-carrito-footer">
+      <button onclick="window.location.href='cart.html'" class="btn-ir-carrito">Ir al carrito</button>
+    </div>
+  </div>
+</div>
+<div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
+
+<!-- WhatsApp -->
+<div id="whatsapp"></div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+</footer>
+
+<!--scripts de carro y busqueda-->
+<script>
+   let productosCargados = [];
+      fetch('productos.json')
+  .then(res => res.json())
+  .then(data => {
+    productosCargados = data;
+  })
+  .catch(err => {
+    console.error('Error cargando productos:', err);
+  });
+</script>
+ 
+<script>
+const iconoBusqueda = document.getElementById("iconoBusqueda");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
+
+let buscadorActivo = false;
+
+iconoBusqueda.addEventListener("click", () => {
+  buscadorActivo = !buscadorActivo;
+
+  if (buscadorActivo) {
+    inputBusqueda.style.display = "block";
+    inputBusqueda.focus();
+  } else {
+    inputBusqueda.style.display = "none";
+    inputBusqueda.value = "";
+    resultadosBusqueda.style.display = "none";
+  }
+});
+
+
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.trim().toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  if (!texto) {
+    resultadosBusqueda.style.display = "none";
+    return;
+  }
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
+  } else {
+    filtrados.forEach(producto => {
+      const div = document.createElement("div");
+      div.className = "producto-card";
+      div.innerHTML = `
+        <a href="producto.html?slug=${producto.slug}">
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" style="width:100%;border-radius:5px;" />
+          <h3>${producto.nombre}</h3>
+          <p><strong>$${producto.precio.toLocaleString('es-CO')}</strong></p>
+        </a>
+      `;
+      resultadosBusqueda.appendChild(div);
+    });
+  }
+
+  resultadosBusqueda.style.display = "flex";
+});
+
+
+</script>
+
+<!-- Script: Mini carrito -->
+<div id="mini-carrito" class="modal-carrito oculto">
+  <div class="contenido-carrito">
+    <h2>Tu Carrito</h2>
+    <div id="mini-carrito-items"></div>
+    <div class="mini-carrito-footer">
+      <button onclick="window.location.href='cart.html'" class="btn-ir-carrito">Ir al carrito</button>
+    </div>
+  </div>
+</div>
+<div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
+
+<script>
+  const iconoCarrito = document.querySelector('img[alt="Carrito"]');
+  const miniCarrito = document.getElementById("mini-carrito");
+  const fondoCarrito = document.getElementById("fondo-oscuro-carrito");
+  const contenedorMini = document.getElementById("mini-carrito-items");
+
+  iconoCarrito.addEventListener("click", () => {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    contenedorMini.innerHTML = "";
+
+    if (carrito.length === 0) {
+      contenedorMini.innerHTML = "<p>Tu carrito está vacío.</p>";
+    } else {
+      carrito.forEach(producto => {
+        const div = document.createElement("div");
+        div.style.marginBottom = "10px";
+        div.innerHTML = `
+          <div style="display:flex;align-items:center;gap:10px;">
+            <img src="${producto.imagen}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:5px;">
+            <div>
+              <p style="margin:0;">${producto.nombre}</p>
+              <small>$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</small>
+            </div>
+          </div>`;
+        contenedorMini.appendChild(div);
+      });
+    }
+
+    miniCarrito.classList.remove("oculto");
+    fondoCarrito.classList.remove("oculto");
+  });
+
+  fondoCarrito.addEventListener("click", () => {
+    miniCarrito.classList.add("oculto");
+    fondoCarrito.classList.add("oculto");
+  });
+</script>
+
+<script>
+
+  let productoSeleccionado = null;
+
+function actualizarContadorCarrito() {
+  const contador = document.getElementById("contadorCarrito");
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+  if (total > 0) {
+    contador.textContent = total;
+    contador.style.display = "inline-block";
+  } else {
+    contador.style.display = "none";
+  }
+}
+
+function mostrarProductosCheckout() {
+  const urlParams = new URLSearchParams(window.location.search);
+const productoParam = urlParams.get("producto");
+const precioParam = urlParams.get("precio");
+productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
+  const listaProductos = document.getElementById("lista-productos");
+  const totalPagar = document.getElementById("total-pagar");
+  listaProductos.innerHTML = "";
+  let total = 0;
+
+ if (productoSeleccionado) {
+  total = productoSeleccionado.precio;
+  const productoHTML = `
+    <div class="producto-item">
+      <div class="producto-info">
+        ${productoSeleccionado.imagen ? `<img src="${productoSeleccionado.imagen}" alt="${productoSeleccionado.nombre}" class="producto-imagen">` : ''}
+        <div class="producto-texto">
+          <span class="producto-nombre">${productoSeleccionado.nombre}</span>
+        </div>
+      </div>
+      <span class="producto-precio">$${productoSeleccionado.precio.toLocaleString("es-CO")}</span>
+    </div>
+  `;
+  listaProductos.innerHTML = productoHTML;
+}else {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    if (carrito.length === 0) {
+      listaProductos.innerHTML = '<p style="padding: 1rem; text-align: center;">No hay productos en tu carrito</p>';
+      document.getElementById("total-container").style.display = "none";
+      return;
+    }
+    carrito.forEach(prod => {
+      const subtotal = prod.precio * prod.cantidad;
+      total += subtotal;
+      const productoHTML = `
+        <div class="producto-item">
+          <div class="producto-info">
+            ${prod.imagen ? `<img src="${prod.imagen}" alt="${prod.nombre}" class="producto-imagen">` : ''}
+            <div class="producto-texto">
+              <span class="producto-nombre">${prod.nombre}</span>
+              <span class="producto-cantidad">Cantidad: ${prod.cantidad}</span>
+            </div>
+          </div>
+          <span class="producto-precio">$${subtotal.toLocaleString("es-CO")}</span>
+        </div>
+      `;
+      listaProductos.innerHTML += productoHTML;
+    });
+  }
+
+  totalPagar.textContent = `$${total.toLocaleString("es-CO")}`;
+  document.getElementById("total-container").style.display = "block";
+  agregarCamposOcultos(productoParam, precioParam);
+}
+
+function agregarCamposOcultos(productoParam, precioParam) {
+  const form = document.getElementById("pedidoForm");
+  document.querySelectorAll('input[type="hidden"][name^="Producto_"], input[type="hidden"][name^="Precio_"]').forEach(el => el.remove());
+
+if (productoSeleccionado) {
+  const inputProd = document.createElement("input");
+  inputProd.type = "hidden";
+  inputProd.name = "Producto";
+  inputProd.value = productoSeleccionado.nombre;
+  form.appendChild(inputProd);
+
+  const inputPrecio = document.createElement("input");
+  inputPrecio.type = "hidden";
+  inputPrecio.name = "Precio";
+  inputPrecio.value = `$${productoSeleccionado.precio.toLocaleString("es-CO")}`;
+  form.appendChild(inputPrecio);
+} else {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.forEach((prod, i) => {
+      const inputProd = document.createElement("input");
+      inputProd.type = "hidden";
+      inputProd.name = `Producto_${i + 1}`;
+      inputProd.value = `${prod.nombre} (x${prod.cantidad})`;
+      form.appendChild(inputProd);
+
+      const inputPrecio = document.createElement("input");
+      inputPrecio.type = "hidden";
+      inputPrecio.name = `Precio_${i + 1}`;
+      inputPrecio.value = `$${(prod.precio * prod.cantidad).toLocaleString("es-CO")}`;
+      form.appendChild(inputPrecio);
+    });
+  }
+
+  const totalHidden = document.querySelector('input[type="hidden"][name="Total"]') || document.createElement("input");
+  totalHidden.type = "hidden";
+  totalHidden.name = "Total";
+  totalHidden.value = document.getElementById("total-pagar").textContent;
+  if (!document.querySelector('input[type="hidden"][name="Total"]')) {
+    form.appendChild(totalHidden);
+  }
+}
+
+document.getElementById("pedidoForm").addEventListener("submit", () => {
+  localStorage.removeItem("carrito");
+  localStorage.removeItem("productoSeleccionado");
+  actualizarContadorCarrito();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarContadorCarrito();
+  mostrarProductosCheckout();
+});
+
+fetch("whatsapp.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("whatsapp").innerHTML = html;
+  });
+</script>
+
+<script>
+
+  //script para el banner superior en celulares
+  const mensajes = document.querySelectorAll('.top-bar span');
+  let actual = 0;
+
+  function mostrarMensaje() {
+    mensajes.forEach((msg, i) => {
+      msg.classList.toggle('activo', i === actual);
+    });
+    actual = (actual + 1) % mensajes.length;
+  }
+
+  if (window.innerWidth <= 768) {
+    mostrarMensaje();
+    setInterval(mostrarMensaje, 4000); // cambia cada 4 seg
+  }
+</script>
+
+
+<div id="modal-error" class="modal-error">
+  <div class="modal-content">
+    <p>⚠️ Los números de teléfono no coinciden. Por favor, revísalos.</p>
+    <button onclick="cerrarModal()">OK</button>
+  </div>
+</div>
+
+<script>
+function cerrarModal() {
+  document.getElementById("modal-error").style.display = "none";
+}
+
+document.getElementById("pedidoForm").addEventListener("submit", function(e) {
+  const tel1 = document.getElementById("telefono").value.trim();
+  const tel2 = document.getElementById("telefono_confirmar").value.trim();
+
+  if (tel1 !== tel2) {
+    e.preventDefault(); // Evita que se envíe
+    document.getElementById("modal-error").style.display = "flex";
+  }
+  else {
+    // Marca el envío exitoso para mostrar el mensaje en index.html
+    localStorage.setItem("pedidoEnviado", "true");
+  }
+});
+</script>
+
+
+
+</body>
+</html>

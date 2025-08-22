@@ -1,0 +1,262 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+}
+
+.mensaje-oculto {
+  display: none;
+  color: white;
+  background-color: #e74c3c;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  text-align: center;
+  animation: aparecer 0.3s ease;
+}
+
+
+
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.top-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background: linear-gradient(135deg, #ffcc00 0%, #ff8800 100%);
+  color: #fff;
+  padding: 20px 20px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.top-bar span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.top-bar .icono {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Responsive top-bar */
+@media (max-width: 768px) {
+  .top-bar {
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+  }
+  .top-bar span {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    width: 100%;
+    justify-content: center;
+  }
+  .top-bar span.activo {
+    opacity: 1;
+  }
+}
+
+.header-cart {
+  background: #fff;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.titulo-carrito {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.btn-seguir {
+  text-decoration: none;
+  background: #ffbb00;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+  text-align: center;
+}
+.btn-seguir:hover {
+  background: #ffa500;
+}
+
+.cart-container {
+  width: 90vw;
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #f5f5f5;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.item-carrito {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.mini-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+.info .precio {
+  font-size: 16px;
+  color: #555;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.acciones button {
+  padding: 6px 12px;
+  font-size: 16px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.acciones .eliminar {
+  background: #f5f5f5;
+  color: white;
+  border: none;
+}
+
+.carrito-resumen {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.carrito-resumen p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.carrito-resumen .nota {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.btn-finalizar {
+  padding: 12px 24px;
+  background: #ffc107;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn-finalizar:hover {
+  background: #e0a800;
+}
+
+.vacio {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin-top: 40px;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-contenido {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-botones {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-botones button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#btn-cancelar {
+  background-color: #ccc;
+}
+
+#btn-confirmar {
+  background-color: #28a745;
+  color: white;
+}
+
+
+@media (max-width: 480px) {
+  .acciones-carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* separa los botones verticalmente */
+    align-items: stretch;
+  }
+
+  .acciones-carrito a,
+  .acciones-carrito button {
+    width: 100%;
+  }
+}

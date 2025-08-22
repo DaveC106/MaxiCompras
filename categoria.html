@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maxikompras - Productos por Categoría</title>
+  <link rel="icon" href="img/logomaxicompras.webp" type="image/webp">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="stylecatego.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span><img src="img/camion.webp" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+    <span><img src="img/telefono.webp" alt="WhatsApp" class="icono"> Asesoramiento vía Whatsapp</span>
+    <span><img src="img/importadores.webp" alt="Calidad" class="icono"> Somos Importadores</span>
+  </div>
+
+  <!-- Encabezado -->
+<header class="main-header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
+    </a>
+  </div>
+
+  <div class="barra-busqueda" id="barraBusqueda">
+    <input type="text" id="input-busqueda" placeholder="Buscar productos..." />
+  </div>
+
+  <div class="icons">
+    <img src="img/search.webp" alt="Buscar" id="iconoBusqueda" />
+    <div class="carrito-icono">
+      <img src="./img/cart.webp" alt="Carrito" />
+      <span class="contador-carrito" id="contadorCarrito"></span>
+    </div>
+  </div>
+</header>
+<div id="resultados-busqueda" class="resultados-busqueda" style="display:none; flex-wrap: wrap; gap: 1rem; padding: 1rem;"></div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <section class="productos">
+    <h2 id="titulo-categoria">Categoría</h2>
+    <div class="grid-productos-categoria"></div>
+  </section>
+
+
+
+  <!-- Script de categoría -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoriaSeleccionada = urlParams.get("cat");
+
+     // Si no hay categoría seleccionada, redirigir a all.html
+  if (!categoriaSeleccionada) {
+    window.location.href = "all.html";
+  }
+
+    const contenedor = document.querySelector(".grid-productos-categoria");
+    const titulo = document.getElementById("titulo-categoria");
+
+    titulo.textContent = categoriaSeleccionada.charAt(0).toUpperCase() + categoriaSeleccionada.slice(1);
+
+    fetch("productos.json")
+      .then(res => res.json())
+      .then(productos => {
+        const filtrados = productos.filter(p => {
+          if (Array.isArray(p.categoria)) {
+            return p.categoria.map(c => c.toLowerCase()).includes(categoriaSeleccionada.toLowerCase());
+          } else {
+            return p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase();
+          }
+        });
+
+        if (filtrados.length === 0) {
+          contenedor.innerHTML = "<p>No hay productos en esta categoría.</p>";
+          return;
+        }
+
+        filtrados.forEach(producto => {
+          const precioOriginal = producto.precio;
+          const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
+          const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
+
+          const div = document.createElement("div");
+          div.className = "producto-card";
+          div.innerHTML = `
+            <a href="producto.html?slug=${producto.slug}" style="text-decoration: none; color: inherit;">
+              <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
+              <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
+              <h3 class="nombre-producto">${producto.nombre}</h3>
+              <div class="precio">
+                <span class="precio-actual">$${precioOriginal.toLocaleString('es-CO')}</span>
+                <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
+              </div>
+              <div class="estrellas">
+                ★★★★★ <span class="valoracion">(5)</span>
+              </div>
+            </a>
+          `;
+          contenedor.appendChild(div);
+        });
+      })
+      .catch(error => {
+        console.error("Error al cargar productos:", error);
+        contenedor.innerHTML = "<p>Error al cargar los productos.</p>";
+      });
+  </script>
+
+  <!-- Script: rotación top-bar móvil -->
+  <script>
+    const spans = document.querySelectorAll(".top-bar span");
+    let index = 0;
+
+    function mostrarSiguiente() {
+      spans.forEach((s, i) => s.classList.remove("activo"));
+      spans[index].classList.add("activo");
+      index = (index + 1) % spans.length;
+    }
+
+    if (window.innerWidth <= 768) {
+      mostrarSiguiente();
+      setInterval(mostrarSiguiente, 4000);
+    }
+  </script>
+
+
+<!--scripts de carro y busqueda-->
+<script>
+   let productosCargados = [];
+      fetch('productos.json')
+  .then(res => res.json())
+  .then(data => {
+    productosCargados = data;
+  })
+  .catch(err => {
+    console.error('Error cargando productos:', err);
+  });
+</script>
+ 
+<script>
+const iconoBusqueda = document.getElementById("iconoBusqueda");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
+
+let buscadorActivo = false;
+
+iconoBusqueda.addEventListener("click", () => {
+  buscadorActivo = !buscadorActivo;
+
+  if (buscadorActivo) {
+    inputBusqueda.style.display = "block";
+    inputBusqueda.focus();
+  } else {
+    inputBusqueda.style.display = "none";
+    inputBusqueda.value = "";
+    resultadosBusqueda.style.display = "none";
+  }
+});
+
+
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.trim().toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  if (!texto) {
+    resultadosBusqueda.style.display = "none";
+    return;
+  }
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
+  } else {
+    filtrados.forEach(producto => {
+      const div = document.createElement("div");
+      div.className = "producto-card";
+      div.innerHTML = `
+        <a href="producto.html?slug=${producto.slug}">
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" style="width:100%;border-radius:5px;" />
+          <h3>${producto.nombre}</h3>
+          <p><strong>$${producto.precio.toLocaleString('es-CO')}</strong></p>
+        </a>
+      `;
+      resultadosBusqueda.appendChild(div);
+    });
+  }
+
+  resultadosBusqueda.style.display = "flex";
+});
+
+
+</script>
+
+<!-- Script: Mini carrito -->
+<div id="mini-carrito" class="modal-carrito oculto">
+  <div class="contenido-carrito">
+    <h2>Tu Carrito</h2>
+    <div id="mini-carrito-items"></div>
+    <div class="mini-carrito-footer">
+      <button onclick="window.location.href='cart.html'" class="btn-ir-carrito">Ir al carrito</button>
+    </div>
+  </div>
+</div>
+<div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
+
+<script>
+  const iconoCarrito = document.querySelector('img[alt="Carrito"]');
+  const miniCarrito = document.getElementById("mini-carrito");
+  const fondoCarrito = document.getElementById("fondo-oscuro-carrito");
+  const contenedorMini = document.getElementById("mini-carrito-items");
+
+  iconoCarrito.addEventListener("click", () => {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    contenedorMini.innerHTML = "";
+
+    if (carrito.length === 0) {
+      contenedorMini.innerHTML = "<p>Tu carrito está vacío.</p>";
+    } else {
+      carrito.forEach(producto => {
+        const div = document.createElement("div");
+        div.style.marginBottom = "10px";
+        div.innerHTML = `
+          <div style="display:flex;align-items:center;gap:10px;">
+            <img src="${producto.imagen}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:5px;">
+            <div>
+              <p style="margin:0;">${producto.nombre}</p>
+              <small>$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</small>
+            </div>
+          </div>`;
+        contenedorMini.appendChild(div);
+      });
+    }
+
+    miniCarrito.classList.remove("oculto");
+    fondoCarrito.classList.remove("oculto");
+  });
+
+  fondoCarrito.addEventListener("click", () => {
+    miniCarrito.classList.add("oculto");
+    fondoCarrito.classList.add("oculto");
+  });
+</script>
+
+<!-- Script: Contador de carrito -->
+<script>
+  function actualizarContadorCarrito() {
+    const contador = document.getElementById("contadorCarrito");
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+
+    if (total > 0) {
+      contador.textContent = total;
+      contador.style.display = "inline-block";
+    } else {
+      contador.style.display = "none";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    actualizarContadorCarrito();
+  });
+</script>
+
+<div id="whatsapp"></div>
+<script>
+  fetch("whatsapp.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("whatsapp").innerHTML = html;
+    });
+</script>
+ <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+  </footer>
+
+</body>
+</html>

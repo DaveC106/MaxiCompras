@@ -1,0 +1,322 @@
+[
+
+  {
+    "nombre": "Aire Acondicionado ULTRA POTENTE",
+    "precio": 189990,
+    "precio_anterior": 299990,
+    "destacado": true,
+    "slug" : "aire-acondicionado-ultra-potente",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/123123.png?v=1749097096"
+    ],
+    "categoria": ["tecnologia", "hogar"]
+  },
+  {
+    "nombre": "Bateria portable para vehiculos",
+    "precio": 129990,
+    "precio_anterior": 189000,
+    "destacado": true,
+    "slug" : "bateria-portable-para-vehiculos",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Marmota_8.webp?v=1749097065"
+    ],
+    "categoria": ["tecnologia", "vehiculos"]
+  },
+  {
+    "nombre": "Bola interactiva para gato",
+    "precio": 69990,
+    "precio_anterior": 140000,
+    "destacado": true,
+    "slug" : "bola-interactiva-para-gato",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/gato_1.webp?v=1749097071"
+    ],
+    "categoria": "accesorios"
+  },
+  {
+    "nombre": "Bolso de un solo hombro",
+    "precio": 89990,
+    "precio_anterior": 150000,
+    "destacado": true,
+    "slug" : "bolso-de-un-solo-hombro",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image7.png?v=1749097086"
+    ],
+    "categoria": "hogar"
+  },
+  {
+    "nombre": "Canguro para mascota",
+    "precio": 69990,
+    "precio_anterior": 120000,
+    "destacado": true,
+    "slug" : "canguro-para-mascota",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-411ceece03dd0a.webp?v=1749097072"
+    ],
+    "categoria": "accesorios"
+  },
+  {
+    "nombre": "Cojin antigolpes para bebes",
+    "precio": 79990,
+    "precio_anterior": 140000,
+    "destacado": true,
+      "slug" : "cojin-antigolpes-para-bebes",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPT_Image_19_abr_2025_23_27_45.png?v=1749097068"
+    ],
+    "categoria": ["accesorios", "hogar"]
+  },
+  {
+    "nombre": "Cuchillo Japones Nikuya",
+    "precio": 79990,
+    "precio_anterior": 130000,
+    "destacado": true,
+      "slug" : "cuchillo-japones-nikuya",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image-2025-03-06T055857.537.webp?v=1749097084"
+    ],
+    "categoria": "cocina"
+  },
+  {
+    "nombre": "Ejercitador Pelvico",
+    "precio": 74990,
+    "precio_anterior": 140000,
+    "destacado": true,
+      "slug" : "ejercitador-pelvico",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Pelvico_1.webp?v=1749097074"
+    ],
+    "categoria": "hogar"
+  },
+  {
+    "nombre": "Encendedor con linterna",
+    "precio": 79990,
+    "precio_anterior": 139990,
+    "destacado": true,
+      "slug" : "encendedor-con-linterna",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image_-_2025-03-06T051031.762.webp?v=1749097090"
+    ],
+    "categoria": ["tecnologia", "hogar"]
+  },
+  {
+    "nombre": "Escarchador de cocktails Ultra rapido",
+    "precio": 79990,
+    "precio_anterior": 140000,
+    "destacado": true,
+      "slug" : "escarchador-de-cocktails-ultra-rapido",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPT_Image_20_abr_2025_00_44_14.png?v=1749097080"
+    ],
+    "categoria": ["accesorios", "hogar"]
+  },
+  {
+    "nombre": "Espejo para carros tactil",
+    "precio": 79990,
+    "precio_anterior": 140000,
+    "destacado": true,
+      "slug" : "espejo-para-carros-tactil",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPT_Image_19_abr_2025_20_33_01.png?v=1749097060"
+    ],
+    "categoria": "vehiculos"
+  },
+  {
+    "nombre": "Holder para vehiculos",
+    "precio": 69990,
+    "precio_anterior": 120000,
+    "destacado": true,
+      "slug" : "holder-para-vehiculos",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPTImage19abr2025_22_56_49.png?v=1749097064"
+    ],
+    "categoria": ["vehiculos", "accesorios"]
+  },
+  {
+    "nombre": "Humidificador para carro",
+    "precio": 79990,
+    "precio_anterior": 145000,
+    "destacado": true,
+      "slug" : "humidificador-para-carro",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Ambientador_1.webp?v=1749097058"
+    ],
+    "categoria": "vehiculos"
+  },
+  {
+    "nombre": "Kit de baño de lujo",
+    "precio": 79990,
+    "precio_anterior":140000,
+    "destacado": true,
+      "slug" : "kit-de-baño-de-lujo",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPTImage19abr2025_21_22_15.png?v=1749097061"
+    ],
+    "categoria": "hogar"
+  },
+  {
+    "nombre": "Lampara solar de pared",
+    "precio": 69990,
+    "precio_anterior": 129990,
+    "destacado": true,
+      "slug" : "lampara-solar-de-pared",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image-2025-03-06T054330.863.webp?v=1749097087"
+    ],
+    "categoria": "hogar"
+  },
+  {
+    "nombre": "Lector de tarjetas didacticas",
+    "precio": 79900,
+    "precio_anterior": 149900,
+    "destacado": true,
+      "slug" : "lector-de-tarjetas-didacticas",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPTImage20abr2025_14_12_371.png?v=1749097067"
+    ],
+    "categoria": ["accesorios", "bienestar"]
+  },
+  {
+    "nombre": "MagicCraft | Linterna de minecraft",
+    "precio": 79990,
+    "precio_anterior": 139990,
+    "destacado": true,
+      "slug" : "magiccraft-linterna-de-minecraft",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/1_1432564c-64c1-4f0c-8240-490b9b0c406e.webp?v=1749097093"
+    ],
+    "categoria": "tecnologia"
+  },
+  {
+    "nombre": "Magnetic | Parlante Magnetico Para Celular",
+    "precio": 89990,
+    "precio_anterior": 159900,
+    "destacado": true,
+      "slug" : "magnetic-parlante-magnetico-para-celular",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ldasldl.png?v=1749097095"
+    ],
+    "categoria": "tecnologia"
+  },
+  {
+    "nombre": "Marmota Calmatodo",
+    "precio": 79990,
+    "precio_anterior": 150000,
+    "destacado": true,
+      "slug" : "marmota-calmatodo",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Marmota_2.webp?v=1749097055"
+    ],
+    "categoria": "hogar"
+  },
+  {
+    "nombre": "Mochila magnetica para gimnasio",
+    "precio": 99990,
+    "precio_anterior": 199990,
+    "destacado": true,
+      "slug" : "mochila-magnetica-para-gimnasio",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/bolso_1.webp?v=1749097078"
+    ],
+    "categoria": "accesorios"
+  },
+  {
+    "nombre": "MultiCharg Power Bank inteligente Solar",
+    "precio": 109990,
+    "precio_anterior": 189990,
+    "destacado": true,
+      "slug" : "multicharg-power-bank-inteligente-solar",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/S035b05491e6949e7ba18d61a3e66686ah.jpg?v=1749097092"
+    ],
+    "categoria": "tecnologia"
+  },
+  {
+    "nombre": "Organizador de Ollas 8 Niveles",
+    "precio": 89990,
+    "precio_anterior": 150000,
+    "destacado": true,
+      "slug" : "organizador-de-ollas-8-niveles",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-609730cb9212c6.webp?v=1749097081"
+    ],
+    "categoria": "cocina"
+  },
+  {
+    "nombre": "Organizador esquinero de baño",
+    "precio": 89990,
+    "precio_anterior": 140000,
+    "destacado": true,
+      "slug" : "organizador-esquinero-de-bano",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-40abeb9ede2382.webp?v=1749097062"
+    ],
+    "categoria": ["hogar", "accesorios"]
+  },
+  {
+    "nombre": "Panty Linfatico 3x1",
+    "precio": 99990,
+    "precio_anterior": 199900,
+    "destacado": true,
+      "slug" : "panty-linfatico-3x1",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-4f85072a164b58.webp?v=1749097077"
+    ],
+    "categoria": ["bienestar", "hogar"]
+  },
+  {
+    "nombre": "Paños magicos x5",
+    "precio": 64900,
+    "precio_anterior": 129000,
+    "destacado": true,
+      "slug" : "panos-magicos-x5",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ezgif-68afb5896539d0.webp?v=1749097083"
+    ],
+    "categoria": "cocina"
+  },
+  {
+    "nombre": "Peluche de STICH",
+    "precio": 84990,
+    "precio_anterior": 140000,
+    "destacado": true,
+      "slug" : "peluche-de-stich",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/Frame_2087328161.png?v=1749097057"
+    ],
+    "categoria": ["accesorios","bienestar"]
+  },
+  {
+    "nombre": "Spin Easy Refuerzo de volante",
+    "precio": 69990,
+    "precio_anterior": 129990,
+    "destacado": true,
+      "slug" : "spin-easy-refuerzo-de-volante",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/image-2025-03-06T052531.424.webp?v=1749097089"
+    ],
+    "categoria": "vehiculos"
+  },
+  {
+    "nombre": "Tonifica en semanas Banda elastica",
+    "precio": 69990,
+    "precio_anterior": 120000,
+    "destacado": true,
+      "slug" : "tonifica-en-semanas-banda-elastica",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/ChatGPT_Image_20_abr_2025_13_48_08.png?v=1749097075"
+    ],
+    "categoria": "bienestar"
+  },
+  {
+    "nombre": "Tunel plegable para gato",
+    "precio": 69990,
+    "precio_anterior": 140000,
+    "destacado": true,
+      "slug" : "tunel-plegable-para-gato",
+    "imagenes": [
+      "https://cdn.shopify.com/s/files/1/0706/5429/6263/files/308b13e6-46fc-4014-a294-ab259e5c2620.png?v=1749097070"
+    ],
+    "categoria": "accesorios"
+  }
+]

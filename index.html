@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+   <!-- No cache -->
+     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+  <!-- Meta tags -->
+  <meta charset="UTF-8" />
+  <!-- Meta tags esenciales -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MaxiCompras - Tu tienda online en Colombia con productos innovadores, envío gratis y pago contraentrega. ¡Compra fácil, rápido y seguro!">
+<meta name="keywords" content="tienda online, maxi compras, productos innovadores, envío gratis Colombia, pago contraentrega, ecommerce Colombia">
+<meta name="author" content="MaxiCompras">
+
+<!-- SEO -->
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://maxicomprass.store/"> <!-- Reemplaza con tu URL real -->
+
+<!-- Open Graph (Facebook, WhatsApp, etc) -->
+<meta property="og:title" content="MaxiCompras - Tienda Online con Envío Gratis en Colombia">
+<meta property="og:description" content="Explora cientos de productos innovadores. ¡Compra con envío gratis y paga al recibir!">
+<meta property="og:image" content="https://maxicomprass.store/img/logomaxicompras.webp"> <!-- URL completa -->
+<meta property="og:url" content="https://maxicomprass.store/">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MaxiCompras - Tienda Online en Colombia">
+<meta name="twitter:description" content="Productos innovadores, envío gratis, pago contraentrega. Compra ya en MaxiCompras.">
+<meta name="twitter:image" content="https://maxicomprass.store/img/logomaxicompras.webp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MaxiCompras</title>
+  <link rel="icon" href="img/logomaxicompras.webp" type="image/webp">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>  
+  <!-- Barra superior -->
+  <div class="top-bar">
+  <span><img src="img/camion.webp" alt="Envío" class="icono"> Envío Gratis a todo Colombia</span>
+  <span><img src="img/telefono.webp" alt="WhatsApp" class="icono"> Asesoramiento via Whatsapp</span>
+  <span><img src="img/importadores.webp" alt="Calidad" class="icono"> Somos Importadores</span>
+</div>
+
+  <!-- Encabezado -->
+<header class="main-header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/logomaxicompras.webp" alt="Logo MaxiCompras" />
+    </a>
+  </div>
+
+  <div class="barra-busqueda" id="barraBusqueda">
+    <input type="text" id="input-busqueda" placeholder="Buscar productos..." />
+  </div>
+
+  <div class="icons">
+    <img src="img/search.webp" alt="Buscar" id="iconoBusqueda" />
+    <div class="carrito-icono">
+      <img src="./img/cart.webp" alt="Carrito" />
+      <span class="contador-carrito" id="contadorCarrito"></span>
+    </div>
+  </div>
+</header>
+
+<div id="resultados-busqueda"></div>
+
+  <!-- Banner -->
+  <section class="hero">
+    <div class="hero-img">
+      <img src="./img/banner.webp" alt="Banner principal">
+    </div>
+  </section>
+
+ <!-- sección productos destacados-->
+<section class="productos-destacados">
+  <div class="encabezado-productos">
+    <h2>Productos Destacados</h2>
+    <a href="all.html" class="ver-todos-link">Ver Todos</a>
+  </div>
+
+  <div class="slider-container">
+  <div class="slider grid-productos"></div>
+
+  <!-- Flechas de escritorio -->
+  <button class="flecha flecha-pc izquierda">&#10094;</button>
+  <button class="flecha flecha-pc derecha">&#10095;</button>
+
+  <!-- Flechas móviles -->
+  <div class="contenedor-flechas-movil">
+    <button class="flecha flecha-movil izquierda">&#10094;</button>
+    <button class="flecha flecha-movil derecha">&#10095;</button>
+  </div>
+</div>
+</section>
+
+  <!-- Sección Nuestras Categorías -->
+<section class="categorias">
+  <h2>Nuestras Categorías</h2>
+  <div class="grid-categorias-container">
+    <div class="grid-categorias">
+      <div class="categoria">
+        <a href="categoria.html?cat=accesorios">
+          <img src="./img/cat-accesorios.webp" alt="Accesorios">
+          <p>Accesorios</p>
+          <span class="linea"></span>
+        </a>
+      </div>
+      <div class="categoria">
+        <a href="categoria.html?cat=bienestar">
+          <img src="./img/cat-bienestar.webp" alt="Bienestar">
+          <p>Bienestar</p>
+          <span class="linea"></span>
+        </a>
+      </div>
+      <div class="categoria">
+        <a href="categoria.html?cat=cocina">
+          <img src="./img/cat-cocina.webp" alt="Cocina">
+          <p>Cocina</p>
+          <span class="linea"></span>
+        </a>
+      </div>
+      <div class="categoria">
+        <a href="categoria.html?cat=hogar">
+          <img src="./img/cat-hogar.webp" alt="Hogar">
+          <p>Hogar</p>
+          <span class="linea"></span>
+        </a>
+      </div>
+      <div class="categoria">
+        <a href="categoria.html?cat=tecnologia">
+          <img src="./img/cat-tecnologia.webp" alt="Tecnología">
+          <p>Tecnología</p>
+          <span class="linea"></span>
+        </a>
+      </div>
+      <div class="categoria">
+        <a href="categoria.html?cat=vehiculos">
+          <img src="./img/cat-vehiculos.webp" alt="Vehículos">
+          <p>Vehículos</p>
+          <span class="linea"></span>
+        </a>
+      </div>
+    </div>
+
+<div class="grid-categorias-container" style="position: relative;">
+  <button class="flecha-categorias izquierda">&#10094;</button>
+  <div class="grid-categorias">
+    <!-- Aquí van las categorías -->
+  </div>
+  <button class="flecha-categorias derecha">&#10095;</button>
+</div>
+</section>
+
+ <!-- Sección Testimonios -->
+<section class="testimonios">
+  <h2>Clientes Entusiasmados</h2>
+  <div class="testimonios-slider">
+    <!-- Grupo 1 -->
+    <div class="grupo-testimonios">
+      <div class="card-testimonio">
+        <p>Pedí un peluche de Stitch y me encantó. Es precioso, muy suave y llegó rapidísimo. El pago contraentrega me dio mucha confianza. ¡Los recomiendo!</p>
+        <hr>
+        <strong>Natalia Herrera</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★★</div>
+      </div>
+      <div class="card-testimonio">
+        <p>Tenía dudas al principio, pero me atendieron por WhatsApp y me explicaron todo. El producto llegó en perfecto estado y antes de lo esperado.</p>
+        <hr>
+        <strong>Roxana Acevedo</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★☆</div>
+      </div>
+      <div class="card-testimonio">
+        <p>Me encantó la rapidez del envío. Compré un parlante magnético y llegó a los pocos días. Todo bien empacado. Volveré a comprar sin dudarlo.</p>
+        <hr>
+        <strong>Keiner Salgado</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★★</div>
+      </div>
+    </div>
+
+    <!-- Grupo 2 -->
+    <div class="grupo-testimonios">
+      <div class="card-testimonio">
+        <p>Excelente calidad y muy buena presentación del paquete. Se nota que es una tienda seria. ¡Muy recomendados!</p>
+        <hr>
+        <strong>Santiago Ruiz</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★★</div>
+      </div>
+      <div class="card-testimonio">
+        <p>Fácil de comprar y excelente atención. Me respondieron súper rápido por WhatsApp. Muy confiables.</p>
+        <hr>
+        <strong>Camila Mendoza</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★☆</div>
+      </div>
+      <div class="card-testimonio">
+        <p>Compré un bolso y es espectacular. Funciona de maravilla y el diseño es muy bonito. ¡Gracias MaxiCompras!</p>
+        <hr>
+        <strong>Julián López</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★★</div>
+      </div>
+    </div>
+
+    <!-- Grupo 3 -->
+    <div class="grupo-testimonios">
+      <div class="card-testimonio">
+        <p>Excelente todo, desde la compra hasta la entrega. Muy buen servicio al cliente. 100% recomendados.</p>
+        <hr>
+        <strong>Laura González</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★★</div>
+      </div>
+      <div class="card-testimonio">
+        <p>MaxiCompras me salvó con un regalo de última hora. Llegó puntual y muy bien empacado. ¡Gracias!</p>
+        <hr>
+        <strong>Daniel Cárdenas</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★★</div>
+      </div>
+      <div class="card-testimonio">
+        <p>Muy buena experiencia. El producto es tal cual como se muestra en la página. Todo excelente.</p>
+        <hr>
+        <strong>Valentina Morales</strong>
+        <div class="verificado">Cliente verificado</div>
+        <div class="estrellas">★★★★☆</div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Sección Acerca de Nosotros -->
+<section class="acerca-nosotros">
+  <div class="contenedor-nosotros">
+    <div class="img-nosotros">
+      <img src="img/nosotros.webp" alt="Sobre nosotros">
+    </div>
+    <div class="tarjeta-nosotros">
+      <h2>Acerca de Nosotros</h2>
+      <p>Bienvenido a MaxiCompras, tu tienda online de productos innovadores y en tendencia. Con más de 10 años de experiencia y 120,000+ pedidos entregados, ofrecemos calidad, atención excepcional y precios exclusivos. </p>
+      <p class="resaltado">¡Disfruta de envío gratis y pago contraentrega en toda Colombia: rápido, seguro y sin complicaciones.</p>
+    </div>
+  </div>
+</section>
+
+ 
+  <!-- Sección Banners Informativos -->
+<section class="banners-info">
+  <div class="banner">
+    <img src="img/comsegura.webp" alt="Compra segura">
+    <h3>COMPRA SEGURA</h3>
+  </div>
+
+  <div class="banner">
+    <img src="img/envio.webp" alt="Envío gratis">
+    <h3>ENVÍO GRATIS Y RÁPIDO</h3>
+  </div>
+
+  <div class="banner">
+    <img src="img/garantia.webp" alt="Garantía">
+    <h3>GARANTÍA DE SATISFACCIÓN</h3>
+  </div>
+
+  <div class="banner">
+    <img src="img/pago.webp" alt="Pago al recibir">
+    <h3>PAGA AL RECIBIR</h3>
+  </div>
+</section>
+  <!-- Sección Aliados -->
+<section class="aliados">
+  <h2>Nuestros Aliados</h2>
+  <div class="logos-aliados">
+    <img src="img/envia.webp" alt="Envia">
+    <img src="img/coor.webp" alt="Coordinadora">
+    <img src="img/enviogratis.webp" alt="Envío Gratis">
+    <img src="img/interapi.webp" alt="Interapidisimo">
+    <img src="img/servientre.webp" alt="Servientrega">
+    <img src="img/domina.webp" alt="Domina">
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025, MaxiKompras | <a href="index.html">Política de privacidad</a></p>
+  </footer>
+
+
+
+<script>
+  const contenedor = document.querySelector(".grid-productos");
+
+  let productosCargados = [];
+
+  // 🔃 Carga inicial de productos
+  fetch("productos.json")
+    .then(res => res.json())
+    .then(productos => {
+      productosCargados = productos;
+      mostrarDestacados();
+    })
+    .catch(error => {
+      console.error("Error cargando productos:", error);
+    });
+
+  // ✅ Mostrar productos destacados
+  function mostrarDestacados() {
+    contenedor.innerHTML = "";
+    productosCargados.forEach(producto => {
+      if (producto.destacado && producto.imagenes.length > 0) {
+        const div = crearTarjetaProducto(producto);
+        contenedor.appendChild(div);
+      }
+    });
+  }
+
+  // ✅ Mostrar productos por categoría
+  function mostrarProductosPorCategoria(categoria) {
+    contenedor.innerHTML = "";
+
+    const filtrados = productosCargados.filter(
+      p => p.categoria.toLowerCase() === categoria.toLowerCase()
+    );
+
+    if (filtrados.length === 0) {
+      contenedor.innerHTML = "<p>No hay productos en esta categoría.</p>";
+      return;
+    }
+
+    filtrados.forEach(producto => {
+      const div = crearTarjetaProducto(producto);
+      contenedor.appendChild(div);
+    });
+  }
+
+  function crearTarjetaProducto(producto) {
+  const div = document.createElement("div");
+  div.className = "producto-card";
+
+  const precioOriginal = producto.precio;
+  const precioAnterior = producto.precio_anterior || Math.round(producto.precio * 1.5);
+  const descuento = Math.round(100 - (producto.precio / precioAnterior) * 100);
+
+ div.innerHTML = `
+  <a href="producto.html?slug=${producto.slug}">
+    <div class="etiqueta-descuento">↓ Ahorrar ${descuento}%</div>
+    <img src="${producto.imagenes[0]}" alt="${producto.nombre}" class="producto-img" />
+    <h3 class="nombre-producto">${producto.nombre}</h3>
+    <div class="precio">
+      <span class="precio-actual">$${precioOriginal.toLocaleString('es-CO')}</span>
+      <span class="precio-anterior">$${precioAnterior.toLocaleString('es-CO')}</span>
+    </div>
+    <div class="estrellas">
+      ★★★★★ <span class="valoracion">(5)</span>
+    </div>
+  </a>
+`;
+  ;
+  return div;
+}
+
+const iconoBusqueda = document.getElementById("iconoBusqueda");
+const inputBusqueda = document.getElementById("input-busqueda");
+const resultadosBusqueda = document.getElementById("resultados-busqueda");
+
+let buscadorActivo = false;
+
+iconoBusqueda.addEventListener("click", () => {
+  buscadorActivo = !buscadorActivo;
+
+  if (buscadorActivo) {
+    inputBusqueda.style.display = "block";
+    inputBusqueda.focus();
+  } else {
+    inputBusqueda.style.display = "none";
+    inputBusqueda.value = "";
+    resultadosBusqueda.style.display = "none";
+  }
+});
+
+
+inputBusqueda.addEventListener("input", () => {
+  const texto = inputBusqueda.value.trim().toLowerCase();
+  resultadosBusqueda.innerHTML = "";
+
+  if (!texto) {
+    resultadosBusqueda.style.display = "none";
+    return;
+  }
+
+  const filtrados = productosCargados.filter(p =>
+    p.nombre.toLowerCase().includes(texto)
+  );
+
+  if (filtrados.length === 0) {
+    resultadosBusqueda.innerHTML = "<p style='padding:1rem;'>No se encontraron productos.</p>";
+  } else {
+    filtrados.forEach(producto => {
+      const div = document.createElement("div");
+      div.className = "producto-card";
+      div.innerHTML = `
+        <a href="producto.html?slug=${producto.slug}">
+          <img src="${producto.imagenes[0]}" alt="${producto.nombre}" style="width:100%;border-radius:5px;" />
+          <h3>${producto.nombre}</h3>
+          <p><strong>$${producto.precio.toLocaleString('es-CO')}</strong></p>
+        </a>
+      `;
+      resultadosBusqueda.appendChild(div);
+    });
+  }
+
+  resultadosBusqueda.style.display = "flex";
+});
+
+  
+  // ✅ Escuchar clics en categorías
+  document.querySelectorAll(".categoria").forEach(cat => {
+    cat.addEventListener("click", () => {
+      const categoria = cat.dataset.categoria;
+      mostrarProductosPorCategoria(categoria);
+    });
+  });
+</script>
+<script>
+  // Detecta si el usuario volvió a esta página
+  window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
+</script>
+
+<script>
+const scrollCategorias = document.querySelector(".grid-categorias");
+const flechaCatIzq = document.querySelector(".flecha-categorias.izquierda");
+const flechaCatDer = document.querySelector(".flecha-categorias.derecha");
+
+flechaCatIzq.addEventListener("click", () => {
+  scrollCategorias.scrollBy({ left: -200, behavior: "smooth" });
+});
+
+flechaCatDer.addEventListener("click", () => {
+  scrollCategorias.scrollBy({ left: 200, behavior: "smooth" });
+});
+
+function revisarScrollCategorias() {
+  const maxScroll = scrollCategorias.scrollWidth - scrollCategorias.clientWidth;
+  flechaCatDer.style.opacity = scrollCategorias.scrollLeft >= maxScroll - 10 ? "0" : "1";
+  flechaCatIzq.style.opacity = scrollCategorias.scrollLeft <= 10 ? "0" : "1";
+}
+
+scrollCategorias.addEventListener("scroll", revisarScrollCategorias);
+window.addEventListener("resize", revisarScrollCategorias);
+window.addEventListener("load", revisarScrollCategorias);
+
+</script>
+
+<script>
+  const slider = document.querySelector(".slider");
+
+  document.querySelectorAll(".flecha.izquierda").forEach(flecha => {
+    flecha.addEventListener("click", () => {
+      slider.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll(".flecha.derecha").forEach(flecha => {
+    flecha.addEventListener("click", () => {
+      slider.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  });
+</script>
+
+<script>
+  const sliderMovil = document.querySelector(".slider");
+  const flechasMovil = document.querySelectorAll(".flecha-movil");
+
+  flechasMovil.forEach(flecha => {
+    flecha.addEventListener("click", () => {
+      const direction = flecha.classList.contains("izquierda") ? -300 : 300;
+      sliderMovil.scrollBy({ left: direction, behavior: 'smooth' });
+    });
+  });
+</script>
+
+
+<div id="mini-carrito" class="modal-carrito oculto">
+  <div class="contenido-carrito">
+    <h2>Tu Carrito</h2>
+    <div id="mini-carrito-items"></div>
+    <div class="mini-carrito-footer">
+      <button onclick="window.location.href='cart.html'" class="btn-ir-carrito">Ir al carrito</button>
+    </div>
+  </div>
+</div>
+<div id="fondo-oscuro-carrito" class="fondo-oscuro oculto"></div>
+
+<script>
+const iconoCarrito = document.querySelector('img[alt="Carrito"]');
+const miniCarrito = document.getElementById("mini-carrito");
+const fondoCarrito = document.getElementById("fondo-oscuro-carrito");
+const contenedorMini = document.getElementById("mini-carrito-items");
+
+iconoCarrito.addEventListener("click", () => {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  contenedorMini.innerHTML = "";
+
+  if (carrito.length === 0) {
+    contenedorMini.innerHTML = "<p>Tu carrito está vacío.</p>";
+  } else {
+    carrito.forEach(producto => {
+      const div = document.createElement("div");
+      div.style.marginBottom = "10px";
+      div.innerHTML = `
+  <div style="display:flex;align-items:center;gap:10px;">
+    <img src="${producto.imagen}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:5px;">
+    <div>
+      <p style="margin:0;">${producto.nombre}</p>
+      <small>$${producto.precio.toLocaleString('es-CO')} x ${producto.cantidad}</small>
+    </div>
+  </div>
+`;
+      ;
+      contenedorMini.appendChild(div);
+    });
+  }
+
+  miniCarrito.classList.remove("oculto");
+  fondoCarrito.classList.remove("oculto");
+});
+
+fondoCarrito.addEventListener("click", () => {
+  miniCarrito.classList.add("oculto");
+  fondoCarrito.classList.add("oculto");
+});
+
+</script>
+
+
+<script>
+
+  //script para el banner superior en celulares
+  const mensajes = document.querySelectorAll('.top-bar span');
+  let actual = 0;
+
+  function mostrarMensaje() {
+    mensajes.forEach((msg, i) => {
+      msg.classList.toggle('activo', i === actual);
+    });
+    actual = (actual + 1) % mensajes.length;
+  }
+
+  if (window.innerWidth <= 768) {
+    mostrarMensaje();
+    setInterval(mostrarMensaje, 4000); // cambia cada 4 seg
+  }
+</script>
+
+
+
+
+<script>
+function actualizarContadorCarrito() {
+  const contador = document.getElementById("contadorCarrito");
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  const total = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+
+  if (total > 0) {
+    contador.textContent = total;
+    contador.style.display = "inline-block";
+  } else {
+    contador.style.display = "none";
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarContadorCarrito();
+});
+actualizarContadorCarrito();
+
+</script>
+
+
+<div id="whatsapp"></div>
+<script>
+  fetch("whatsapp.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("whatsapp").innerHTML = html;
+    });
+</script>
+
+
+<script>
+  //script de testimonios en celulares, funcional 
+  if (window.innerWidth <= 768) {
+    const testimonios = document.querySelectorAll('.card-testimonio');
+    let index = 0;
+
+    function mostrarDosTestimonios() {
+      testimonios.forEach(t => t.classList.remove('activo'));
+      testimonios[index % testimonios.length].classList.add('activo');
+      testimonios[(index + 1) % testimonios.length].classList.add('activo');
+      index = (index + 2) % testimonios.length;
+    }
+
+    mostrarDosTestimonios();
+    setInterval(mostrarDosTestimonios, 5000); // ⏱️ cada 5 segundos
+  }
+</script>
+
+<div id="modal-confirmacion" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+background:white; padding:2rem; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:1000; max-width:90%; text-align:center;">
+  <p style="font-size:1.5rem; font-weight:bold;">✅ ¡Gracias! Tu pedido en MaxiCompras ha sido registrado.</p>
+  <p style="font-size:1.1rem;">Muy pronto nos comunicaremos contigo. Recuerda tener el dinero listo el día que recibas el producto.</p>
+  <button onclick="cerrarConfirmacion()" style="margin-top:1rem; background:#28a745; color:white; padding:0.5rem 1rem; border:none; border-radius:5px; cursor:pointer;">OK</button>
+</div>
+<div id="fondo-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;"></div>
+<script>
+  function cerrarConfirmacion() {
+    document.getElementById("modal-confirmacion").style.display = "none";
+    document.getElementById("fondo-modal").style.display = "none";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("pedidoEnviado") === "true") {
+      localStorage.removeItem("pedidoEnviado");
+      document.getElementById("modal-confirmacion").style.display = "block";
+      document.getElementById("fondo-modal").style.display = "block";
+
+      setTimeout(() => {
+        cerrarConfirmacion();
+      }, 9000);
+    }
+  });
+</script>

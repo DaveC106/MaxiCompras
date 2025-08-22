@@ -1,0 +1,97 @@
+/* Estilo para todos los productos en all.html */
+#contenedor-todos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  #contenedor-todos {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+  }
+}
+
+
+.ordenar-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 0 10px;
+  font-family: 'Montserrat', sans-serif;
+  flex-wrap: wrap;
+}
+
+.ordenar-label {
+  margin-right: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.ordenar-select {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  appearance: none;
+  padding: 5px 25px 5px 5px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .ordenar-container {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ordenar-label,
+  .ordenar-select {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  #contenedor-todos {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .producto-card {
+    padding: 6px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .producto-card img.producto-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .producto-card h3 {
+    font-size: 13px;
+  }
+
+  .producto-card .precio {
+    font-size: 12px;
+  }
+
+  .producto-card .etiqueta-descuento {
+    font-size: 11px;
+  }
+
+  .producto-card .estrellas {
+    font-size: 11px;
+  }
+}
