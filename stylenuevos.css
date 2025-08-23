@@ -6,6 +6,12 @@ html, body {
     width: 100%;
     background: #f4ece4;
 }
+/* Aplicar overflow-x: hidden solo en móviles */
+@media screen and (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+    }
+}
 
 body {
     font-family: 'Montserrat', sans-serif !important;
