@@ -1698,7 +1698,7 @@ body {
 
   /* ESTILOS PARA TESTIMONIOS */
         .testimonials-section {
-            padding: 5rem 2rem;
+            padding: 0.5rem 2rem;
             
             position: relative;
             overflow: hidden;
@@ -1931,7 +1931,7 @@ body {
         
         @media (max-width: 480px) {
             .testimonials-section {
-                padding: 4rem 1.5rem;
+                padding: 1rem 1.5rem;
             }
             
             .testimonial-card {
