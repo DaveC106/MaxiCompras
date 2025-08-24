@@ -210,7 +210,7 @@ body {
 .current-price {
     font-family: 'Montserrat', sans-serif;
     font-size: 45px;
-    font-weight: bold;
+    font-weight: 800;
     color: #381cd4;
 }
 
