@@ -720,27 +720,46 @@
 </script>
 
 
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const productGallery = document.querySelector('.product-gallery');
     const images = document.querySelectorAll('.product-image');
     let currentIndex = 0;
-    const intervalTime = 9000; // tiempo en ms (9000 = 9 segundos)
+    const intervalTime = 9000; // 9 segundos
 
     if (images.length > 1) {
-        // Mostrar la primera imagen
+        // Mostrar primera imagen activa
         images[currentIndex].classList.add('active');
-        
-        // Configurar intervalo para cambiar imágenes
+
         setInterval(() => {
+            // Quitar clase active de la actual
             images[currentIndex].classList.remove('active');
+
+            // Calcular siguiente índice
             currentIndex = (currentIndex + 1) % images.length;
+
+            // Agregar clase active a la nueva
             images[currentIndex].classList.add('active');
+
+            // --- DIFERENCIA ENTRE PC Y MÓVIL ---
+            if (window.matchMedia("(max-width: 1100px)").matches) {
+                // 📱 En móviles -> mover el scroll del carrusel
+                const imageWidth = productGallery.offsetWidth;
+                productGallery.scrollTo({
+                    left: currentIndex * imageWidth,
+                    behavior: 'smooth'
+                });
+            } else {
+                // 💻 En PC -> mostrar solo la activa con display
+                images.forEach((img, i) => {
+                    img.style.display = i === currentIndex ? 'block' : 'none';
+                });
+            }
         }, intervalTime);
     }
 });
 </script>
+
 
 <script>
   const meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
