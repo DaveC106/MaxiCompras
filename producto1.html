@@ -719,164 +719,26 @@
     window.addEventListener('DOMContentLoaded', iniciarContador);
 </script>
 
+
+
 <script>
-    //script de carrusel y slider
 document.addEventListener('DOMContentLoaded', function() {
     const productGallery = document.querySelector('.product-gallery');
     const images = document.querySelectorAll('.product-image');
-    let isMobile = window.matchMedia("(max-width: 768px)").matches;
-    let intervalId = null;
     let currentIndex = 0;
-    let startX = 0;
-    let isDragging = false;
+    const intervalTime = 9000; // tiempo en ms (9000 = 9 segundos)
 
-    // Crear contenedor externo para la paginación
-    function createPaginationContainer() {
-        // Eliminar paginación existente si hay
-        const existingPagination = document.querySelector('.pagination-container');
-        if (existingPagination) existingPagination.remove();
+    if (images.length > 1) {
+        // Mostrar la primera imagen
+        images[currentIndex].classList.add('active');
         
-        const paginationContainer = document.createElement('div');
-        paginationContainer.className = 'pagination-container';
-        
-        const dotsContainer = document.createElement('div');
-        dotsContainer.className = 'slider-pagination';
-        
-        images.forEach((_, index) => {
-            const dot = document.createElement('span');
-            dot.className = 'pagination-dot';
-            if (index === 0) dot.classList.add('active');
-            dotsContainer.appendChild(dot);
-        });
-        
-        paginationContainer.appendChild(dotsContainer);
-        
-        // Insertar después del contenedor de la galería
-        productGallery.parentNode.insertBefore(paginationContainer, productGallery.nextSibling);
-        
-        return dotsContainer;
+        // Configurar intervalo para cambiar imágenes
+        setInterval(() => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }, intervalTime);
     }
-
-    // Actualizar indicadores
-    function updatePagination(index) {
-        const dots = document.querySelectorAll('.pagination-dot');
-        if (dots.length > 0) {
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        }
-    }
-
-    // Solo activar en móviles
-    if (isMobile && images.length > 1) {
-        const pagination = createPaginationContainer();
-        
-        // Iniciar autoplay
-        startAutoPlay();
-        
-        // Event listeners para touch
-        productGallery.addEventListener('touchstart', handleTouchStart, { passive: true });
-        productGallery.addEventListener('touchmove', handleTouchMove, { passive: false });
-        productGallery.addEventListener('touchend', handleTouchEnd);
-        
-        // Pausar autoplay al interactuar
-        productGallery.addEventListener('mouseenter', pauseAutoPlay);
-        productGallery.addEventListener('mouseleave', startAutoPlay);
-        productGallery.addEventListener('touchstart', pauseAutoPlay);
-    }
-
-    function scrollToIndex(index, smooth = true) {
-        if (index >= 0 && index < images.length) {
-            const imageWidth = productGallery.offsetWidth;
-            productGallery.scrollTo({
-                left: index * imageWidth,
-                behavior: smooth ? 'smooth' : 'auto'
-            });
-            currentIndex = index;
-            updatePagination(index);
-        }
-    }
-
-    function startAutoPlay() {
-        if (intervalId) clearInterval(intervalId);
-        if (!isMobile || images.length <= 1) return;
-        
-        intervalId = setInterval(() => {
-            const nextIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
-            scrollToIndex(nextIndex);
-        }, 4000);
-    }
-
-    function pauseAutoPlay() {
-        if (intervalId) {
-            clearInterval(intervalId);
-            intervalId = null;
-        }
-    }
-
-    function handleTouchStart(e) {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        pauseAutoPlay();
-    }
-
-    function handleTouchMove(e) {
-        if (!isDragging) return;
-        const x = e.touches[0].clientX;
-        const diff = startX - x;
-        
-        if (Math.abs(diff) > 5) {
-            e.preventDefault();
-        }
-    }
-
-    function handleTouchEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) {
-            if (diff > 0 && currentIndex < images.length - 1) {
-                scrollToIndex(currentIndex + 1);
-            } else if (diff < 0 && currentIndex > 0) {
-                scrollToIndex(currentIndex - 1);
-            }
-        }
-        
-        setTimeout(startAutoPlay, 4000);
-    }
-
-    // Reconfigurar al cambiar tamaño de pantalla
-    window.addEventListener('resize', function() {
-        const newIsMobile = window.matchMedia("(max-width: 768px)").matches;
-        if (newIsMobile !== isMobile) {
-            isMobile = newIsMobile;
-            if (isMobile && images.length > 1) {
-                createPaginationContainer();
-                scrollToIndex(0, false);
-                startAutoPlay();
-            } else {
-                pauseAutoPlay();
-                productGallery.scrollTo({ left: 0, behavior: 'auto' });
-                const pagination = document.querySelector('.pagination-container');
-                if (pagination) pagination.remove();
-            }
-        }
-    });
-    // Slider automático para PC
-if (!isMobile && images.length > 1) {
-    images.forEach((img, i) => {
-        img.style.display = i === 0 ? 'block' : 'none';
-    });
-
-    setInterval(() => {
-        images[currentIndex].style.display = 'none';
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].style.display = 'block';
-    }, 4000);
-}
 });
 </script>
 
@@ -913,28 +775,6 @@ if (!isMobile && images.length > 1) {
 </script>
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const productGallery = document.querySelector('.product-gallery');
-    const images = document.querySelectorAll('.product-image');
-    const isMobile = window.matchMedia("(max-width: 1100px)").matches;
-
-    if (!isMobile && images.length > 1) {
-        // Inicializar slider solo en PC
-        let currentIndex = 0;
-        
-        // Mostrar primera imagen
-        images[currentIndex].classList.add('active');
-        
-        // Configurar intervalo para cambiar imágenes
-        setInterval(() => {
-            images[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].classList.add('active');
-        }, 4000); // Cambia cada 4 segundos
-    }
-});
-</script>
 
 
 <script>
