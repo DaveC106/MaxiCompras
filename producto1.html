@@ -381,45 +381,52 @@
 }
 </style>
 
- <!-- Testimonios -->
-<div class="testimonials-section">
-    <h2 class="section-title center-title">¿Qué dicen nuestros clientes?</h2>
+   <!-- Testimonios -->
+    <div class="testimonials-section">
+        <h2 class="section-title center-title">¿Qué dicen nuestros clientes?</h2>
 
-    <div class="testimonials-grid">
-        <!-- Testimonio 1 -->
-        <div class="testimonial-card">
-            <img src="images/pruebafotos1.webp" class="testimonial-img">
-            <div class="testimonial-info">
-                <div class="stars">★★★★★</div>
-                <div class="testimonial-nombre">Camila M.</div>
-                <div class="testimonial-location">Bogotá</div>
+        <div class="testimonials-grid">
+            <!-- Testimonio 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-img-container">
+                    <img src="images/pruebafotos1.webp" class="testimonial-img">
+                </div>
+                <div class="testimonial-info">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-nombre">Camila M.</div>
+                    <div class="testimonial-location">Bogotá</div>
+                </div>
+                <p class="testimonials-text">¡Increíble lo útil que es este picador! No pensé que me facilitara tanto la vida en la cocina. Rápido, cómodo y sin esfuerzo. Lo recomiendo muchísimo. Desde que lo uso, cocinar es más práctico y hasta divertido.</p>
             </div>
-            <p class="testimonial-text">¡Increíble lo útil que es este picador! No pensé que me facilitara tanto la vida en la cocina. Rápido, cómodo y sin esfuerzo. Lo recomiendo muchísimo. Desde que lo uso, cocinar es más práctico y hasta divertido.</p>
-        </div>
 
-        <!-- Testimonio 2 -->
-        <div class="testimonial-card">
-            <img src="images/pruebafotos2.webp" class="testimonial-img">
-            <div class="testimonial-info">
-                <div class="stars">★★★★★</div>
-                <div class="testimonial-nombre">Wilson R.</div>
-                <div class="testimonial-location">Medellín</div>
+            <!-- Testimonio 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-img-container">
+                    <img src="images/pruebafotos2.webp" class="testimonial-img">
+                </div>
+                <div class="testimonial-info">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-nombre">Wilson R.</div>
+                    <div class="testimonial-location">Medellín</div>
+                </div>
+                <p class="testimonials-text">Funciona mejor de lo que esperaba. En casa lo usamos todos los días, especialmente para las verduras. Ahorra tiempo y evita ensuciar tanto. Si estás pensando en comprarlo, no lo dudes. Vale totalmente la pena.</p>
             </div>
-            <p class="testimonial-text">Funciona mejor de lo que esperaba. En casa lo usamos todos los días, especialmente para las verduras. Ahorra tiempo y evita ensuciar tanto. Si estás pensando en comprarlo, no lo dudes. Vale totalmente la pena.</p>
-        </div>
 
-        <!-- Testimonio 3 -->
-        <div class="testimonial-card">
-            <img src="images/pruebafotos3.webp" class="testimonial-img">
-            <div class="testimonial-info">
-                <div class="stars">★★★★★</div>
-                <div class="testimonial-nombre">Laura P.</div>
-                <div class="testimonial-location">Barranquilla</div>
+            <!-- Testimonio 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-img-container">
+                    <img src="images/pruebafotos3.webp" class="testimonial-img">
+                </div>
+                <div class="testimonial-info">
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-nombre">Laura P.</div>
+                    <div class="testimonial-location">Barranquilla</div>
+                </div>
+                <p class="testimonials-text">Buscaba un regalo útil para mi mamá y este picador fue perfecto. Fácil de usar, no pesa y pica rapidísimo. Ahora ella cocina más tranquila. Si quieres sorprender a alguien con algo funcional, esta es una gran opción.</p>
             </div>
-            <p class="testimonial-text">Buscaba un regalo útil para mi mamá y este picador fue perfecto. Fácil de usar, no pesa y pica rapidísimo. Ahora ella cocina más tranquila. Si quieres sorprender a alguien con algo funcional, esta es una gran opción.</p>
         </div>
     </div>
-</div>
+
     <!-- Transportadoras -->
     <div class="carriers-section">
         <h2 class="section-title">TRANSPORTADORAS ALIADAS</h2>
@@ -1125,5 +1132,139 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 </script>
+
+<!--Script de slider que opinan nuestros clientes-->
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Solo inicializar el slider si estamos en móvil
+            if (window.innerWidth <= 768) {
+                initTestimonialsSlider();
+            }
+            
+            // Re-inicializar si cambia el tamaño de la ventana
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768 && !document.querySelector('.testimonials-track')) {
+                    initTestimonialsSlider();
+                }
+            });
+            
+            function initTestimonialsSlider() {
+                // Ocultar grid y preparar slider
+                const grid = document.querySelector('.testimonials-grid');
+                if (!grid) return;
+                
+                // Crear estructura del slider
+                const testimonialsSection = document.querySelector('.testimonials-section');
+                const sliderHTML = `
+                <div class="testimonials-slider">
+                    <div class="testimonials-track"></div>
+                    <div class="slider-nav"></div>
+                    <div class="slider-arrows">
+                    <div class="slider-arrow prev-arrow">←</div>
+                    <div class="slider-arrow next-arrow">→</div>
+                    </div>
+                </div>
+                `;
+                
+                testimonialsSection.insertAdjacentHTML('beforeend', sliderHTML);
+                
+                const track = document.querySelector('.testimonials-track');
+                const nav = document.querySelector('.slider-nav');
+                const prevArrow = document.querySelector('.prev-arrow');
+                const nextArrow = document.querySelector('.next-arrow');
+                
+                // Mover las tarjetas al slider
+                const testimonialCards = document.querySelectorAll('.testimonial-card');
+                testimonialCards.forEach((card, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'testimonial-slide';
+                    slide.appendChild(card.cloneNode(true));
+                    track.appendChild(slide);
+                    
+                    // Crear dots de navegación
+                    const dot = document.createElement('div');
+                    dot.className = 'slider-dot' + (index === 0 ? ' active' : '');
+                    dot.dataset.index = index;
+                    nav.appendChild(dot);
+                });
+                
+                // Ocultar el grid original
+                grid.style.display = 'none';
+                
+                // Configurar funcionalidad del slider
+                let currentIndex = 0;
+                const slides = document.querySelectorAll('.testimonial-slide');
+                const dots = document.querySelectorAll('.slider-dot');
+                
+                function updateSlider() {
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    
+                    // Actualizar dots
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+                
+                // Event listeners para flechas
+                nextArrow.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSlider();
+                });
+                
+                prevArrow.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateSlider();
+                });
+                
+                // Event listeners para dots
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = parseInt(dot.dataset.index);
+                        updateSlider();
+                    });
+                });
+                
+                // Auto slide cada 5 segundos
+                let autoSlide = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSlider();
+                }, 5000);
+                
+                // Pausar auto slide al interactuar
+                track.addEventListener('mouseenter', () => clearInterval(autoSlide));
+                track.addEventListener('mouseleave', () => {
+                    autoSlide = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % slides.length;
+                        updateSlider();
+                    }, 5000);
+                });
+                
+                // Swipe para móviles
+                let startX = 0;
+                let endX = 0;
+                
+                track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                });
+                
+                track.addEventListener('touchend', (e) => {
+                    endX = e.changedTouches[0].clientX;
+                    handleSwipe();
+                });
+                
+                function handleSwipe() {
+                    if (startX - endX > 50) {
+                        // Swipe izquierda
+                        currentIndex = (currentIndex + 1) % slides.length;
+                        updateSlider();
+                    } else if (endX - startX > 50) {
+                        // Swipe derecha
+                        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                        updateSlider();
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
