@@ -1774,11 +1774,12 @@ body {
 /* Celulares */
 @media (max-width: 480px) {
     .testimonials-grid {
-        justify-content: center;
+        justify-content: space-between; /* reparte las tarjetas */
     }
 
     .testimonial-card {
-        width: 100%; /* una por fila en móviles muy pequeños */
-        max-width: 250px;
+        width: 48%; /* dos tarjetas en la misma fila */
+        max-width: none;
     }
 }
+
