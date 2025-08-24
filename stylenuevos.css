@@ -75,14 +75,6 @@ body {
     position: relative;
 }
 
-/* Galería de imágenes - Versión PC */
-.product-gallery {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-left: 150px;
-}
 
 .product-image {
     max-width: 427.5px;
@@ -987,18 +979,6 @@ body {
 
 
 
-
-
-@media (min-width: 1101px) and (max-width: 1200px) {
-  .product-container {
-    margin-left: -80px;
-  }
-}
-
-
-
-
-
 @media (min-width: 401px) and (max-width: 549px) {
   .buy-button {
     display: block;
@@ -1190,30 +1170,8 @@ body {
     display: flex;
     overflow: hidden; /* Oculta el scroll */
     position: relative;
-    margin-left: 150px;
     height: 427.5px; /* Altura fija para el contenedor */
 }
-
-.product-image {
-    width: 100%;
-    height: 427.5px;
-    object-fit: cover;
-    border-style: groove;
-    border-color: #f5e2d0;
-    border-width: 3px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px #f4ece4;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.product-image.active {
-    opacity: 1;
-}
-
-
 
 /* Versión móvil */
 @media (max-width: 1100px) {
@@ -1935,4 +1893,46 @@ body {
         width: 45px;
         height: 45px;
     }
+}
+
+
+
+/* Centrado perfecto y alineación en desktop grande */
+@media (min-width: 1101px) {
+  .product-container {
+    display: flex;
+    justify-content: center;   /* Centra el contenedor */
+    align-items: flex-start;   /* Alinea arriba si hay sticky */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    gap: 40px;                 /* Espacio entre columnas */
+  }
+  .product-gallery {
+    flex: 1 1 0;
+    min-width: 420px;
+    max-width: 480px;
+    margin-left: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+  }
+  .product-info {
+    flex: 1 1 0;
+    min-width: 420px;
+    max-width: 600px;
+    padding: 0 0 0 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
+
+.product-gallery .product-image {
+  display: none;
+}
+
+.product-gallery .product-image.active {
+  display: block;
 }
