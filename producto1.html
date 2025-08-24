@@ -318,15 +318,59 @@
         </div>
     </div>
 </div>
-
-   <!-- Botón de compra -->
-<div class="button-container">
-    <a href="#" class="buy-button">
-        <div class="button-text">
-            <span class="line1">¡NO ESPERES MÁS, CÓMPRALO YA ⏳!</span>
-        </div>
-    </a>
+<!-- Botón de compra -->
+<div class="contenedor-boton">
+  <a href="#" class="boton-comprar">
+    <div class="texto-boton">
+      <span class="linea1">¡NO ESPERES MÁS, CÓMPRALO YA ⏳!</span>
+    </div>
+  </a>
 </div>
+<style>
+/* Contenedor centrado */
+.contenedor-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* Botón principal */
+.boton-comprar {
+  display: block;
+  background: linear-gradient(135deg, #2f17b7, #381cd4);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 25px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%; /* Móviles: ocupa todo el ancho */
+  max-width: 400px; /* Límite en pantallas grandes */
+}
+
+/* Hover en PC */
+.boton-comprar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #ff6a3d, #ffa947);
+}
+
+/* Texto dentro del botón */
+.texto-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linea1 {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+</style>
 
     <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -641,7 +685,7 @@
       // Actualizar texto
       buyersText.innerHTML = `
         <strong>${randomName}</strong> 
-        <img src="images/check.png" class="verified-icon"> 
+        <img src="images/check.webp" class="verified-icon"> 
         y <strong>${randomCount} personas</strong> compraron
       `;
 
