@@ -303,9 +303,8 @@
             
             <!-- Características -->
             <div class="features-grid">
-                <img src="images/6.webp" alt="Característica" class="feature-image">
-                <img src="images/5.webp" alt="Característica" class="feature-image">
-                <img src="images/7.webp" alt="Característica" class="feature-image">
+                <img src="images/imgcara.png" alt="Característica" class="feature-image">
+        
             </div>
         </div>
     </div>
@@ -469,33 +468,32 @@
     <!-- Scripts -->
     <script>
         // Contador de visitas
-        document.addEventListener("DOMContentLoaded", function () {
-            function getRandomViewers() {
-                return Math.floor(Math.random() * (4000 - 1000 + 1)) + 1000;
-            }
+    document.addEventListener("DOMContentLoaded", function () {
 
-            function updateViewers() {
-                const newViewers = getRandomViewers();
-                localStorage.setItem('viewersCount', newViewers);
-                document.getElementById("viewers-number").textContent = newViewers.toLocaleString();
-            }
+        function getRandomViewers() {
+            return Math.floor(Math.random() * (500 - 10 + 1)) + 10;
+        }
 
-            let savedViewers = localStorage.getItem('viewersCount');
-            if (!savedViewers) {
-                savedViewers = getRandomViewers();
-                localStorage.setItem('viewersCount', savedViewers);
-            }
-            document.getElementById("viewers-number").textContent = parseInt(savedViewers).toLocaleString();
+        function updateViewers() {
+            const newViewers = getRandomViewers();
+            localStorage.setItem('viewersCount', newViewers);
+            document.getElementById("viewers-number").textContent = newViewers.toLocaleString();
+        }
 
-            setInterval(updateViewers, 10000);
-            
-            // Contador de unidades (simulación)
-            let units = 15;
-            setInterval(() => {
-                units = Math.max(1, units - Math.floor(Math.random() * 2));
-                document.getElementById('units-left').textContent = units;
-            }, 30000);
-            
+        // Genera siempre un nuevo número al cargar
+        let savedViewers = getRandomViewers();
+        localStorage.setItem('viewersCount', savedViewers);
+        document.getElementById("viewers-number").textContent = savedViewers.toLocaleString();
+
+        setInterval(updateViewers, 10000);
+
+        // Contador de unidades (simulación)
+        let units = 15;
+        setInterval(() => {
+            units = Math.max(1, units - Math.floor(Math.random() * 2));
+            document.getElementById('units-left').textContent = units;
+        }, 30000);
+
             // Testimonios
             const testimonios = [
     {
