@@ -1094,6 +1094,12 @@ body {
   border-radius: 12px;
   /*box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);*/
 }
+/* Oculta purchase-process entre 610px y 1100px */
+@media (min-width: 610px) and (max-width: 1100px) {
+  .purchase-process {
+    display: none !important;
+  }
+}
 
 .process-step {
   display: flex;
@@ -1141,7 +1147,7 @@ body {
 /* Conector entre imagen 1 y 2 */
 .connector-1 {
   left: calc(33.333% - 50px);
-  right: calc(66.666% + -80px);
+  right: calc(66.666% + -150px);
 }
 
 /* Conector entre imagen 2 y 3 */
