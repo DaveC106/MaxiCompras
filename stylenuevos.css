@@ -637,7 +637,7 @@ body {
 }
 
 .feature-image {
-    max-width: 100%;
+    max-width: 32%;
     height: auto;
     border-radius:12px;
 }
