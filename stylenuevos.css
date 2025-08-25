@@ -896,8 +896,8 @@ body {
 .inventory-alert {
     text-align: center;
     margin: 10px 0 20px 0; /* ahora queda pegadita */
-    font-weight: bold;
-    font-size: 18px;
+    font-weight: 900;
+    font-size: 20px;
 }
 
 .red-text {

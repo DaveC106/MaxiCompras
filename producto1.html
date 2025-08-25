@@ -305,7 +305,7 @@
       <!-- Alerta de inventario -->
 <div class="inventory-alert">
     <div class="blink">⚠️ <span class="red-text">¡POCO INVENTARIO DISPONIBLE!</span> 📦</div>
-    <div class="blink"><span class="red-text">REALICE SU PEDIDO</span> ANTES DE QUE SE AGOTE ⏳</div>
+    <div class="blink"><span class="red-text">REALICE SU PEDIDO</span> ANTES DE QUE SE AGOTE</div>
 </div>
 
 <style>
@@ -442,6 +442,103 @@
             </div>
     </div>
     <!-- Scripts -->
+     <div class="floating-button-container">
+  <a href="#" class="floating-button">¡COMPRAR AHORA!</a>
+</div>
+
+<style>
+/* Contenedor del botón flotante */
+.floating-button-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+/* Botón flotante */
+.floating-button {
+  display: inline-block;
+  background: linear-gradient(180deg, #2f17b7, #381cd4);
+  color: white;
+  padding: 20px 50px;
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: pulse-glow 2s ease-in-out infinite;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.floating-button:hover {
+  transform: scale(1.05) translateX(-50%);
+}
+
+/* Animación del pulso */
+@keyframes pulse-glow {
+  0% { transform: scale(1); box-shadow: 0 0 0px #381cd4; }
+  50% { transform: scale(0.97); box-shadow: 0 0 0px #381cd5; }
+  100% { transform: scale(1); box-shadow: 0 0 30px 10px rgba(87, 3, 160, 0.5); }
+}
+
+/* Solo mostrar en pantallas <768px */
+@media screen and (min-width: 768px) {
+  .floating-button-container {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const floatingBtn = document.querySelector('.floating-button-container');
+
+  // Solo funciona en móviles
+  if (window.innerWidth >= 768) return;
+
+  const mainButtons = document.querySelectorAll('.buy-button');
+
+  const checkButtonVisibility = () => {
+    let shouldHide = false;
+
+    mainButtons.forEach(button => {
+      const rect = button.getBoundingClientRect();
+      const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+      const buttonHeight = rect.height;
+
+      if (visibleHeight > buttonHeight * 0.5) shouldHide = true;
+    });
+
+    if (shouldHide) {
+      floatingBtn.style.opacity = '0';
+      floatingBtn.style.pointerEvents = 'none';
+    } else {
+      floatingBtn.style.opacity = '1';
+      floatingBtn.style.pointerEvents = 'auto';
+    }
+  };
+
+  const observer = new IntersectionObserver(() => checkButtonVisibility(), {
+    threshold: Array.from({length: 11}, (_, i) => i * 0.1),
+    rootMargin: '0px 0px -100px 0px'
+  });
+
+  mainButtons.forEach(button => observer.observe(button));
+
+  checkButtonVisibility();
+  window.addEventListener('scroll', checkButtonVisibility);
+  window.addEventListener('resize', checkButtonVisibility);
+});
+</script>
+
     <script>
       // Contador de visitas
 document.addEventListener("DOMContentLoaded", function () {
@@ -802,140 +899,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<div class="floating-button-container">
-  <a href="#" class="floating-button">¡COMPRAR AHORA!</a>
-</div>
-<style>/* Estilos del botón flotante */
-/* Contenedor del botón flotante */
-.floating-button-container {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
-  transition: opacity 0.3s ease;
-}
-/* BOTÓN FLOTANTE (ESTILO EXACTO) */
-.floating-button {
-  display: inline-block;
-  background: linear-gradient(180deg, #2f17b7, #381cd4);
-  color: white;
-  padding: 20px 50px;
-  border-radius: 12px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: 25px;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  animation: pulse-glow 2s ease-in-out infinite;
-  white-space: nowrap;
-  width: 100%;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-@media (max-width: 768px) {
-  .floating-button-container {
-    display: block !important;
-    opacity: 1;
-  }
-}
-
-.floating-button {
-  /* Tus estilos existentes */
-  transition: transform 0.2s ease;
-}
-
-.floating-button:hover {
-  transform: scale(1.05) translateX(-50%);
-}
-
-/* Animación (igual que tu botón principal) */
-@keyframes pulse-glow {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0px #381cd4;
-  }
-  50% {
-    transform: scale(0.97);
-    box-shadow: 0 0 0px #381cd5;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 30px 10px rgba(87, 3, 160, 0.5);
-  }
-  
-}</style> 
 
 
-
-<script>document.addEventListener('DOMContentLoaded', function() {
-  const floatingBtn = document.querySelector('.floating-button-container');
-  const mainButtons = document.querySelectorAll('.buy-button');
-  
-  if (window.innerWidth > 768) {
-    floatingBtn.style.display = 'none';
-    return;
-  }
-
-  const checkButtonVisibility = () => {
-    let shouldHide = false;
-    
-    mainButtons.forEach(button => {
-      const rect = button.getBoundingClientRect();
-      const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-      const buttonHeight = rect.height;
-      
-      // Si más del 50% del botón es visible
-      if (visibleHeight > buttonHeight * 0.5) {
-        shouldHide = true;
-      }
-    });
-    
-    // Transición suave
-    if (shouldHide) {
-      floatingBtn.style.opacity = '0';
-      floatingBtn.style.pointerEvents = 'none';
-    } else {
-      floatingBtn.style.opacity = '1';
-      floatingBtn.style.pointerEvents = 'auto';
-    }
-  };
-
-  // Configurar el IntersectionObserver
-  const observer = new IntersectionObserver((entries) => {
-    checkButtonVisibility();
-  }, {
-    threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-    rootMargin: '0px 0px -100px 0px'
-  });
-
-  // Observar todos los botones principales
-  mainButtons.forEach(button => {
-    observer.observe(button);
-  });
-
-  // También verificar al cargar y hacer scroll
-  checkButtonVisibility();
-  window.addEventListener('scroll', checkButtonVisibility);
-  window.addEventListener('resize', checkButtonVisibility);
-});</script>
-
-<script>
-    document.querySelectorAll('.faq_questioners_item').forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
-</script>
 
 <!-- 🔥 MODAL FORMULARIO DE COMPRA -->
 <div id="formModal" class="modal">
   <div class="modal-content">
     <span class="close-button">&times;</span>
-    <h2>🛒 Formulario de Compra</h2>
+    <h2> Formulario de Compra</h2>
     <form id="compraForm">
       <label>Nombre <span class="required">*</span></label>
       <input type="text" name="entry.1892785104" required>
