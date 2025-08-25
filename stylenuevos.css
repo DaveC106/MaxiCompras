@@ -1799,12 +1799,9 @@ body {
 
 /* Celulares */
 @media (max-width: 480px) {
-    .testimonials-grid {
-        justify-content: space-between; /* reparte las tarjetas */
-    }
 
     .testimonial-card {
-        width: 48%; /* dos tarjetas en la misma fila */
+        width: 40%; /* dos tarjetas en la misma fila */
         max-width: none;
     }
 }
