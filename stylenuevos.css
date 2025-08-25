@@ -1799,6 +1799,7 @@ body {
 
 /* Celulares */
 @media (max-width: 480px) {
+
     .testimonials-grid {
         justify-content: center; /* reparte las tarjetas */
     }
@@ -1809,3 +1810,16 @@ body {
     }
 }
 
+/* Ajuste para que testimonial-info siempre quede al fondo */
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonials-text {
+    flex: 1; /* ocupa el espacio libre y empuja el info hacia abajo */
+}
+
+.testimonial-info {
+    margin-top: auto; /* fuerza a quedarse abajo */
+}
