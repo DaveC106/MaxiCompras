@@ -1804,7 +1804,7 @@ body {
     }
 
     .testimonial-card {
-        width: 40%; /* dos tarjetas en la misma fila */
+        width: 45%; /* dos tarjetas en la misma fila */
         max-width: none;
     }
 }
