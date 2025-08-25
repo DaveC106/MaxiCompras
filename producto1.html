@@ -1032,19 +1032,27 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 
-<!--script de logica info-box y stock-alert-->
+<!--script de logica info-box y stock-alert con localStorage-->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const numberElement = document.querySelector(".num-infobox");
   const stockAlert = document.querySelector(".stock-alert");
 
-  let currentStock = parseInt(numberElement.textContent, 10);
+  // ✅ Leer stock guardado en localStorage, si no existe toma el del HTML
+  let currentStock = localStorage.getItem("stock")
+    ? parseInt(localStorage.getItem("stock"), 10)
+    : parseInt(numberElement.textContent, 10);
+
+  numberElement.textContent = currentStock;
   let hasStarted = false;
 
   function updateStock() {
     if (currentStock > 1) {
       currentStock--;
       numberElement.textContent = currentStock;
+
+      // ✅ Guardar en localStorage cada vez que baja
+      localStorage.setItem("stock", currentStock);
 
       // efectos de parpadeo
       if (currentStock <= 14 && currentStock > 10) {
@@ -1056,6 +1064,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (currentStock === 1) {
         stockAlert.innerHTML = `Última <span class="num-infobox">1</span> unidad disponible`;
+        localStorage.setItem("stock", 1); // se guarda fijo en 1
         return null; // detener cuando llegue a 1
       }
     }
