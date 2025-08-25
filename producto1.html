@@ -473,33 +473,47 @@
     </div>
     <!-- Scripts -->
     <script>
-        // Contador de visitas
-    document.addEventListener("DOMContentLoaded", function () {
+      // Contador de visitas
+document.addEventListener("DOMContentLoaded", function () {
 
-        function getRandomViewers() {
-            return Math.floor(Math.random() * (500 - 10 + 1)) + 10;
+    function getRandomViewers() {
+        return Math.floor(Math.random() * (500 - 10 + 1)) + 10;
+    }
+
+    function updateViewers() {
+        const newViewers = getRandomViewers();
+        localStorage.setItem('viewersCount', newViewers);
+        localStorage.setItem('lastUpdate', Date.now());
+        document.getElementById("viewers-number").textContent = newViewers.toLocaleString();
+    }
+
+    // Revisar si ya hay un número guardado en localStorage
+    let savedViewers = localStorage.getItem('viewersCount');
+    let lastUpdate = localStorage.getItem('lastUpdate');
+
+    if (savedViewers && lastUpdate) {
+        // Si no han pasado 20 segundos, usamos el número guardado
+        if (Date.now() - lastUpdate < 20000) {
+            document.getElementById("viewers-number").textContent = Number(savedViewers).toLocaleString();
+        } else {
+            // Si ya pasaron 20 segundos, generamos uno nuevo
+            updateViewers();
         }
+    } else {
+        // Si no hay nada guardado, generamos uno nuevo
+        updateViewers();
+    }
 
-        function updateViewers() {
-            const newViewers = getRandomViewers();
-            localStorage.setItem('viewersCount', newViewers);
-            document.getElementById("viewers-number").textContent = newViewers.toLocaleString();
-        }
+    // Actualizar cada 20 segundos
+    setInterval(updateViewers, 20000);
 
-        // Genera siempre un nuevo número al cargar
-        let savedViewers = getRandomViewers();
-        localStorage.setItem('viewersCount', savedViewers);
-        document.getElementById("viewers-number").textContent = savedViewers.toLocaleString();
-
-        setInterval(updateViewers, 10000);
-
-        // Contador de unidades (simulación)
-        let units = 15;
-        setInterval(() => {
-            units = Math.max(1, units - Math.floor(Math.random() * 2));
-            document.getElementById('units-left').textContent = units;
-        }, 30000);
-
+    // Contador de unidades (simulación)
+    let units = 15;
+    setInterval(() => {
+        units = Math.max(1, units - Math.floor(Math.random() * 2));
+        document.getElementById('units-left').textContent = units;
+    }, 30000);
+    
             // Testimonios
             const testimonios = [
     {
