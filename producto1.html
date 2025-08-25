@@ -1090,5 +1090,20 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(stockAlert);
 });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Selecciona todos los items de FAQ
+    const items = document.querySelectorAll('.faq_questioners_item');
+
+    items.forEach(item => {
+        const question = item.querySelector('.faq_questioners_q');
+
+        question.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+});
+</script>
 </body>
 </html>
