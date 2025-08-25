@@ -516,25 +516,45 @@ body {
     margin-bottom: 10px;
 }
 
-.red {
-    color: #381cd4;
-    font-size: 36px;
+
+/* Vibración para el número */
+.num-infobox { 
+  font-weight: 900;
+  color: #381cd4; /* este color se mantiene siempre */
+  font-size: 36px;
+  display: inline-block;
+  animation: vibrar 0.3s infinite;
 }
 
-.units-bar {
-    background: linear-gradient(to right, #ff0000 23%, #ff0000 23%, #ffcccc 24%, #ffcccc 100%);
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 15px;
-    text-align: left;
+@keyframes vibrar {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-2px); }
+  50%  { transform: translateX(2px); }
+  75%  { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
 }
 
-.recent-order {
-    margin: 10px 0;
-    font-size: 16px;
+/* Parpadeo normal (14 a 11) */
+.parpadeo {
+  animation: parpadeo 1s infinite;
 }
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; color: black; }
+  50%      { opacity: 0; color: black; }
+}
+
+/* Parpadeo rojo con desaparición (10 a 1) */
+.parpadeo-rojo {
+  animation: parpadeoRojo 1s infinite;
+}
+
+@keyframes parpadeoRojo {
+  0%   { opacity: 1; color: #000; }
+  50%  { opacity: 0; color: rgb(0, 0, 0); }  /* aquí también desaparece */
+  100% { opacity: 1; color: #000; }
+}
+
 
 .shipping-infor {
     margin: 10px 0;

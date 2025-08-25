@@ -76,7 +76,7 @@
 
   <div class="info-box"> 
     <!-- Contador de unidades -->
-    <p class="stock-alert">Últimas <span class="red">15</span> unidades disponibles</p>
+    <p class="stock-alert">Últimas <span class="num-infobox">15</span> unidades disponibles</p>
 
     <!-- Texto oferta -->
     <p class="offer-text">🔥El 50% OFF termina en:</p>
@@ -1029,5 +1029,76 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 </script>
+
+<!--script de logica info-box y stock-alert-->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const numberElement = document.querySelector(".num-infobox");
+  const stockAlert = document.querySelector(".stock-alert");
+
+  let currentStock = parseInt(numberElement.textContent, 10);
+  let hasStarted = false;
+
+  function updateStock() {
+    if (currentStock > 1) {
+      currentStock--;
+      numberElement.textContent = currentStock;
+
+      // efectos de parpadeo
+      if (currentStock <= 14 && currentStock > 10) {
+        stockAlert.classList.add("parpadeo");
+      } else if (currentStock <= 10) {
+        stockAlert.classList.remove("parpadeo");
+        stockAlert.classList.add("parpadeo-rojo");
+      }
+
+      if (currentStock === 1) {
+        stockAlert.innerHTML = `Última <span class="num-infobox">1</span> unidad disponible`;
+        return null; // detener cuando llegue a 1
+      }
+    }
+
+    // lógica de los intervalos según el valor
+    if (currentStock >= 10) {
+      return 6000; // de 14 a 10 → cada 6s
+    } else if (currentStock >= 2) {
+      return 20000; // de 9 a 2 → cada 20s
+    } else {
+      return null;
+    }
+  }
+
+  function startCountdown() {
+    // primera bajada después de 3s
+    setTimeout(() => {
+      let delay = updateStock();
+
+      function loop() {
+        if (delay === null) return; // detener
+        setTimeout(() => {
+          delay = updateStock();
+          if (delay !== null) loop();
+        }, delay);
+      }
+
+      if (delay !== null) loop();
+    }, 3000);
+  }
+
+  // Observer para iniciar cuando entra en pantalla
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasStarted) {
+        hasStarted = true;
+        startCountdown();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(stockAlert);
+});
+</script>
+
 </body>
 </html>
