@@ -641,18 +641,18 @@ body {
 
 /* Imágenes de garantía y características */
 .guarantee-image {
-    margin: 20px 0;
+    margin: 20px 0 10px 0; /* menos espacio abajo */
     max-width: 100%;
     border-radius: 12px;
-     box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
-
+    box-shadow: -1px -1px 15px 7px rgba(0,0,0,0.2);
 }
 
 .features-grid {
     display: flex;
     gap: 10px;
-    margin: 20px 0;
+    margin: 10px 0 15px 0; /* más pegado al de abajo */
 }
+
 
 .feature-image {
     max-width: 32%;
@@ -895,9 +895,8 @@ body {
 /* Alerta de inventario */
 .inventory-alert {
     text-align: center;
-    margin: 30px 0;
+    margin: 10px 0 20px 0; /* ahora queda pegadita */
     font-weight: bold;
-    font-family: 'Arial', sans-serif;
     font-size: 18px;
 }
 
@@ -1399,82 +1398,56 @@ body {
 /*nuevo style de preguntas frecuentes*/
 .faq_questioners_wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* siempre en columna */
     align-items: center;
     gap: 20px;
     padding: 20px;
+
+    /* 🔥 ocupa siempre todo el ancho */
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+.faq_questioners_image {
+    width: calc(100% + 40px); /* 40px = 2 * 20px de padding de la sección */
+    margin-left: -20px;
+    margin-right: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .faq_questioners_image img {
-    max-width: 100%;
-    border-radius: 10px;
-}
-
-.faq_questioners_content {
     width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    display: block;
 }
 
-.faq_questioners_title {
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.faq_questioners_item {
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-.faq_questioners_q {
-    font-weight: bold;
-    font-size: 18px;
-    color: #333;
-}
-
-.faq_questioners_a {
-    font-size: 16px;
-    color: #555;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s;
-    padding: 0 0;
-}
-
-.faq_questioners_item.active .faq_questioners_a {
-    max-height: 500px;
-    padding: 10px 0;
-}
-
-/* Estilos para pantallas grandes */
-@media screen and (min-width: 768px) {
-    .faq_questioners_wrapper {
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-        max-width: 1200px;
-        margin: 0 auto;
-        gap: 40px;
-    }
-
-    .faq_questioners_image,
-    .faq_questioners_content {
-        width: 50%;
-    }
-
+/* En móviles, ajusta el margen según el padding de la sección */
+@media (max-width: 768px) {
     .faq_questioners_image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .faq_questioners_title {
-        text-align: left;
+        width: calc(100% + 30px); /* 2 * 15px de padding */
+        margin-left: -15px;
+        margin-right: -15px;
     }
 }
-
-/*nuevo css de características*/
+@media (max-width: 480px) {
+    .faq_questioners_image {
+        width: calc(100% + 20px); /* 2 * 10px de padding */
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+}
+.faq_questioners_item
+ { margin-bottom: 20px; cursor: pointer; } 
+ .faq_questioners_q
+  { font-weight: bold; font-size: 18px; color: #333; } 
+  .faq_questioners_a 
+  { font-size: 16px; color: #555; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s; padding: 0 0; } .faq_questioners_item.active .faq_questioners_a { max-height: 500px; padding: 10px 0; }
+.faq_questioners_title { font-size: 28px; font-weight: 900; margin-bottom: 20px; text-align: center; font-family: 'Montserrat', sans-serif; }
+  /*nuevo css de características*/
 
 .caracteristicas-seccion {
     width: 100%;
@@ -1822,4 +1795,14 @@ body {
 
 .testimonial-info {
     margin-top: auto; /* fuerza a quedarse abajo */
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    margin-bottom: 2px !important;
+  }
+  .inventory-alert {
+    margin-top: 2px !important;
+    margin-bottom: 12px !important;
+  }
 }

@@ -300,25 +300,13 @@
         
             </div>
         </div>
-    </div>
-
+    </div>   
     
-   <!-- Sección de comparación -->
-<!--<div class="comparison-section">
-    <div class="comparison-content">
-        <div class="comparison-text">
-            <h2 class="features-title">¿Aún sigues cortando a mano?</h2>
-            <p class="section-text">Picar a mano no solo te quita tiempo, también deja tu cocina hecha un caos 🌀, aumenta el riesgo de cortarte 🔪 y puede ser un dolor de cabeza cuando tienes que preparar varios ingredientes. <strong>Ya no hace falta sufrir cada vez que cocinas.</strong></p>
-            <div class="button-center">
-                <a href="#comprar" class="buy-button">¡Comprar Ahora!</a>
-            </div>
-        </div>
-        <div class="comparison-image">
-            <img src="images/otrogif2.gif" alt="Comparación picado a mano">
-        </div>
-    </div>
-</div>-->
-    
+      <!-- Alerta de inventario -->
+<div class="inventory-alert">
+    <div class="blink">⚠️ <span class="red-text">¡POCO INVENTARIO DISPONIBLE!</span> 📦</div>
+    <div class="blink"><span class="red-text">REALICE SU PEDIDO</span> ANTES DE QUE SE AGOTE ⏳</div>
+</div>
 
 <style>
 /* Contenedor centrado */
@@ -388,11 +376,6 @@
     });
 </script>
 
-  <!-- Alerta de inventario -->
-<div class="inventory-alert">
-    <div class="blink">⚠️ <span class="red-text">¡POCO INVENTARIO DISPONIBLE!</span> 📦</div>
-    <div class="blink">🛒 <span class="red-text">REALICE SU PEDIDO</span> ANTES DE QUE SE AGOTE ⏳</div>
-</div>
   
 </div>
 <style>
@@ -1031,19 +1014,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 </script>
-
-<!--script de logica info-box y stock-alert con localStorage-->
+<!-- script de logica info-box y stock-alert con localStorage y reinicio a los 30 min -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const numberElement = document.querySelector(".num-infobox");
   const stockAlert = document.querySelector(".stock-alert");
 
-  // ✅ Leer stock guardado en localStorage, si no existe toma el del HTML
-  let currentStock = localStorage.getItem("stock")
-    ? parseInt(localStorage.getItem("stock"), 10)
-    : parseInt(numberElement.textContent, 10);
+  const INITIAL_STOCK = 15;
+  const EXPIRATION_MINUTES = 30;
+
+  // 🔥 Cargar stock y timestamp desde localStorage
+  let savedStock = localStorage.getItem("stock");
+  let savedTime = localStorage.getItem("stockTimestamp");
+
+  let currentStock;
+
+  if (savedStock && savedTime) {
+    let elapsed = (Date.now() - parseInt(savedTime, 10)) / 1000 / 60; // en minutos
+    if (parseInt(savedStock, 10) === 1 && elapsed >= EXPIRATION_MINUTES) {
+      // Si quedó en 1 y pasaron 30 min → reiniciar
+      currentStock = INITIAL_STOCK;
+      localStorage.setItem("stock", INITIAL_STOCK);
+      localStorage.setItem("stockTimestamp", Date.now());
+    } else {
+      currentStock = parseInt(savedStock, 10);
+    }
+  } else {
+    currentStock = parseInt(numberElement.textContent, 10) || INITIAL_STOCK;
+    localStorage.setItem("stock", currentStock);
+    localStorage.setItem("stockTimestamp", Date.now());
+  }
 
   numberElement.textContent = currentStock;
+
+  // ✅ Si ya está en 1 al recargar, mostrar el mensaje especial
+  if (currentStock === 1) {
+    stockAlert.innerHTML = `🔥 Última <span class="num-infobox">1</span> unidad reservada para ti`;
+  }
+
   let hasStarted = false;
 
   function updateStock() {
@@ -1053,6 +1061,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // ✅ Guardar en localStorage cada vez que baja
       localStorage.setItem("stock", currentStock);
+      localStorage.setItem("stockTimestamp", Date.now());
 
       // efectos de parpadeo
       if (currentStock <= 14 && currentStock > 10) {
@@ -1063,8 +1072,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (currentStock === 1) {
-        stockAlert.innerHTML = `Última <span class="num-infobox">1</span> unidad disponible`;
-        localStorage.setItem("stock", 1); // se guarda fijo en 1
+        stockAlert.innerHTML = `🔥 Última <span class="num-infobox">1</span> unidad reservada para ti`;
+        localStorage.setItem("stock", 1);
+        localStorage.setItem("stockTimestamp", Date.now()); // Guardar hora exacta
         return null; // detener cuando llegue a 1
       }
     }
@@ -1080,7 +1090,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startCountdown() {
-    // primera bajada después de 3s
     setTimeout(() => {
       let delay = updateStock();
 
@@ -1110,6 +1119,5 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(stockAlert);
 });
 </script>
-
 </body>
 </html>
