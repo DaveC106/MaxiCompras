@@ -500,6 +500,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const floatingBtn = document.querySelector('.floating-button-container');
+  const testimonialsSection = document.querySelector('.testimonials-section');
 
   // Solo funciona en móviles
   if (window.innerWidth >= 768) return;
@@ -509,6 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkButtonVisibility = () => {
     let shouldHide = false;
 
+    // Verificar botones principales
     mainButtons.forEach(button => {
       const rect = button.getBoundingClientRect();
       const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
@@ -516,6 +518,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (visibleHeight > buttonHeight * 0.5) shouldHide = true;
     });
+
+    // Verificar sección de testimonios
+    if (testimonialsSection) {
+      const rect = testimonialsSection.getBoundingClientRect();
+      const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+      const sectionHeight = rect.height;
+      
+      // Si al menos el 30% de la sección es visible, ocultar el botón
+      if (visibleHeight > sectionHeight * 0.3) shouldHide = true;
+    }
 
     if (shouldHide) {
       floatingBtn.style.opacity = '0';
@@ -531,7 +543,13 @@ document.addEventListener('DOMContentLoaded', function() {
     rootMargin: '0px 0px -100px 0px'
   });
 
+  // Observar botones principales
   mainButtons.forEach(button => observer.observe(button));
+  
+  // Observar sección de testimonios si existe
+  if (testimonialsSection) {
+    observer.observe(testimonialsSection);
+  }
 
   checkButtonVisibility();
   window.addEventListener('scroll', checkButtonVisibility);
