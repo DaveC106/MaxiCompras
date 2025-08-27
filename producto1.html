@@ -540,15 +540,39 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
     <script>
-      // Contador de visitas
+  // Contador de visitas
 document.addEventListener("DOMContentLoaded", function () {
 
-    function getRandomViewers() {
-        return Math.floor(Math.random() * (500 - 10 + 1)) + 10;
+    function getSmoothViewersChange(currentViewers) {
+        // Determinar si sube o baja (70% probabilidad de subir, 30% de bajar)
+        const goesUp = Math.random() < 0.7;
+        
+        // Calcular el cambio (entre 15 y 30)
+        const minChange = 15;
+        const maxChange = 30;
+        let changeAmount = Math.floor(Math.random() * (maxChange - minChange + 1)) + minChange;
+        
+        // Aplicar el cambio según la dirección
+        let newViewers;
+        if (goesUp) {
+            newViewers = currentViewers + changeAmount;
+            // Limitar el máximo a 500
+            newViewers = Math.min(500, newViewers);
+        } else {
+            // Para bajar, usar un rango menor (8-15)
+            changeAmount = Math.floor(Math.random() * (15 - 8 + 1)) + 8;
+            newViewers = currentViewers - changeAmount;
+            // Limitar el mínimo a 10
+            newViewers = Math.max(10, newViewers);
+        }
+        
+        return newViewers;
     }
 
     function updateViewers() {
-        const newViewers = getRandomViewers();
+        const currentViewers = Number(localStorage.getItem('viewersCount') || 250);
+        const newViewers = getSmoothViewersChange(currentViewers);
+        
         localStorage.setItem('viewersCount', newViewers);
         localStorage.setItem('lastUpdate', Date.now());
         document.getElementById("viewers-number").textContent = newViewers.toLocaleString();
@@ -559,28 +583,38 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastUpdate = localStorage.getItem('lastUpdate');
 
     if (savedViewers && lastUpdate) {
-        // Si no han pasado 20 segundos, usamos el número guardado
-        if (Date.now() - lastUpdate < 20000) {
+        // Si no han pasado 10 segundos, usamos el número guardado
+        if (Date.now() - lastUpdate < 10000) {
             document.getElementById("viewers-number").textContent = Number(savedViewers).toLocaleString();
         } else {
-            // Si ya pasaron 20 segundos, generamos uno nuevo
+            // Si ya pasaron 10 segundos, generamos uno nuevo
             updateViewers();
         }
     } else {
-        // Si no hay nada guardado, generamos uno nuevo
-        updateViewers();
+        // Si no hay nada guardado, generamos uno nuevo con valor inicial aleatorio entre 10 y 500
+        const initialViewers = Math.floor(Math.random() * (500 - 10 + 1)) + 10;
+        localStorage.setItem('viewersCount', initialViewers);
+        localStorage.setItem('lastUpdate', Date.now());
+        document.getElementById("viewers-number").textContent = initialViewers.toLocaleString();
     }
 
-    // Actualizar cada 20 segundos
-    setInterval(updateViewers, 20000);
+    // Actualizar cada 10 segundos (antes eran 20)
+    setInterval(updateViewers, 10000);
 
-    // Contador de unidades (simulación)
+    // Contador de unidades (simulación) con cambios más notables
     let units = 15;
     setInterval(() => {
-        units = Math.max(1, units - Math.floor(Math.random() * 2));
+        // 80% de probabilidad de bajar, 20% de subir
+        const changeDirection = Math.random() < 0.8 ? -1 : 1;
+        // Cambio de 1 o 2 unidades (más notable)
+        const changeAmount = Math.floor(Math.random() * 2) + 1;
+        
+        units += changeDirection * changeAmount;
+        // Limitar entre 1 y 20 unidades
+        units = Math.max(1, Math.min(20, units));
+        
         document.getElementById('units-left').textContent = units;
     }, 30000);
-    
             // Testimonios
            const testimonios = [
     {
