@@ -1705,11 +1705,11 @@ textarea {
   font-size: 14px;
   font-weight: 800;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  white-space: nowrap;        /* mantiene una sola línea */
-  overflow: hidden;           /* esconde lo que no cabe */
-  text-overflow: ellipsis;    /* muestra "..." al final */
-  flex: 1;                    /* que se adapte al espacio */
+  font-family: 'Montserrat', sans-serif;       
+  overflow: hidden;         
+  text-overflow: ellipsis;   
+  flex: 1; 
+  text-align: left;                
 }
 
 .precio-producto .current-price {
