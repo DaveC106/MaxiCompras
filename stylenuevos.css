@@ -1576,6 +1576,11 @@ form label {
   text-align: left;
   font-size: 15px;
 }
+@media (max-width: 419px) {
+  form label {
+    font-size: 12px;
+  }
+}
 
 .required {
   color: red;
