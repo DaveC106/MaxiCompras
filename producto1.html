@@ -953,13 +953,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-<!--modal de gemini-->
-
 <div id="formModal" class="modal">
   <div class="modal-overlay"></div>
   <div class="modal-container">
     <div class="modal-content">
       <span class="close-button">&times;</span>
+      <img src="images/logoformulario.webp" alt="Logo" class="modal-logo">
       <h2>Diligencia la información del envío</h2>
       <div class="modal-body">
         <form id="compraForm">
@@ -975,22 +974,21 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
 
-          
-         <div class="form-row-select">
-  <div class="form-group-select">
-    <label>Ciudad <span class="required">*</span></label>
-    <select name="entry.168122109" id="ciudad" required>
-      <option value="">Selecciona</option>
-    </select>
-  </div>
+          <div class="form-row-select">
+            <div class="form-group-select">
+              <label>Ciudad <span class="required">*</span></label>
+              <select name="entry.168122109" id="ciudad" required>
+                <option value="">Selecciona</option>
+              </select>
+            </div>
 
-  <div class="form-group-select">
-    <label>Municipio <span class="required">*</span></label>
-    <select name="entry.1435497463" id="municipio" required>
-      <option value="">Selecciona</option>
-    </select>
-  </div>
-</div>
+            <div class="form-group-select">
+              <label>Municipio <span class="required">*</span></label>
+              <select name="entry.1435497463" id="municipio" required>
+                <option value="">Selecciona</option>
+              </select>
+            </div>
+          </div>
 
           <label>Dirección completa <span class="required">*</span></label>
           <input type="text" name="entry.1420509114" placeholder="Incluye casa, apto, barrio, torre, etc..." required>
@@ -998,11 +996,8 @@ document.addEventListener('DOMContentLoaded', function() {
           <label>Barrio <span class="required">*</span></label>
           <input type="text" name="entry.632674694" placeholder="Nombre del barrio" required>
 
-
           <label>Nota adicional</label>
           <textarea name="entry.140924995" placeholder="Agregue información extra de entrega"></textarea>
-
-      
 
           <button type="submit" class="send-button">Enviar Pedido</button>
         </form>
