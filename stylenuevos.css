@@ -1527,7 +1527,6 @@ body {
     }
 }
 
-/*estilo del formulario modal gemini*/
 .modal {
   display: none;
   position: fixed;
@@ -1559,13 +1558,21 @@ body {
   cursor: pointer;
 }
 
+.modal-logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top:-25px;
+}
+
 .modal-content h2 {
   margin-top: 0;
   font-size: 18px;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   white-space: normal;
-
 }
 
 form label {
@@ -1659,7 +1666,6 @@ select {
   font-size: 13px;
   font-family: 'Arial', sans-serif;
   background-color: #fff;
-  
 }
 
 select:focus {
@@ -1667,7 +1673,6 @@ select:focus {
   border-color: #28a745;
   box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }
-
 
 #formModal input::placeholder,
 #formModal textarea::placeholder {
