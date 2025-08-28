@@ -1558,6 +1558,20 @@ body {
   font-size: 23px;
   cursor: pointer;
 }
+.pagoformtext {
+  display: inline-block;
+  animation: vibrar 0.5s infinite;
+  font-size: 22px !important;
+
+}
+
+@keyframes vibrar {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
 
 .modal-logo {
   display: block;
@@ -1565,7 +1579,6 @@ body {
   max-width: 100%;
   height: auto;
   object-fit: contain;
-  margin-top:-25px;
 }
 
 .modal-content h2 {
