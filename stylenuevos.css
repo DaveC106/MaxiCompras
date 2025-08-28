@@ -1526,7 +1526,7 @@ body {
         line-height: 20px; /* Aumentamos el line-height para mejor legibilidad */
     }
 }
-
+/*estilos del formulario*/
 .modal {
   display: none;
   position: fixed;
@@ -1654,24 +1654,32 @@ textarea {
 
 .info-producto {
   display: flex;
-  flex-direction: row;    /* ahora en fila */
-  align-items: center;    /* centra verticalmente */
-  gap: 10px;              /* espacio entre nombre y precio */
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* que el precio siempre quede pegado a la derecha */
+  gap: 10px;
+  flex: 1; /* ocupa todo el espacio disponible */
+  min-width: 0; /* necesario para que text-overflow funcione */
 }
 
 .nombre-producto {
   font-size: 14px;
   font-weight: 800;
   margin: 0;
-   font-family: 'Montserrat', sans-serif;
-   white-space: nowrap;
+  font-family: 'Montserrat', sans-serif;
+  white-space: nowrap;        /* mantiene una sola línea */
+  overflow: hidden;           /* esconde lo que no cabe */
+  text-overflow: ellipsis;    /* muestra "..." al final */
+  flex: 1;                    /* que se adapte al espacio */
 }
 
 .precio-producto .current-price {
   font-size: 14px;
   font-weight: 900;
   color: #000;
+  flex-shrink: 0; /* evita que el precio se achique */
 }
+
 
 /* 🔹 NUEVO: estilos para Nombre y Celular en la misma fila */
 .form-row {
@@ -1729,6 +1737,19 @@ select:focus {
   font-size: 14px;
   color: #666;
 }
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;   /* 🔹 permite que brinquen a la siguiente fila si no caben */
+}
+
+.form-group {
+  flex: 1 1 200px;   /* 🔹 ancho mínimo de 200px, si no cabe se baja */
+  min-width: 0;
+}
+
 
   /* nuevo estilo de seccion de incluye tu compra */
 
