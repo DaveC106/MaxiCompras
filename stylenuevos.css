@@ -1638,6 +1638,41 @@ textarea {
   background: #218838;
 }
 
+.producto-destacado {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.producto-destacado img {
+  width: 70px;   /* ajusta el tamaño de la miniatura */
+  height: auto;
+  border-radius: 5px;
+}
+
+.info-producto {
+  display: flex;
+  flex-direction: row;    /* ahora en fila */
+  align-items: center;    /* centra verticalmente */
+  gap: 10px;              /* espacio entre nombre y precio */
+}
+
+.nombre-producto {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0;
+   font-family: 'Montserrat', sans-serif;
+   white-space: nowrap;
+}
+
+.precio-producto .current-price {
+  font-size: 14px;
+  font-weight: 900;
+  color: #000;
+}
+
 /* 🔹 NUEVO: estilos para Nombre y Celular en la misma fila */
 .form-row {
   display: flex;
