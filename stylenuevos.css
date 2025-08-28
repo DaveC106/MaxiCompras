@@ -1559,11 +1559,11 @@ body {
 
 .resumen-precio {
   color: #000;
-  font-weight: 700; /* todos los precios/subtotales/envío */
+  font-weight: 800; /* todos los precios/subtotales/envío */
 }
 
 .resumen-row.total .resumen-precio {
-  font-weight: 800; /* solo el precio del Total más fuerte */
+  font-weight: 900; /* solo el precio del Total más fuerte */
 }
 .modal {
   display: none;
