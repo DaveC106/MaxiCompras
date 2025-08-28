@@ -1561,10 +1561,10 @@ body {
 
 .modal-content h2 {
   margin-top: 0;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  white-space: nowrap;
+  white-space: normal;
 
 }
 
