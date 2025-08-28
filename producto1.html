@@ -953,87 +953,139 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+<!--modal de gemini-->
 
-
-<!-- 🔥 MODAL FORMULARIO DE COMPRA -->
 <div id="formModal" class="modal">
-  <div class="modal-content">
-    <span class="close-button">&times;</span>
-    <h2> Formulario de Compra</h2>
-    <form id="compraForm">
-      <label>Nombre <span class="required">*</span></label>
-      <input type="text" name="entry.1892785104" required>
+  <div class="modal-overlay"></div>
+  <div class="modal-container">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Diligencia la información del envío</h2>
+      <div class="modal-body">
+        <form id="compraForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre <span class="required">*</span></label>
+              <input type="text" name="entry.1892785104" placeholder="Nombre completo" required>
+            </div>
 
-      <label>Celular (WhatsApp) <span class="required">*</span></label>
-      <input type="tel" name="entry.90879670" required>
+            <div class="form-group">
+              <label>Celular (WhatsApp) <span class="required">*</span></label>
+              <input type="tel" name="entry.90879670" placeholder="WhatsApp" required>
+            </div>
+          </div>
 
-      <label>Dirección completa <span class="required">*</span></label>
-      <input type="text" name="entry.1420509114" required>
+          <label>Dirección completa <span class="required">*</span></label>
+          <input type="text" name="entry.1420509114" placeholder="Incluye casa, apto, barrio, torre, etc..." required>
 
-      <label>Barrio <span class="required">*</span></label>
-      <input type="text" name="entry.632674694" required>
+          <label>Barrio <span class="required">*</span></label>
+          <input type="text" name="entry.632674694" placeholder="Nombre del barrio" required>
 
-      <label>Ciudad <span class="required">*</span></label>
-      <input type="text" name="entry.168122109" required>
+         <div class="form-row-select">
+  <div class="form-group-select">
+    <label>Ciudad <span class="required">*</span></label>
+    <select name="entry.168122109" id="ciudad" required>
+      <option value="">Selecciona tu ciudad</option>
+    </select>
+  </div>
 
-      <label>Nota adicional del pedido</label>
-      <textarea name="entry.140924995"></textarea>
-
-      <label>
-        <input type="checkbox" name="entry.46049132" checked>
-        Contraentrega
-      </label>
-
-      <button type="submit" class="send-button">📦 Enviar Pedido</button>
-    </form>
+  <div class="form-group-select">
+    <label>Municipio <span class="required">*</span></label>
+    <select name="entry.1435497463" id="municipio" required>
+      <option value="">Selecciona tu municipio</option>
+    </select>
   </div>
 </div>
+
+          <label>Nota adicional del pedido</label>
+          <textarea name="entry.140924995" placeholder="Ej: Entregar en portería, llamar antes de llegar"></textarea>
+
+          <label class="checkbox-container">
+            <input type="checkbox" name="entry.46049132" checked>
+            <span class="checkmark"></span>
+            Contraentrega
+          </label>
+
+          <button type="submit" class="send-button">📦 Enviar Pedido</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Script del modal -->
 <script>
-  const modal = document.getElementById('formModal');
-  const openModal = document.getElementById('openModal');
-  const closeModal = document.querySelector('.close-button');
+const modal = document.getElementById('formModal');
+const openModal = document.getElementById('openModal');
+const closeModal = document.querySelector('.close-button');
 
-  openModal.addEventListener('click', function(e) {
-    e.preventDefault();
-    modal.style.display = 'block';
-  });
+openModal.addEventListener('click', e => {
+  e.preventDefault();
+  modal.style.display = 'block';
+});
 
-  closeModal.addEventListener('click', function() {
-    modal.style.display = 'none';
-  });
+closeModal.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
 
-  window.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
+window.addEventListener('click', e => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+</script>
+
+<!-- Script para cargar Ciudad → Municipio desde JSON -->
+<script>
+fetch('colombia.min.json')
+  .then(res => res.json())
+  .then(data => {
+    const ciudadSelect = document.getElementById('ciudad');
+    const municipioSelect = document.getElementById('municipio');
+
+    // Llenar departamentos
+    data.forEach(dep => {
+      let option = document.createElement('option');
+      option.value = dep.departamento;
+      option.textContent = dep.departamento;
+      ciudadSelect.appendChild(option);
+    });
+
+    // Cuando cambia el departamento, llenar municipios
+    ciudadSelect.addEventListener('change', function() {
+      municipioSelect.innerHTML = '<option value="">Selecciona un municipio</option>';
+      let selected = data.find(dep => dep.departamento === this.value);
+      if (selected) {
+        selected.ciudades.forEach(mun => {
+          let option = document.createElement('option');
+          option.value = mun;
+          option.textContent = mun;
+          municipioSelect.appendChild(option);
+        });
+      }
+    });
   });
 </script>
 
 <!-- Script para enviar a Google Forms -->
 <script>
-  document.querySelector("#compraForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.querySelector("#compraForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  const query = new URLSearchParams(data).toString();
 
-    const form = e.target;
-    const data = new FormData(form);
-    const query = new URLSearchParams(data).toString();
-
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdlTu1-WGWBrOTh4otpAs3SnuTBTIGGkMaJkieQzAVdYO63NA/formResponse", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: query
-    }).then(() => {
-      alert("✅ Pedido enviado correctamente");
-      form.reset();
-      modal.style.display = "none";
-    }).catch(() => {
-      alert("❌ Error al enviar el pedido");
-    });
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdlTu1-WGWBrOTh4otpAs3SnuTBTIGGkMaJkieQzAVdYO63NA/formResponse", {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: query
+  }).then(() => {
+    alert("✅ Pedido enviado correctamente");
+    form.reset();
+    modal.style.display = "none";
+  }).catch(() => {
+    alert("❌ Error al enviar el pedido");
   });
+});
 </script>
 <!-- script de logica info-box y stock-alert con localStorage y reinicio a los 30 min -->
 <script>
