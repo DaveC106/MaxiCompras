@@ -1597,7 +1597,7 @@ input, textarea {
 
 textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 60px;
 }
 
 .send-button {
@@ -1657,7 +1657,7 @@ select {
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 13px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: #fff;
   
 }
@@ -1666,6 +1666,14 @@ select:focus {
   outline: none;
   border-color: #28a745;
   box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+
+#formModal input::placeholder,
+#formModal textarea::placeholder {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #666;
 }
 
   /* nuevo estilo de seccion de incluye tu compra */
