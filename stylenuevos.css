@@ -1601,6 +1601,34 @@ body {
   font-size: 16px;
   border-radius: 6px;
 }
+.mensaje-compra {
+  margin: 20px 0;
+  font-weight: bold;
+  color: black; /* color por defecto para el resto del texto */
+}
+
+.titulo {
+  color: #f44336;
+  display: block;
+  
+}
+
+.resaltado {
+  color: #f44336;
+}
+
+.confia {
+  color: #f44336;
+}
+
+.animado {
+  animation: parpadeo 3.5s infinite;
+}
+
+@keyframes parpadeo {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
 
 .cantidad-controls input {
   width: 55px;
