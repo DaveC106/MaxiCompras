@@ -543,7 +543,7 @@ body {
 
 /* Parpadeo normal (14 a 11) */
 .parpadeo {
-  animation: parpadeo 1s infinite;
+  animation: parpadeo 1.5s infinite;
 }
 
 @keyframes parpadeo {
@@ -553,7 +553,7 @@ body {
 
 /* Parpadeo rojo con desaparición (10 a 1) */
 .parpadeo-rojo {
-  animation: parpadeoRojo 1s infinite;
+  animation: parpadeoRojo 1.5s infinite;
 }
 
 @keyframes parpadeoRojo {
