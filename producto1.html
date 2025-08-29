@@ -939,88 +939,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="close-button">&times;</span>
      <h2 class="pagoformtext">Formulario de Compra</h2>
       <img src="images/logoformulario.webp" alt="Logo" class="modal-logo">
-      <!-- Producto destacado -->
-       <!-- Producto destacado -->
-<h3 class="titulo-oferta">ESCOGE LA OFERTA</h3>
-<div class="ofertas-container">
-  <!-- Oferta 1 -->
-  <div class="oferta-card" data-precio="64900">
-    <img src="images/producoventa1.webp" alt="Producto 1">
-  </div>
-
-  <!-- Oferta 2 -->
-  <div class="oferta-card" data-precio="105900">
-    <img src="images/productoventa2.webp" alt="Producto 2">
-  </div>
-
-  <!-- Oferta 3 -->
-  <div class="oferta-card" data-precio="149900">
-    <img src="images/productoventa3.webp" alt="Producto 3">
-  </div>
-</div>
-<div class="cantidad-container">
-  <label for="cantidad">Cantidad:</label>
-  <div class="cantidad-controls">
-    <button type="button" class="btn-menos">-</button>
-    <input type="number" id="cantidad" name="entry.123456789" value="4" min="4" max="10" readonly>
-    <button type="button" class="btn-mas">+</button>
-  </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const btnMas = document.querySelector(".btn-mas");
-  const btnMenos = document.querySelector(".btn-menos");
-  const inputCantidad = document.getElementById("cantidad");
-
-  btnMas.addEventListener("click", () => {
-    let val = parseInt(inputCantidad.value);
-    if (val < parseInt(inputCantidad.max)) {
-      inputCantidad.value = val + 1;
-    }
-  });
-
-  btnMenos.addEventListener("click", () => {
-    let val = parseInt(inputCantidad.value);
-    if (val > parseInt(inputCantidad.min)) {
-      inputCantidad.value = val - 1;
-    }
-  });
-});
-</script>
-<script>
-(() => {
-  const init = () => {
-    const cards = document.querySelectorAll('.oferta-card');
-    const subtotales = document.querySelectorAll('.resumen-compra .resumen-row:first-child .resumen-precio');
-    const totales = document.querySelectorAll('.resumen-compra .resumen-row.total .resumen-precio');
-
-    const seleccionar = (card) => {
-      cards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-
-      const precio = parseInt(card.dataset.precio, 10) || 0;
-      const texto = `$${precio.toLocaleString('es-CO')}`;
-
-      subtotales.forEach(el => el.textContent = texto);
-      totales.forEach(el => el.textContent = texto);
-    };
-
-    cards.forEach(card => card.addEventListener('click', () => seleccionar(card)));
-
-    // Selección por defecto: primera tarjeta
-    if (cards.length) seleccionar(cards[0]);
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
-
-
 
 <!-- Resumen de compra -->
 <div class="resumen-compra">
@@ -1077,6 +995,31 @@ document.addEventListener("DOMContentLoaded", () => {
           <label>Nota adicional</label>
           <textarea name="entry.140924995" placeholder="Agregue información extra de entrega"></textarea>
 
+          <h3 class="titulo-oferta">ESCOGE LA OFERTA</h3>
+<div class="ofertas-container">
+  <!-- Oferta 1 -->
+  <div class="oferta-card" data-precio="64900">
+    <img src="images/productoventa1.webp" alt="Producto 1">
+  </div>
+
+  <!-- Oferta 2 -->
+  <div class="oferta-card" data-precio="105900">
+    <img src="images/productoventa2.webp" alt="Producto 2">
+  </div>
+
+  <!-- Oferta 3 -->
+  <div class="oferta-card" data-precio="149900">
+    <img src="images/productoventa3.webp" alt="Producto 3">
+  </div>
+</div>
+<div class="cantidad-container">
+  <label for="cantidad">Cantidad:</label>
+  <div class="cantidad-controls">
+    <button type="button" class="btn-menos">-</button>
+    <input type="number" id="cantidad" name="entry.123456789" value="1" min="1" max="10" readonly>
+    <button type="button" class="btn-mas">+</button>
+  </div>
+</div>
           <!-- Resumen de compra -->
 <div class="resumen-compra">
   <div class="resumen-row">
