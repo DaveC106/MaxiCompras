@@ -1041,6 +1041,100 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
+<!--script de toda la logica de oferta del form-->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".oferta-card");
+  const inputCantidad = document.getElementById("cantidad");
+  const btnMas = document.querySelector(".btn-mas");
+  const btnMenos = document.querySelector(".btn-menos");
+
+  const subtotales = document.querySelectorAll(".resumen-compra .resumen-row:first-child .resumen-precio");
+  const totales = document.querySelectorAll(".resumen-compra .resumen-row.total .resumen-precio");
+
+  const precioUnitario = 64900; // precio base de un producto
+
+  // Función para actualizar resumen
+  const actualizarResumen = (cantidad) => {
+    let precioFinal;
+
+    if (cantidad === 1) {
+      precioFinal = 64900;
+    } else if (cantidad === 2) {
+      precioFinal = 105900;
+    } else if (cantidad === 3) {
+      precioFinal = 149900;
+    } else {
+      precioFinal = precioUnitario * cantidad;
+    }
+
+    const texto = `$${precioFinal.toLocaleString("es-CO")}`;
+    subtotales.forEach(el => el.textContent = texto);
+    totales.forEach(el => el.textContent = texto);
+  };
+
+  // Función para sincronizar selección de cards con cantidad
+  const sincronizarSeleccion = (cantidad) => {
+    cards.forEach(c => c.classList.remove("active"));
+    if (cantidad >= 1 && cantidad <= 3) {
+      cards[cantidad - 1].classList.add("active");
+    }
+    actualizarResumen(cantidad);
+  };
+
+  // Función para seleccionar tarjeta manualmente
+  const seleccionarCard = (card, cantidad) => {
+    cards.forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+    inputCantidad.value = cantidad;
+    actualizarResumen(cantidad);
+  };
+
+  // Click en las cards
+  cards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+      seleccionarCard(card, index + 1);
+    });
+  });
+
+  // Botón +
+  btnMas.addEventListener("click", () => {
+    let val = parseInt(inputCantidad.value);
+    if (val < parseInt(inputCantidad.max)) {
+      val++;
+      inputCantidad.value = val;
+      sincronizarSeleccion(val);
+    }
+  });
+
+  // Botón -
+  btnMenos.addEventListener("click", () => {
+    let val = parseInt(inputCantidad.value);
+    if (val > parseInt(inputCantidad.min)) {
+      val--;
+      inputCantidad.value = val;
+      sincronizarSeleccion(val);
+    }
+  });
+
+  // Cambio manual en el input (por si el usuario escribe)
+  inputCantidad.addEventListener("input", () => {
+    let val = parseInt(inputCantidad.value);
+    if (isNaN(val) || val < parseInt(inputCantidad.min)) {
+      val = parseInt(inputCantidad.min);
+    }
+    if (val > parseInt(inputCantidad.max)) {
+      val = parseInt(inputCantidad.max);
+    }
+    inputCantidad.value = val;
+    sincronizarSeleccion(val);
+  });
+
+  // Inicializar en 1
+  seleccionarCard(cards[0], 1);
+});
+</script>
+
 
 <!-- Script del modal -->
 <script>
