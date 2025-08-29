@@ -1575,6 +1575,7 @@ body {
 
 .oferta-card.active {
   border: 7px solid red;
+  border-radius: 17px;
 }
 
 .cantidad-container {
