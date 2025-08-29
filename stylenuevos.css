@@ -1578,10 +1578,12 @@ body {
 }
 
 .cantidad-container {
-  margin: 15px 0;
+  margin: 5px 0;
   display: flex;
+  gap: 5px;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  margin-bottom:25px;
 }
 
 .cantidad-controls {
