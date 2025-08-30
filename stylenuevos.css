@@ -619,7 +619,7 @@ body {
 }
 
 .countdown-number {
-    background-color: #381cd4;
+    background-color: red;
     color: white;
     font-size: 24px;
     font-weight: 700;
