@@ -222,6 +222,36 @@ body {
     color: #0ccb00;
 }
 
+.savings-box {
+  margin: 10px auto;
+  padding: 8px 15px;
+  background-color: #dd1425;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 30px;
+  display: inline-block; /* En PC se mantiene así */
+  animation: shakeBox 1.5s ease-in-out infinite;
+}
+
+@keyframes shakeBox {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Hasta 1100px */
+@media (max-width: 1100px) {
+  .savings-box {
+    display: block;
+    max-width: max-content;
+    margin: 10px auto;
+  }
+}
+
 .curved-x {
     position: absolute;
     width: 100%;
@@ -529,7 +559,7 @@ body {
 /* Vibración para el número */
 .num-infobox { 
   font-weight: 900;
-  color: #381cd4; /* este color se mantiene siempre */
+  color: red;
   font-size: 36px;
   display: inline-block;
   animation: vibrar 0.3s infinite;
