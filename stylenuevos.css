@@ -1314,13 +1314,7 @@ body {
   font-size: 16px;
   animation: fadeText 1.5s ease-in-out infinite;
 }
-@media (max-width: 768px) {
-  .promo-bar {
-    position: sticky;
-    top: 0;        /* se pega arriba en móviles */
-    z-index: 9999; /* sobre el contenido */
-  }
-}
+
 
 @media (max-width: 431px) {
     .promo-text {
