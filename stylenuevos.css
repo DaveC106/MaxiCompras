@@ -35,6 +35,7 @@ body {
     z-index: 1000;    /* para que quede por encima del contenido */
   }
 }
+
 .header__logo {
     width: 100%; /* Asegura que la imagen ocupe todo el ancho */
     height: auto;
@@ -1312,6 +1313,13 @@ body {
   font-weight: bold;
   font-size: 16px;
   animation: fadeText 1.5s ease-in-out infinite;
+}
+@media (max-width: 768px) {
+  .promo-bar {
+    position: sticky;
+    top: 0;        /* se pega arriba en móviles */
+    z-index: 9999; /* sobre el contenido */
+  }
 }
 
 @media (max-width: 431px) {
