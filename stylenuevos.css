@@ -29,13 +29,7 @@ body {
     width: 100%; /* Mejor que 100vw */
 }
 
-@media (min-width: 1101px) {
-  .header {
-    position: sticky; /* se queda fijo en su contenedor */
-    top: 0;           /* pegado arriba */
-    z-index: 1000;    /* para que quede por encima del contenido */
-  }
-}
+
 
 .header__logo {
     width: 100%; /* Asegura que la imagen ocupe todo el ancho */
