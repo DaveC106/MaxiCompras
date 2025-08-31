@@ -225,8 +225,8 @@ body {
   font-weight: bold;
   text-align: center;
   border-radius: 30px;
-  display: inline-block; /* En PC se mantiene así */
-  animation: shakeBox 1.5s ease-in-out infinite;
+  display: inline-block;
+  animation: shakeBox 0.8s ease-in-out infinite;
 }
 
 @keyframes shakeBox {
@@ -1593,6 +1593,22 @@ body {
 }
 /*estilos del formulario*/
 
+.datosenvioclass {
+  color: red;
+  display: inline-block;
+  animation: tambaleo 0.8s ease-in-out infinite;
+  margin-bottom: -100px;
+}
+
+@keyframes tambaleo {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+
 
 .titulo-oferta {
   text-align: center;
@@ -1697,8 +1713,8 @@ body {
   padding: 15px;
   margin-top: 15px;
   font-family: 'Poppins', sans-serif;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  margin-bottom: 30px;
+  /*box-shadow: 0 0 10px rgba(0,0,0,0.5);*/
+  margin-bottom: 10px;
 }
 
 .resumen-row {
@@ -1776,7 +1792,6 @@ body {
 }
 
 .modal-content h2 {
-  margin-top: 0;
   font-size: 18px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
