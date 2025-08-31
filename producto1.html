@@ -72,7 +72,7 @@
             
 <!-- Botón de compra -->
 <div class="button-container">
-    <a href="#" class="buy-button" id="openModal">
+    <a href="#" class="buy-button">
         <div class="button-text">
             <span class="line1"> ¡COMPRAR AHORA! </span>
             <span class="line2"> 50% DESCUENTO</span>
@@ -138,7 +138,7 @@
    <div class="button-container">
     <a href="#" class="buy-button">
         <div class="button-text">
-            <span class="line1">¡VER MÁS FUNCIONES!</span>
+            <span class="line1">¡LO QUIERO EN MI COCINA YA!</span>
         </div>
     </a>
 </div>
@@ -198,7 +198,7 @@
 <div class="button-container">
     <a href="#" class="buy-button">
         <div class="button-text">
-            <span class="line1">¡QUIERO EL MÍO!</span>
+            <span class="line1">¡NECESITO MI PICADOR AHORA!</span>
         </div>
     </a>
 </div>
@@ -225,7 +225,7 @@
 <div class="button-container">
     <a href="#" class="buy-button">
         <div class="button-text">
-            <span class="line1">¡LO QUIERO TODO! 🚀</span>
+            <span class="line1">¡LO QUIERO TODO!</span>
         </div>
     </a>
 </div>
@@ -265,12 +265,12 @@
     </div>
 </div>
 <!-- Botón de compra -->
-<div class="contenedor-boton">
-  <a href="#" class="boton-comprar">
-    <div class="texto-boton">
-      <span class="linea1">¡NO ESPERES MÁS, CÓMPRALO YA ⏳!</span>
-    </div>
-  </a>
+<div class="button-container">
+    <a href="#" class="buy-button">
+        <div class="button-text">
+            <span class="line1">¡CÓMPRALO AHORA!</span>
+        </div>
+    </a>
 </div>
 
             
@@ -497,65 +497,7 @@
 }
 </style>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const floatingBtn = document.querySelector('.floating-button-container');
-  const testimonialsSection = document.querySelector('.testimonials-section');
 
-  // Solo funciona en móviles
-  if (window.innerWidth >= 768) return;
-
-  const mainButtons = document.querySelectorAll('.buy-button');
-
-  const checkButtonVisibility = () => {
-    let shouldHide = false;
-
-    // Verificar botones principales
-    mainButtons.forEach(button => {
-      const rect = button.getBoundingClientRect();
-      const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-      const buttonHeight = rect.height;
-
-      if (visibleHeight > buttonHeight * 0.5) shouldHide = true;
-    });
-
-    // Verificar sección de testimonios
-    if (testimonialsSection) {
-      const rect = testimonialsSection.getBoundingClientRect();
-      const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-      const sectionHeight = rect.height;
-      
-      // Si al menos el 30% de la sección es visible, ocultar el botón
-      if (visibleHeight > sectionHeight * 0.3) shouldHide = true;
-    }
-
-    if (shouldHide) {
-      floatingBtn.style.opacity = '0';
-      floatingBtn.style.pointerEvents = 'none';
-    } else {
-      floatingBtn.style.opacity = '1';
-      floatingBtn.style.pointerEvents = 'auto';
-    }
-  };
-
-  const observer = new IntersectionObserver(() => checkButtonVisibility(), {
-    threshold: Array.from({length: 11}, (_, i) => i * 0.1),
-    rootMargin: '0px 0px -100px 0px'
-  });
-
-  // Observar botones principales
-  mainButtons.forEach(button => observer.observe(button));
-  
-  // Observar sección de testimonios si existe
-  if (testimonialsSection) {
-    observer.observe(testimonialsSection);
-  }
-
-  checkButtonVisibility();
-  window.addEventListener('scroll', checkButtonVisibility);
-  window.addEventListener('resize', checkButtonVisibility);
-});
-</script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
 
@@ -1144,25 +1086,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <!-- Script del modal -->
+<!-- Script del modal -->
 <script>
 const modal = document.getElementById('formModal');
-const openModal = document.getElementById('openModal');
 const closeModal = document.querySelector('.close-button');
 
-openModal.addEventListener('click', e => {
-  e.preventDefault();
-  modal.style.display = 'block';
+// Selecciona todos los botones que tengan la clase .buy-button
+const buyButtons = document.querySelectorAll('.buy-button');
+
+// A cada botón le asigna el evento de abrir el modal
+buyButtons.forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault();
+    modal.style.display = 'block';
+  });
 });
 
+// Botón de cerrar
 closeModal.addEventListener('click', () => {
   modal.style.display = 'none';
 });
 
+// Si haces click fuera del modal también se cierra
 window.addEventListener('click', e => {
   if (e.target === modal) modal.style.display = 'none';
 });
 </script>
-
 <!-- Script para cargar Ciudad → Municipio desde JSON -->
 <script>
 fetch('colombia.min.json')

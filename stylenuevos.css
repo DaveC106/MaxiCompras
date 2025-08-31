@@ -226,7 +226,7 @@ body {
 .savings-box {
   margin: 10px auto;
   padding: 8px 15px;
-  background-color: #dd1425;
+  background-color: #e53935;
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -338,7 +338,6 @@ body {
     animation: pulse-glow 2s ease-in-out infinite;
     box-shadow: 0 0 0px #0ccb00;
     transition: transform 0.3s ease;
-    white-space: nowrap;
     min-height: 70px; /* Altura mínima garantizada */
     display:block;
 }
