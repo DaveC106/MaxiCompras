@@ -1312,20 +1312,20 @@ body {
 .promo-text {
   color: #fff;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   animation: fadeText 1.5s ease-in-out infinite;
 }
 
 
 @media (max-width: 431px) {
     .promo-text {
-       font-size: 12px;
+       font-size: 14px;
     }
 }
 
 @media (max-width: 324px) {
     .promo-text {
-       font-size: 9px;
+       font-size: 11px;
     }
 }
 
