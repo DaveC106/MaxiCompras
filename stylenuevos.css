@@ -20,30 +20,7 @@ body {
     box-sizing: border-box;
 }
 
-.product-info h1.product-title {
-  margin-bottom: 8px;   /* antes podía ser mayor */
-  line-height: 1.2;     /* más compacto */
-}
 
-.rating-container {
-  margin-bottom: 8px;   /* reduce el espacio extra */
-}
-
-.price-container {
-  margin: 8px 0;        /* menos espacio arriba y abajo */
-}
-
-.savings-box {
-  margin: 6px 0 10px 0; /* bien pegado al precio */
-}
-
-.button-container {
-  margin-top: 10px;     /* ajusta el botón más cerca */
-}
-/* Header ajustado al 100% sin espacios blancos */
-.header {
-    width: 100%; /* Mejor que 100vw */
-}
 
   .header {
     position: sticky; /* se queda fijo en su contenedor */
@@ -190,7 +167,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 10px 0;
+    margin-top:-10px;
 }
 
 .stars {
@@ -216,7 +193,7 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin: 20px 0;
+    margin-top:-10px;
 }
 
 .price-wrapper {
