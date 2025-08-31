@@ -1688,21 +1688,16 @@ body {
   margin: 20px 0;
   font-weight: bold;
   color: black; /* color por defecto para el resto del texto */
+  margin-bottom: 0px;
 }
 
-.titulo {
-  color: #f44336;
-  display: block;
-  
-}
-
+.titulo,
+.confia,
 .resaltado {
-  color: #f44336;
+  color: red;
+  display: block;
 }
 
-.confia {
-  color: #f44336;
-}
 
 .animado {
   animation: parpadeo 3.5s infinite;
@@ -1847,7 +1842,7 @@ textarea {
 .send-button {
   margin-top: 25px;
   width: 100%;
-  background: #28a745;
+  background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
   color: white;
   font-size: 18px;
   border: none;
@@ -1855,10 +1850,12 @@ textarea {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
+  font-weight: 900;
+  font-family: Poppins, sans-serif;
 }
 
 .send-button:hover {
-  background: #218838;
+  background: linear-gradient(180deg, #0FFF00 0%, #178f11 100%);
 }
 
 .producto-destacado {
