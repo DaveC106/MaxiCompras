@@ -351,6 +351,7 @@ body {
         font-size: 26px; /* Reduzco menos el tamaño */
         padding: 12px 30px; /* Mantengo buen padding */
         min-height: 60px;
+        line-height: 25px;
     }
     
     .arrow {
@@ -369,6 +370,7 @@ body {
         align-items: center;
         margin-left: auto;
         margin-right: auto;
+        line-height: 20px;
     }
     
     .arrow {
