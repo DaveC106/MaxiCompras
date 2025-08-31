@@ -1616,6 +1616,7 @@ body {
 }
 /*estilos del formulario*/
 
+
 .titulo-oferta {
   text-align: center;
   font-size: 22px;
@@ -1970,6 +1971,10 @@ select:focus {
 .form-group {
   flex: 1 1 200px;   /* 🔹 ancho mínimo de 200px, si no cabe se baja */
   min-width: 0;
+}
+
+.envio-gratis{
+    color:red;
 }
 
 
