@@ -7,11 +7,7 @@ html, body {
     background: #ffffff;
 }
 /* Aplicar overflow-x: hidden solo en móviles */
-@media screen and (max-width: 768px) {
-    html, body {
-        overflow-x: hidden;
-    }
-}
+
 
 body {
     font-family: 'Poppins', sans-serif !important;
@@ -24,18 +20,36 @@ body {
     box-sizing: border-box;
 }
 
+.product-info h1.product-title {
+  margin-bottom: 8px;   /* antes podía ser mayor */
+  line-height: 1.2;     /* más compacto */
+}
+
+.rating-container {
+  margin-bottom: 8px;   /* reduce el espacio extra */
+}
+
+.price-container {
+  margin: 8px 0;        /* menos espacio arriba y abajo */
+}
+
+.savings-box {
+  margin: 6px 0 10px 0; /* bien pegado al precio */
+}
+
+.button-container {
+  margin-top: 10px;     /* ajusta el botón más cerca */
+}
 /* Header ajustado al 100% sin espacios blancos */
 .header {
     width: 100%; /* Mejor que 100vw */
 }
 
-@media (min-width: 320px) {
   .header {
     position: sticky; /* se queda fijo en su contenedor */
     top: 0;           /* pegado arriba */
     z-index: 1000;    /* para que quede por encima del contenido */
   }
-}
 
 .header__logo {
     width: 100%; /* Asegura que la imagen ocupe todo el ancho */
@@ -1319,13 +1333,13 @@ body {
 
 @media (max-width: 431px) {
     .promo-text {
-       font-size: 14px;
+       font-size: 12px;
     }
 }
 
 @media (max-width: 324px) {
     .promo-text {
-       font-size: 11px;
+       font-size: 10px;
     }
 }
 
