@@ -327,7 +327,7 @@ body {
     text-align: left;
     margin: 10px 0;
     gap: 20px;
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: pulse-glow 1s ease-in-out infinite;
     box-shadow: 0 0 0px #0ccb00;
     transition: transform 0.3s ease;
     min-height: 70px; /* Altura mínima garantizada */
