@@ -7,6 +7,8 @@
     <meta name="description" content="Convierte tu cocina en un espacio más práctico con este picador eléctrico multifuncional. Ideal para cortar, picar y rebanar en segundos.">
 
     <link rel="stylesheet" href="stylenuevos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -348,123 +350,154 @@
                 </div>
             </div>
     </div>
-
-
 <div id="formModal" class="modal">
   <div class="modal-overlay"></div>
   <div class="modal-container">
     <div class="modal-content">
       <span class="close-button">&times;</span>
-     <h2 class="pagoformtext">Formulario de Compra</h2>
+      <h2 class="pagoformtext">Formulario de Compra</h2>
       <img src="images/logoformulario.webp" alt="Logo" class="modal-logo">
 
       <!-- Producto seleccionado -->
-<div class="producto-seleccionado">
-  <img src="images/PRIMERA-MEJORADA.webp" alt="Picador eléctrico" class="image-logo-form">
-  <span class="producto-nombre">Picador Eléctrico Multifuncional 4en1</span>
-  <span class="producto-precio">$64.900</span>
-</div>
+      <div class="producto-seleccionado">
+        <img src="images/PRIMERA-MEJORADA.webp" alt="Picador eléctrico" class="image-logo-form">
+        <span class="producto-nombre">Picador Eléctrico Multifuncional 4en1</span>
+        <span class="producto-precio">$64.900</span>
+      </div>
 
-<!-- Resumen de compra -->
-<div class="resumen-compra">
-  <div class="resumen-row">
-    <span>Subtotal</span>
-    <span class="resumen-precio">$64.900</span>
-  </div>
-  <div class="resumen-row">
-    <span>Envío</span>
-    <span class="resumen-precio envio-gratis">GRATUITO</span>
-  </div>
-  <div class="resumen-row total">
-    <span>Total</span>
-    <span class="resumen-precio">$64.900</span>
-  </div>
-</div>
+      <!-- Resumen de compra -->
+      <div class="resumen-compra">
+        <div class="resumen-row">
+          <span>Subtotal</span>
+          <span class="resumen-precio">$64.900</span>
+        </div>
+        <div class="resumen-row">
+          <span>Envío</span>
+          <span class="resumen-precio envio-gratis">GRATUITO</span>
+        </div>
+        <div class="resumen-row total">
+          <span>Total</span>
+          <span class="resumen-precio">$64.900</span>
+        </div>
+      </div>
+
       <h2 class="datosenvioclass">DATOS DE ENVÍO</h2>
       <div class="modal-body">
         <form id="compraForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Nombre <span class="required">*</span></label>
+          <div class="form-group">
+            <label>Nombre <span class="required">*</span></label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa fa-user"></i></span>
               <input type="text" name="entry.884366457" placeholder="Nombre completo" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label>Celular (WhatsApp) <span class="required">*</span></label>
+          <div class="form-group">
+            <label>Celular (WhatsApp) <span class="required">*</span></label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa-brands fa-whatsapp fa-xl"></i></span>
               <input type="tel" name="entry.2100004347" placeholder="WhatsApp" required>
             </div>
           </div>
 
-          <div class="form-row-select">
-            <div class="form-group-select">
-              <label>Departamento<span class="required">*</span></label>
-              <select name="entry.1749391978" id="ciudad" required>
-                <option value="">Selecciona</option>
-              </select>
-            </div>
+        <div class="form-row-select">
+  <div class="form-group-select">
+    <label>Departamento <span class="required">*</span></label>
+    <div class="input-group">
+      <span class="input-icon"><i class="fa fa-map"></i></span>
+      <select name="entry.1749391978" id="ciudad" required>
+        <option value="">Selecciona</option>
+      </select>
+    </div>
+  </div>
 
-            <div class="form-group-select">
-              <label>Municipio <span class="required">*</span></label>
-              <select name="entry.918670460" id="municipio" required>
-                <option value="">Selecciona</option>
-              </select>
+  <div class="form-group-select">
+    <label>Municipio <span class="required">*</span></label>
+    <div class="input-group">
+      <span class="input-icon"><i class="fa fa-city"></i></span>
+      <select name="entry.918670460" id="municipio" required>
+        <option value="">Selecciona</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+          <div class="form-group">
+            <label>Correo electrónico <span class="required">*</span></label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa fa-envelope"></i></span>
+              <input type="text" name="entry.1220188323" placeholder="Ej: tucorreo@tudominio.com" required>
             </div>
           </div>
 
-          <label>Correo eléctronico<span class="required">*</span></label>
-          <input type="text" name="entry.1220188323" placeholder="Ej: tucorreo@tudominio.com" required>
+          <div class="form-group">
+            <label>Dirección completa <span class="required">*</span></label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa fa-map-marker-alt"></i></span>
+              <input type="text" name="entry.4031130" placeholder="Incluye casa, apto, barrio, torre, etc..." required>
+            </div>
+          </div>
 
-          <label>Dirección completa <span class="required">*</span></label>
-          <input type="text" name="entry.4031130" placeholder="Incluye casa, apto, barrio, torre, etc..." required>
-
-          <label>Nota adicional</label>
-          <textarea name="entry.256631230" placeholder="Agregue información extra de entrega"></textarea>
+          <div class="form-group">
+            <label>Nota adicional</label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa fa-sticky-note"></i></span>
+              <textarea name="entry.256631230" placeholder="Agregue información extra de entrega"></textarea>
+            </div>
+          </div>
 
           <h3 class="titulo-oferta">ESCOGE LA OFERTA</h3>
-<div class="ofertas-container">
-  <!--oferta 1-->
-<div class="oferta-card" data-nombre="Picador Eléctrico x1" data-precio="64900">
-  <img src="images/productoventa1.webp" alt="Producto 1">
-</div>
-  <!--oferta 2-->
-<div class="oferta-card" data-nombre="Picador Eléctrico x2" data-precio="105900">
-  <img src="images/productoventa2.webp" alt="Producto 2">
-</div>
-  <!--oferta 3-->
-<div class="oferta-card" data-nombre="Picador Eléctrico x3" data-precio="149900">
-  <img src="images/productoventa3.webp" alt="Producto 3">
-</div>
-  <input type="hidden" name="entry.1133296564" id="ofertaSeleccionada" value="Producto x1 - $64900">
-</div>
-<div class="cantidad-container">
-  <label for="cantidad">¿Quieres más de 3? Escoge aquí</label>
-  <div class="cantidad-controls">
-    <button type="button" class="btn-menos">-</button>
-    <input type="number" id="cantidad" name="entry.123456789" value="1" min="1" max="10" readonly>
-    <button type="button" class="btn-mas">+</button>
-  </div>
-</div>
+          <div class="ofertas-container">
+            <!--oferta 1-->
+            <div class="oferta-card" data-nombre="Picador Eléctrico x1" data-precio="64900">
+              <img src="images/productoventa1.webp" alt="Producto 1">
+            </div>
+            <!--oferta 2-->
+            <div class="oferta-card" data-nombre="Picador Eléctrico x2" data-precio="105900">
+              <img src="images/productoventa2.webp" alt="Producto 2">
+            </div>
+            <!--oferta 3-->
+            <div class="oferta-card" data-nombre="Picador Eléctrico x3" data-precio="149900">
+              <img src="images/productoventa3.webp" alt="Producto 3">
+            </div>
+            <input type="hidden" name="entry.1133296564" id="ofertaSeleccionada" value="Producto x1 - $64900">
+          </div>
+
+          <div class="cantidad-container">
+            <label for="cantidad">¿Quieres más de 3? Escoge aquí</label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa fa-plus-circle"></i></span>
+              <div class="cantidad-controls">
+                <button type="button" class="btn-menos">-</button>
+                <input type="number" id="cantidad" name="entry.123456789" value="1" min="1" max="10" readonly>
+                <button type="button" class="btn-mas">+</button>
+              </div>
+            </div>
+          </div>
+
           <!-- Resumen de compra -->
-<div class="resumen-compra">
-  <div class="resumen-row">
-    <span>Subtotal</span>
-    <span class="resumen-precio">$64.900</span>
-  </div>
-  <div class="resumen-row">
-    <span>Envío</span>
-    <span class="resumen-precio envio-gratis">GRATUITO</span>
-  </div>
-  <div class="resumen-row total">
-    <span>Total</span>
-    <span class="resumen-precio">$64.900</span>
-  </div>
-</div>
-  <!-- Mensaje de compromiso animado -->
-<div class="mensaje-compra">
-  <span class="animado titulo">⚠️ TU COMPRA ES UN COMPROMISO ⚠️</span>
-  Confirma solo si estás <span class="resaltado">100% seguro de recibirlo.</span> Enviarlo sin pago previo nos cuesta mucho. 
-  <span class="animado confia">¡Confiamos en ti!</span>
-</div>
+          <div class="resumen-compra">
+            <div class="resumen-row">
+              <span>Subtotal</span>
+              <span class="resumen-precio">$64.900</span>
+            </div>
+            <div class="resumen-row">
+              <span>Envío</span>
+              <span class="resumen-precio envio-gratis">GRATUITO</span>
+            </div>
+            <div class="resumen-row total">
+              <span>Total</span>
+              <span class="resumen-precio">$64.900</span>
+            </div>
+          </div>
+
+          <!-- Mensaje de compromiso animado -->
+          <div class="mensaje-compra">
+            <span class="animado titulo">⚠️ TU COMPRA ES UN COMPROMISO ⚠️</span>
+            Confirma solo si estás <span class="resaltado">100% seguro de recibirlo.</span> Enviarlo sin pago previo nos cuesta mucho. 
+            <span class="animado confia">¡Confiamos en ti!</span>
+          </div>
+
           <button type="submit" class="send-button">¡COMPRAR AHORA!</button>
 
           <img src="images/astronautagarantia.webp" alt="Medios de pago" class="modal-logo">
@@ -473,6 +506,7 @@
     </div>
   </div>
 </div>
+
 
   <!-- Script del producto -->
     <script src="scriptproducto.js"></script>

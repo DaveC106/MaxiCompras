@@ -1733,9 +1733,9 @@ body {
 }
 
 .resumen-row.total {
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 5px;
-  font-weight: 700; /* mantiene el label "Total" fuerte */
+  font-weight: 800; /* mantiene el label "Total" fuerte */
   border-top: 1px solid #322f2f;
 }
 
@@ -1743,9 +1743,39 @@ body {
   color: #000;
   font-weight: 800; /* todos los precios/subtotales/envío */
 }
+.input-group {
+  display: flex;
+  align-items: stretch; /* 🔹 hace que los hijos tengan el mismo alto */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
 
+.input-group .input-icon {
+  background: #f4f4f4;
+  padding: 0 12px;              /* 🔹 solo padding horizontal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 16px;
+  min-width: 45px;              /* 🔹 ancho fijo mínimo para que no quede apretado */
+}
+
+.input-group input,
+.input-group textarea {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: 14px;
+  height: 100%;                 /* 🔹 se asegura que se estire */
+  box-sizing: border-box;
+}
 .resumen-row.total .resumen-precio {
   font-weight: 900; /* solo el precio del Total más fuerte */
+  font-size: 20px;
 }
 .modal {
   display: none;
@@ -2001,6 +2031,20 @@ select:focus {
   font-weight: 900;
   color: #000;
   flex-shrink: 0;
+}
+
+.input-group textarea {
+  resize: vertical;     /* puedes agrandarlo si arrastras */
+  min-height: 42px;     /* mismo alto que un input */
+  height: 42px;         /* 🔹 fuerza a que arranque igual */
+}
+.input-group select {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
 }
 
   /* nuevo estilo de seccion de incluye tu compra */
