@@ -2018,8 +2018,6 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #e3e3e3;
-  border-radius: 12px;
   padding: 10px 15px;
   margin: 15px 0;
   font-family: 'Poppins', sans-serif;
@@ -2034,6 +2032,11 @@ select:focus {
   transform: translateX(-50%); 
   width: 94%;          
   border-bottom: 1px solid #322f2f;
+}
+.producto-seleccionado {
+  width: 105%;    
+  margin-left: -3%; 
+
 }
 
 .producto-seleccionado .image-logo-form {
