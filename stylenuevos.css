@@ -1596,21 +1596,10 @@ body {
 /*estilos del formulario*/
 
 .datosenvioclass {
-  color: red;
+  color: rgb(0, 0, 0);
   display: inline-block;
-  animation: tambaleo 0.8s ease-in-out infinite;
   margin-bottom: -100px;
 }
-
-@keyframes tambaleo {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
-}
-
-
 
 .titulo-oferta {
   text-align: center;
@@ -1618,6 +1607,7 @@ body {
   font-weight: 800;
   margin-bottom: 15px;
     font-family: 'Poppins', sans-serif;
+    margin-top:25px;
 }
 
 .ofertas-container {
@@ -1685,6 +1675,8 @@ body {
   font-weight: bold;
   color: black; /* color por defecto para el resto del texto */
   margin-bottom: 0px;
+      font-family: 'Poppins', sans-serif;
+
 }
 
 .titulo,
@@ -1695,15 +1687,6 @@ body {
 }
 
 
-.animado {
-  animation: parpadeo 3.5s infinite;
-}
-
-@keyframes parpadeo {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
-}
-
 .cantidad-controls input {
   width: 55px;
   text-align: center;
@@ -1711,13 +1694,13 @@ body {
 }
 
 .resumen-compra {
-  background: #f4f4f4; /* tono gris claro */
+  background: #f4f4f4;
   border-radius: 12px;
   padding: 15px;
   margin-top: 15px;
   font-family: 'Poppins', sans-serif;
-  /*box-shadow: 0 0 10px rgba(0,0,0,0.5);*/
-  margin-bottom: 10px;
+
+  margin-bottom: 25px;
 }
 
 .resumen-row {
@@ -1802,16 +1785,16 @@ body {
 
 .modal-content {
   background: white;
-  margin: 5% auto;
+  margin: 0% auto;
   padding: 10px;
   border-radius: 10px;
-  width: 95%;
-  max-width: 500px;
+  width: 100%;
+  max-width: 550px;
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
   position: relative;
   font-family: sans-serif;
-  max-height: 90vh;
   overflow-y: auto;
+  max-height: 100vh;
 }
 
 .close-button {
@@ -1877,6 +1860,21 @@ textarea {
   min-height: 60px;
 }
 
+@keyframes pulse-botonform {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0px #03f33b;
+    }
+    50% {
+        transform: scale(0.97);
+        box-shadow: 0 0 0px #099b0b;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px 10px rgba(3, 218, 85, 0.5);
+    }
+}
+
 .send-button {
   margin-top: 25px;
   width: 100%;
@@ -1890,6 +1888,7 @@ textarea {
   transition: 0.3s ease;
   font-weight: 900;
   font-family: Poppins, sans-serif;
+  animation: pulse-botonform 1s ease-in-out infinite;
 }
 
 .send-button:hover {
