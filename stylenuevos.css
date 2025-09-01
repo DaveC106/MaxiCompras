@@ -2034,9 +2034,9 @@ select:focus {
 }
 
 .input-group textarea {
-  resize: vertical;     /* puedes agrandarlo si arrastras */
-  min-height: 42px;     /* mismo alto que un input */
-  height: 42px;         /* 🔹 fuerza a que arranque igual */
+  resize: vertical;  
+  min-height: 42px;     
+  height: 42px
 }
 .input-group select {
   flex: 1;
