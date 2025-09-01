@@ -1694,7 +1694,7 @@ body {
 }
 
 .resumen-compra {
-  background: #f4f4f4;
+  background: #cccccc;
   border-radius: 12px;
   padding: 15px;
   margin-top: 15px;
@@ -2015,7 +2015,7 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f4f4f4;   /* igual al resumen */
+  background: #cccccc;   /* igual al resumen */
   border-radius: 12px;
   padding: 10px 15px;
   margin: 15px 0;
