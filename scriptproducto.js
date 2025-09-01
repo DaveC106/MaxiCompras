@@ -501,7 +501,7 @@ fetch('colombia.min.json')
 
     // Cuando cambia el departamento, llenar municipios
     ciudadSelect.addEventListener('change', function() {
-      municipioSelect.innerHTML = '<option value="">Selecciona un municipio</option>';
+      municipioSelect.innerHTML = '<option value="">Selecciona</option>';
       let selected = data.find(dep => dep.departamento === this.value);
       if (selected) {
         selected.ciudades.forEach(mun => {
