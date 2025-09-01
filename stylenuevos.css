@@ -1720,13 +1720,14 @@ body {
 .resumen-row.total {
   font-size: 18px;
   margin-top: 5px;
-  font-weight: 800; /* mantiene el label "Total" fuerte */
+  font-weight: 700; /* mantiene el label "Total" fuerte */
   border-top: 1px solid #322f2f;
+  color:black
 }
 
 .resumen-precio {
   color: #000;
-  font-weight: 800; /* todos los precios/subtotales/envío */
+  font-weight: 700; /* todos los precios/subtotales/envío */
 }
 .input-group {
   display: flex;
@@ -1759,7 +1760,7 @@ body {
   box-sizing: border-box;
 }
 .resumen-row.total .resumen-precio {
-  font-weight: 900; /* solo el precio del Total más fuerte */
+  font-weight: 700; /* solo el precio del Total más fuerte */
   font-size: 20px;
 }
 .modal {
@@ -1882,7 +1883,7 @@ textarea {
   width: 100%;
    background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
   color: white;
-  font-size: 18px;
+  font-size: 25px;
   border: none;
   padding: 14px;
   border-radius: 8px;
@@ -2036,13 +2037,13 @@ select:focus {
   text-align: center;
   font-size: 15px;
   font-weight: 700;
-  color: #333;
+  color: black;
   padding: 0 10px;
 }
 
 .producto-seleccionado .producto-precio {
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 700;
   color: #000;
   flex-shrink: 0;
 }
