@@ -1787,6 +1787,19 @@ body {
   overflow-y: auto; /* permite scroll en todo el modal */
 }
 
+/*.modal-content {
+  background: white;
+  margin: 0% auto;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  position: relative;
+  font-family: sans-serif;
+  overflow-y: auto;
+}*/
+
 .modal-content {
   background: white;
   margin: 5% auto;
@@ -1797,8 +1810,8 @@ body {
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
   position: relative;
   font-family: sans-serif;
-  max-height: 90vh; /* se ajusta a la pantalla */
-  overflow-y: auto; /* scroll interno si se llena */
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .close-button {
