@@ -523,7 +523,7 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
   const data = new FormData(form);
   const query = new URLSearchParams(data).toString();
 
-  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdlTu1-WGWBrOTh4otpAs3SnuTBTIGGkMaJkieQzAVdYO63NA/formResponse", {
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse", {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
