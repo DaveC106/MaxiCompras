@@ -2018,11 +2018,22 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #e3e3e3;   /* igual al resumen */
+  background: #e3e3e3;
   border-radius: 12px;
   padding: 10px 15px;
   margin: 15px 0;
   font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+.producto-seleccionado::after {
+  content: "";
+  position: absolute;
+  bottom: 0;           
+  left: 50%;           
+  transform: translateX(-50%); 
+  width: 94%;          
+  border-bottom: 1px solid #322f2f;
 }
 
 .producto-seleccionado .image-logo-form {
