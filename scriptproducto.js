@@ -658,6 +658,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+//script del formulario para escoger el producto
 const hidden = document.getElementById("ofertaSeleccionada");
 
 function setOferta(card) {
