@@ -657,3 +657,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Capturar clic en cada oferta
+document.querySelectorAll(".oferta-card").forEach(card => {
+  card.addEventListener("click", () => {
+    // Quitar selección anterior
+    document.querySelectorAll(".oferta-card").forEach(c => c.classList.remove("seleccionada"));
+    // Marcar la oferta actual
+    card.classList.add("seleccionada");
+
+    // Guardar valor en el input oculto (nombre + precio)
+    const nombre = card.dataset.nombre;
+    const precio = card.dataset.precio;
+    document.getElementById("ofertaSeleccionada").value = `${nombre} - $${precio}`;
+  });
+});

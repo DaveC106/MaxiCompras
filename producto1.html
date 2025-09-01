@@ -397,7 +397,7 @@
 
           <div class="form-row-select">
             <div class="form-group-select">
-              <label>Ciudad <span class="required">*</span></label>
+              <label>Departamento<span class="required">*</span></label>
               <select name="entry.168122109" id="ciudad" required>
                 <option value="">Selecciona</option>
               </select>
@@ -411,31 +411,30 @@
             </div>
           </div>
 
+          <label>Correo eléctronico<span class="required">*</span></label>
+          <input type="text" name="entry.463503565" placeholder="Ej: tucorreo@tudominio.com" required>
+
           <label>Dirección completa <span class="required">*</span></label>
           <input type="text" name="entry.1420509114" placeholder="Incluye casa, apto, barrio, torre, etc..." required>
-
-          <label>Barrio <span class="required">*</span></label>
-          <input type="text" name="entry.632674694" placeholder="Nombre del barrio" required>
 
           <label>Nota adicional</label>
           <textarea name="entry.140924995" placeholder="Agregue información extra de entrega"></textarea>
 
           <h3 class="titulo-oferta">ESCOGE LA OFERTA</h3>
 <div class="ofertas-container">
-  <!-- Oferta 1 -->
-  <div class="oferta-card" data-precio="64900">
-    <img src="images/productoventa1.webp" alt="Producto 1">
-  </div>
-
-  <!-- Oferta 2 -->
-  <div class="oferta-card" data-precio="105900">
-    <img src="images/productoventa2.webp" alt="Producto 2">
-  </div>
-
-  <!-- Oferta 3 -->
-  <div class="oferta-card" data-precio="149900">
-    <img src="images/productoventa3.webp" alt="Producto 3">
-  </div>
+  <!--oferta 1-->
+<div class="oferta-card" data-nombre="Producto x1" data-precio="64900">
+  <img src="images/productoventa1.webp" alt="Producto 1">
+</div>
+  <!--oferta 2-->
+<div class="oferta-card" data-nombre="Producto x2" data-precio="105900">
+  <img src="images/productoventa2.webp" alt="Producto 2">
+</div>
+  <!--oferta 3-->
+<div class="oferta-card" data-nombre="Producto x3" data-precio="149900">
+  <img src="images/productoventa3.webp" alt="Producto 3">
+</div>
+  <input type="hidden" name="entry.1615730612" id="ofertaSeleccionada">
 </div>
 <div class="cantidad-container">
   <label for="cantidad">¿Quieres más de 3? Escoge aquí</label>
