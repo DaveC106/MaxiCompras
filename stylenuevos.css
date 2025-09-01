@@ -2027,7 +2027,7 @@ select:focus {
   bottom: 0;           
   left: 50%;           
   transform: translateX(-50%); 
-  width: 94%;          
+  width: 89%;          
   border-bottom: 1px solid #322f2f;
 }
 .producto-seleccionado {
