@@ -1662,6 +1662,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom:25px;
+  display:none
 }
 
 .cantidad-controls {
@@ -1725,7 +1726,6 @@ body {
   padding: 6px 0;
   font-size: 15px;
   color: #333;
-  border-bottom: 1px solid #929292;
 }
 
 .resumen-row:last-child {
@@ -1736,6 +1736,7 @@ body {
   font-size: 16px;
   margin-top: 5px;
   font-weight: 700; /* mantiene el label "Total" fuerte */
+  border-top: 1px solid #322f2f;
 }
 
 .resumen-precio {
@@ -1968,6 +1969,39 @@ select:focus {
     color:red;
 }
 
+.producto-seleccionado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4f4f4;   /* igual al resumen */
+  border-radius: 12px;
+  padding: 10px 15px;
+  margin: 15px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.producto-seleccionado .image-logo-form {
+  width: 70px;
+  height: auto;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.producto-seleccionado .producto-nombre {
+  flex: 1;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+  padding: 0 10px;
+}
+
+.producto-seleccionado .producto-precio {
+  font-size: 16px;
+  font-weight: 900;
+  color: #000;
+  flex-shrink: 0;
+}
 
   /* nuevo estilo de seccion de incluye tu compra */
 
