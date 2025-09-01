@@ -1836,11 +1836,11 @@ form label {
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
   text-align: left;
-  font-size: 15px;
+  font-size: 16px;
 }
 @media (max-width: 419px) {
   form label {
-    font-size: 12px;
+    font-size: 15px;
   }
 }
 
