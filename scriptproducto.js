@@ -658,17 +658,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Capturar clic en cada oferta
-document.querySelectorAll(".oferta-card").forEach(card => {
-  card.addEventListener("click", () => {
-    // Quitar selección anterior
-    document.querySelectorAll(".oferta-card").forEach(c => c.classList.remove("seleccionada"));
-    // Marcar la oferta actual
-    card.classList.add("seleccionada");
+const hidden = document.getElementById("ofertaSeleccionada");
 
-    // Guardar valor en el input oculto (nombre + precio)
-    const nombre = card.dataset.nombre;
-    const precio = card.dataset.precio;
-    document.getElementById("ofertaSeleccionada").value = `${nombre} - $${precio}`;
-  });
+function setOferta(card) {
+  document.querySelectorAll(".oferta-card").forEach(c => c.classList.remove("seleccionada"));
+  card.classList.add("seleccionada");
+  const nombre = card.dataset.nombre;
+  const precio = card.dataset.precio;
+  hidden.value = `${nombre} - $${precio}`;
+}
+
+// Al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  const def = document.querySelector(".oferta-card.seleccionada") || document.querySelector(".oferta-card");
+  if (def) setOferta(def);
 });
+
+// Al hacer clic
+document.querySelectorAll(".oferta-card").forEach(card => {
+  card.addEventListener("click", () => setOferta(card));
+});
+
+// Si cierras y reabres el modal, llama a init otra vez
+function initOfertaModal() {
+  const def = document.querySelector(".oferta-card.seleccionada") || document.querySelector(".oferta-card");
+  if (def) setOferta(def);
+}
+// Llama initOfertaModal() cuando abras el modal
