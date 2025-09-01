@@ -1785,9 +1785,16 @@ body {
   position: relative;
   font-family: sans-serif;
   overflow-y: auto;
-  max-height: 98vh;
- overflow-x: hidden;
-  overscroll-behavior: contain; /* evita que se “pase” el scroll al body */
+  max-height: 95vh;              /* valor por defecto en móviles */
+  overflow-x: hidden;
+  overscroll-behavior: contain;  /* evita que se “pase” el scroll al body */
+}
+
+/* A partir de 1101px */
+@media (min-width: 1101px) {
+  .modal-content {
+    max-height: 100vh;
+  }
 }
 
 .close-button {
