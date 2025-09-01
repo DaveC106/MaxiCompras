@@ -1798,6 +1798,7 @@ body {
   font-family: sans-serif;
   overflow-y: auto;
   max-height: 100vh;
+   overflow-x: hidden;
 }
 
 .close-button {
