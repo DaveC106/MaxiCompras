@@ -1795,7 +1795,7 @@ body {
 }
 
 .modal-content h2 {
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   white-space: normal;
@@ -1837,7 +1837,7 @@ textarea {
 .send-button {
   margin-top: 25px;
   width: 100%;
-  background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
+   background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
   color: white;
   font-size: 18px;
   border: none;
