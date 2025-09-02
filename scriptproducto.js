@@ -699,11 +699,21 @@ document.addEventListener('DOMContentLoaded', function() {
 const hidden = document.getElementById("ofertaSeleccionada");
 
 function setOferta(card) {
+  // Quitar selección anterior
   document.querySelectorAll(".oferta-card").forEach(c => c.classList.remove("seleccionada"));
   card.classList.add("seleccionada");
+
   const nombre = card.dataset.nombre;
   const precio = card.dataset.precio;
-  hidden.value = `${nombre} - $${precio}`;
+
+  // ✅ Guardamos SOLO el nombre en el hidden (sin precio)
+  hidden.value = nombre;
+
+  // ✅ Mostrar el precio formateado en el resumen (si existe)
+  const resumenPrecio = document.querySelector(".resumen-row.total .resumen-precio");
+  if (resumenPrecio) {
+    resumenPrecio.innerText = `$${parseInt(precio).toLocaleString("es-CO")}`;
+  }
 }
 
 // Al cargar la página
