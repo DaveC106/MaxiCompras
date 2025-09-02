@@ -529,9 +529,8 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: query
   }).then(() => {
-    alert("✅ Pedido enviado correctamente");
-    form.reset();
-    modal.style.display = "none";
+    // Redirige a la página de agradecimiento en la misma pestaña
+    window.location.href = "gracias-pedido.html";
   }).catch(() => {
     alert("❌ Error al enviar el pedido");
   });
