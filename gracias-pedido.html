@@ -5,80 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmar Pedido</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fff;
+      background: #f9f9f9;
       margin: 0;
       padding: 20px;
     }
+
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
+
+    .btn-wrapper {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
     .btn-confirmar {
       display: inline-block;
-      background-color: #25D366;
+      background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
       color: white;
-      padding: 14px 30px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-weight: 600;
       font-size: 22px;
+      text-decoration: none;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-width: 180px;
+      max-width: 100%;
     }
-    .btn-confirmar.mostrar {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
     .btn-confirmar i {
       margin-right: 10px;
     }
+
+    .btn-confirmar.mostrar {
+      opacity: 1;
+      transform: translateY(0);
+      animation: pulse-glow 1.8s infinite;
+    }
+
+    @keyframes pulse-glow {
+      0% { transform: scale(1); box-shadow: 0 0 0px #03f33b; }
+      50% { transform: scale(0.97); box-shadow: 0 0 0px #099b0b; }
+      100% { transform: scale(1); box-shadow: 0 0 30px 10px rgba(3, 218, 85, 0.5); }
+    }
+
     .contenedor {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      margin-bottom: 30px;
     }
+
     .caja {
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      padding: 25px;
       flex: 1 1 300px;
       max-width: 350px;
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
+
     .caja.mostrar {
       opacity: 1;
       transform: translateY(0);
     }
+
     .caja h2 {
       color: #00bfff;
       font-size: 20px;
       margin-bottom: 15px;
       text-align: center;
     }
+
     .caja p {
       margin: 10px 0;
       font-size: 15px;
       line-height: 1.5;
     }
+
     .caja p i {
       color: #25D366;
       margin-right: 8px;
     }
+
+    @media (max-width: 768px) {
+      .contenedor {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   </style>
 </head>
 <body>
- <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
-   aria-label="Confirmar pedido por WhatsApp">
-  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
-</a>
+  <div class="header">
+    <h1>¡Gracias por tu compra!</h1>
+  </div>
+
+  <!-- Botón superior -->
+  <div class="btn-wrapper">
+    <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
+       aria-label="Confirmar pedido por WhatsApp">
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
+    </a>
+  </div>
 
   <div class="contenedor">
     <div class="caja">
@@ -106,71 +149,66 @@
     </div>
   </div>
 
+  <!-- Botón inferior idéntico al superior -->
+  <div class="btn-wrapper">
+    <a id="btnWhatsappInferior" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
+       aria-label="Confirmar pedido por WhatsApp">
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
+    </a>
+  </div>
+
   <script>
+    // Animaciones de botón y cajas
     document.addEventListener("DOMContentLoaded", () => {
-      const boton = document.querySelector(".btn-confirmar");
+      const botones = document.querySelectorAll(".btn-confirmar");
       const cajas = document.querySelectorAll(".caja");
 
-      // Primero mostrar el botón
-      setTimeout(() => {
-        boton.classList.add("mostrar");
-      }, 200);
+      setTimeout(() => { botones.forEach(b => b.classList.add("mostrar")); }, 200);
 
-      // Luego las cajas en cascada
       cajas.forEach((caja, index) => {
-        setTimeout(() => {
-          caja.classList.add("mostrar");
-        }, 600 + index * 300);
+        setTimeout(() => { caja.classList.add("mostrar"); }, 600 + index * 300);
       });
     });
   </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Lee del localStorage
-  const nombre = localStorage.getItem('pedido_nombre') || "";
-  const producto = localStorage.getItem('pedido_producto') || "";
-  const cantidad = localStorage.getItem('pedido_cantidad') || "1";
-  const precio = localStorage.getItem('pedido_precio') || "";
-  const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
+  <script>
+    // WhatsApp Button logic (duplicado para ambos botones)
+    document.addEventListener('DOMContentLoaded', () => {
+      const nombre = localStorage.getItem('pedido_nombre') || "";
+      const producto = localStorage.getItem('pedido_producto') || "";
+      const cantidad = localStorage.getItem('pedido_cantidad') || "1";
+      const precio = localStorage.getItem('pedido_precio') || "";
+      const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
 
-  const btn = document.getElementById('btnWhatsapp');
-  // Cambia este número por tu número de atención (sin +, con código país)
-  const numeroAtencion = "573054469490";
+      const botones = [document.getElementById('btnWhatsapp'), document.getElementById('btnWhatsappInferior')];
+      const numeroAtencion = "573054469490";
 
-  // Si falta algún dato importante, desactivamos el botón
-  if (!nombre || !producto || !precio) {
-    btn.href = "#";
+      botones.forEach(btn => {
+     if (!nombre || !producto || !precio) {
+    btn.href = "https://maxicomprass.store/producto1"; // <- tu página principal
     btn.setAttribute('aria-disabled', 'true');
     btn.classList.add('disabled'); 
     btn.innerText = "No hay datos del pedido (vuelve al producto)";
     return;
-  }
+}
 
-  // Construir el mensaje requerido
-  // Solo mostramos el precio una vez
-  const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+        const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+        const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
 
-  // Enlace a WhatsApp (wa.me)
-  const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
+        btn.href = enlace;
+        btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
 
-  // Asignar el href y aria-label descriptiva
-  btn.href = enlace;
-  btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
-
-  // Limpiar localStorage al enviar
-  btn.addEventListener('click', () => {
-    try {
-      localStorage.removeItem('pedido_nombre');
-      localStorage.removeItem('pedido_producto');
-      localStorage.removeItem('pedido_cantidad');
-      localStorage.removeItem('pedido_precio');
-      localStorage.removeItem('pedido_telefono');
-    } catch (e) {
-      // no crítico si falla
-    }
-  });
-});
-</script>
+        btn.addEventListener('click', () => {
+          try {
+            localStorage.removeItem('pedido_nombre');
+            localStorage.removeItem('pedido_producto');
+            localStorage.removeItem('pedido_cantidad');
+            localStorage.removeItem('pedido_precio');
+            localStorage.removeItem('pedido_telefono');
+          } catch (e) {}
+        });
+      });
+    });
+  </script>
 </body>
 </html>
