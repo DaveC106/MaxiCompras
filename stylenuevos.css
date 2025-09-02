@@ -285,6 +285,7 @@ body {
         justify-content: center;
         flex-wrap: wrap;
         margin-top:-5px;
+        margin-bottom: -10px
     }
     
     .old-price {
