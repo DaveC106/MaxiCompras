@@ -523,19 +523,23 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
   const data = new FormData(form);
   const query = new URLSearchParams(data).toString();
 
+  // Mostrar loader
+  document.getElementById("loader").style.display = "flex";
+
   fetch("https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse", {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: query
   }).then(() => {
-    // Redirige a la página de agradecimiento en la misma pestaña
-    window.location.href = "gracias-pedido.html";
+    setTimeout(() => {
+      window.location.href = "gracias-pedido.html";
+    }, 2000);
   }).catch(() => {
     alert("❌ Error al enviar el pedido");
+    document.getElementById("loader").style.display = "none";
   });
 });
-
 
 
 
