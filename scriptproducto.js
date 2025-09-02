@@ -514,9 +514,6 @@ fetch('colombia.min.json')
     });
   });
 
-
-
-
 document.querySelector("#compraForm").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
@@ -533,6 +530,42 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
     body: query
   }).then(() => {
     setTimeout(() => {
+      // --- AGREGADO: guardar en localStorage (para usar en gracias-pedido.html) ---
+      try {
+        // Nombre del cliente
+        const nombre = (form.querySelector('input[name="entry.884366457"]')?.value || "").trim();
+
+        // Producto seleccionado (hidden input con "Picador Eléctrico x2")
+        const ofertaRaw = (document.getElementById("ofertaSeleccionada")?.value || "").trim();
+
+        // Extraer cantidad y nombre base
+        let cantidad = 1;
+        let nombreBase = ofertaRaw;
+
+        const match = ofertaRaw.match(/x(\d+)/i);
+        if (match) {
+          cantidad = parseInt(match[1]);
+          nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
+        }
+
+        // Precio total (capturado del resumen)
+        const precioEl = document.querySelector('.resumen-row.total .resumen-precio');
+        const precio = (precioEl ? precioEl.innerText.trim() : "");
+
+        // Teléfono del cliente (opcional)
+        const telefono = (form.querySelector('input[name="entry.2100004347"]')?.value || "").trim();
+
+        // Guardamos en localStorage
+        localStorage.setItem('pedido_nombre', nombre);
+        localStorage.setItem('pedido_producto', nombreBase);   // ✅ solo nombre
+        localStorage.setItem('pedido_cantidad', cantidad);     // ✅ cantidad
+        localStorage.setItem('pedido_precio', precio);         // ✅ precio limpio
+        localStorage.setItem('pedido_telefono', telefono);
+      } catch (err) {
+        console.warn('No fue posible guardar datos en localStorage', err);
+      }
+      // -------------------------------------------------------------------
+
       window.location.href = "gracias-pedido.html";
     }, 2000);
   }).catch(() => {
@@ -540,6 +573,7 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
     document.getElementById("loader").style.display = "none";
   });
 });
+
 
 
 

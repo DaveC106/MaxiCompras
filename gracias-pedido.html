@@ -25,6 +25,13 @@
       font-weight: bold;
       text-decoration: none;
       font-size: 22px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .btn-confirmar.mostrar {
+      opacity: 1;
+      transform: translateY(0);
     }
     .btn-confirmar i {
       margin-right: 10px;
@@ -42,6 +49,13 @@
       padding: 20px;
       flex: 1 1 300px;
       max-width: 350px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .caja.mostrar {
+      opacity: 1;
+      transform: translateY(0);
     }
     .caja h2 {
       color: #00bfff;
@@ -61,11 +75,10 @@
   </style>
 </head>
 <body>
-  <div class="header">
-    <a href="https://wa.me/573054469490?text=Hola%20quiero%20confirmar%20mi%20pedido" target="_blank" class="btn-confirmar">
-      <i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO
-    </a>
-  </div>
+ <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
+   aria-label="Confirmar pedido por WhatsApp">
+  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
+</a>
 
   <div class="contenedor">
     <div class="caja">
@@ -92,5 +105,72 @@
       <p><i class="fa-solid fa-check"></i> Te pedimos <b>responsabilidad</b> al realizar tu pedido, ya que <b>cada devolución</b> representa un costo adicional 😅</p>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const boton = document.querySelector(".btn-confirmar");
+      const cajas = document.querySelectorAll(".caja");
+
+      // Primero mostrar el botón
+      setTimeout(() => {
+        boton.classList.add("mostrar");
+      }, 200);
+
+      // Luego las cajas en cascada
+      cajas.forEach((caja, index) => {
+        setTimeout(() => {
+          caja.classList.add("mostrar");
+        }, 600 + index * 300);
+      });
+    });
+  </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Lee del localStorage
+  const nombre = localStorage.getItem('pedido_nombre') || "";
+  const producto = localStorage.getItem('pedido_producto') || "";
+  const cantidad = localStorage.getItem('pedido_cantidad') || "1";
+  const precio = localStorage.getItem('pedido_precio') || "";
+  const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
+
+  const btn = document.getElementById('btnWhatsapp');
+  // Cambia este número por tu número de atención (sin +, con código país)
+  const numeroAtencion = "573054469490";
+
+  // Si falta algún dato importante, desactivamos el botón
+  if (!nombre || !producto || !precio) {
+    btn.href = "#";
+    btn.setAttribute('aria-disabled', 'true');
+    btn.classList.add('disabled'); 
+    btn.innerText = "No hay datos del pedido (vuelve al producto)";
+    return;
+  }
+
+  // Construir el mensaje requerido
+  // Solo mostramos el precio una vez
+  const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+
+  // Enlace a WhatsApp (wa.me)
+  const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
+
+  // Asignar el href y aria-label descriptiva
+  btn.href = enlace;
+  btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
+
+  // Limpiar localStorage al enviar
+  btn.addEventListener('click', () => {
+    try {
+      localStorage.removeItem('pedido_nombre');
+      localStorage.removeItem('pedido_producto');
+      localStorage.removeItem('pedido_cantidad');
+      localStorage.removeItem('pedido_precio');
+      localStorage.removeItem('pedido_telefono');
+    } catch (e) {
+      // no crítico si falla
+    }
+  });
+});
+</script>
 </body>
 </html>
