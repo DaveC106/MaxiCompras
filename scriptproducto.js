@@ -567,7 +567,7 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
       // -------------------------------------------------------------------
 
       window.location.href = "gracias-pedido.html";
-    }, 2000);
+    }, 1000);
   }).catch(() => {
     alert("❌ Error al enviar el pedido");
     document.getElementById("loader").style.display = "none";
