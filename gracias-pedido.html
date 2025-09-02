@@ -110,20 +110,37 @@
         align-items: center;
       }
     }
+  .mensaje-confirmacion {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mensaje-confirmacion-texto {
+  color: red;
+  font-size: 28px;
+  font-weight: 700;
+}
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>¡Gracias por tu compra!</h1>
-  </div>
+ <div class="header">
+  <h1>¡Gracias por tu compra!</h1>
+</div>
 
-  <!-- Botón superior -->
-  <div class="btn-wrapper">
-    <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
-       aria-label="Confirmar pedido por WhatsApp">
-      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
-    </a>
-  </div>
+<!-- Aquí va el mensaje grande -->
+<div class="mensaje-confirmacion">
+  <h2 class="mensaje-confirmacion-texto">
+    ¡SI CONFIRMAS TU PEDIDO, SE ENVIARÁ MÁS RÁPIDO!
+  </h2>
+</div>
+
+<!-- Botón superior -->
+<div class="btn-wrapper">
+  <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
+     aria-label="Confirmar pedido por WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
+  </a>
+</div>
 
   <div class="contenedor">
     <div class="caja">
