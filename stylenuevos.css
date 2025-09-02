@@ -1785,7 +1785,7 @@ body {
   position: relative;
   font-family: sans-serif;
   overflow-y: auto;
-  max-height: 100vh;              /* valor por defecto en móviles */
+  max-height: 90vh;              /* valor por defecto en móviles */
   overflow-x: hidden;
   overscroll-behavior: contain;  /* evita que se “pase” el scroll al body */
 }
