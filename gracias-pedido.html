@@ -305,11 +305,11 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.removeItem('pedido_cantidad');
           localStorage.removeItem('pedido_precio');
           localStorage.removeItem('pedido_telefono');
+          // Recargar la página después de limpiar
+          window.location.reload();
         } catch (e) {
           console.error('Error al limpiar localStorage:', e);
         }
-        // Actualizar el botón inmediatamente después de limpiar
-        actualizarBoton();
       }
       // No prevenir el evento de clic, permitir la redirección
     });
