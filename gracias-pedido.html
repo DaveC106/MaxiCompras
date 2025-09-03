@@ -191,6 +191,17 @@ body {
     font-size: 14px;
   }
 }
+
+.image-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
   </style>
 </head>
 <body>
@@ -239,6 +250,10 @@ body {
 
 <div class="dots" id="dots"></div>
 
+<div class="image-container">
+  <img src="images/imagegracias.png" alt="Gracias por tu compra">
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const botones = document.querySelectorAll(".btn-confirmar");
@@ -258,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const precio = localStorage.getItem('pedido_precio') || "";
   const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
 
-  const botones = [document.getElementById('btnWhatsapp'), document.getElementById('btnWhatsappInferior')];
+  const botones = [document.getElementById('btnWhatsapp')]; // Solo el botón principal
   const numeroAtencion = "573054469490";
 
   botones.forEach(btn => {
