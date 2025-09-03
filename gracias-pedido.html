@@ -206,7 +206,7 @@ body {
 </head>
 <body>
  <div class="header">
-  <h1>¡Gracias por tu compra!</h1>
+  <h2>¡Gracias por tu compra!</h2>
 </div>
 
 <div class="mensaje-confirmacion">
@@ -272,23 +272,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const cantidad = localStorage.getItem('pedido_cantidad') || "1";
   const precio = localStorage.getItem('pedido_precio') || "";
   const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
+  const mensajeConfirmacionTexto = document.querySelector('.mensaje-confirmacion-texto');
 
   const botones = [document.getElementById('btnWhatsapp')]; // Solo el botón principal
   const numeroAtencion = "573054469490";
 
   botones.forEach(btn => {
-    // Función para actualizar el estado del botón
+    // Función para actualizar el estado del botón y el mensaje
     function actualizarBoton() {
       if (!nombre || !producto || !precio) {
         btn.href = "https://maxicomprass.store/producto1";
-        btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> No hay datos del pedido (vuelve al inicio)';
-        btn.setAttribute('aria-label', 'Volver al inicio por falta de datos del pedido');
+        btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Volver a la página principal';
+        btn.setAttribute('aria-label', 'Volver a la página principal');
+        mensajeConfirmacionTexto.textContent = '¡Pedido confirmado, más noticias pronto!';
       } else {
         const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
         const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
         btn.href = enlace;
         btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO';
         btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
+        mensajeConfirmacionTexto.textContent = '¡SI CONFIRMAS TU PEDIDO, SE ENVIARÁ MÁS RÁPIDO!';
       }
     }
 
@@ -304,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
         window.open(enlace, '_blank');
 
-        // Limpiar localStorage y recargar después de 10 segundos
+        // Limpiar localStorage y actualizar mensaje y botón después de 10 segundos
         try {
           localStorage.removeItem('pedido_nombre');
           localStorage.removeItem('pedido_producto');
@@ -312,7 +315,8 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.removeItem('pedido_precio');
           localStorage.removeItem('pedido_telefono');
           setTimeout(() => {
-            window.location.reload();
+            actualizarBoton(); // Actualizar botón y mensaje antes de recargar
+            window.location.reload(); // Recargar la página
           }, 10000); // 10 segundos de espera
         } catch (e) {
           console.error('Error al limpiar localStorage:', e);
