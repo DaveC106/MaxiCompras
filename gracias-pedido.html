@@ -296,22 +296,28 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarBoton();
 
     // Manejar clic en el botón
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
       if (nombre && producto && precio) {
-        // Limpiar localStorage solo si hay datos válidos
+        e.preventDefault(); // Evitar la redirección inmediata
+        // Abrir WhatsApp en una nueva pestaña
+        const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+        const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
+        window.open(enlace, '_blank');
+
+        // Limpiar localStorage y recargar después de 10 segundos
         try {
           localStorage.removeItem('pedido_nombre');
           localStorage.removeItem('pedido_producto');
           localStorage.removeItem('pedido_cantidad');
           localStorage.removeItem('pedido_precio');
           localStorage.removeItem('pedido_telefono');
-          // Recargar la página después de limpiar
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 10000); // 10 segundos de espera
         } catch (e) {
           console.error('Error al limpiar localStorage:', e);
         }
       }
-      // No prevenir el evento de clic, permitir la redirección
     });
   });
 });
