@@ -212,7 +212,11 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 45px;
     font-weight: 900;
-    color: #0ccb00;
+    background: linear-gradient(180deg, #0AAC00 0%, #0FFF00 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback para navegadores modernos */
 }
 
 .savings-box {
@@ -260,7 +264,7 @@ body {
 .liner1,
 .liner2 {
     fill: none;
-    stroke: red;
+    stroke: #e53935;
     stroke-width: 8;
     stroke-linecap: round;
     opacity: 0;
@@ -555,7 +559,7 @@ body {
 /* Vibración para el número */
 .num-infobox { 
   font-weight: 900;
-  color: red;
+  color: #e53935;
   font-size: 36px;
   display: inline-block;
   animation: vibrar 0.3s infinite;
@@ -1300,7 +1304,7 @@ body {
 
 .promo-bar {
   width: 100%;
-  background-color: red;
+  background-color: #e53935;
   text-align: center;
   padding: 3px 0;
 }
