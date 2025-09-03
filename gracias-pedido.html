@@ -6,130 +6,190 @@
   <title>Confirmar Pedido</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
- <!-- ✅ Favicon -->
-    <link rel="icon" href="https://maxicomprass.store/img/logomaxicompras.webp" type="image/webp">
- <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 20px;
-    }
+  <link rel="icon" href="https://maxicomprass.store/img/logomaxicompras.webp" type="image/webp">
 
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+  <style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+  overflow-x: hidden;
+}
 
-    .btn-wrapper {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
 
-    .btn-confirmar {
-      display: inline-block;
-      background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
-      color: white;
-      padding: 16px 40px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 22px;
-      text-decoration: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      min-width: 180px;
-      max-width: 100%;
-    }
+.header h1 {
+  font-size: 28px;
+  margin: 0;
+}
 
-    .btn-confirmar i {
-      margin-right: 10px;
-    }
-
-    .btn-confirmar.mostrar {
-      opacity: 1;
-      transform: translateY(0);
-      animation: pulse-glow 1.8s infinite;
-    }
-
-    @keyframes pulse-glow {
-      0% { transform: scale(1); box-shadow: 0 0 0px #03f33b; }
-      50% { transform: scale(0.97); box-shadow: 0 0 0px #099b0b; }
-      100% { transform: scale(1); box-shadow: 0 0 30px 10px rgba(3, 218, 85, 0.5); }
-    }
-
-    .contenedor {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    .caja {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      padding: 25px;
-      flex: 1 1 300px;
-      max-width: 350px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .caja.mostrar {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .caja h2 {
-      color: #00bfff;
-      font-size: 20px;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    .caja p {
-      margin: 10px 0;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .caja p i {
-      color: #25D366;
-      margin-right: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .contenedor {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
 .mensaje-confirmacion {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .mensaje-confirmacion-texto {
-  color: red;
-  font-size: 18px;
+  color: #d25252;
+  font-size: 15px;
   font-weight: 700;
-  display: inline-block; /* Necesario para animación */
-  animation: vibrar 0.5s infinite;
+  margin: 0;
 }
 
-@keyframes vibrar {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(-2px); }
-  40%  { transform: translateX(2px); }
-  60%  { transform: translateX(-2px); }
-  80%  { transform: translateX(2px); }
-  100% { transform: translateX(0); }
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.btn-confirmar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 22px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  max-width: 100%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.btn-confirmar i {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+.btn-confirmar.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+  animation: pulse-glow 1.8s infinite;
+}
+
+.btn-confirmar:hover {
+  filter: brightness(1.1);
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(1); box-shadow: 0 0 0px #03f33b; }
+  50% { transform: scale(0.97); box-shadow: 0 0 0px #099b0b; }
+  100% { transform: scale(1); box-shadow: 0 0 30px 8px rgba(3, 218, 85, 0.5); }
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 25px auto;
+  max-width: 1200px;
+  padding: 0 10px;
+}
+
+.caja {
+  background: #f0f0f0;
+  border-radius: 12px;
+  padding: 22px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.caja.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.caja h2 {
+  color: #00bfff;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.caja p {
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.caja p i {
+  color: #25D366;
+  margin-right: 6px;
+}
+
+/* Slider en móviles */
+@media (max-width: 768px) {
+  .contenedor {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+  }
+
+  .caja {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+
+  .contenedor::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dots {
+    text-align: center;
+    margin-top: -30px;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background: #ccc;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+
+  .dot.active {
+    background: #00bfff;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .btn-confirmar {
+    font-size: 18px;
+    padding: 12px 24px;
+    min-width: 160px;
+  }
+
+  .caja h2 {
+    font-size: 18px;
+  }
+
+  .caja p {
+    font-size: 14px;
+  }
 }
   </style>
 </head>
@@ -138,107 +198,140 @@
   <h1>¡Gracias por tu compra!</h1>
 </div>
 
-<!-- Aquí va el mensaje grande -->
 <div class="mensaje-confirmacion">
   <h2 class="mensaje-confirmacion-texto">
     ¡SI CONFIRMAS TU PEDIDO, SE ENVIARÁ MÁS RÁPIDO!
   </h2>
 </div>
 
-<!-- Botón superior -->
 <div class="btn-wrapper">
   <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
      aria-label="Confirmar pedido por WhatsApp">
-    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
+    <i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO
   </a>
 </div>
 
-  <div class="contenedor">
-    <div class="caja">
-      <h2>¡GRACIAS POR COMPRAR CON NOSOTROS!</h2>
-      <p><i class="fa-solid fa-check"></i> <b>Tu pedido está en buenas manos.</b> Estamos trabajando para procesarlo lo más rápido posible.</p>
-      <p><i class="fa-solid fa-check"></i> <b>Muy pronto recibirás actualizaciones</b> sobre el estado de tu pedido, para que estés informado en cada paso.</p>
-      <p><i class="fa-solid fa-check"></i> Nos alegra saber que confías en nosotros para atender tus necesidades.</p>
-      <p>💛 Gracias por confiar en <b>MaxiCompras</b>, esperamos que disfrutes tu compra tanto como nosotros disfrutamos atenderte.</p>
-    </div>
-
-    <div class="caja">
-      <h2>PROCESO PARA GARANTÍAS Y CAMBIOS</h2>
-      <p><i class="fa-solid fa-check"></i> <b>Garantizamos la calidad</b> de nuestros productos. Si encuentras un problema, contáctanos en las primeras 48 horas.</p>
-      <p><i class="fa-solid fa-check"></i> Nuestro equipo te asistirá en el proceso de cambio o garantía de manera rápida.</p>
-      <p><i class="fa-solid fa-check"></i> Si el producto llegó dañado, notifícanos de inmediato para ofrecerte una solución.</p>
-      <p><i class="fa-solid fa-check"></i> Tu satisfacción es prioridad, <b>estamos disponibles para cualquier consulta o ayuda que necesites.</b></p>
-    </div>
-
-    <div class="caja">
-      <h2>CONDICIONES PARA EL PAGO CONTRAENTREGA</h2>
-      <p><i class="fa-solid fa-check"></i> <b>Confirma tu pedido</b> haciendo clic en “Confirmar pedido” para que podamos enviarlo lo más rápido posible.</p>
-      <p><i class="fa-solid fa-check"></i> Tu producto será <b>despachado hoy mismo</b> y enviado directamente hacia tu ciudad 📦</p>
-      <p><i class="fa-solid fa-check"></i> Si vas a viajar pronto, <b>avísanos</b> para reprogramar el envío ✈️</p>
-      <p><i class="fa-solid fa-check"></i> Te pedimos <b>responsabilidad</b> al realizar tu pedido, ya que <b>cada devolución</b> representa un costo adicional 😅</p>
-    </div>
+<div class="contenedor" id="slider">
+  <div class="caja">
+    <h2>¡GRACIAS POR COMPRAR CON NOSOTROS!</h2>
+    <p><i class="fa-solid fa-check"></i> Tu pedido está en buenas manos.</p>
+    <p><i class="fa-solid fa-check"></i> Muy pronto recibirás actualizaciones.</p>
+    <p><i class="fa-solid fa-check"></i> Nos alegra saber que confías en nosotros.</p>
+    <p>💛 Gracias por confiar en <b>MaxiCompras</b>.</p>
   </div>
 
-  <!-- Botón inferior idéntico al superior -->
-  <div class="btn-wrapper">
-    <a id="btnWhatsappInferior" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
-       aria-label="Confirmar pedido por WhatsApp">
-      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> CONFIRMAR PEDIDO
-    </a>
+  <div class="caja">
+    <h2>PROCESO PARA GARANTÍAS Y CAMBIOS</h2>
+    <p><i class="fa-solid fa-check"></i> Garantizamos la calidad de nuestros productos.</p>
+    <p><i class="fa-solid fa-check"></i> Nuestro equipo te asistirá en el proceso de cambio.</p>
+    <p><i class="fa-solid fa-check"></i> Si el producto llegó dañado, notifícanos.</p>
+    <p><i class="fa-solid fa-check"></i> Tu satisfacción es prioridad.</p>
   </div>
 
-  <script>
-    // Animaciones de botón y cajas
-    document.addEventListener("DOMContentLoaded", () => {
-      const botones = document.querySelectorAll(".btn-confirmar");
-      const cajas = document.querySelectorAll(".caja");
+  <div class="caja">
+    <h2>CONDICIONES PARA EL PAGO CONTRAENTREGA</h2>
+    <p><i class="fa-solid fa-check"></i> Confirma tu pedido haciendo clic en “Confirmar pedido”.</p>
+    <p><i class="fa-solid fa-check"></i> Tu producto será despachado hoy mismo.</p>
+    <p><i class="fa-solid fa-check"></i> Si vas a viajar, avísanos para reprogramar.</p>
+    <p><i class="fa-solid fa-check"></i> Te pedimos responsabilidad al realizar tu pedido.</p>
+  </div>
+</div>
 
-      setTimeout(() => { botones.forEach(b => b.classList.add("mostrar")); }, 200);
+<div class="dots" id="dots"></div>
 
-      cajas.forEach((caja, index) => {
-        setTimeout(() => { caja.classList.add("mostrar"); }, 600 + index * 300);
-      });
+<div class="btn-wrapper">
+  <a id="btnWhatsappInferior" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
+     aria-label="Confirmar pedido por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO
+  </a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const botones = document.querySelectorAll(".btn-confirmar");
+  const cajas = document.querySelectorAll(".caja");
+  setTimeout(() => { botones.forEach(b => b.classList.add("mostrar")); }, 200);
+  cajas.forEach((caja, index) => {
+    setTimeout(() => { caja.classList.add("mostrar"); }, 600 + index * 300);
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const nombre = localStorage.getItem('pedido_nombre') || "";
+  const producto = localStorage.getItem('pedido_producto') || "";
+  const cantidad = localStorage.getItem('pedido_cantidad') || "1";
+  const precio = localStorage.getItem('pedido_precio') || "";
+  const botones = [document.getElementById('btnWhatsapp'), document.getElementById('btnWhatsappInferior')];
+  const numeroAtencion = "573054469490";
+
+  botones.forEach(btn => {
+    if (!nombre || !producto || !precio) {
+      btn.href = "https://maxicomprass.store/producto1";
+      btn.setAttribute('aria-disabled', 'true');
+      btn.classList.add('disabled');
+      btn.innerText = "No hay datos del pedido (vuelve al inicio)";
+      return;
+    }
+
+    const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}.`;
+    const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
+
+    btn.href = enlace;
+    btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
+
+    btn.addEventListener('click', () => {
+      try { localStorage.clear(); } catch (e) {}
     });
-  </script>
+  });
+});
+</script>
 
-  <script>
-    // WhatsApp Button logic (duplicado para ambos botones)
-    document.addEventListener('DOMContentLoaded', () => {
-      const nombre = localStorage.getItem('pedido_nombre') || "";
-      const producto = localStorage.getItem('pedido_producto') || "";
-      const cantidad = localStorage.getItem('pedido_cantidad') || "1";
-      const precio = localStorage.getItem('pedido_precio') || "";
-      const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
+<script>
+// Slider con dots y auto solo en <= 768px
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.getElementById("slider");
+  const dotsContainer = document.getElementById("dots");
+  const cajas = slider.children;
+  let currentIndex = 0;
 
-      const botones = [document.getElementById('btnWhatsapp'), document.getElementById('btnWhatsappInferior')];
-      const numeroAtencion = "573054469490";
-
-      botones.forEach(btn => {
-     if (!nombre || !producto || !precio) {
-    btn.href = "https://maxicomprass.store/producto1";
-    btn.setAttribute('aria-disabled', 'true');
-    btn.classList.add('disabled'); 
-    btn.innerText = "No hay datos del pedido (vuelve al inicio)";
-    return;
-}
-
-        const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
-        const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
-
-        btn.href = enlace;
-        btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
-
-        btn.addEventListener('click', () => {
-          try {
-            localStorage.removeItem('pedido_nombre');
-            localStorage.removeItem('pedido_producto');
-            localStorage.removeItem('pedido_cantidad');
-            localStorage.removeItem('pedido_precio');
-            localStorage.removeItem('pedido_telefono');
-          } catch (e) {}
-        });
-      });
+  // Crear dots
+  for (let i = 0; i < cajas.length; i++) {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      currentIndex = i;
+      slider.scrollTo({ left: cajas[i].offsetLeft, behavior: "smooth" });
+      updateDots();
     });
-  </script>
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateDots() {
+    const dots = dotsContainer.querySelectorAll(".dot");
+    dots.forEach(d => d.classList.remove("active"));
+    dots[currentIndex].classList.add("active");
+  }
+
+  slider.addEventListener("scroll", () => {
+    let index = Math.round(slider.scrollLeft / slider.offsetWidth);
+    if (index >= 0 && index < cajas.length) {
+      currentIndex = index;
+      updateDots();
+    }
+  });
+
+  // Auto slider solo en pantallas <= 768px
+  if (window.innerWidth <= 768) {
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % cajas.length;
+      slider.scrollTo({ left: cajas[currentIndex].offsetLeft, behavior: "smooth" });
+      updateDots();
+    }, 4000);
+  }
+});
+</script>
 </body>
 </html>
