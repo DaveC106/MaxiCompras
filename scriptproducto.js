@@ -610,7 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ Si ya está en 1 al recargar, mostrar el mensaje especial
   if (currentStock === 1) {
-    stockAlert.innerHTML = ``;
+    stockAlert.innerHTML = `Última <span class="num-infobox">1</span> unidad reservada para ti`;
   }
 
   let hasStarted = false;
