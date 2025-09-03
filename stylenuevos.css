@@ -2318,3 +2318,23 @@ select:focus {
 @keyframes spin {
   100% { transform: rotate(360deg); }
 }
+
+.h2-clientes {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 30px auto;
+    color: #222;
+    max-width: 800px;
+    line-height: 1.5;
+}
+
+.h2-clientes a {
+    color: #25d366; /* verde WhatsApp */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.h2-clientes a:hover {
+    text-decoration: underline;
+}
