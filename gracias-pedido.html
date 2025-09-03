@@ -258,35 +258,45 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const nombre = localStorage.getItem('pedido_nombre') || "";
-  const producto = localStorage.getItem('pedido_producto') || "";
-  const cantidad = localStorage.getItem('pedido_cantidad') || "1";
-  const precio = localStorage.getItem('pedido_precio') || "";
-  const botones = [document.getElementById('btnWhatsapp'), document.getElementById('btnWhatsappInferior')];
-  const numeroAtencion = "573054469490";
+    // WhatsApp Button logic (duplicado para ambos botones)
+    document.addEventListener('DOMContentLoaded', () => {
+      const nombre = localStorage.getItem('pedido_nombre') || "";
+      const producto = localStorage.getItem('pedido_producto') || "";
+      const cantidad = localStorage.getItem('pedido_cantidad') || "1";
+      const precio = localStorage.getItem('pedido_precio') || "";
+      const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
 
-  botones.forEach(btn => {
-    if (!nombre || !producto || !precio) {
-      btn.href = "https://maxicomprass.store/producto1";
-      btn.setAttribute('aria-disabled', 'true');
-      btn.classList.add('disabled');
-      btn.innerText = "No hay datos del pedido (vuelve al inicio)";
-      return;
-    }
+      const botones = [document.getElementById('btnWhatsapp'), document.getElementById('btnWhatsappInferior')];
+      const numeroAtencion = "573054469490";
 
-    const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}.`;
-    const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
+      botones.forEach(btn => {
+     if (!nombre || !producto || !precio) {
+    btn.href = "https://maxicomprass.store/producto1";
+    btn.setAttribute('aria-disabled', 'true');
+    btn.classList.add('disabled'); 
+    btn.innerText = "No hay datos del pedido (vuelve al inicio)";
+    return;
+}
 
-    btn.href = enlace;
-    btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
+        const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+        const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
 
-    btn.addEventListener('click', () => {
-      try { localStorage.clear(); } catch (e) {}
+        btn.href = enlace;
+        btn.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
+
+        btn.addEventListener('click', () => {
+          try {
+            localStorage.removeItem('pedido_nombre');
+            localStorage.removeItem('pedido_producto');
+            localStorage.removeItem('pedido_cantidad');
+            localStorage.removeItem('pedido_precio');
+            localStorage.removeItem('pedido_telefono');
+          } catch (e) {}
+        });
+      });
     });
-  });
-});
-</script>
+  </script>
+
 
 <script>
 // Slider con dots y auto solo en <= 768px
