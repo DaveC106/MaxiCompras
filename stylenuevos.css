@@ -575,7 +575,7 @@ body {
   color: #e53935;
   font-size: 36px;
   display: inline-block;
-  animation: vibrar 0.3s infinite;
+  animation: vibrar 0.5s infinite;
 }
 
 @keyframes vibrar {
