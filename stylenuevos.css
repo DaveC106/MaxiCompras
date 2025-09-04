@@ -43,15 +43,15 @@ body {
     text-align: center;
 
     font-family: 'Poppins', sans-serif;
-    font-size: 13px;
+    font-size: 11px;
     padding: 8px 12px;
     border-radius: 8px;
     background: #ffffff;
-    box-shadow: 0px 5px 3px  rgba(0,0,0,0.30);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
 .view-counter__number {
     color: #000000;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .live-dot {
@@ -160,6 +160,19 @@ body {
 }
 .highlight-black {
     color: #000000;
+}
+
+@media (max-width: 768px) {
+    .product-title {
+        text-align: center;
+        width: 100%;
+        font-size: 32px; /* opcional para que no quede gigante */
+    }
+
+    .product-title .highlight-black::before {
+        content: "\A"; /* salto de línea */
+        white-space: pre;
+    }
 }
 
 
@@ -1311,7 +1324,7 @@ body {
 
 .promo-text {
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   animation: fadeText 1.5s ease-in-out infinite;
 }
