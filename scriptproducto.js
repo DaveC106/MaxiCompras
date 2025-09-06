@@ -630,20 +630,27 @@ function initOfertaModal() {
 
 
 
+const forms = ['epayco1','epayco2','epayco3'];
 
+function mostrarFormulario(oferta) {
+  forms.forEach(id => document.getElementById(id).style.display = 'none');
+  if(oferta === 'x1') document.getElementById('epayco1').style.display = 'block';
+  if(oferta === 'x2') document.getElementById('epayco2').style.display = 'block';
+  if(oferta === 'x3') document.getElementById('epayco3').style.display = 'block';
+}
 
+// Mostrar la oferta x1 por defecto
+mostrarFormulario('x1');
 
-document.getElementById("btnEpayco").addEventListener("click", function(){
+// Detectar clic en las ofertas
+document.querySelectorAll('.oferta-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const precio = card.dataset.precio;
+    const nombre = card.dataset.nombre;
+    document.getElementById('ofertaSeleccionada').value = nombre;
 
-  const nombre = document.getElementById("ofertaSeleccionada").value || "Producto";
-  const precioTexto = document.querySelector('.resumen-row.total .resumen-precio').innerText || "$0";
-  const precio = parseInt(precioTexto.replace(/\D/g, ''));
-
-  const epaycoBtn = document.getElementById("epaycoBtn");
-  epaycoBtn.setAttribute("data-epayco-amount", precio);
-  epaycoBtn.setAttribute("data-epayco-name", nombre);
-  epaycoBtn.setAttribute("data-epayco-description", "Compra de " + nombre);
-
-  epaycoBtn.click();
-
+    if(precio == 64900) mostrarFormulario('x1');
+    if(precio == 105900) mostrarFormulario('x2');
+    if(precio == 149900) mostrarFormulario('x3');
+  });
 });

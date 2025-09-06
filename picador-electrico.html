@@ -568,7 +568,70 @@
   <i class="fa-solid fa-cart-shopping"></i> ¡COMPRAR AHORA!
 </button>
 
-<button id="btnEpayco" type="button">Pagar con ePayco</button>
+<!-- Botones ePayco (solo los formularios, sin imágenes) -->
+<div id="epayco1" style="display:none">
+  <form>
+    <script src='https://checkout.epayco.co/checkout.js'
+      class='epayco-button'
+      data-epayco-key='426d46ff6f33c145aa6cb638afe567be'
+      data-epayco-amount='64900'
+      data-epayco-tax='0.00'
+      data-epayco-tax-ico='0.00'
+      data-epayco-tax-base='64900'
+      data-epayco-name='Picador Eléctrico'
+      data-epayco-description='Picador Eléctrico'
+      data-epayco-currency='cop'
+      data-epayco-country='CO'
+      data-epayco-test='false'
+      data-epayco-external='false'
+      data-epayco-response=''
+      data-epayco-confirmation=''>
+    </script>
+  </form>
+</div>
+
+<div id="epayco2" style="display:none">
+  <form>
+    <script src='https://checkout.epayco.co/checkout.js'
+      class='epayco-button'
+      data-epayco-key='426d46ff6f33c145aa6cb638afe567be'
+      data-epayco-amount='105900'
+      data-epayco-tax='0.00'
+      data-epayco-tax-ico='0.00'
+      data-epayco-tax-base='105900'
+      data-epayco-name='Picador Eléctrico'
+      data-epayco-description='Picador Eléctrico'
+      data-epayco-currency='cop'
+      data-epayco-country='CO'
+      data-epayco-test='false'
+      data-epayco-external='false'
+      data-epayco-response=''
+      data-epayco-confirmation=''>
+    </script>
+  </form>
+</div>
+
+<div id="epayco3" style="display:none">
+  <form>
+    <script src='https://checkout.epayco.co/checkout.js'
+      class='epayco-button'
+      data-epayco-key='426d46ff6f33c145aa6cb638afe567be'
+      data-epayco-amount='149900'
+      data-epayco-tax='0.00'
+      data-epayco-tax-ico='0.00'
+      data-epayco-tax-base='149900'
+      data-epayco-name='Picador Eléctrico'
+      data-epayco-description='Picador Eléctrico'
+      data-epayco-currency='cop'
+      data-epayco-country='CO'
+      data-epayco-test='false'
+      data-epayco-external='false'
+      data-epayco-response=''
+      data-epayco-confirmation=''>
+    </script>
+  </form>
+</div>
+
 
           <img src="images/astronautagarantia.webp" alt="Medios de pago" class="modal-logo">
         </form>
@@ -587,21 +650,5 @@
   <!-- Script del producto -->
     <script src="scriptproducto.js"></script>
 
-    <button id="epaycoBtn" class="epayco-button" 
-        data-epayco-key="426d46ff6f33c145aa6cb638afe567be"
-        data-epayco-amount="0"
-        data-epayco-tax="0"
-        data-epayco-tax-base="0"
-        data-epayco-name=""
-        data-epayco-description=""
-        data-epayco-currency="COP"
-        data-epayco-country="CO"
-        data-epayco-test="false"
-        data-epayco-response="https://maxicomprass.store/gracias-pedido"
-        data-epayco-confirmation="https://maxicomprass.store/gracias-pedido"
-        style="display:none">
-</button>
-
-<script src="https://checkout.epayco.co/checkout.js"></script>
 </body>
 </html>
