@@ -633,34 +633,17 @@ function initOfertaModal() {
 
 
 
-
 document.getElementById("btnEpayco").addEventListener("click", function(){
 
   const nombre = document.getElementById("ofertaSeleccionada").value || "Producto";
   const precioTexto = document.querySelector('.resumen-row.total .resumen-precio').innerText || "$0";
-  const precio = parseInt(precioTexto.replace(/\D/g, '')); // "$64.900" -> 64900
+  const precio = parseInt(precioTexto.replace(/\D/g, ''));
 
-  // Crear el script de ePayco
-  const epaycoScript = document.createElement("script");
-  epaycoScript.src = "https://checkout.epayco.co/checkout.js";
-  epaycoScript.className = "epayco-button";
-  epaycoScript.setAttribute("data-epayco-key", "426d46ff6f33c145aa6cb638afe567be");
-  epaycoScript.setAttribute("data-epayco-amount", precio);
-  epaycoScript.setAttribute("data-epayco-tax", "0");
-  epaycoScript.setAttribute("data-epayco-tax-base", "0");
-  epaycoScript.setAttribute("data-epayco-name", nombre);
-  epaycoScript.setAttribute("data-epayco-description", "Compra de " + nombre);
-  epaycoScript.setAttribute("data-epayco-currency", "COP");
-  epaycoScript.setAttribute("data-epayco-country", "CO");
-  epaycoScript.setAttribute("data-epayco-test", "false");
-  epaycoScript.setAttribute("data-epayco-response", "https://maxicomprass.store/gracias-pedido");
-  epaycoScript.setAttribute("data-epayco-confirmation", "https://maxicomprass.store/gracias-pedido");
+  const epaycoBtn = document.getElementById("epaycoBtn");
+  epaycoBtn.setAttribute("data-epayco-amount", precio);
+  epaycoBtn.setAttribute("data-epayco-name", nombre);
+  epaycoBtn.setAttribute("data-epayco-description", "Compra de " + nombre);
 
-  document.body.appendChild(epaycoScript);
-
-  // Disparar el botón de ePayco
-  setTimeout(() => {
-    epaycoScript.click();
-  }, 500);
+  epaycoBtn.click();
 
 });
