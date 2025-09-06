@@ -627,3 +627,40 @@ function initOfertaModal() {
   if (def) setOferta(def);
 }
 // Llama initOfertaModal() cuando abras el modal
+
+
+
+
+
+
+
+document.getElementById("btnEpayco").addEventListener("click", function(){
+
+  // Obtener el producto y el precio desde el resumen
+  const nombre = document.getElementById("ofertaSeleccionada").value || "Producto";
+  const precioTexto = document.querySelector('.resumen-row.total .resumen-precio').innerText || "$0";
+  const precio = parseInt(precioTexto.replace(/\D/g, '')); // "$64.900" -> 64900
+
+  // Crear formulario de ePayco dinámicamente
+  const epaycoForm = document.createElement("form");
+  epaycoForm.innerHTML = `
+    <script src="https://checkout.epayco.co/checkout.js"
+            class="epayco-button"
+            data-epayco-key="426d46ff6f33c145aa6cb638afe567be"
+            data-epayco-amount="${precio}"
+            data-epayco-tax="0"
+            data-epayco-tax-base="0"
+            data-epayco-name="${nombre}"
+            data-epayco-description="Compra de ${nombre}"
+            data-epayco-currency="COP"
+            data-epayco-country="CO"
+            data-epayco-test="false"
+            data-epayco-response="https://maxicomprass.store/gracias-pedido"
+            data-epayco-confirmation="https://maxicomprass.store/gracias-pedido">
+    </script>
+  `;
+  document.body.appendChild(epaycoForm);
+
+  // Disparar el botón de ePayco automáticamente
+  epaycoForm.querySelector(".epayco-button").click();
+});

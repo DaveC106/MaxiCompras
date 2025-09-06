@@ -351,6 +351,9 @@ body {
     min-height: 70px; /* Altura mínima garantizada */
     display:block;
     line-height: 35px;
+      /* Animaciones
+  animation: pulse 4s infinite, shake 4s infinite;
+  animation-delay: 0s, 0.5s; /* shake arranca cuando pulse llega a su máximo */
 }
 
 .arrow {
@@ -2361,3 +2364,20 @@ select:focus {
 .h2-clientes a:hover {
     text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+
+/* Animación Pulse */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+}
+
+@keyframes shake { 0% { transform: translateX(0) rotate(0); } 2% { transform: translateX(-2px) rotate(-3deg); } 4% { transform: translateX(2px) rotate(3deg); } 6% { transform: translateX(-2px) rotate(-3deg); } 8% { transform: translateX(2px) rotate(3deg); } 10% { transform: translateX(-2px) rotate(-3deg); } 12% { transform: translateX(0) rotate(0); } }
