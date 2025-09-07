@@ -630,24 +630,31 @@ function initOfertaModal() {
 
 
 
-
 document.getElementById("btnEpayco").addEventListener("click", async () => {
   const form = document.getElementById("compraForm");
-
-  // 1. Obtener los datos del formulario
   const data = new FormData(form);
-  const nombre = data.get("entry.884366457");
-  const telefono = data.get("entry.2100004347");
-  const correo = data.get("entry.1220188323");
-  const departamento = data.get("entry.1749391978");
-  const municipio = data.get("entry.918670460");
-  const direccion = data.get("entry.4031130");
-  const nota = data.get("entry.256631230");
-  const ofertaRaw = data.get("entry.1133296564");
-  const cantidad = document.getElementById("cantidad").value;
-  const precioTotal = document.querySelector(".resumen-row.total .resumen-precio").innerText.replace(/\D/g, "");
 
-  // 2. Preparar objeto JSON para enviar al backend
+  // 1. Obtener datos del formulario
+  const nombre = data.get("entry.884366457")?.trim();
+  const telefono = data.get("entry.2100004347")?.trim();
+  const correo = data.get("entry.1220188323")?.trim();
+  const departamento = data.get("entry.1749391978")?.trim();
+  const municipio = data.get("entry.918670460")?.trim();
+  const direccion = data.get("entry.4031130")?.trim();
+  const nota = data.get("entry.256631230")?.trim();
+  const ofertaRaw = data.get("entry.1133296564")?.trim();
+  const cantidad = document.getElementById("cantidad").value;
+  const precioTotal = document
+    .querySelector(".resumen-row.total .resumen-precio")
+    .innerText.replace(/[^\d.]/g, ""); // conserva decimales
+
+  // 2. Validar campos mínimos
+  if (!nombre || !telefono || !correo || !ofertaRaw || !precioTotal) {
+    alert("Por favor completa todos los campos obligatorios antes de pagar.");
+    return;
+  }
+
+  // 3. Preparar objeto JSON para enviar al backend
   const payload = {
     nombre,
     telefono,
@@ -661,7 +668,7 @@ document.getElementById("btnEpayco").addEventListener("click", async () => {
     total: precioTotal
   };
 
-  // 3. Enviar datos al backend (Netlify Function)
+  // 4. Enviar datos al backend (Netlify Function)
   try {
     const resp = await fetch("/.netlify/functions/epayco", {
       method: "POST",
@@ -671,14 +678,16 @@ document.getElementById("btnEpayco").addEventListener("click", async () => {
 
     const result = await resp.json();
 
-    // 4. Abrir el checkout de ePayco con la URL o datos que devuelva el backend
+    // 5. Abrir el checkout de ePayco con la URL que devuelva el backend
     if (result && result.checkoutUrl) {
       window.location.href = result.checkoutUrl;
     } else {
-      alert("Error al iniciar el pago");
+      console.error("Respuesta del backend:", result);
+      alert(result.error || "Error al iniciar el pago");
     }
   } catch (err) {
-    console.error(err);
-    alert("No se pudo procesar el pago");
+    console.error("Error en la petición:", err);
+    alert("No se pudo procesar el pago. Intenta de nuevo.");
   }
 });
+
