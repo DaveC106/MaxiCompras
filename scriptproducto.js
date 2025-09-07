@@ -630,27 +630,55 @@ function initOfertaModal() {
 
 
 
-const forms = ['epayco1','epayco2','epayco3'];
 
-function mostrarFormulario(oferta) {
-  forms.forEach(id => document.getElementById(id).style.display = 'none');
-  if(oferta === 'x1') document.getElementById('epayco1').style.display = 'block';
-  if(oferta === 'x2') document.getElementById('epayco2').style.display = 'block';
-  if(oferta === 'x3') document.getElementById('epayco3').style.display = 'block';
-}
+document.getElementById("btnEpayco").addEventListener("click", async () => {
+  const form = document.getElementById("compraForm");
 
-// Mostrar la oferta x1 por defecto
-mostrarFormulario('x1');
+  // 1. Obtener los datos del formulario
+  const data = new FormData(form);
+  const nombre = data.get("entry.884366457");
+  const telefono = data.get("entry.2100004347");
+  const correo = data.get("entry.1220188323");
+  const departamento = data.get("entry.1749391978");
+  const municipio = data.get("entry.918670460");
+  const direccion = data.get("entry.4031130");
+  const nota = data.get("entry.256631230");
+  const ofertaRaw = data.get("entry.1133296564");
+  const cantidad = document.getElementById("cantidad").value;
+  const precioTotal = document.querySelector(".resumen-row.total .resumen-precio").innerText.replace(/\D/g, "");
 
-// Detectar clic en las ofertas
-document.querySelectorAll('.oferta-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const precio = card.dataset.precio;
-    const nombre = card.dataset.nombre;
-    document.getElementById('ofertaSeleccionada').value = nombre;
+  // 2. Preparar objeto JSON para enviar al backend
+  const payload = {
+    nombre,
+    telefono,
+    correo,
+    departamento,
+    municipio,
+    direccion,
+    nota,
+    oferta: ofertaRaw,
+    cantidad,
+    total: precioTotal
+  };
 
-    if(precio == 64900) mostrarFormulario('x1');
-    if(precio == 105900) mostrarFormulario('x2');
-    if(precio == 149900) mostrarFormulario('x3');
-  });
+  // 3. Enviar datos al backend (Netlify Function)
+  try {
+    const resp = await fetch("/.netlify/functions/epayco", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await resp.json();
+
+    // 4. Abrir el checkout de ePayco con la URL o datos que devuelva el backend
+    if (result && result.checkoutUrl) {
+      window.location.href = result.checkoutUrl;
+    } else {
+      alert("Error al iniciar el pago");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("No se pudo procesar el pago");
+  }
 });
