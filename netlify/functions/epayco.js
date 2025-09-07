@@ -15,13 +15,16 @@ export async function handler(event) {
       return { statusCode: 500, body: JSON.stringify({ error: "Faltan credenciales" }) };
     }
 
-    // Datos para crear el checkout
+    // Limpiar monto: quitar puntos y comas
+    const cleanAmount = String(payload.total).replace(/\./g, "").replace(/,/g, "");
+
+    // Datos para crear el pago
     const checkoutData = {
       name: payload.oferta,
       description: "Compra en mi tienda",
       invoice: "ORD_" + Date.now(),
       currency: "COP",
-      amount: payload.total,
+      amount: cleanAmount,
       tax_base: "0",
       tax: "0",
       country: "CO",
@@ -38,7 +41,7 @@ export async function handler(event) {
 
     console.log("=== Enviando a ePayco ===", checkoutData);
 
-    const response = await fetch("https://apify.epayco.co/checkout/create", {
+    const response = await fetch("https://apify.epayco.co/payment/process", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,8 +50,10 @@ export async function handler(event) {
       body: JSON.stringify(checkoutData)
     });
 
+    const status = response.status;
     const text = await response.text();
-    console.log("=== Respuesta RAW de ePayco ===", text);
+    console.log(`=== Respuesta HTTP ${status} de ePayco ===`);
+    console.log(text);
 
     let result;
     try {
