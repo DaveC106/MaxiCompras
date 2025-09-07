@@ -16,62 +16,61 @@ export async function handler(event) {
       return { statusCode: 500, body: "Faltan credenciales" };
     }
 
-    console.log("=== Enviando petición a ePayco ===");
-    console.log({
-      name: payload.oferta,
-      description: "Compra en mi tienda",
-      invoice: "ORD_" + Date.now(),
-      currency: "COP",
-      amount: payload.total,
-      tax_base: "0",
-      tax: "0",
-      country: "CO",
-      lang: "es",
-      external: "false",
-      response: "https://maxicomprass.store/gracias-pedido.html",
-      name_billing: payload.nombre,
-      mobilephone_billing: payload.telefono,
-      email_billing: payload.correo,
-      address_billing: payload.direccion
-    });
+    // Construir el body en formato x-www-form-urlencoded
+    const params = new URLSearchParams();
+    params.append("name", payload.oferta);
+    params.append("description", "Compra en mi tienda");
+    params.append("invoice", "ORD_" + Date.now());
+    params.append("currency", "COP");
+    params.append("amount", payload.total);
+    params.append("tax_base", "0");
+    params.append("tax", "0");
+    params.append("country", "CO");
+    params.append("lang", "es");
+    params.append("external", "false");
+    params.append("response", "https://maxicomprass.store/gracias-pedido.html");
+    params.append("name_billing", payload.nombre);
+    params.append("mobilephone_billing", payload.telefono);
+    params.append("email_billing", payload.correo);
+    params.append("address_billing", payload.direccion);
 
-    const response = await fetch("https://api.secure.payco.co/checkout/v1/charge", {
+    console.log("=== Enviando petición a ePayco ===");
+    console.log(params.toString());
+
+    const response = await fetch("https://secure.epayco.co/checkout/payment", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Basic " + Buffer.from(publicKey + ":" + privateKey).toString("base64")
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization":
+          "Basic " +
+          Buffer.from(publicKey + ":" + privateKey).toString("base64"),
       },
-      body: JSON.stringify({
-        name: payload.oferta,
-        description: "Compra en mi tienda",
-        invoice: "ORD_" + Date.now(),
-        currency: "COP",
-        amount: payload.total,
-        tax_base: "0",
-        tax: "0",
-        country: "CO",
-        lang: "es",
-        external: "false",
-        response: "https://maxicomprass.store/gracias-pedido.html",
-        name_billing: payload.nombre,
-        mobilephone_billing: payload.telefono,
-        email_billing: payload.correo,
-        address_billing: payload.direccion
-      })
+      body: params.toString(),
     });
 
-    const result = await response.json();
-    console.log("=== Respuesta de ePayco ===");
-    console.log(result);
+    const text = await response.text();
+    console.log("=== Respuesta RAW de ePayco ===");
+    console.log(text);
+
+    let result;
+    try {
+      result = JSON.parse(text);
+    } catch (e) {
+      console.error("Respuesta no es JSON, devolviendo texto crudo");
+      return { statusCode: 200, body: JSON.stringify({ raw: text }) };
+    }
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        checkoutUrl: result.data?.url || result.data?.processUrl || result.data?.url_checkout || null,
-        raw: result // respuesta completa para revisarla si toca
-      })
+        checkoutUrl:
+          result.data?.url ||
+          result.data?.processUrl ||
+          result.data?.url_checkout ||
+          null,
+        raw: result,
+      }),
     };
-
   } catch (err) {
     console.error("=== Error general en la función ePayco ===");
     console.error(err);
