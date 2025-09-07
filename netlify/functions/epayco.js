@@ -7,18 +7,17 @@ export async function handler(event) {
     const payload = JSON.parse(event.body);
     console.log("=== Payload recibido del frontend ===", payload);
 
-    const publicKey = process.env.EPAYCO_PUBLIC_KEY;
-    const privateKey = process.env.EPAYCO_PRIVATE_KEY;
+    const publicKey = process.env.EPAYCO_PUBLIC_KEY?.trim();
+    const privateKey = process.env.EPAYCO_PRIVATE_KEY?.trim();
 
     if (!publicKey || !privateKey) {
       console.error("Error: faltan llaves de ePayco en las variables de entorno");
       return { statusCode: 500, body: JSON.stringify({ error: "Faltan credenciales" }) };
     }
 
-    // Limpiar monto: quitar puntos y comas
+    // Limpiar monto
     const cleanAmount = String(payload.total).replace(/\./g, "").replace(/,/g, "");
 
-    // Datos para crear el pago
     const checkoutData = {
       name: payload.oferta,
       description: "Compra en mi tienda",
@@ -36,16 +35,18 @@ export async function handler(event) {
       mobilephone_billing: payload.telefono,
       email_billing: payload.correo,
       address_billing: payload.direccion,
-      test: "false" // Cambia a "false" en producción
+      test: "false"
     };
 
     console.log("=== Enviando a ePayco ===", checkoutData);
+
+    const authString = Buffer.from(`${publicKey}:${privateKey}`).toString("base64");
 
     const response = await fetch("https://apify.epayco.co/payment/process", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + privateKey
+        "Authorization": "Basic " + authString
       },
       body: JSON.stringify(checkoutData)
     });
