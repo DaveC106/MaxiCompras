@@ -666,5 +666,5 @@ document.getElementById("btnEpayco").addEventListener("click", () => {
   if(tipoPagoInput) tipoPagoInput.value = "Epayco";
 
   // 4. Redirigir al link de prueba de ePayco
-  window.location.href = "https://payco.link/df674509-b57e-436c-9f75-7951614a85de";
+  window.location.href = "https://payco.link/7e5f4d88-0874-4c8e-867c-36769aebf752";
 });
