@@ -36,7 +36,7 @@ export async function handler(event) {
       mobilephone_billing: payload.telefono,
       email_billing: payload.correo,
       address_billing: payload.direccion,
-      test: "true" // Cambia a "false" en producción
+      test: "false" // Cambia a "false" en producción
     };
 
     console.log("=== Enviando a ePayco ===", checkoutData);
