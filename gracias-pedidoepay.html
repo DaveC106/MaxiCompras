@@ -1,11 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gracias por tu compra</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .gracias-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+  }
+  h1 {
+    color: #4caf50;
+    margin-bottom: 10px;
+  }
+  p {
+    margin: 10px 0;
+  }
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4caf50;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+</style>
 </head>
 <body>
-    
+
+<div class="gracias-container">
+  <h1>¡Gracias por tu compra!</h1>
+  <p>Estamos procesando tu pedido, espera un momento...</p>
+  <div class="loader" id="loader"></div>
+  <p id="mensaje-final" style="display:none;">¡Tu pedido se ha registrado correctamente!</p>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  const mensajeFinal = document.getElementById('mensaje-final');
+
+  // Leer datos de localStorage
+  const nombre = localStorage.getItem('pedido_nombre') || '';
+  const telefono = localStorage.getItem('pedido_telefono') || '';
+  const correo = localStorage.getItem('pedido_correo') || '';
+  const departamento = localStorage.getItem('pedido_departamento') || '';
+  const municipio = localStorage.getItem('pedido_municipio') || '';
+  const direccion = localStorage.getItem('pedido_direccion') || '';
+  const nota = localStorage.getItem('pedido_nota') || '';
+  const oferta = localStorage.getItem('pedido_producto') || '';
+  const cantidad = localStorage.getItem('pedido_cantidad') || '';
+  const precio = localStorage.getItem('pedido_precio') || '';
+  const tipoPago = localStorage.getItem('pedido_tipo_pago') || 'Epayco';
+
+  if (!nombre) return; // Si no hay datos, no enviar nada
+
+  loader.style.display = 'block';
+
+  // Construir URLSearchParams para Google Forms
+  const formData = new URLSearchParams();
+  formData.append('entry.884366457', nombre);
+  formData.append('entry.2100004347', telefono);
+  formData.append('entry.1220188323', correo);
+  formData.append('entry.1749391978', departamento);
+  formData.append('entry.918670460', municipio);
+  formData.append('entry.4031130', direccion);
+  formData.append('entry.256631230', nota);
+  formData.append('entry.1133296564', oferta);
+  formData.append('entry.123456789', cantidad);
+  formData.append('entry.1855797835', tipoPago);
+  formData.append('entry.123456790', precio); // si quieres guardar precio en otra columna
+
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse", {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+  }).then(() => {
+    loader.style.display = 'none';
+    mensajeFinal.style.display = 'block';
+    // Limpiar localStorage si quieres
+    localStorage.removeItem('pedido_nombre');
+    localStorage.removeItem('pedido_telefono');
+    localStorage.removeItem('pedido_correo');
+    localStorage.removeItem('pedido_departamento');
+    localStorage.removeItem('pedido_municipio');
+    localStorage.removeItem('pedido_direccion');
+    localStorage.removeItem('pedido_nota');
+    localStorage.removeItem('pedido_producto');
+    localStorage.removeItem('pedido_cantidad');
+    localStorage.removeItem('pedido_precio');
+    localStorage.removeItem('pedido_tipo_pago');
+  }).catch(() => {
+    loader.style.display = 'none';
+    alert('❌ Hubo un error al registrar tu pedido. Intenta nuevamente.');
+  });
+});
+</script>
+
 </body>
 </html>

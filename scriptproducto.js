@@ -514,66 +514,6 @@ fetch('colombia.min.json')
     });
   });
 
-document.querySelector("#compraForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-  const query = new URLSearchParams(data).toString();
-
-  // Mostrar loader
-  document.getElementById("loader").style.display = "flex";
-
-  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse", {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: query
-  }).then(() => {
-    setTimeout(() => {
-      // --- AGREGADO: guardar en localStorage (para usar en gracias-pedido.html) ---
-      try {
-        // Nombre del cliente
-        const nombre = (form.querySelector('input[name="entry.884366457"]')?.value || "").trim();
-
-        // Producto seleccionado (hidden input con "Picador Eléctrico x2")
-        const ofertaRaw = (document.getElementById("ofertaSeleccionada")?.value || "").trim();
-
-        // Extraer cantidad y nombre base
-        let cantidad = 1;
-        let nombreBase = ofertaRaw;
-
-        const match = ofertaRaw.match(/x(\d+)/i);
-        if (match) {
-          cantidad = parseInt(match[1]);
-          nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
-        }
-
-        // Precio total (capturado del resumen)
-        const precioEl = document.querySelector('.resumen-row.total .resumen-precio');
-        const precio = (precioEl ? precioEl.innerText.trim() : "");
-
-        // Teléfono del cliente (opcional)
-        const telefono = (form.querySelector('input[name="entry.2100004347"]')?.value || "").trim();
-
-        // Guardamos en localStorage
-        localStorage.setItem('pedido_nombre', nombre);
-        localStorage.setItem('pedido_producto', nombreBase);   // ✅ solo nombre
-        localStorage.setItem('pedido_cantidad', cantidad);     // ✅ cantidad
-        localStorage.setItem('pedido_precio', precio);         // ✅ precio limpio
-        localStorage.setItem('pedido_telefono', telefono);
-      } catch (err) {
-        console.warn('No fue posible guardar datos en localStorage', err);
-      }
-      // -------------------------------------------------------------------
-
-      window.location.href = "gracias-pedido.html";
-    }, 1500);
-  }).catch(() => {
-    alert("❌ Error al enviar el pedido");
-    document.getElementById("loader").style.display = "none";
-  });
-});
-
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -628,3 +568,103 @@ function initOfertaModal() {
 }
 // Llama initOfertaModal() cuando abras el modal
 
+
+document.querySelector("#compraForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const form = e.target;
+
+  // 💡 Asignar tipo de pago antes de enviar
+  const tipoPagoInput = form.querySelector('input[name="entry.1855797835"]');
+  if (tipoPagoInput) tipoPagoInput.value = "Contra entrega";
+
+  const data = new FormData(form);
+  const query = new URLSearchParams(data).toString();
+
+  document.getElementById("loader").style.display = "flex";
+
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse", {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: query
+  }).then(() => {
+    setTimeout(() => {
+      try {
+        const nombre = (form.querySelector('input[name="entry.884366457"]')?.value || "").trim();
+        const ofertaRaw = (document.getElementById("ofertaSeleccionada")?.value || "").trim();
+
+        let cantidad = 1;
+        let nombreBase = ofertaRaw;
+        const match = ofertaRaw.match(/x(\d+)/i);
+        if (match) {
+          cantidad = parseInt(match[1]);
+          nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
+        }
+
+        const precioEl = document.querySelector('.resumen-row.total .resumen-precio');
+        const precio = (precioEl ? precioEl.innerText.trim() : "");
+        const telefono = (form.querySelector('input[name="entry.2100004347"]')?.value || "").trim();
+
+        // NUEVO: tipo de pago desde el input oculto
+        const tipoPago = (form.querySelector('input[name="entry.1855797835"]')?.value || "").trim();
+
+        localStorage.setItem('pedido_nombre', nombre);
+        localStorage.setItem('pedido_producto', nombreBase);
+        localStorage.setItem('pedido_cantidad', cantidad);
+        localStorage.setItem('pedido_precio', precio);
+        localStorage.setItem('pedido_telefono', telefono);
+        localStorage.setItem('pedido_tipo_pago', tipoPago);
+      } catch (err) {
+        console.warn('No fue posible guardar datos en localStorage', err);
+      }
+
+      window.location.href = "gracias-pedido.html";
+    }, 1500);
+  }).catch(() => {
+    alert("❌ Error al enviar el pedido");
+    document.getElementById("loader").style.display = "none";
+  });
+});
+
+
+
+
+
+
+
+document.getElementById("btnEpayco").addEventListener("click", () => {
+  const form = document.getElementById("compraForm");
+
+  // 1. Obtener los datos del formulario
+  const data = new FormData(form);
+  const nombre = data.get("entry.884366457");
+  const telefono = data.get("entry.2100004347");
+  const correo = data.get("entry.1220188323");
+  const departamento = data.get("entry.1749391978");
+  const municipio = data.get("entry.918670460");
+  const direccion = data.get("entry.4031130");
+  const nota = data.get("entry.256631230");
+  const ofertaRaw = data.get("entry.1133296564");
+  const cantidad = document.getElementById("cantidad").value;
+  const precioTotal = document.querySelector(".resumen-row.total .resumen-precio").innerText.trim();
+
+  // 2. Guardar info temporal en localStorage
+  localStorage.setItem('pedido_nombre', nombre);
+  localStorage.setItem('pedido_telefono', telefono);
+  localStorage.setItem('pedido_correo', correo);
+  localStorage.setItem('pedido_departamento', departamento);
+  localStorage.setItem('pedido_municipio', municipio);
+  localStorage.setItem('pedido_direccion', direccion);
+  localStorage.setItem('pedido_nota', nota);
+  localStorage.setItem('pedido_producto', ofertaRaw);
+  localStorage.setItem('pedido_cantidad', cantidad);
+  localStorage.setItem('pedido_precio', precioTotal);
+  localStorage.setItem('pedido_tipo_pago', "Epayco");
+
+  // 3. Asignar input oculto de tipo de pago antes de enviar a Google Forms
+  const tipoPagoInput = form.querySelector('input[name="entry.1855797835"]');
+  if(tipoPagoInput) tipoPagoInput.value = "Epayco";
+
+  // 4. Redirigir al link de prueba de ePayco
+  window.location.href = "https://payco.link/df674509-b57e-436c-9f75-7951614a85de";
+});
