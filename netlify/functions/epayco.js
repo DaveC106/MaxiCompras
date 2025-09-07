@@ -5,75 +5,74 @@ export async function handler(event) {
 
   try {
     const payload = JSON.parse(event.body);
-    console.log("=== Payload recibido del frontend ===");
-    console.log(payload);
+    console.log("=== Payload recibido del frontend ===", payload);
 
     const publicKey = process.env.EPAYCO_PUBLIC_KEY;
     const privateKey = process.env.EPAYCO_PRIVATE_KEY;
 
     if (!publicKey || !privateKey) {
       console.error("Error: faltan llaves de ePayco en las variables de entorno");
-      return { statusCode: 500, body: "Faltan credenciales" };
+      return { statusCode: 500, body: JSON.stringify({ error: "Faltan credenciales" }) };
     }
 
-    // Construir el body en formato x-www-form-urlencoded
-    const params = new URLSearchParams();
-    params.append("name", payload.oferta);
-    params.append("description", "Compra en mi tienda");
-    params.append("invoice", "ORD_" + Date.now());
-    params.append("currency", "COP");
-    params.append("amount", payload.total);
-    params.append("tax_base", "0");
-    params.append("tax", "0");
-    params.append("country", "CO");
-    params.append("lang", "es");
-    params.append("external", "false");
-    params.append("response", "https://maxicomprass.store/gracias-pedido.html");
-    params.append("name_billing", payload.nombre);
-    params.append("mobilephone_billing", payload.telefono);
-    params.append("email_billing", payload.correo);
-    params.append("address_billing", payload.direccion);
+    // Datos para crear el checkout
+    const checkoutData = {
+      name: payload.oferta,
+      description: "Compra en mi tienda",
+      invoice: "ORD_" + Date.now(),
+      currency: "COP",
+      amount: payload.total,
+      tax_base: "0",
+      tax: "0",
+      country: "CO",
+      lang: "es",
+      external: "false",
+      response: "https://maxicomprass.store/gracias-pedido.html",
+      confirmation: "https://maxicomprass.store/.netlify/functions/confirmacion",
+      name_billing: payload.nombre,
+      mobilephone_billing: payload.telefono,
+      email_billing: payload.correo,
+      address_billing: payload.direccion,
+      test: "true" // Cambia a "false" en producción
+    };
 
-    console.log("=== Enviando petición a ePayco ===");
-    console.log(params.toString());
+    console.log("=== Enviando a ePayco ===", checkoutData);
 
-    const response = await fetch("https://secure.epayco.co/checkout/payment", {
+    const response = await fetch("https://apify.epayco.co/checkout/create", {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization":
-          "Basic " +
-          Buffer.from(publicKey + ":" + privateKey).toString("base64"),
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + privateKey
       },
-      body: params.toString(),
+      body: JSON.stringify(checkoutData)
     });
 
     const text = await response.text();
-    console.log("=== Respuesta RAW de ePayco ===");
-    console.log(text);
+    console.log("=== Respuesta RAW de ePayco ===", text);
 
     let result;
     try {
       result = JSON.parse(text);
     } catch (e) {
-      console.error("Respuesta no es JSON, devolviendo texto crudo");
-      return { statusCode: 200, body: JSON.stringify({ raw: text }) };
+      console.error("Respuesta no es JSON");
+      return { statusCode: 500, body: JSON.stringify({ error: "Respuesta inválida de ePayco", raw: text }) };
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        checkoutUrl:
-          result.data?.url ||
-          result.data?.processUrl ||
-          result.data?.url_checkout ||
-          null,
-        raw: result,
-      }),
-    };
+    if (result && result.data && (result.data.url || result.data.processUrl)) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          checkoutUrl: result.data.url || result.data.processUrl,
+          raw: result
+        })
+      };
+    } else {
+      console.error("Error en respuesta de ePayco", result);
+      return { statusCode: 500, body: JSON.stringify({ error: "No se pudo generar el checkout", raw: result }) };
+    }
+
   } catch (err) {
-    console.error("=== Error general en la función ePayco ===");
-    console.error(err);
-    return { statusCode: 500, body: "Error interno" };
+    console.error("=== Error general en la función ePayco ===", err);
+    return { statusCode: 500, body: JSON.stringify({ error: "Error interno" }) };
   }
 }
