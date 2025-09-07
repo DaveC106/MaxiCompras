@@ -5,9 +5,15 @@ export async function handler(event) {
 
   try {
     const payload = JSON.parse(event.body);
+    console.log("Payload recibido:", payload);
 
     const publicKey = process.env.EPAYCO_PUBLIC_KEY;
     const privateKey = process.env.EPAYCO_PRIVATE_KEY;
+
+    if (!publicKey || !privateKey) {
+      console.error("Error: faltan llaves de ePayco en las variables de entorno");
+      return { statusCode: 500, body: "Faltan credenciales" };
+    }
 
     const response = await fetch("https://api.secure.payco.co/checkout/v1/charge", {
       method: "POST",
@@ -40,7 +46,8 @@ export async function handler(event) {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        checkoutUrl: result.data?.url || result.data?.processUrl || result.data?.url_checkout || null
+        checkoutUrl: result.data?.url || result.data?.processUrl || result.data?.url_checkout || null,
+        raw: result // te mando también todo el JSON crudo por si necesitas revisarlo en frontend
       })
     };
 
