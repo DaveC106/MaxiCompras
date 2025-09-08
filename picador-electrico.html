@@ -655,6 +655,8 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
 
   // Guardar oferta seleccionada y precio de forma correcta
   const oferta = document.querySelector(".oferta-card.seleccionada");
+  let nombreFinal = "Producto genérico";
+  let precioFinal = "5000";
   if (oferta) {
     const ofertaRaw = oferta.dataset.nombre;  // ej: "Picador Eléctrico x2"
     let cantidad = 1;
@@ -664,8 +666,11 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
       cantidad = parseInt(match[1]);
       nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
     }
-    localStorage.setItem("pedido_producto", `${nombreBase} x${cantidad}`);
-    localStorage.setItem("pedido_precio", oferta.dataset.precio);
+    nombreFinal = `${nombreBase} x${cantidad}`;
+    precioFinal = oferta.dataset.precio;
+
+    localStorage.setItem("pedido_producto", nombreFinal);
+    localStorage.setItem("pedido_precio", precioFinal);
   }
 
   // Guardar tipo de pago limpio
@@ -681,9 +686,9 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
   });
 
   // Agregar oferta, tipo de pago e invoice
-  params.append("entry.1133296564", localStorage.getItem("pedido_producto") || "");
+  params.append("entry.1133296564", nombreFinal); // nombre limpio + cantidad
   params.append("entry.1855797835", localStorage.getItem("pedido_tipo_pago") || "");
-  params.append("entry.263702996", invoice); // <- tu nuevo entry de invoice
+  params.append("entry.263702996", invoice); // invoice
 
   fetch(googleFormUrl, {
     method: "POST",
@@ -693,13 +698,13 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
   }).then(() => console.log("✅ Datos enviados al Form"))
     .catch(() => console.error("❌ Error enviando datos al Form"));
 
-  // Abrir pasarela ePayco
+  // Abrir pasarela ePayco con nombre limpio
   const data = {
-    name: oferta ? oferta.dataset.nombre : "Producto genérico",
-    description: oferta ? oferta.dataset.nombre : "Producto genérico",
+    name: nombreFinal,
+    description: nombreFinal,
     invoice: invoice,
     currency: "cop",
-    amount: oferta ? oferta.dataset.precio : "5000",
+    amount: precioFinal,
     country: "co",
     lang: "es",
     external: "true",
@@ -710,6 +715,7 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
   handler.open(data);
 });
 </script>
+
 
 
           <img src="images/astronautagarantia.webp" alt="Medios de pago" class="modal-logo">
