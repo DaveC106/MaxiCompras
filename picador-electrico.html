@@ -630,53 +630,88 @@
 
 <script src="https://checkout.epayco.co/checkout.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const defaultBtn = document.querySelector(".epayco-button-render");
-    if (defaultBtn) defaultBtn.remove();
+document.addEventListener("DOMContentLoaded", () => {
+  const defaultBtn = document.querySelector(".epayco-button-render");
+  if (defaultBtn) defaultBtn.remove();
+});
+
+const handler = ePayco.checkout.configure({
+  key: "426d46ff6f33c145aa6cb638afe567be",
+  test: true
+});
+
+document.querySelector("#btnEpayco").addEventListener("click", function() {
+  const form = document.querySelector("#compraForm");
+  const formData = new FormData(form);
+
+  // ✅ Generar invoice único antes de abrir pasarela
+  const invoice = "FAC-" + Date.now();
+  localStorage.setItem("pedido_invoice", invoice);
+
+  // Guardar todos los campos del formulario en localStorage
+  formData.forEach((valor, campo) => {
+    localStorage.setItem(campo, valor);
   });
 
-  const handler = ePayco.checkout.configure({
-    key: "426d46ff6f33c145aa6cb638afe567be",
-    test: true
-  });
-
-  document.querySelector("#btnEpayco").addEventListener("click", function() {
-    // 1. Tomar los datos del formulario
-    const form = document.querySelector("#compraForm");
-    const formData = new FormData(form);
-
-    // 2. Guardar en localStorage
-    formData.forEach((valor, campo) => {
-      localStorage.setItem(campo, valor);
-    });
-
-    // 3. Guardar oferta seleccionada
-    const oferta = document.querySelector(".oferta-card.seleccionada");
-    if (oferta) {
-      localStorage.setItem("ofertaSeleccionada", oferta.dataset.nombre);
-      localStorage.setItem("precioSeleccionado", oferta.dataset.precio);
+  // Guardar oferta seleccionada y precio de forma correcta
+  const oferta = document.querySelector(".oferta-card.seleccionada");
+  if (oferta) {
+    const ofertaRaw = oferta.dataset.nombre;  // ej: "Picador Eléctrico x2"
+    let cantidad = 1;
+    let nombreBase = ofertaRaw;
+    const match = ofertaRaw.match(/x(\d+)/i);
+    if (match) {
+      cantidad = parseInt(match[1]);
+      nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
     }
+    localStorage.setItem("pedido_producto", `${nombreBase} x${cantidad}`);
+    localStorage.setItem("pedido_precio", oferta.dataset.precio);
+  }
 
-    // 4. Guardar tipo de pago
-    localStorage.setItem("tipoPago", "ePayco");
+  // Guardar tipo de pago limpio
+  localStorage.setItem("pedido_tipo_pago", "Epayco");
 
-    // 5. Abrir pasarela ePayco
-    const data = {
-      name: oferta ? oferta.dataset.nombre : "Producto genérico",
-      description: oferta ? oferta.dataset.nombre : "Producto genérico",
-      invoice: "FAC-" + Date.now(),
-      currency: "cop",
-      amount: oferta ? oferta.dataset.precio : "5000",
-      country: "co",
-      lang: "es",
-      external: "true",
-      confirmation: "https://maxicomprass.store/.netlify/functions/confirmation",
-      response: "https://maxicomprass.store/respuesta.html"
-    };
+  // ✅ Enviar inmediatamente al Google Form
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse";
+  const params = new URLSearchParams();
 
-    handler.open(data);
+  // Agregar datos del formulario
+  formData.forEach((valor, campo) => {
+    params.append(campo, valor);
   });
+
+  // Agregar oferta, tipo de pago e invoice
+  params.append("entry.1133296564", localStorage.getItem("pedido_producto") || "");
+  params.append("entry.1855797835", localStorage.getItem("pedido_tipo_pago") || "");
+  params.append("entry.263702996", invoice); // <- tu nuevo entry de invoice
+
+  fetch(googleFormUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params.toString()
+  }).then(() => console.log("✅ Datos enviados al Form"))
+    .catch(() => console.error("❌ Error enviando datos al Form"));
+
+  // Abrir pasarela ePayco
+  const data = {
+    name: oferta ? oferta.dataset.nombre : "Producto genérico",
+    description: oferta ? oferta.dataset.nombre : "Producto genérico",
+    invoice: invoice,
+    currency: "cop",
+    amount: oferta ? oferta.dataset.precio : "5000",
+    country: "co",
+    lang: "es",
+    external: "true",
+    confirmation: "https://maxicomprass.store/.netlify/functions/confirmation",
+    response: "https://maxicomprass.store/respuesta.html"
+  };
+
+  handler.open(data);
+});
 </script>
+
+
           <img src="images/astronautagarantia.webp" alt="Medios de pago" class="modal-logo">
         </form>
       </div>
