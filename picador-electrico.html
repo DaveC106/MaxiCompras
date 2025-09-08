@@ -642,23 +642,63 @@ const handler = ePayco.checkout.configure({
 
 document.querySelector("#btnEpayco").addEventListener("click", function() {
   const form = document.querySelector("#compraForm");
-  const formData = new FormData(form);
 
-  // ✅ Generar invoice único antes de abrir pasarela
+  // 1️⃣ Validar campos obligatorios
+  const requiredFields = form.querySelectorAll("[required]");
+  let allValid = true;
+
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) {
+      allValid = false;
+      field.classList.add("input-error");
+    } else {
+      field.classList.remove("input-error");
+    }
+  });
+
+  if (!allValid) {
+    alert("⚠️ Por favor, completa todos los campos obligatorios antes de continuar.");
+    return; // Detiene ejecución si hay campos vacíos
+  }
+
+  // 2️⃣ Validar teléfono (10 dígitos, empieza con 3)
+  const telField = form.querySelector('input[name="entry.2100004347"]');
+  const telValue = telField.value.trim();
+  if (!/^3\d{9}$/.test(telValue)) {
+    alert("⚠️ El teléfono debe tener 10 dígitos y comenzar con 3.");
+    telField.classList.add("input-error");
+    return;
+  } else {
+    telField.classList.remove("input-error");
+  }
+
+  // 3️⃣ Validar correo (debe contener @)
+  const emailField = form.querySelector('input[name="entry.1220188323"]');
+  const emailValue = emailField.value.trim();
+  if (!/.+@.+\..+/.test(emailValue)) {
+    alert("⚠️ Ingresa un correo válido con '@'.");
+    emailField.classList.add("input-error");
+    return;
+  } else {
+    emailField.classList.remove("input-error");
+  }
+
+  // 4️⃣ Generar invoice único
   const invoice = "FAC-" + Date.now();
   localStorage.setItem("pedido_invoice", invoice);
 
-  // Guardar todos los campos del formulario en localStorage
+  // 5️⃣ Guardar todos los campos del formulario
+  const formData = new FormData(form);
   formData.forEach((valor, campo) => {
     localStorage.setItem(campo, valor);
   });
 
-  // Guardar oferta seleccionada y precio de forma correcta
+  // 6️⃣ Guardar oferta seleccionada y precio
   const oferta = document.querySelector(".oferta-card.seleccionada");
   let nombreFinal = "Producto genérico";
   let precioFinal = "5000";
   if (oferta) {
-    const ofertaRaw = oferta.dataset.nombre;  // ej: "Picador Eléctrico x2"
+    const ofertaRaw = oferta.dataset.nombre;
     let cantidad = 1;
     let nombreBase = ofertaRaw;
     const match = ofertaRaw.match(/x(\d+)/i);
@@ -673,24 +713,21 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
     localStorage.setItem("pedido_precio", precioFinal);
   }
 
-  // Guardar tipo de pago limpio
   localStorage.setItem("pedido_tipo_pago", "Epayco");
 
-  // ✅ Enviar inmediatamente al Google Form
+  // 7️⃣ Enviar datos al Google Form
   const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse";
   const params = new URLSearchParams();
 
-  // Agregar datos del formulario, saltando los que se sobrescriben manualmente
   formData.forEach((valor, campo) => {
     if (campo !== "entry.1133296564" && campo !== "entry.1855797835") {
       params.append(campo, valor);
     }
   });
 
-  // Agregar oferta, tipo de pago e invoice
-  params.append("entry.1133296564", nombreFinal); // nombre limpio + cantidad
+  params.append("entry.1133296564", nombreFinal);
   params.append("entry.1855797835", localStorage.getItem("pedido_tipo_pago") || "");
-  params.append("entry.263702996", invoice); // invoice
+  params.append("entry.263702996", invoice);
 
   fetch(googleFormUrl, {
     method: "POST",
@@ -700,7 +737,7 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
   }).then(() => console.log("✅ Datos enviados al Form"))
     .catch(() => console.error("❌ Error enviando datos al Form"));
 
-  // Abrir pasarela ePayco con nombre limpio
+  // 8️⃣ Abrir pasarela ePayco
   const data = {
     name: nombreFinal,
     description: nombreFinal,
@@ -717,8 +754,6 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
   handler.open(data);
 });
 </script>
-
-
 
 
           <img src="images/astronautagarantia.webp" alt="Medios de pago" class="modal-logo">
