@@ -569,14 +569,48 @@ function initOfertaModal() {
 // Llama initOfertaModal() cuando abras el modal
 
 
+
+//script logica del boton de pago contra entrega
 document.querySelector("#compraForm").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
 
-  // 💡 Asignar tipo de pago antes de enviar
+  // 1️⃣ Validar campos obligatorios
+  const requiredFields = form.querySelectorAll("[required]");
+  let allValid = true;
+
+  requiredFields.forEach(field => {
+    const value = (field.value || "").trim();
+    field.classList.remove("input-error");
+
+    if (!value) {
+      allValid = false;
+      field.classList.add("input-error");
+    } else if (field.name === "entry.2100004347") {
+      // Validar teléfono: 10 dígitos y empieza con 3
+      if (!/^[3]\d{9}$/.test(value)) {
+        allValid = false;
+        field.classList.add("input-error");
+      }
+    } else if (field.name === "entry.1220188323") {
+      // Validar correo con @
+      if (!/@/.test(value)) {
+        allValid = false;
+        field.classList.add("input-error");
+      }
+    }
+  });
+
+  if (!allValid) {
+    alert("⚠️ Por favor completa todos los campos obligatorios correctamente antes de continuar. Asegúrate que el teléfono tenga 10 dígitos y el correo incluya '@'.");
+    return; // Detiene ejecución si falla validación
+  }
+
+  // 2️⃣ Asignar tipo de pago
   const tipoPagoInput = form.querySelector('input[name="entry.1855797835"]');
   if (tipoPagoInput) tipoPagoInput.value = "Contra entrega";
 
+  // 3️⃣ Enviar datos al Google Form
   const data = new FormData(form);
   const query = new URLSearchParams(data).toString();
 
@@ -604,8 +638,6 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
         const precioEl = document.querySelector('.resumen-row.total .resumen-precio');
         const precio = (precioEl ? precioEl.innerText.trim() : "");
         const telefono = (form.querySelector('input[name="entry.2100004347"]')?.value || "").trim();
-
-        // NUEVO: tipo de pago desde el input oculto
         const tipoPago = (form.querySelector('input[name="entry.1855797835"]')?.value || "").trim();
 
         localStorage.setItem('pedido_nombre', nombre);
