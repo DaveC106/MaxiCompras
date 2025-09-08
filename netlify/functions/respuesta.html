@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>respuesta</title>
 </head>
 <body>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse";
+
+  const params = new URLSearchParams();
+
+  // 1. Agregamos todos los datos del formulario que estaban en localStorage
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    if (key.startsWith("entry.")) {
+      params.append(key, value);
+    }
+  }
+
+  // 2. Agregamos oferta, precio y tipo de pago
+  params.append("entry.1133296564", localStorage.getItem("ofertaSeleccionada") || "");
+  params.append("entry.1855797835", localStorage.getItem("tipoPago") || "");
+
+  // 3. Enviamos al Google Form
+  fetch(googleFormUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params.toString()
+  }).then(() => {
+    console.log("✅ Datos enviados con éxito");
+    localStorage.clear(); // Limpiamos después de enviar
+  }).catch(() => {
+    console.error("❌ Error al enviar datos");
+  });
+});
+</script>
     
 </body>
 </html>

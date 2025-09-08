@@ -571,47 +571,112 @@
   <i class="fa-solid fa-cart-shopping"></i> ¡COMPRAR AHORA!
 </button>
 
-
-<button type="button" id="btnEpayco" class="send-button epayco-button">
+<!-- Botón con efecto pulsante azul -->
+<button type="button" id="btnEpayco" class="btnsendepay">
   <i class="fa-solid fa-credit-card"></i> Pagar con ePayco
 </button>
 
+<style>
+  /* Animación pulsante azul */
+  @keyframes pulse-glow-blue {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0px #007bff;
+    }
+    50% {
+      transform: scale(0.97);
+      box-shadow: 0 0 0px #0056b3;
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 30px 10px rgba(0, 123, 255, 0.5);
+    }
+  }
+
+  .btnsendepay {
+  display: flex; /* Usamos flex para centrar contenido */
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ahora ocupa todo el ancho */
+  background: linear-gradient(180deg, #1E90FF 0%, #0066CC 100%);
+  color: #fff;
+  padding: 15px 40px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 35px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center; /* Texto centrado */
+  margin: 10px 0;
+  gap: 20px;
+  animation: pulse-glow-blue 1s ease-in-out infinite;
+  box-shadow: 0 0 0px #007bff;
+  transition: transform 0.3s ease;
+  min-height: 70px;
+  line-height: 35px;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box; /* Evita que el padding rompa el ancho */
+}
+
+.btnsendepay:hover {
+  transform: scale(1.05);
+}
+
+  .btnsendepay i {
+    font-size: 28px;
+  }
+</style>
+
 <script src="https://checkout.epayco.co/checkout.js"></script>
 <script>
-  // Configuración del checkout
-  const handler = ePayco.checkout.configure({
-    key: "426d46ff6f33c145aa6cb638afe567be", // Usa tu llave pública real
-    test: true // Cambia a false en producción
+  document.addEventListener("DOMContentLoaded", () => {
+    const defaultBtn = document.querySelector(".epayco-button-render");
+    if (defaultBtn) defaultBtn.remove();
   });
 
-  // Cuando hacen clic en "Pagar con ePayco"
-  document.querySelector("#btnEpayco").addEventListener("click", function() {
-    // Detecta la oferta seleccionada
-    const oferta = document.querySelector(".oferta-card.seleccionada");
-    const nombre = oferta ? oferta.dataset.nombre : "Producto genérico";
-    const precio = oferta ? oferta.dataset.precio : "5000";
+  const handler = ePayco.checkout.configure({
+    key: "426d46ff6f33c145aa6cb638afe567be",
+    test: true
+  });
 
-    // Datos para ePayco
+  document.querySelector("#btnEpayco").addEventListener("click", function() {
+    // 1. Tomar los datos del formulario
+    const form = document.querySelector("#compraForm");
+    const formData = new FormData(form);
+
+    // 2. Guardar en localStorage
+    formData.forEach((valor, campo) => {
+      localStorage.setItem(campo, valor);
+    });
+
+    // 3. Guardar oferta seleccionada
+    const oferta = document.querySelector(".oferta-card.seleccionada");
+    if (oferta) {
+      localStorage.setItem("ofertaSeleccionada", oferta.dataset.nombre);
+      localStorage.setItem("precioSeleccionado", oferta.dataset.precio);
+    }
+
+    // 4. Guardar tipo de pago
+    localStorage.setItem("tipoPago", "ePayco");
+
+    // 5. Abrir pasarela ePayco
     const data = {
-      name: nombre,
-      description: nombre,
+      name: oferta ? oferta.dataset.nombre : "Producto genérico",
+      description: oferta ? oferta.dataset.nombre : "Producto genérico",
       invoice: "FAC-" + Date.now(),
       currency: "cop",
-      amount: precio,
+      amount: oferta ? oferta.dataset.precio : "5000",
       country: "co",
       lang: "es",
       external: "true",
       confirmation: "https://maxicomprass.store/.netlify/functions/confirmation",
-      response: "https://maxicomprass.store/respuesta.html",
+      response: "https://maxicomprass.store/respuesta.html"
     };
 
-    // Abre el checkout
     handler.open(data);
   });
 </script>
-
-
-
           <img src="images/astronautagarantia.webp" alt="Medios de pago" class="modal-logo">
         </form>
       </div>
