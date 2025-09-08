@@ -680,9 +680,11 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
   const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse";
   const params = new URLSearchParams();
 
-  // Agregar datos del formulario
+  // Agregar datos del formulario, saltando los que se sobrescriben manualmente
   formData.forEach((valor, campo) => {
-    params.append(campo, valor);
+    if (campo !== "entry.1133296564" && campo !== "entry.1855797835") {
+      params.append(campo, valor);
+    }
   });
 
   // Agregar oferta, tipo de pago e invoice
@@ -715,6 +717,7 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
   handler.open(data);
 });
 </script>
+
 
 
 
