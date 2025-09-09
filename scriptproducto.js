@@ -685,26 +685,23 @@ fetch(googleFormUrl, {
 document.querySelector("#compraForm").addEventListener("submit", async e => {
   e.preventDefault();
   const form = e.target;
-
-  // recoger datos
   const data = {
-    nombre: form.querySelector('input[name="entry.884366457"]').value.trim(),
-    telefono: form.querySelector('input[name="entry.2100004347"]').value.trim(),
-    correo: form.querySelector('input[name="entry.1220188323"]').value.trim(),
-    oferta: document.getElementById("ofertaSeleccionada").value.trim(),
-    tipoPago: "Contra entrega"
+    nombre: form.querySelector('input[name="entry.884366457"]').value,
+    telefono: form.querySelector('input[name="entry.2100004347"]').value,
+    email: form.querySelector('input[name="entry.1220188323"]').value,
+    oferta: document.getElementById("ofertaSeleccionada").value
   };
 
   document.getElementById("loader").style.display = "flex";
 
   const res = await fetch("/.netlify/functions/pedido", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
-  if (res.ok) window.location.href = "gracias-pedido.html";
-  else {
+  if (res.ok) {
+    window.location.href = "gracias-pedido.html";
+  } else {
     alert("❌ Error al enviar el pedido");
     document.getElementById("loader").style.display = "none";
   }
