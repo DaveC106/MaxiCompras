@@ -373,6 +373,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // El primero, con clase diferente
   const precioPrimero = document.querySelectorAll(".resumen-precioprimero");
+  // El segundo
+  const precioSegundo = document.querySelectorAll(".resumen-preciosegundo");
   // Los demás
   const subtotales = document.querySelectorAll(".resumen-compra .resumen-row:first-child .resumen-precio");
   const totales = document.querySelectorAll(".resumen-compra .resumen-row.total .resumen-precio");
@@ -395,6 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const texto = `$${precioFinal.toLocaleString("es-CO")}`;
     precioPrimero.forEach(el => el.textContent = texto);
+    precioSegundo.forEach(el => el.textContent = texto);
     subtotales.forEach(el => el.textContent = texto);
     totales.forEach(el => el.textContent = texto);
   };
