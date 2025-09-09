@@ -371,10 +371,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnMas = document.querySelector(".btn-mas");
   const btnMenos = document.querySelector(".btn-menos");
 
+  // El primero, con clase diferente
+  const precioPrimero = document.querySelectorAll(".resumen-precioprimero");
+  // Los demás
   const subtotales = document.querySelectorAll(".resumen-compra .resumen-row:first-child .resumen-precio");
   const totales = document.querySelectorAll(".resumen-compra .resumen-row.total .resumen-precio");
 
-  const precioUnitario = 64900; // precio base de un producto
+  const precioUnitario = 64900;
 
   // Función para actualizar resumen
   const actualizarResumen = (cantidad) => {
@@ -391,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const texto = `$${precioFinal.toLocaleString("es-CO")}`;
+    precioPrimero.forEach(el => el.textContent = texto);
     subtotales.forEach(el => el.textContent = texto);
     totales.forEach(el => el.textContent = texto);
   };
@@ -452,9 +456,11 @@ document.addEventListener("DOMContentLoaded", () => {
     sincronizarSeleccion(val);
   });
 
-  // Inicializar en 1
+  // Inicializar en 1 con $64.900
   seleccionarCard(cards[0], 1);
 });
+
+
 
 
 
