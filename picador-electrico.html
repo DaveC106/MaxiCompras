@@ -515,25 +515,24 @@
 
           <h3 class="titulo-oferta">ESCOGE LA OFERTA</h3>
           <div class="ofertas-container">
+<div class="ofertas-container">
   <!--oferta 1-->
-  <div class="oferta-card" data-nombre="Picador Eléctrico x1" data-precio="64900">
+  <div class="oferta-card" data-id="P1" data-nombre="Picador Eléctrico x1">
     <img src="images/productoventa1.webp" alt="Producto 1">
   </div>
   <!--oferta 2-->
-  <div class="oferta-card" data-nombre="Picador Eléctrico x2" data-precio="105900">
+  <div class="oferta-card" data-id="P2" data-nombre="Picador Eléctrico x2">
     <img src="images/productoventa2.webp" alt="Producto 2">
   </div>
   <!--oferta 3-->
-  <div class="oferta-card" data-nombre="Picador Eléctrico x3" data-precio="149900">
+  <div class="oferta-card" data-id="P3" data-nombre="Picador Eléctrico x3">
     <img src="images/productoventa3.webp" alt="Producto 3">
   </div>
 
-  <!-- 🔑 ahora sin precio -->
-  <input type="hidden" name="entry.1133296564" id="ofertaSeleccionada" value="Picador Eléctrico x1">
+  <!-- Oferta seleccionada -->
+  <input type="hidden" name="entry.1133296564" id="ofertaSeleccionada" value="">
 </div>
 
-<!-- NUEVO: Tipo de pago -->
-<input type="hidden" name="entry.1855797835" id="tipoPago" value="">
 
           <div class="cantidad-container">
             <label for="cantidad">¿Quieres más de 3? Escoge aquí</label>
@@ -576,57 +575,6 @@
   <i class="fa-solid fa-credit-card"></i> Pagar con ePayco
 </button>
 
-<style>
-  /* Animación pulsante azul */
-  @keyframes pulse-glow-blue {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 0 0px #007bff;
-    }
-    50% {
-      transform: scale(0.97);
-      box-shadow: 0 0 0px #0056b3;
-    }
-    100% {
-      transform: scale(1);
-      box-shadow: 0 0 30px 10px rgba(0, 123, 255, 0.5);
-    }
-  }
-
-  .btnsendepay {
-  display: flex; /* Usamos flex para centrar contenido */
-  align-items: center;
-  justify-content: center;
-  width: 100%; /* Ahora ocupa todo el ancho */
-  background: linear-gradient(180deg, #1E90FF 0%, #0066CC 100%);
-  color: #fff;
-  padding: 15px 40px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 900;
-  font-size: 25px;
-  font-family: 'Poppins', sans-serif;
-  text-align: center; /* Texto centrado */
-  margin: 10px 0;
-  gap: 20px;
-  animation: pulse-glow-blue 1s ease-in-out infinite;
-  box-shadow: 0 0 0px #007bff;
-  transition: transform 0.3s ease;
-  min-height: 70px;
-  line-height: 35px;
-  border: none;
-  cursor: pointer;
-  box-sizing: border-box; /* Evita que el padding rompa el ancho */
-}
-
-.btnsendepay:hover {
-  transform: scale(1.05);
-}
-
-  .btnsendepay i {
-    font-size: 28px;
-  }
-</style>
 
 <script src="https://checkout.epayco.co/checkout.js"></script>
 <script>
@@ -635,18 +583,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (defaultBtn) defaultBtn.remove();
 });
 
-const handler = ePayco.checkout.configure({
-  key: "426d46ff6f33c145aa6cb638afe567be",
-  test: true
-});
-
-document.querySelector("#btnEpayco").addEventListener("click", function() {
+document.querySelector("#btnEpayco").addEventListener("click", async function() {
   const form = document.querySelector("#compraForm");
 
   // 1️⃣ Validar campos obligatorios
   const requiredFields = form.querySelectorAll("[required]");
   let allValid = true;
-
   requiredFields.forEach(field => {
     if (!field.value.trim()) {
       allValid = false;
@@ -655,103 +597,75 @@ document.querySelector("#btnEpayco").addEventListener("click", function() {
       field.classList.remove("input-error");
     }
   });
-
   if (!allValid) {
-    alert("⚠️ Por favor, completa todos los campos obligatorios antes de continuar.");
-    return; // Detiene ejecución si hay campos vacíos
+    alert("⚠️ Completa todos los campos obligatorios.");
+    return;
   }
 
-  // 2️⃣ Validar teléfono (10 dígitos, empieza con 3)
+  // 2️⃣ Validar teléfono
   const telField = form.querySelector('input[name="entry.2100004347"]');
-  const telValue = telField.value.trim();
-  if (!/^3\d{9}$/.test(telValue)) {
-    alert("⚠️ El teléfono debe tener 10 dígitos y comenzar con 3.");
-    telField.classList.add("input-error");
+  if (!/^3\d{9}$/.test(telField.value.trim())) {
+    alert("⚠️ El teléfono debe tener 10 dígitos y empezar con 3.");
     return;
-  } else {
-    telField.classList.remove("input-error");
   }
 
-  // 3️⃣ Validar correo (debe contener @)
+  // 3️⃣ Validar correo
   const emailField = form.querySelector('input[name="entry.1220188323"]');
-  const emailValue = emailField.value.trim();
-  if (!/.+@.+\..+/.test(emailValue)) {
-    alert("⚠️ Ingresa un correo válido con '@'.");
-    emailField.classList.add("input-error");
+  if (!/.+@.+\..+/.test(emailField.value.trim())) {
+    alert("⚠️ Ingresa un correo válido.");
     return;
-  } else {
-    emailField.classList.remove("input-error");
   }
 
   // 4️⃣ Generar invoice único
   const invoice = "FAC-" + Date.now();
   localStorage.setItem("pedido_invoice", invoice);
 
-  // 5️⃣ Guardar todos los campos del formulario
+  // 5️⃣ Guardar campos del formulario
   const formData = new FormData(form);
-  formData.forEach((valor, campo) => {
-    localStorage.setItem(campo, valor);
-  });
+  formData.forEach((valor, campo) => localStorage.setItem(campo, valor));
 
-  // 6️⃣ Guardar oferta seleccionada y precio
+  // 6️⃣ Guardar oferta seleccionada (solo ID)
   const oferta = document.querySelector(".oferta-card.seleccionada");
-  let nombreFinal = "Producto genérico";
-  let precioFinal = "5000";
-  if (oferta) {
-    const ofertaRaw = oferta.dataset.nombre;
-    let cantidad = 1;
-    let nombreBase = ofertaRaw;
-    const match = ofertaRaw.match(/x(\d+)/i);
-    if (match) {
-      cantidad = parseInt(match[1]);
-      nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
-    }
-    nombreFinal = `${nombreBase} x${cantidad}`;
-    precioFinal = oferta.dataset.precio;
-
-    localStorage.setItem("pedido_producto", nombreFinal);
-    localStorage.setItem("pedido_precio", precioFinal);
+  if (!oferta) {
+    alert("⚠️ Selecciona una oferta.");
+    return;
   }
-
+  const productoId = oferta.dataset.id;
+  localStorage.setItem("pedido_producto_id", productoId);
   localStorage.setItem("pedido_tipo_pago", "Epayco");
 
-  // 7️⃣ Enviar datos al Google Form
+  // 7️⃣ Enviar datos al Google Form (sin precio)
   const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse";
   const params = new URLSearchParams();
-
   formData.forEach((valor, campo) => {
     if (campo !== "entry.1133296564" && campo !== "entry.1855797835") {
       params.append(campo, valor);
     }
   });
-
-  params.append("entry.1133296564", nombreFinal);
-  params.append("entry.1855797835", localStorage.getItem("pedido_tipo_pago") || "");
+  params.append("entry.1133296564", productoId);
+  params.append("entry.1855797835", "Epayco");
   params.append("entry.263702996", invoice);
+  fetch(googleFormUrl, { method: "POST", mode: "no-cors", body: params.toString() });
 
-  fetch(googleFormUrl, {
+  // 8️⃣ Llamar a backend para crear la orden segura
+  const response = await fetch("/.netlify/functions/crear-pago", {
     method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: params.toString()
-  }).then(() => console.log("✅ Datos enviados al Form"))
-    .catch(() => console.error("❌ Error enviando datos al Form"));
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: productoId, invoice })
+  });
 
-  // 8️⃣ Abrir pasarela ePayco
-  const data = {
-    name: nombreFinal,
-    description: nombreFinal,
-    invoice: invoice,
-    currency: "cop",
-    amount: precioFinal,
-    country: "co",
-    lang: "es",
-    external: "true",
-    confirmation: "https://maxicomprass.store/.netlify/functions/confirmation",
-    response: "https://maxicomprass.store/respuesta.html"
-  };
+  const data = await response.json();
+  if (data.error) {
+    alert("Error al crear el pago: " + data.error);
+    return;
+  }
 
-  handler.open(data);
+  // 9️⃣ Abrir pasarela con los datos correctos desde backend
+  const handler = ePayco.checkout.configure({
+    key: data.publicKey,
+    test: data.testMode
+  });
+  handler.open(data.checkoutData);
 });
 </script>
 

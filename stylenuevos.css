@@ -2381,4 +2381,55 @@ select:focus {
   20% { transform: scale(1); }
 }
 
+
 @keyframes shake { 0% { transform: translateX(0) rotate(0); } 2% { transform: translateX(-2px) rotate(-3deg); } 4% { transform: translateX(2px) rotate(3deg); } 6% { transform: translateX(-2px) rotate(-3deg); } 8% { transform: translateX(2px) rotate(3deg); } 10% { transform: translateX(-2px) rotate(-3deg); } 12% { transform: translateX(0) rotate(0); } }
+
+  /* Animación pulsante azul */
+  @keyframes pulse-glow-blue {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0px #007bff;
+    }
+    50% {
+      transform: scale(0.97);
+      box-shadow: 0 0 0px #0056b3;
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 30px 10px rgba(0, 123, 255, 0.5);
+    }
+  }
+
+  .btnsendepay {
+  display: flex; /* Usamos flex para centrar contenido */
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ahora ocupa todo el ancho */
+  background: linear-gradient(180deg, #1E90FF 0%, #0066CC 100%);
+  color: #fff;
+  padding: 15px 40px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 25px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center; /* Texto centrado */
+  margin: 10px 0;
+  gap: 20px;
+  animation: pulse-glow-blue 1s ease-in-out infinite;
+  box-shadow: 0 0 0px #007bff;
+  transition: transform 0.3s ease;
+  min-height: 70px;
+  line-height: 35px;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box; /* Evita que el padding rompa el ancho */
+}
+
+.btnsendepay:hover {
+  transform: scale(1.05);
+}
+
+  .btnsendepay i {
+    font-size: 28px;
+  }
