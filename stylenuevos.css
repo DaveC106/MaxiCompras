@@ -225,7 +225,8 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 45px;
     font-weight: 900;
-    background: linear-gradient(180deg, #0AAC00 0%, #0FFF00 100%);
+   /* background: linear-gradient(180deg, #0AAC00 0%, #0FFF00 100%);*/
+    background: limegreen;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
