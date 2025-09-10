@@ -671,7 +671,6 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
 });
 
 
-src="https://checkout.epayco.co/checkout.js"
 
 
 document.addEventListener("DOMContentLoaded", () => {
