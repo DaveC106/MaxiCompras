@@ -352,7 +352,7 @@ body {
     min-height: 70px; /* Altura mínima garantizada */
     display:block;
     line-height: 35px;
-    border: 0.5px solid black;
+
       /* Animaciones
   animation: pulse 4s infinite, shake 4s infinite;
   animation-delay: 0s, 0.5s; /* shake arranca cuando pulse llega a su máximo */
