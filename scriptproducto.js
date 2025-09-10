@@ -633,31 +633,34 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
   }).then(() => {
     setTimeout(() => {
       try {
-        const nombre = (form.querySelector('input[name="entry.884366457"]')?.value || "").trim();
-        const ofertaRaw = (document.getElementById("ofertaSeleccionada")?.value || "").trim();
+  const nombre = (form.querySelector('input[name="entry.884366457"]')?.value || "").trim();
+  const ofertaRaw = (document.getElementById("ofertaSeleccionada")?.value || "").trim();
 
-        let cantidad = 1;
-        let nombreBase = ofertaRaw;
-        const match = ofertaRaw.match(/x(\d+)/i);
-        if (match) {
-          cantidad = parseInt(match[1]);
-          nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
-        }
+  let cantidad = 1;
+  let nombreBase = ofertaRaw;
+  const match = ofertaRaw.match(/x(\d+)/i);
+  if (match) {
+    cantidad = parseInt(match[1]);
+    nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
+  }
 
-        const precioEl = document.querySelector('.resumen-row.total .resumen-precio');
-        const precio = (precioEl ? precioEl.innerText.trim() : "");
-        const telefono = (form.querySelector('input[name="entry.2100004347"]')?.value || "").trim();
-        const tipoPago = (form.querySelector('input[name="entry.1855797835"]')?.value || "").trim();
+  const precioEl = document.querySelector('.resumen-row.total .resumen-precio');
+  const precio = (precioEl ? precioEl.innerText.trim() : "");
+  const telefono = (form.querySelector('input[name="entry.2100004347"]')?.value || "").trim();
+  const tipoPago = (form.querySelector('input[name="entry.1855797835"]')?.value || "").trim();
 
-        localStorage.setItem('pedido_nombre', nombre);
-        localStorage.setItem('pedido_producto', nombreBase);
-        localStorage.setItem('pedido_cantidad', cantidad);
-        localStorage.setItem('pedido_precio', precio);
-        localStorage.setItem('pedido_telefono', telefono);
-        localStorage.setItem('pedido_tipo_pago', tipoPago);
-      } catch (err) {
-        console.warn('No fue posible guardar datos en localStorage', err);
-      }
+  localStorage.setItem('pedido_nombre', nombre);
+  localStorage.setItem('pedido_producto', nombreBase);
+  localStorage.setItem('pedido_cantidad', cantidad);
+  localStorage.setItem('pedido_precio', precio);
+  localStorage.setItem('pedido_telefono', telefono);
+  localStorage.setItem('pedido_tipo_pago', tipoPago);
+
+  // ✅ Flag temporal para indicar que hay un pedido recién hecho
+  localStorage.setItem('pedido_recien_confirmado', 'true');
+} catch (err) {
+  console.warn('No fue posible guardar datos en localStorage', err);
+}
 
       window.location.href = "gracias-pedido.html";
     }, 1500);
