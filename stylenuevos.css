@@ -149,7 +149,7 @@ body {
     font-weight: 900;
     margin-bottom: 15px;
     color: #000000;
-     text-shadow: 0px 0px 1px rgba(0,0,0,0.4); /* sombra clásica */
+     text-shadow: 1px 0px 16px  rgba(0,0,0,0.4); /* sombra clásica */
      
     
     /* Centrado solo para móviles */
