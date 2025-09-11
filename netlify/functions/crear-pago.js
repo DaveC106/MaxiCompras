@@ -27,7 +27,7 @@ exports.handler = async (event) => {
       lang: "es",
       external: "true",
       confirmation: "https://maxicomprass.store/.netlify/functions/confirmation",
-      response: "https://maxicomprass.store/respuesta.html"
+      response:  "https://maxicomprass.store/.netlify/functions/respuesta"
     };
 
     return {
