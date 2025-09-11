@@ -1,10 +1,8 @@
-const fs = require("fs");
-const path = require("path");
-
 exports.handler = async (event) => {
   try {
-    const { id, invoice, nombre, celular, correo, departamento, municipio, direccion, oferta } = JSON.parse(event.body || "{}");
+    const { id, invoice } = JSON.parse(event.body || "{}");
 
+    // Catálogo seguro en el backend
     const productos = {
       P1: { nombre: "Picador Eléctrico x1", precio: 64900 },
       P2: { nombre: "Picador Eléctrico x2", precio: 105900 },
@@ -12,7 +10,12 @@ exports.handler = async (event) => {
     };
 
     const producto = productos[id];
-    if (!producto) return { statusCode: 400, body: JSON.stringify({ error: "Producto inválido" }) };
+    if (!producto) {
+      return { statusCode: 400, body: JSON.stringify({ error: "Producto inválido" }) };
+    }
+
+    // Config ePayco (usa testKey y publica si estás probando)
+    const publicKey = "426d46ff6f33c145aa6cb638afe567be";
 
     const checkoutData = {
       name: producto.nombre,
@@ -27,24 +30,13 @@ exports.handler = async (event) => {
       response: "https://maxicomprass.store/respuesta.html"
     };
 
-    // Guardar datos en pedidos.json
-    const pedidosPath = path.join(__dirname, "pedidos.json");
-
-    // Si no existe, crear el archivo con un array vacío
-    if (!fs.existsSync(pedidosPath)) {
-      fs.writeFileSync(pedidosPath, "[]");
-    }
-
-    // Leer y parsear el archivo, manejo si está vacío
-    const pedidosRaw = fs.readFileSync(pedidosPath, "utf8");
-    const pedidos = pedidosRaw.trim() ? JSON.parse(pedidosRaw) : [];
-
-    pedidos.push({ invoice, id, producto: producto.nombre, precio: producto.precio, nombre, celular, correo, departamento, municipio, direccion, oferta });
-    fs.writeFileSync(pedidosPath, JSON.stringify(pedidos, null, 2));
-
     return {
       statusCode: 200,
-      body: JSON.stringify({ publicKey: "426d46ff6f33c145aa6cb638afe567be", testMode: true, checkoutData })
+      body: JSON.stringify({
+        publicKey,
+        testMode: true,
+        checkoutData
+      })
     };
   } catch (err) {
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
