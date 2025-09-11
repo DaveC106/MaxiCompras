@@ -672,7 +672,6 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
 
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const defaultBtn = document.querySelector(".epayco-button-render");
   if (defaultBtn) defaultBtn.remove();
@@ -715,11 +714,11 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
   const invoice = "FAC-" + Date.now();
   localStorage.setItem("pedido_invoice", invoice);
 
-  // 5️⃣ Guardar campos del formulario
+  // 5️⃣ Guardar campos del formulario en localStorage
   const formData = new FormData(form);
   formData.forEach((valor, campo) => localStorage.setItem(campo, valor));
 
-  // 6️⃣ Guardar oferta seleccionada (solo ID)
+  // 6️⃣ Guardar oferta seleccionada
   const oferta = document.querySelector(".oferta-card.seleccionada");
   if (!oferta) {
     alert("⚠️ Selecciona una oferta.");
@@ -729,31 +728,42 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
   localStorage.setItem("pedido_producto_id", productoId);
   localStorage.setItem("pedido_tipo_pago", "Epayco");
 
- // 7️⃣ Enviar datos al Google Form (sin precio)
-const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse";
-const params = new URLSearchParams();
+  // 7️⃣ Enviar datos al Google Form (sin precio)
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse";
+  const params = new URLSearchParams();
+  formData.forEach((valor, campo) => {
+    if (campo !== "entry.1133296564" && campo !== "entry.1855797835") {
+      params.append(campo, valor);
+    }
+  });
+  params.append("entry.1133296564", productoId);
+  params.append("entry.1855797835", "Epayco");
+  params.append("entry.263702996", invoice);
 
-formData.forEach((valor, campo) => {
-  if (campo !== "entry.1133296564" && campo !== "entry.1855797835") {
-    params.append(campo, valor);
-  }
-});
-params.append("entry.1133296564", productoId);
-params.append("entry.1855797835", "Epayco");
-params.append("entry.263702996", invoice);
+  fetch(googleFormUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params.toString()
+  });
 
-fetch(googleFormUrl, {
-  method: "POST",
-  mode: "no-cors",
-  headers: { "Content-Type": "application/x-www-form-urlencoded" }, // 🔑 este faltaba
-  body: params.toString()
-});
+  // 8️⃣ Llamar a backend para crear la orden segura y mandar datos del formulario
+  const datosEnvio = {
+    id: productoId,
+    invoice: invoice,
+    nombre: formData.get("entry.884366457"),
+    celular: formData.get("entry.2100004347"),
+    correo: formData.get("entry.1220188323"),
+    departamento: formData.get("entry.1749391978"),
+    municipio: formData.get("entry.918670460"),
+    direccion: formData.get("entry.4031130"),
+    oferta: formData.get("entry.1133296564")
+  };
 
-  // 8️⃣ Llamar a backend para crear la orden segura
   const response = await fetch("/.netlify/functions/crear-pago", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: productoId, invoice })
+    body: JSON.stringify(datosEnvio)
   });
 
   const data = await response.json();
