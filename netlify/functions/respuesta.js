@@ -6,7 +6,7 @@ exports.handler = async (event) => {
     if (!ref) {
       return {
         statusCode: 302,
-        headers: { Location: "https://maxicomprass.store" }
+        headers: { Location: "https://maxicomprass.store/picador-electrico" }
       };
     }
 
