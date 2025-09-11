@@ -281,55 +281,76 @@ body {
 </div>-->
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const mensajeConfirmacionTexto = document.querySelector('.mensaje-confirmacion-texto');
-  const btnWhatsapp = document.getElementById('btnWhatsapp');
-  const numeroAtencion = "573054469490";
-
-  // Animaciones de entrada
+document.addEventListener("DOMContentLoaded", () => {
   const botones = document.querySelectorAll(".btn-confirmar");
   const cajas = document.querySelectorAll(".caja");
   setTimeout(() => { botones.forEach(b => b.classList.add("mostrar")); }, 200);
   cajas.forEach((caja, index) => {
     setTimeout(() => { caja.classList.add("mostrar"); }, 600 + index * 300);
   });
-
-  // Obtener datos del localStorage o usar valores genéricos
-  const nombre = localStorage.getItem('pedido_nombre') || "Cliente";
-  const producto = localStorage.getItem('pedido_producto') || "producto";
-  const cantidad = localStorage.getItem('pedido_cantidad') || "1";
-  const precio = localStorage.getItem('pedido_precio') || "el precio acordado";
-  const flagRecienPedido = localStorage.getItem('pedido_recien_confirmado') === 'true';
-
-  // Mensaje personalizado para WhatsApp
-  const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
-  const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
-
-  // Configurar botón
-  btnWhatsapp.href = enlace;
-  btnWhatsapp.target = "_blank";
-  btnWhatsapp.innerHTML = '<i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO';
-  btnWhatsapp.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
-
-  // Mensaje superior dinámico
-  mensajeConfirmacionTexto.textContent = flagRecienPedido
-    ? '¡SI CONFIRMAS TU PEDIDO, SE ENVIARÁ MÁS RÁPIDO!'
-    : '¡Puedes confirmar tu pedido por WhatsApp!';
-
-  // Limpiar datos del pedido tras confirmar
-  btnWhatsapp.addEventListener('click', () => {
-    [
-      'pedido_nombre', 'pedido_producto', 'pedido_cantidad',
-      'pedido_precio', 'pedido_telefono', 'pedido_tipo_pago',
-      'pedido_recien_confirmado'
-    ].forEach(item => localStorage.removeItem(item));
-
-    // Recargar la página después de 10s
-    setTimeout(() => location.reload(), 10000);
-  });
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const mensajeConfirmacionTexto = document.querySelector('.mensaje-confirmacion-texto');
+  const btnWhatsapp = document.getElementById('btnWhatsapp');
+  const numeroAtencion = "573054469490";
+
+  // Obtener datos del localStorage
+  const nombre = localStorage.getItem('pedido_nombre') || "";
+  const producto = localStorage.getItem('pedido_producto') || "";
+  const cantidad = localStorage.getItem('pedido_cantidad') || "1";
+  const precio = localStorage.getItem('pedido_precio') || "";
+  const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
+  const tipoPago = localStorage.getItem('pedido_tipo_pago') || "";
+  const flagRecienPedido = localStorage.getItem('pedido_recien_confirmado') === 'true';
+
+  function actualizarBoton() {
+    if (nombre && producto && precio && flagRecienPedido) {
+      // Mostrar botón WhatsApp activo
+      const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+      const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
+      btnWhatsapp.href = enlace;
+      btnWhatsapp.innerHTML = '<i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO';
+      btnWhatsapp.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
+      mensajeConfirmacionTexto.textContent = '¡SI CONFIRMAS TU PEDIDO, SE ENVIARÁ MÁS RÁPIDO!';
+    } else {
+      // Mostrar botón para volver a comprar
+      btnWhatsapp.href = "https://maxicomprass.store/picador-electrico";
+      btnWhatsapp.target = "_self";
+      btnWhatsapp.innerHTML = '¡Volver a comprar!';
+      btnWhatsapp.setAttribute('aria-label', '¡Volver a comprar!');
+      mensajeConfirmacionTexto.textContent = '¡Pedido confirmado, más noticias pronto!';
+    }
+  }
+
+  actualizarBoton();
+
+  btnWhatsapp.addEventListener('click', (e) => {
+    if (nombre && producto && precio && flagRecienPedido) {
+      e.preventDefault();
+      const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+      const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
+      window.open(enlace, '_blank');
+
+      // Limpiar localStorage después de enviar
+      localStorage.removeItem('pedido_nombre');
+      localStorage.removeItem('pedido_producto');
+      localStorage.removeItem('pedido_cantidad');
+      localStorage.removeItem('pedido_precio');
+      localStorage.removeItem('pedido_telefono');
+      localStorage.removeItem('pedido_tipo_pago');
+      localStorage.removeItem('pedido_recien_confirmado');
+
+      setTimeout(() => {
+        actualizarBoton();
+        window.location.reload();
+      }, 10000);
+    }
+  });
+});
+</script>
 
 
 <script>
