@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnWhatsapp = document.getElementById('btnWhatsapp');
   const numeroAtencion = "573054469490";
 
-  // Mostrar animaciones
+  // Animaciones de entrada
   const botones = document.querySelectorAll(".btn-confirmar");
   const cajas = document.querySelectorAll(".caja");
   setTimeout(() => { botones.forEach(b => b.classList.add("mostrar")); }, 200);
@@ -294,42 +294,42 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { caja.classList.add("mostrar"); }, 600 + index * 300);
   });
 
-  // Datos del localStorage o valores genéricos
+  // Obtener datos del localStorage o usar valores genéricos
   const nombre = localStorage.getItem('pedido_nombre') || "Cliente";
   const producto = localStorage.getItem('pedido_producto') || "producto";
   const cantidad = localStorage.getItem('pedido_cantidad') || "1";
   const precio = localStorage.getItem('pedido_precio') || "el precio acordado";
   const flagRecienPedido = localStorage.getItem('pedido_recien_confirmado') === 'true';
 
-  // Configurar botón de WhatsApp
+  // Mensaje personalizado para WhatsApp
   const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
   const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
-    
+
+  // Configurar botón
   btnWhatsapp.href = enlace;
   btnWhatsapp.target = "_blank";
   btnWhatsapp.innerHTML = '<i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO';
   btnWhatsapp.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
 
+  // Mensaje superior dinámico
   mensajeConfirmacionTexto.textContent = flagRecienPedido
     ? '¡SI CONFIRMAS TU PEDIDO, SE ENVIARÁ MÁS RÁPIDO!'
     : '¡Puedes confirmar tu pedido por WhatsApp!';
 
-  // Limpiar localStorage después del clic
+  // Limpiar datos del pedido tras confirmar
   btnWhatsapp.addEventListener('click', () => {
-    localStorage.removeItem('pedido_nombre');
-    localStorage.removeItem('pedido_producto');
-    localStorage.removeItem('pedido_cantidad');
-    localStorage.removeItem('pedido_precio');
-    localStorage.removeItem('pedido_telefono');
-    localStorage.removeItem('pedido_tipo_pago');
-    localStorage.removeItem('pedido_recien_confirmado');
+    [
+      'pedido_nombre', 'pedido_producto', 'pedido_cantidad',
+      'pedido_precio', 'pedido_telefono', 'pedido_tipo_pago',
+      'pedido_recien_confirmado'
+    ].forEach(item => localStorage.removeItem(item));
 
-    setTimeout(() => {
-      location.reload();
-    }, 10000);
+    // Recargar la página después de 10s
+    setTimeout(() => location.reload(), 10000);
   });
 });
 </script>
+
 
 
 <script>
