@@ -403,7 +403,7 @@ body {
 /*aqui termina logica btn comprar*/
 
 .divider {
-    margin: 20px 0;
+    margin: 10px 0;
     border: 0;
     border-top: 6px solid #000000;
 }
@@ -573,7 +573,7 @@ body {
 .stock-alert {
     font-size: 30px;
     font-weight: 900;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 
