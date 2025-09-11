@@ -107,7 +107,7 @@ exports.handler = async (event) => {
         // Redirigir automáticamente después de 5 segundos
         setTimeout(() => {
             window.location.href = "https://maxicomprass.store/picador-electrico";
-        }, 100000);
+        }, 10000);
     </script>
 </body>
 </html>
