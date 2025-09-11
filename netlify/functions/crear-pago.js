@@ -29,7 +29,15 @@ exports.handler = async (event) => {
 
     // Guardar datos en pedidos.json
     const pedidosPath = path.join(__dirname, "pedidos.json");
-    const pedidos = JSON.parse(fs.readFileSync(pedidosPath, "utf8") || "[]");
+
+    // Si no existe, crear el archivo con un array vacío
+    if (!fs.existsSync(pedidosPath)) {
+      fs.writeFileSync(pedidosPath, "[]");
+    }
+
+    // Leer y parsear el archivo, manejo si está vacío
+    const pedidosRaw = fs.readFileSync(pedidosPath, "utf8");
+    const pedidos = pedidosRaw.trim() ? JSON.parse(pedidosRaw) : [];
 
     pedidos.push({ invoice, id, producto: producto.nombre, precio: producto.precio, nombre, celular, correo, departamento, municipio, direccion, oferta });
     fs.writeFileSync(pedidosPath, JSON.stringify(pedidos, null, 2));

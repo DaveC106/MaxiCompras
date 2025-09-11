@@ -11,9 +11,12 @@ exports.handler = async (event) => {
 
     if (estado === "Aceptada") {
       // Leer pedidos.json
-      const pedidosPath = path.join(__dirname, "pedidos.json");
-      const pedidos = JSON.parse(fs.readFileSync(pedidosPath, "utf8") || "[]");
-
+     const pedidosPath = path.join(__dirname, "pedidos.json");
+let pedidos = [];
+if (fs.existsSync(pedidosPath)) {
+  const pedidosRaw = fs.readFileSync(pedidosPath, "utf8");
+  pedidos = pedidosRaw.trim() ? JSON.parse(pedidosRaw) : [];
+}
       // Buscar pedido por invoice
       const pedido = pedidos.find(p => p.invoice === referencia);
       if (!pedido) return { statusCode: 404, body: "Pedido no encontrado" };
