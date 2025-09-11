@@ -578,53 +578,29 @@ function initOfertaModal() {
 // Llama initOfertaModal() cuando abras el modal
 
 
+/*script logica boton contra entrega*/
 
-//script logica del boton de pago contra entrega
 document.querySelector("#compraForm").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
 
-  // 1️⃣ Validar campos obligatorios
-  const requiredFields = form.querySelectorAll("[required]");
-  let allValid = true;
-
-  requiredFields.forEach(field => {
-    const value = (field.value || "").trim();
-    field.classList.remove("input-error");
-
-    if (!value) {
-      allValid = false;
-      field.classList.add("input-error");
-    } else if (field.name === "entry.2100004347") {
-      // Validar teléfono: 10 dígitos y empieza con 3
-      if (!/^[3]\d{9}$/.test(value)) {
-        allValid = false;
-        field.classList.add("input-error");
-      }
-    } else if (field.name === "entry.1220188323") {
-      // Validar correo con @
-      if (!/@/.test(value)) {
-        allValid = false;
-        field.classList.add("input-error");
-      }
-    }
+  // 1️⃣ Crear objeto con todos los entry.xxx
+  const data = new FormData(form);
+  const entries = {};
+  data.forEach((value, key) => {
+    entries[key] = value;
   });
 
-  if (!allValid) {
-    alert("⚠️ Por favor completa todos los campos obligatorios correctamente antes de continuar. Asegúrate que el teléfono tenga 10 dígitos y el correo incluya '@'.");
-    return; // Detiene ejecución si falla validación
-  }
+  // 2️⃣ Guardar en localStorage
+  localStorage.setItem("pedido", JSON.stringify(entries));
 
-  // 2️⃣ Asignar tipo de pago
-  const tipoPagoInput = form.querySelector('input[name="entry.1855797835"]');
-  if (tipoPagoInput) tipoPagoInput.value = "Contra entrega";
-
-  // 3️⃣ Enviar datos al Google Form
-  const data = new FormData(form);
+  // 3️⃣ Convertir a query para enviar al Google Form
   const query = new URLSearchParams(data).toString();
 
+  // Mostrar loader
   document.getElementById("loader").style.display = "flex";
 
+  // 4️⃣ Enviar datos al Google Form
   fetch("https://docs.google.com/forms/d/e/1FAIpQLSdM98DnqirphOqYxkl1MLNfQyOh1gV4vTPjI9FpvIcFfuN2cw/formResponse", {
     method: "POST",
     mode: "no-cors",
@@ -632,41 +608,16 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
     body: query
   }).then(() => {
     setTimeout(() => {
-      try {
-  const nombre = (form.querySelector('input[name="entry.884366457"]')?.value || "").trim();
-  const ofertaRaw = (document.getElementById("ofertaSeleccionada")?.value || "").trim();
-
-  let cantidad = 1;
-  let nombreBase = ofertaRaw;
-  const match = ofertaRaw.match(/x(\d+)/i);
-  if (match) {
-    cantidad = parseInt(match[1]);
-    nombreBase = ofertaRaw.replace(/x\d+/i, "").trim();
-  }
-
-  const precioEl = document.querySelector('.resumen-row.total .resumen-precio');
-  const precio = (precioEl ? precioEl.innerText.trim() : "");
-  const telefono = (form.querySelector('input[name="entry.2100004347"]')?.value || "").trim();
-  const tipoPago = (form.querySelector('input[name="entry.1855797835"]')?.value || "").trim();
-
-  localStorage.setItem('pedido_nombre', nombre);
-  localStorage.setItem('pedido_producto', nombreBase);
-  localStorage.setItem('pedido_cantidad', cantidad);
-  localStorage.setItem('pedido_precio', precio);
-  localStorage.setItem('pedido_telefono', telefono);
-  localStorage.setItem('pedido_tipo_pago', tipoPago);
-
-  // ✅ Flag temporal para indicar que hay un pedido recién hecho
-  localStorage.setItem('pedido_recien_confirmado', 'true');
-} catch (err) {
-  console.warn('No fue posible guardar datos en localStorage', err);
-}
-
+      document.getElementById("loader").style.display = "none";
+      // Redirigir en la misma pestaña
       window.location.href = "gracias-pedido.html";
     }, 1500);
   }).catch(() => {
-    alert("❌ Error al enviar el pedido");
-    document.getElementById("loader").style.display = "none";
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      // Si hay error, también puedes redirigir a otra página o mostrar mensaje
+      window.location.href = "error.html"; 
+    }, 1500);
   });
 });
 

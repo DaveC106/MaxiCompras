@@ -22,18 +22,18 @@ body {
   text-align: center;
   margin-bottom: 25px;
   position: relative;
-  margin-top: 40px; /* Añadido para bajar el contenido */
+  margin-top: 40px;
 }
 
 .header .logo {
   position: absolute;
-  left: 10px; /* Ajustado a la izquierda */
-  top: -50px; /* Ajustado más arriba */
-  width: 80px; /* Reducido de 100px a 80px */
+  left: 10px;
+  top: -50px;
+  width: 80px;
   height: auto;
 }
 
-.header h1 {
+.header h2 {
   font-size: 28px;
   margin: 0;
   display: inline-block;
@@ -138,7 +138,6 @@ body {
   margin-right: 6px;
 }
 
-/* Slider en móviles */
 @media (max-width: 768px) {
   .contenedor {
     display: flex;
@@ -179,9 +178,9 @@ body {
   }
 
   .header .logo {
-    width: 60px; /* Reducido de 80px a 60px para móviles */
+    width: 60px;
     left: 10px;
-    top: -50px; /* Ajustado más arriba para móviles */
+    top: -50px;
   }
 }
 
@@ -190,7 +189,7 @@ body {
     padding: 15px;
   }
 
-  .header h1 {
+  .header h2 {
     font-size: 22px;
   }
 
@@ -209,21 +208,10 @@ body {
   }
 
   .header .logo {
-    width: 50px; /* Reducido de 70px a 50px para pantallas pequeñas */
+    width: 50px;
     left: 5px;
-    top: -50px; /* Ajustado más arriba para pantallas pequeñas */
+    top: -50px;
   }
-}
-
-.image-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.image-container img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
 }
   </style>
 </head>
@@ -240,8 +228,7 @@ body {
 </div>
 
 <div class="btn-wrapper">
-  <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer"
-     aria-label="Confirmar pedido por WhatsApp">
+  <a id="btnWhatsapp" class="btn-confirmar" target="_blank" rel="noopener noreferrer">
     <i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO
   </a>
 </div>
@@ -255,7 +242,7 @@ body {
     <p>💛 Gracias por confiar en <b>MaxiCompras</b>.</p>
   </div>
 
-     <div class="caja">
+  <div class="caja">
     <h2>CONDICIONES PARA EL PAGO CONTRAENTREGA</h2>
     <p><i class="fa-solid fa-check"></i> Confirma tu pedido haciendo clic en “Confirmar pedido”.</p>
     <p><i class="fa-solid fa-check"></i> Tu producto será despachado hoy mismo.</p>
@@ -270,98 +257,87 @@ body {
     <p><i class="fa-solid fa-check"></i> Si el producto llegó dañado, notifícanos.</p>
     <p><i class="fa-solid fa-check"></i> Tu satisfacción es prioridad.</p>
   </div>
-
-
 </div>
 
 <div class="dots" id="dots"></div>
 
-<!--<div class="image-container">
-  <img src="images/imagegracias.png" alt="Gracias por tu compra">
-</div>-->
-
+<div hidden>
+  <h2>Resumen de tu pedido</h2>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody id="tablaPedido"></tbody>
+  </table>
+</div>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const botones = document.querySelectorAll(".btn-confirmar");
-  const cajas = document.querySelectorAll(".caja");
-  setTimeout(() => { botones.forEach(b => b.classList.add("mostrar")); }, 200);
-  cajas.forEach((caja, index) => {
-    setTimeout(() => { caja.classList.add("mostrar"); }, 600 + index * 300);
+  const formData = JSON.parse(localStorage.getItem("pedido")) || {};
+  const tabla = document.getElementById("tablaPedido");
+
+  const labels = {
+    "entry.884366457": "Nombre",
+    "entry.2100004347": "Celular (WhatsApp)",
+    "entry.1749391978": "Departamento",
+    "entry.918670460": "Municipio",
+    "entry.1220188323": "Correo",
+    "entry.4031130": "Dirección",
+    "entry.256631230": "Nota adicional",
+    "entry.1133296564": "Oferta seleccionada"
+  };
+
+  // Agregar datos del pedido a la tabla
+  Object.entries(formData).forEach(([key, value]) => {
+    if (labels[key]) {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${labels[key]}</td><td>${value}</td>`;
+      tabla.appendChild(row);
+    }
   });
+
+  // Determinar cantidad y precio según oferta seleccionada
+  const oferta = formData["entry.1133296564"] || "";
+  const precios = {
+    "Picador Eléctrico x1": 64900,
+    "Picador Eléctrico x2": 105900,
+    "Picador Eléctrico x3": 149900
+  };
+
+  let cantidad = "1";
+  if (oferta.includes("x2")) cantidad = "2";
+  if (oferta.includes("x3")) cantidad = "3";
+
+  // Obtener precio según la oferta
+  const precio = precios[oferta] ? `$${precios[oferta].toLocaleString("es-CO")}` : "$64.900";
+
+  // Agregar fila del precio al resumen
+  const filaPrecio = document.createElement("tr");
+  filaPrecio.innerHTML = `<td>Precio</td><td>${precio}</td>`;
+  tabla.appendChild(filaPrecio);
+
+  // Crear mensaje de WhatsApp con precio correcto
+  const nombre = formData["entry.884366457"] || "";
+  const mensaje = `Hola, confirmo mi pedido de (${cantidad}) Picador Eléctrico por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+
+  const numeroTienda = "573001112233";
+  const url = `https://wa.me/${numeroTienda}?text=${encodeURIComponent(mensaje)}`;
+  document.getElementById("btnWhatsapp").href = url;
+
+  // Mostrar botón con animación
+  document.getElementById("btnWhatsapp").classList.add("mostrar");
 });
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const mensajeConfirmacionTexto = document.querySelector('.mensaje-confirmacion-texto');
-  const btnWhatsapp = document.getElementById('btnWhatsapp');
-  const numeroAtencion = "573054469490";
-
-  // Obtener datos del localStorage
-  const nombre = localStorage.getItem('pedido_nombre') || "";
-  const producto = localStorage.getItem('pedido_producto') || "";
-  const cantidad = localStorage.getItem('pedido_cantidad') || "1";
-  const precio = localStorage.getItem('pedido_precio') || "";
-  const telefonoCliente = localStorage.getItem('pedido_telefono') || "";
-  const tipoPago = localStorage.getItem('pedido_tipo_pago') || "";
-  const flagRecienPedido = localStorage.getItem('pedido_recien_confirmado') === 'true';
-
-  function actualizarBoton() {
-    if (nombre && producto && precio && flagRecienPedido) {
-      // Mostrar botón WhatsApp activo
-      const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
-      const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
-      btnWhatsapp.href = enlace;
-      btnWhatsapp.innerHTML = '<i class="fa-brands fa-whatsapp"></i> CONFIRMAR PEDIDO';
-      btnWhatsapp.setAttribute('aria-label', `Enviar a WhatsApp: ${mensaje}`);
-      mensajeConfirmacionTexto.textContent = '¡SI CONFIRMAS TU PEDIDO, SE ENVIARÁ MÁS RÁPIDO!';
-    } else {
-      // Mostrar botón para volver a comprar
-      btnWhatsapp.href = "https://maxicomprass.store/picador-electrico";
-      btnWhatsapp.target = "_self";
-      btnWhatsapp.innerHTML = '¡Volver a comprar!';
-      btnWhatsapp.setAttribute('aria-label', '¡Volver a comprar!');
-      mensajeConfirmacionTexto.textContent = '¡Pedido confirmado, más noticias pronto!';
-    }
-  }
-
-  actualizarBoton();
-
-  btnWhatsapp.addEventListener('click', (e) => {
-    if (nombre && producto && precio && flagRecienPedido) {
-      e.preventDefault();
-      const mensaje = `Hola, confirmo mi pedido de (${cantidad}) ${producto} por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
-      const enlace = `https://wa.me/${numeroAtencion}?text=${encodeURIComponent(mensaje)}`;
-      window.open(enlace, '_blank');
-
-      // Limpiar localStorage después de enviar
-      localStorage.removeItem('pedido_nombre');
-      localStorage.removeItem('pedido_producto');
-      localStorage.removeItem('pedido_cantidad');
-      localStorage.removeItem('pedido_precio');
-      localStorage.removeItem('pedido_telefono');
-      localStorage.removeItem('pedido_tipo_pago');
-      localStorage.removeItem('pedido_recien_confirmado');
-
-      setTimeout(() => {
-        actualizarBoton();
-        window.location.reload();
-      }, 10000);
-    }
-  });
-});
-</script>
-
-
-<script>
-// Slider con dots y auto solo en <= 768px
 document.addEventListener("DOMContentLoaded", () => {
   const slider = document.getElementById("slider");
   const dotsContainer = document.getElementById("dots");
   const cajas = slider.children;
   let currentIndex = 0;
 
-  // Crear dots
   for (let i = 0; i < cajas.length; i++) {
     const dot = document.createElement("span");
     dot.classList.add("dot");
@@ -388,7 +364,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Auto slider solo en pantallas <= 768px
   if (window.innerWidth <= 768) {
     setInterval(() => {
       currentIndex = (currentIndex + 1) % cajas.length;
@@ -397,6 +372,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4000);
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".caja").forEach((caja, index) => {
+    setTimeout(() => {
+      caja.classList.add("mostrar");
+    }, index * 200); // efecto escalonado
+  });
+});
 </script>
+
+
 </body>
 </html>
