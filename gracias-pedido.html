@@ -385,19 +385,20 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const btnWhatsapp = document.getElementById("btnWhatsapp");
+  const redirectURL = "https://maxicomprass.store/picador-electrico"; // tu página principal
 
   // Si ya confirmó antes, redirigir después de 5 segundos en la misma pestaña
   if (localStorage.getItem("pedidoConfirmado")) {
     setTimeout(() => {
-      localStorage.removeItem("pedidoConfirmado"); // limpiar después de redirigir
-      window.location.href = "https://maxicomprass.store/picador-electrico"; // misma pestaña
+      localStorage.removeItem("pedidoConfirmado"); // limpiar para que pase solo una vez
+      window.location.href = redirectURL; // redirigir en la misma pestaña
     }, 5000);
   }
 
-  btnWhatsapp.addEventListener("click", () => {
-    // Guardar en localStorage que ya confirmó
-    localStorage.setItem("pedidoConfirmado", "true");
-    // WhatsApp se abre de inmediato por el href del botón
+  btnWhatsapp.addEventListener("click", (e) => {
+    e.preventDefault(); // evita que se abra antes de guardar
+    localStorage.setItem("pedidoConfirmado", "true"); // guardar primero
+    window.location.href = btnWhatsapp.href; // luego abrir WhatsApp
   });
 });
 </script>
