@@ -579,10 +579,12 @@ function initOfertaModal() {
 
 
 /*script logica boton contra entrega*/
-
 document.querySelector("#compraForm").addEventListener("submit", e => {
   e.preventDefault();
   const form = e.target;
+
+  // 🔹 Aquí llenamos dinámicamente el tipo de pago
+  form.querySelector('input[name="entry.1855797835"]').value = "Contra entrega";
 
   // 1️⃣ Crear objeto con todos los entry.xxx
   const data = new FormData(form);
@@ -615,14 +617,13 @@ document.querySelector("#compraForm").addEventListener("submit", e => {
   }).catch(() => {
     setTimeout(() => {
       document.getElementById("loader").style.display = "none";
-      // Si hay error, también puedes redirigir a otra página o mostrar mensaje
       window.location.href = "error.html"; 
     }, 1500);
   });
 });
 
 
-
+/*logica boton de epayco*/
 document.addEventListener("DOMContentLoaded", () => {
     const defaultBtn = document.querySelector(".epayco-button-render");
     if (defaultBtn) defaultBtn.remove();
