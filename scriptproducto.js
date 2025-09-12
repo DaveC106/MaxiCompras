@@ -631,6 +631,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelector("#btnEpayco").addEventListener("click", async function() {
     const form = document.querySelector("#compraForm");
+    const loader = document.getElementById("loader"); // ⬅️ tu loader existente
+
+    // Mostrar loader apenas hagan clic
+    loader.style.display = "flex";
 
     // 1️⃣ Validar campos obligatorios
     const requiredFields = form.querySelectorAll("[required]");
@@ -645,6 +649,7 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     });
 
     if (!allValid) {
+        loader.style.display = "none"; // Ocultar si hay error
         alert("⚠️ Completa todos los campos obligatorios.");
         return;
     }
@@ -652,6 +657,7 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     // 2️⃣ Validar teléfono
     const telField = form.querySelector('input[name="entry.2100004347"]');
     if (!/^3\d{9}$/.test(telField.value.trim())) {
+        loader.style.display = "none";
         alert("⚠️ El teléfono debe tener 10 dígitos y empezar con 3.");
         return;
     }
@@ -659,6 +665,7 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     // 3️⃣ Validar correo
     const emailField = form.querySelector('input[name="entry.1220188323"]');
     if (!/.+@.+\..+/.test(emailField.value.trim())) {
+        loader.style.display = "none";
         alert("⚠️ Ingresa un correo válido.");
         return;
     }
@@ -674,6 +681,7 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     // 6️⃣ Guardar oferta seleccionada (solo ID)
     const oferta = document.querySelector(".oferta-card.seleccionada");
     if (!oferta) {
+        loader.style.display = "none";
         alert("⚠️ Selecciona una oferta.");
         return;
     }
@@ -713,6 +721,7 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     });
     const data = await response.json();
     if (data.error) {
+        loader.style.display = "none";
         alert("Error al crear el pago: " + data.error);
         return;
     }
@@ -722,5 +731,9 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
         key: data.publicKey,
         test: data.testMode
     });
+
     handler.open(data.checkoutData);
+
+    // Ocultar loader apenas se abre el checkout
+    setTimeout(() => loader.style.display = "none", 300);
 });
