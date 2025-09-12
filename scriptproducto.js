@@ -632,6 +632,12 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelector("#btnEpayco").addEventListener("click", async function() {
     const form = document.querySelector("#compraForm");
     const loader = document.getElementById("loader"); // ⬅️ tu loader existente
+    const btnEpayco = document.querySelector("#btnEpayco");
+
+    // Desactivar botón para evitar múltiples clics
+    btnEpayco.disabled = true;
+    btnEpayco.style.pointerEvents = "none"; // para que no se pueda hacer clic visualmente
+    btnEpayco.style.opacity = "0.6"; // opcional: visualmente deshabilitado
 
     // Mostrar loader apenas hagan clic
     loader.style.display = "flex";
@@ -707,7 +713,6 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        // 🔑 este faltaba
         body: params.toString()
     });
 
