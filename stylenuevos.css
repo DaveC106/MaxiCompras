@@ -1726,8 +1726,8 @@ body {
   padding: 15px;
   margin-top: 15px;
   font-family: 'Poppins', sans-serif;
-
   margin-bottom: 25px;
+  border: 1px solid gray;
 }
 
 .resumen-row {
@@ -2460,13 +2460,14 @@ select:focus {
   text-align: center; /* Texto centrado */
   margin: 10px 0;
   gap: 20px;
-    animation:shake 2s infinite;
+    animation:shake 1.5s infinite;
   box-shadow: 0 0 0px #007bff;
   transition: transform 0.3s ease;
   min-height: 70px;
   line-height: 35px;
   border: none;
   cursor: pointer;
+  border: 1px solid black;
   box-sizing: border-box;
 }
 
