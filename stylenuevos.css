@@ -1903,7 +1903,7 @@ textarea {
 .send-button {
   margin-top: 25px;
   width: 100%;
-   background: linear-gradient(180deg, #0FFF00 0%, #0AAC00 100%);
+   background: #00CF0F;
   color: white;
   font-size: 25px;
   border: none;
@@ -1911,10 +1911,15 @@ textarea {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
-  font-weight: 900;
+  font-weight: 700;
   font-family: Poppins, sans-serif;
   animation: pulse-botonform 1s ease-in-out infinite;
   border: 0.5px solid black;
+  line-height: 25px;
+}
+.subtitlesenbutton{
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .send-button:hover {
@@ -2404,30 +2409,66 @@ select:focus {
     }
   }
 
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-3px);
+  }
+  20% {
+    transform: translateX(3px);
+  }
+  30% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  70% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+  90% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+  
   .btnsendepay {
   display: flex; /* Usamos flex para centrar contenido */
   align-items: center;
   justify-content: center;
   width: 100%; /* Ahora ocupa todo el ancho */
-  background: linear-gradient(180deg, #1E90FF 0%, #0066CC 100%);
+  background: #0685fb;
   color: #fff;
   padding: 15px 40px;
   border-radius: 12px;
   text-decoration: none;
-  font-weight: 900;
-  font-size: 25px;
+  font-weight: 700;
+  font-size: 23px;
   font-family: 'Poppins', sans-serif;
   text-align: center; /* Texto centrado */
   margin: 10px 0;
   gap: 20px;
-  animation: pulse-glow-blue 1s ease-in-out infinite;
+    animation:shake 2s infinite;
   box-shadow: 0 0 0px #007bff;
   transition: transform 0.3s ease;
   min-height: 70px;
   line-height: 35px;
   border: none;
   cursor: pointer;
-  box-sizing: border-box; /* Evita que el padding rompa el ancho */
+  box-sizing: border-box;
 }
 
 .btnsendepay:hover {
