@@ -445,6 +445,7 @@ body {
 
 #btnEpayco i {
   margin-right: -15px;
+  margin-top: -40px;
 }
 
 
@@ -1930,7 +1931,7 @@ textarea {
 }
 .subtitlesenbutton{
   font-weight: 300;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .send-button:hover {
@@ -2455,6 +2456,7 @@ select:focus {
     transform: translateX(0);
   }
 }
+
   
   .btnsendepay {
   display: flex; /* Usamos flex para centrar contenido */
@@ -2482,6 +2484,7 @@ select:focus {
   border: 1px solid black;
   box-sizing: border-box;
 }
+
 
 @media (max-width: 435px) {
   .btnsendepay {
