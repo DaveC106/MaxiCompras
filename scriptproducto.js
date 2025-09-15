@@ -634,14 +634,6 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     const loader = document.getElementById("loader"); // ⬅️ tu loader existente
     const btnEpayco = document.querySelector("#btnEpayco");
 
-    // Desactivar botón para evitar múltiples clics
-    btnEpayco.disabled = true;
-    btnEpayco.style.pointerEvents = "none"; // para que no se pueda hacer clic visualmente
-    btnEpayco.style.opacity = "0.6"; // opcional: visualmente deshabilitado
-
-    // Mostrar loader apenas hagan clic
-    loader.style.display = "flex";
-
     // 1️⃣ Validar campos obligatorios
     const requiredFields = form.querySelectorAll("[required]");
     let allValid = true;
@@ -656,7 +648,6 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
 
     if (!allValid) {
         loader.style.display = "none"; // Ocultar si hay error
-        alert("⚠️ Completa todos los campos obligatorios.");
         return;
     }
 
@@ -664,7 +655,6 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     const telField = form.querySelector('input[name="entry.2100004347"]');
     if (!/^3\d{9}$/.test(telField.value.trim())) {
         loader.style.display = "none";
-        alert("⚠️ El teléfono debe tener 10 dígitos y empezar con 3.");
         return;
     }
 
@@ -672,9 +662,21 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     const emailField = form.querySelector('input[name="entry.1220188323"]');
     if (!/.+@.+\..+/.test(emailField.value.trim())) {
         loader.style.display = "none";
-        alert("⚠️ Ingresa un correo válido.");
         return;
     }
+
+    // 6️⃣ Validar oferta seleccionada
+    const oferta = document.querySelector(".oferta-card.seleccionada");
+    if (!oferta) {
+        loader.style.display = "none";
+        return;
+    }
+
+    // ✅ Todo válido, ahora desactivar botón y mostrar loader
+    btnEpayco.disabled = true;
+    btnEpayco.style.pointerEvents = "none";
+    btnEpayco.style.opacity = "0.6";
+    loader.style.display = "flex";
 
     // 4️⃣ Generar invoice único
     const invoice = "FAC-" + Date.now();
@@ -684,13 +686,7 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     const formData = new FormData(form);
     formData.forEach((valor, campo) => localStorage.setItem(campo, valor));
 
-    // 6️⃣ Guardar oferta seleccionada (solo ID)
-    const oferta = document.querySelector(".oferta-card.seleccionada");
-    if (!oferta) {
-        loader.style.display = "none";
-        alert("⚠️ Selecciona una oferta.");
-        return;
-    }
+    // Guardar ID del producto y tipo de pago
     const productoId = oferta.dataset.id;
     localStorage.setItem("pedido_producto_id", productoId);
     localStorage.setItem("pedido_tipo_pago", "Epayco");
