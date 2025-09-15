@@ -1756,9 +1756,9 @@ body {
 }
 
 .resumen-row.total {
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 5px;
-  font-weight: 700; /* mantiene el label "Total" fuerte */
+  font-weight: 700;
   border-top: 1px solid #322f2f;
   color:black
 }
