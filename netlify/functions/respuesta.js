@@ -99,7 +99,7 @@ exports.handler = async (event) => {
     <div class="container">
         <img class="logo" src="https://maxicomprass.store/img/logomaxicompras.webp" alt="Logo MaxiCompras">
         <h1>¡MaxiCompras!</h1>
-        <p>Estamos validando tu pedido. Si todo está correcto, recibirás la confirmación de tu pago aprobado y luego el envío de tu producto.</p>
+        <p>Estamos validando tu pedido. Si el pago es aprobado, recibirás la confirmación por correo y posteriormente el envío de tu producto.</p>
         <a class="button" href="https://maxicomprass.store/picador-electrico">Volver a Comprar</a>
     </div>
 
