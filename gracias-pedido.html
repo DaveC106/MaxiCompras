@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -9,20 +10,28 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.p
 fbq('init', '1178618164081752');
 fbq('track', 'PageView');
 
-document.addEventListener('DOMContentLoaded', function() {
-  // tomar nombre y precio del producto
-  var nombreProducto = document.querySelector('.producto-nombre').innerText;
-  var precioProducto = document.querySelector('.resumen-precioprimero').innerText.replace('$','').replace('.','').trim();
-  var precio = parseFloat(precioProducto);
+// Esperar que el DOM esté cargado y que los elementos existan
+window.addEventListener('load', function() {
+  var nombreEl = document.querySelector('.producto-nombre');
+  var precioEl = document.querySelector('.resumen-precioprimero');
 
-  // enviar evento Purchase con info
-  fbq('track', 'Purchase', {
-    content_name: nombreProducto,
-    value: precio,
-    currency: 'COP'
-  });
+  if(nombreEl && precioEl){
+    var nombreProducto = nombreEl.innerText;
+    var precio = parseFloat(precioEl.innerText.replace('$','').replace('.','').trim());
+
+    fbq('track', 'Purchase', {
+      content_name: nombreProducto,
+      value: precio,
+      currency: 'COP'
+    });
+  }
 });
 </script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1178618164081752&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 
 
   <meta charset="UTF-8">
