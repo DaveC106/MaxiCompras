@@ -15,12 +15,13 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1178618164081752');
 fbq('track', 'PageView');
 
-// Detectar envío de formulario y disparar Lead
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.querySelector('compraForm'); // asegúrate que sea el selector correcto de tu formulario
+  var form = document.getElementById('compraForm'); // correcto
   if(form){
-    form.addEventListener('submit', function(){
-      fbq('track', 'Lead');
+    form.addEventListener('submit', function(e){
+      e.preventDefault(); // pausa el envío
+      fbq('track', 'Lead'); // dispara Lead
+      setTimeout(function(){ form.submit(); }, 200); // envía después de 0.2s
     });
   }
 });
@@ -29,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
 src="https://www.facebook.com/tr?id=1178618164081752&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Picador Multifuncional 4en1 | MaxiCompras</title>
