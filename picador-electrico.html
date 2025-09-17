@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html class="html" lang="es-CO">
 <head>
-<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
 fbq('init', '1178618164081752');
 fbq('track', 'PageView');
 
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('compraForm'); // correcto
+  var form = document.getElementById('compraForm');
   if(form){
     form.addEventListener('submit', function(e){
-      e.preventDefault(); // pausa el envío
-      fbq('track', 'Lead'); // dispara Lead
-      setTimeout(function(){ form.submit(); }, 200); // envía después de 0.2s
+      e.preventDefault(); // pausa el envío temporalmente
+
+      // obtiene los datos del formulario
+      var formData = new FormData(form);
+      var leadData = {};
+      formData.forEach((value, key) => {
+        leadData[key] = value;
+      });
+
+      var uniqueEventID = 'lead_' + Date.now(); // ID único para cada envío
+      fbq('track', 'Lead', leadData, {eventID: uniqueEventID}, function() {
+        form.submit(); // envía el formulario normalmente con POST
+      });
     });
   }
 });
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1178618164081752&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Picador Multifuncional 4en1 | MaxiCompras</title>
