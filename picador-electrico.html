@@ -9,33 +9,40 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.p
 fbq('init', '1178618164081752');
 fbq('track', 'PageView');
 
-// Función para hashear texto en SHA-256
 async function sha256(text) {
+  if(!text) return '';
   const msgBuffer = new TextEncoder().encode(text.toLowerCase().trim());
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('compraForm');
-  if(form){
-    form.addEventListener('submit', async function(e){
-      e.preventDefault();
+  const form = document.getElementById('compraForm');
+  if(!form) return;
 
-      var formData = new FormData(form);
-      var leadData = {};
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
 
-      // Solo email y teléfono
-      if(formData.get('entry.1220188323')) leadData.email = await sha256(formData.get('entry.1220188323'));
-      if(formData.get('entry.2100004347')) leadData.phone = await sha256(formData.get('entry.2100004347'));
+    // Hasheamos todos los campos requeridos
+    const leadData = {
+      em: await sha256(formData.get('entry.1220188323')),   // email
+      ph: await sha256(formData.get('entry.2100004347')),   // teléfono
+      fn: await sha256(formData.get('entry.884366457')),    // nombre
+      ln: await sha256(formData.get('entry.884366457') || ''), // apellido si tienes otro campo separado
+      ct: await sha256(formData.get('entry.918670460')),    // ciudad
+      st: await sha256(formData.get('entry.1749391978')),   // estado / departamento
+      zp: await sha256(formData.get('entry.4031130')),      // ZIP / dirección
+      country: await sha256('Colombia')                     // país
+    };
 
-      var uniqueEventID = 'lead_' + Date.now();
-      fbq('track', 'Lead', leadData, {eventID: uniqueEventID}, function() {
-        form.submit();
-      });
+    const uniqueEventID = 'lead_' + Date.now();
+
+    fbq('track', 'Lead', leadData, {eventID: uniqueEventID}, function() {
+      form.submit();
     });
-  }
+  });
 });
 </script>
 
