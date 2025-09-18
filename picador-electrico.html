@@ -8,54 +8,6 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.p
 
 fbq('init', '1178618164081752');
 fbq('track', 'PageView');
-
-async function sha256(text) {
-  if(!text) return '';
-  const msgBuffer = new TextEncoder().encode(text.toLowerCase().trim());
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
-}
-
-// Normaliza email y teléfono según Meta
-function normalizeEmail(email) {
-  if(!email) return '';
-  return email.toLowerCase().trim();
-}
-
-function normalizePhone(phone) {
-  if(!phone) return '';
-  // Solo números, quitar espacios, guiones, paréntesis, +
-  return phone.replace(/\D/g,'');
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('compraForm');
-  if(!form) return;
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    const email = normalizeEmail(formData.get('entry.1220188323') || '');
-    const phone = normalizePhone(formData.get('entry.2100004347') || '');
-    const firstName = (formData.get('entry.884366457') || '').trim();
-
-    const leadData = {
-      em: await sha256(email),
-      ph: await sha256(phone),
-      fn: await sha256(firstName),
-      ln: await sha256('') // Apellido vacío si no lo tienes
-    };
-
-    const uniqueEventID = 'lead_' + Date.now();
-
-    fbq('track', 'Lead', leadData, {eventID: uniqueEventID});
-
-    // Espera 500ms antes de enviar el form real
-    setTimeout(() => form.submit(), 500);
-  });
-});
 </script>
 
 
