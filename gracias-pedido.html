@@ -5,32 +5,35 @@
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
 fbq('init', '1178618164081752');
 fbq('track', 'PageView');
 
-// Esperar que el DOM esté cargado y que los elementos existan
-window.addEventListener('load', function() {
-  var nombreEl = document.querySelector('.producto-nombre');
-  var precioEl = document.querySelector('.resumen-precioprimero');
+window.addEventListener("load", () => {
+  const pedido = JSON.parse(localStorage.getItem("pedido")) || {};
+  const oferta = pedido["entry.1133296564"] || "Picador Eléctrico x1";
+  
+  const precios = {
+    "Picador Eléctrico x1": 64900,
+    "Picador Eléctrico x2": 105900,
+    "Picador Eléctrico x3": 149900
+  };
 
-  if(nombreEl && precioEl){
-    var nombreProducto = nombreEl.innerText;
-    var precio = parseFloat(precioEl.innerText.replace('$','').replace('.','').trim());
+  const precio = precios[oferta] || 64900;
+  const nombreProducto = oferta;
 
-    fbq('track', 'Purchase', {
-      content_name: nombreProducto,
-      value: precio,
-      currency: 'COP'
-    });
-  }
+  fbq('track', 'Purchase', {
+    content_name: nombreProducto,
+    value: precio,
+    currency: 'COP'
+  });
 });
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1178618164081752&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 
 
 

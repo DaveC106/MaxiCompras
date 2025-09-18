@@ -26,10 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
       var formData = new FormData(form);
       var leadData = {};
 
-      // Hashear solo los campos sensibles
+      // Hashear campos sensibles
       if(formData.get('entry.1220188323')) leadData.email = await sha256(formData.get('entry.1220188323')); // email
       if(formData.get('entry.2100004347')) leadData.phone = await sha256(formData.get('entry.2100004347')); // teléfono
       if(formData.get('entry.4031130')) leadData.address = await sha256(formData.get('entry.4031130')); // dirección
+      if(formData.get('entry.1749391978')) leadData.state = await sha256(formData.get('entry.1749391978')); // departamento
+      if(formData.get('entry.918670460')) leadData.city = await sha256(formData.get('entry.918670460')); // municipio
 
       var uniqueEventID = 'lead_' + Date.now();
       fbq('track', 'Lead', leadData, {eventID: uniqueEventID}, function() {
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
 
 
     <meta charset="UTF-8">
