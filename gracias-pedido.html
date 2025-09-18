@@ -28,7 +28,9 @@ window.addEventListener("load", () => {
   const nombreProducto = oferta;
 
   fbq('track', 'Purchase', {
+    content_ids: [oferta.replace(/\s+/g, '_').toLowerCase()], // ejemplo: picador_eléctrico_x1
     content_name: nombreProducto,
+    content_type: 'product',
     value: precio,
     currency: 'COP'
   });
