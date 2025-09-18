@@ -17,6 +17,18 @@ async function sha256(text) {
   return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
+// Normaliza email y teléfono según Meta
+function normalizeEmail(email) {
+  if(!email) return '';
+  return email.toLowerCase().trim();
+}
+
+function normalizePhone(phone) {
+  if(!phone) return '';
+  // Solo números, quitar espacios, guiones, paréntesis, +
+  return phone.replace(/\D/g,'');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('compraForm');
   if(!form) return;
@@ -25,26 +37,27 @@ document.addEventListener('DOMContentLoaded', function() {
     e.preventDefault();
     const formData = new FormData(form);
 
-    // Hasheamos todos los campos requeridos
+    const email = normalizeEmail(formData.get('entry.1220188323') || '');
+    const phone = normalizePhone(formData.get('entry.2100004347') || '');
+    const firstName = (formData.get('entry.884366457') || '').trim();
+
     const leadData = {
-      em: await sha256(formData.get('entry.1220188323')),   // email
-      ph: await sha256(formData.get('entry.2100004347')),   // teléfono
-      fn: await sha256(formData.get('entry.884366457')),    // nombre
-      ln: await sha256(formData.get('entry.884366457') || ''), // apellido si tienes otro campo separado
-      ct: await sha256(formData.get('entry.918670460')),    // ciudad
-      st: await sha256(formData.get('entry.1749391978')),   // estado / departamento
-      zp: await sha256(formData.get('entry.4031130')),      // ZIP / dirección
-      country: await sha256('Colombia')                     // país
+      em: await sha256(email),
+      ph: await sha256(phone),
+      fn: await sha256(firstName),
+      ln: await sha256('') // Apellido vacío si no lo tienes
     };
 
     const uniqueEventID = 'lead_' + Date.now();
 
-    fbq('track', 'Lead', leadData, {eventID: uniqueEventID}, function() {
-      form.submit();
-    });
+    fbq('track', 'Lead', leadData, {eventID: uniqueEventID});
+
+    // Espera 500ms antes de enviar el form real
+    setTimeout(() => form.submit(), 500);
   });
 });
 </script>
+
 
 
 
