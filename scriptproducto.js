@@ -631,10 +631,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelector("#btnEpayco").addEventListener("click", async function() {
     const form = document.querySelector("#compraForm");
-    const loader = document.getElementById("loader"); // ⬅️ tu loader existente
+    const loader = document.getElementById("loader");
     const btnEpayco = document.querySelector("#btnEpayco");
 
-    // 1️⃣ Validar campos obligatorios
     const requiredFields = form.querySelectorAll("[required]");
     let allValid = true;
     requiredFields.forEach(field => {
@@ -647,42 +646,42 @@ document.querySelector("#btnEpayco").addEventListener("click", async function() 
     });
 
     if (!allValid) {
-        loader.style.display = "none"; // Ocultar si hay error
+        loader.style.display = "none";
         return;
     }
 
-    // 2️⃣ Validar teléfono
+    //  Validar teléfono
     const telField = form.querySelector('input[name="entry.2100004347"]');
     if (!/^3\d{9}$/.test(telField.value.trim())) {
         loader.style.display = "none";
         return;
     }
 
-    // 3️⃣ Validar correo
+    //  Validar correo
     const emailField = form.querySelector('input[name="entry.1220188323"]');
     if (!/.+@.+\..+/.test(emailField.value.trim())) {
         loader.style.display = "none";
         return;
     }
 
-    // 6️⃣ Validar oferta seleccionada
+    //  Validar oferta seleccionada
     const oferta = document.querySelector(".oferta-card.seleccionada");
     if (!oferta) {
         loader.style.display = "none";
         return;
     }
 
-    // ✅ Todo válido, ahora desactivar botón y mostrar loader
+    // Todo válido, ahora desactivar botón y mostrar loader
     btnEpayco.disabled = true;
     btnEpayco.style.pointerEvents = "none";
     btnEpayco.style.opacity = "0.6";
     loader.style.display = "flex";
 
-    // 4️⃣ Generar invoice único
+    //  Generar invoice único
     const invoice = "FAC-" + Date.now();
     localStorage.setItem("pedido_invoice", invoice);
 
-    // 5️⃣ Guardar campos del formulario
+    //  Guardar campos del formulario
     const formData = new FormData(form);
     formData.forEach((valor, campo) => localStorage.setItem(campo, valor));
 
