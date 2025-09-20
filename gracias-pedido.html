@@ -342,35 +342,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Determinar cantidad y precio según oferta seleccionada
-  const oferta = formData["entry.1133296564"] || "";
-  const precios = {
-    "Picador Eléctrico x1": 64900,
-    "Picador Eléctrico x2": 105900,
-    "Picador Eléctrico x3": 149900
-  };
+const oferta = formData["entry.1133296564"] || "";
+const precios = {
+  "Picador Eléctrico x1": 64900,
+  "Picador Eléctrico x2": 105900,
+  "Picador Eléctrico x3": 149900
+};
 
-  let cantidad = "1";
-  if (oferta.includes("x2")) cantidad = "2";
-  if (oferta.includes("x3")) cantidad = "3";
+let cantidad = 1;
+if (oferta.includes("x2")) cantidad = 2;
+if (oferta.includes("x3")) cantidad = 3;
 
-  // Obtener precio según la oferta
-  const precio = precios[oferta] ? `$${precios[oferta].toLocaleString("es-CO")}` : "$64.900";
+// 🔹 Nombre en singular o plural
+let nombreProducto = "Picador Eléctrico";
+if (cantidad > 1) {
+  nombreProducto = "Picadores Eléctricos";
+}
 
-  // Agregar fila del precio al resumen
-  const filaPrecio = document.createElement("tr");
-  filaPrecio.innerHTML = `<td>Precio</td><td>${precio}</td>`;
-  tabla.appendChild(filaPrecio);
+// Obtener precio según la oferta
+const precio = precios[oferta] ? `$${precios[oferta].toLocaleString("es-CO")}` : "$64.900";
 
-  // Crear mensaje de WhatsApp con precio correcto
-  const nombre = formData["entry.884366457"] || "";
-  const mensaje = `Hola, confirmo mi pedido de (${cantidad}) Picador Eléctrico por ${precio} a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
+// Agregar fila del precio al resumen
+const filaPrecio = document.createElement("tr");
+filaPrecio.innerHTML = `<td>Precio</td><td>${precio}</td>`;
+tabla.appendChild(filaPrecio);
 
-  const numeroTienda = "573247012488"; // Número de WhatsApp de la tienda
-  const url = `https://wa.me/${numeroTienda}?text=${encodeURIComponent(mensaje)}`;
-  document.getElementById("btnWhatsapp").href = url;
+// Crear mensaje de WhatsApp con nombre en singular/plural correcto
+const nombre = formData["entry.884366457"] || "";
+const mensaje = `Hola, confirmo mi pedido de *(${cantidad}) ${nombreProducto}* por *${precio}* a nombre de ${nombre}. Con total confianza recibiré mi pedido.`;
 
-  // Mostrar botón con animación
-  document.getElementById("btnWhatsapp").classList.add("mostrar");
+
+const numeroTienda = "573247012488"; // Número de WhatsApp de la tienda
+const url = `https://wa.me/${numeroTienda}?text=${encodeURIComponent(mensaje)}`;
+document.getElementById("btnWhatsapp").href = url;
+
+// Mostrar botón con animación
+document.getElementById("btnWhatsapp").classList.add("mostrar");
 });
 </script>
 
