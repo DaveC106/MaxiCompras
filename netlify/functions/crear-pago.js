@@ -15,7 +15,7 @@ exports.handler = async (event) => {
     }
 
     // Config ePayco (usa testKey y publica si estás probando)
-    const publicKey = "809851a6143a0ecd87aacc547324ed406ee77857";
+    const publicKey = "426d46ff6f33c145aa6cb638afe567be";
 
     const checkoutData = {
       name: producto.nombre,
